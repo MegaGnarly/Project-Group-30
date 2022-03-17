@@ -10,6 +10,13 @@
     padding: 0;
 }
 
+/* Establish some basic properties for the overall website */
+/* This code helps ensure that the footer always sticks to the bottom of the page */
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 /* Define font size and color for lists, html links and buttons */
 li, a, button {
@@ -33,41 +40,26 @@ img {
 }
 
 
-/* main-content is the stuff in-between the header and the footer*/
-.main-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: left;
-    flex-direction: column;
-    /* First value: padding top and bottom. Second value: padding on sides. */
-    padding: 10px 6%;
-    margin-right: auto;
-}
-
-.image{
-    padding-bottom: 15px;
-}
-
-
-/* Header properties */
+/* Flexbox container for the site header*/
 header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    /* 15px padding on top and bottom. 5% padding on sides. */
-    padding: 15px 5%;
+    padding: 15px 5%;   /* 15px padding on top and bottom. 5% padding on sides. Note: these numbers were chosen arbitrarily */
 }
 
 /* You can change how the mouse cursor behaves when you hover over the logo. */
-/* TODO: Maybe make the logo grow slightly bigger? */
-.logo {
+.flexbox-navbar-logo {
     cursor:pointer;
     margin-right: auto;
+    transition: all 0.5s ease 0s;
+}
+.flexbox-navbar-logo:hover {
+    transform: scale(1.1);
 }
 
 /* Header navbar button properties */
-.navbar-button {
+.flexbox-navbar-button {
     margin-left: 20px;
     padding: 12px 32px;
     background-color: #7D92DB;
@@ -80,27 +72,69 @@ header {
     transition: all 0.5s ease 0s;
 }
 /*  Hover effect for navbar button */
-.navbar-button:hover {
+.flexbox-navbar-button:hover {
     background-color: #72A6E8;
-    font-size: 22px;
+    transform: scale(1.1);
+    /*font-size: 22px;*/
 }
 
-.navbar_text {
-    list-style: none;  /* Removes bullet points that appear before list elements on the navbar */
+.flexbox-navbar-text {
+    list-style: none;   /* Removes bullet points that appear before list elements on the navbar */
 }
 
-.navbar_text li {
-    /* Inline block makes it so that list elements appear horizontally */
-    display: inline-block;
+.flexbox-navbar-text li {
+    display: inline-block;  /* Inline block makes it so that list elements appear horizontally */
     padding: 0px 20px;
 }
 
 /* Target hyperlinks within the navbar */
-.navbar_text li a{
-    transition: all 0.2s ease 0s;
+.flexbox-navbar-text li a{
+    transition: all 0.3s ease 0s;
 }
-.navbar_text li a:hover{
+.flexbox-navbar-text li a:hover{
     color:#72A6E8;
+    font-size: 17px;
 }
 
 
+/* flexbox-main-content is the stuff in-between the header and the footer*/
+.flexbox-main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: left;
+    flex-direction: column;
+    padding: 10px 6%;   /* First value: padding top and bottom. Second value: padding on sides. */
+    margin-right: auto;
+}
+
+.image{
+    padding-bottom: 15px;
+}
+
+footer {
+    background-color: #72A6E8;
+    font-weight: bold;
+    color:white;
+    margin-top:auto;    /* Force footer to stick to bottom of page */
+}
+
+.flexbox-footer-container {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: left;
+    padding: 15px 6%;
+}
+
+.flexbox-footer-row {
+    flex-wrap: wrap;    /* When viewport gets smaller each item will wrap onto a new line */
+    list-style: none;
+    margin-bottom: 32px;
+}
+.flexbox-footer-row li {
+    margin-bottom: 2px;
+    font-weight: bold;
+    color:white;
+}
