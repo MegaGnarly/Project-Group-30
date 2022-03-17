@@ -1,10 +1,10 @@
 /* Load custom Roboto font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 /* Override CSS defaults custom values */
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -29,7 +29,7 @@ li, a, button {
 
 /* Define values for heading tags */
 h1, h2, h3 {
-    color:#72A6E8
+    color:#72A6E8;
 }
 
 
@@ -38,6 +38,7 @@ img {
 	max-width: 100%;
 	height: auto;
 }
+
 
 
 /* Flexbox container for the site header*/
@@ -108,8 +109,29 @@ header {
     margin-right: auto;
 }
 
-.image{
-    padding-bottom: 15px;
+/* Container that stores the YouTube video */
+.video-container {
+    position: relative;
+    overflow:hidden;
+    /* The value below will display the video in 16:9 format */
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.video-container iframe, .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+
+/* Here we can set the maximum size of the video and the alignment. */
+.video-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    align-self: center;
 }
 
 footer {
