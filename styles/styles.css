@@ -1,8 +1,106 @@
-/* styles.css 
-/* add custom css below */
+/* Load custom Roboto font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 
-/* This is an example - feel free to modify it */
-h1 {
-    color: black;
+/* Override CSS defaults custom values */
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+
+/* Define font size and color for lists, html links and buttons */
+li, a, button {
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    color:black;
+}
+
+
+/* Define values for heading tags */
+h1, h2, h3 {
+    color:#72A6E8
+}
+
+
+/* Allows images to scale with the browser window */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+
+/* main-content is the stuff in-between the header and the footer*/
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: left;
+    flex-direction: column;
+    /* First value: padding top and bottom. Second value: padding on sides. */
+    padding: 10px 6%;
+    margin-right: auto;
+}
+
+.image{
+    padding-bottom: 15px;
+}
+
+
+/* Header properties */
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* 15px padding on top and bottom. 5% padding on sides. */
+    padding: 15px 5%;
+}
+
+/* You can change how the mouse cursor behaves when you hover over the logo. */
+/* TODO: Maybe make the logo grow slightly bigger? */
+.logo {
+    cursor:pointer;
+    margin-right: auto;
+}
+
+/* Header navbar button properties */
+.navbar-button {
+    margin-left: 20px;
+    padding: 12px 32px;
+    background-color: #7D92DB;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor:pointer;
+    transition: all 0.5s ease 0s;
+}
+/*  Hover effect for navbar button */
+.navbar-button:hover {
+    background-color: #72A6E8;
+    font-size: 22px;
+}
+
+.navbar_text {
+    list-style: none;  /* Removes bullet points that appear before list elements on the navbar */
+}
+
+.navbar_text li {
+    /* Inline block makes it so that list elements appear horizontally */
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+/* Target hyperlinks within the navbar */
+.navbar_text li a{
+    transition: all 0.2s ease 0s;
+}
+.navbar_text li a:hover{
+    color:#72A6E8;
+}
+
+
