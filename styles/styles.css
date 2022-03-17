@@ -59,6 +59,14 @@ header {
     transform: scale(1.1);
 }
 
+.flexbox-navbar-hamburger {
+    cursor:pointer;
+    transition: all 0.5s ease 0s;
+}
+.flexbox-navbar-hamburger:hover {
+    transform: scale(1.1);
+}
+
 /* Header navbar button properties */
 .flexbox-navbar-button {
     margin-left: 20px;
@@ -168,3 +176,10 @@ footer {
     margin-right: auto;
     width: 40%;
 }
+
+.hamburger {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 15px;
+  }
