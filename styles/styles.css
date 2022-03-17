@@ -105,7 +105,7 @@ header {
     justify-content: flex-start;
     align-items: left;
     flex-direction: column;
-    padding: 10px 6%;   /* First value: padding top and bottom. Second value: padding on sides. */
+    padding: 10px 15%;   /* First value: padding top and bottom. Second value: padding on sides. */
     margin-right: auto;
 }
 
@@ -167,4 +167,4 @@ footer {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
-  }
+}
