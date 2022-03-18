@@ -46,7 +46,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 15px 5%;   /* 15px padding on top and bottom. 5% padding on sides. Note: these numbers were chosen arbitrarily */
+    padding: 15px 15%;   /* 15px padding on top and bottom. 10% padding on sides. Note: these numbers were chosen arbitrarily */
 }
 
 /* You can change how the mouse cursor behaves when you hover over the logo. */
@@ -59,10 +59,21 @@ header {
     transform: scale(1.1);
 }
 
+
 .flexbox-navbar-hamburger {
     cursor:pointer;
+    display:none;   /* Hide the hamburger menu on big screens */
     transition: all 0.5s ease 0s;
 }
+
+/* This CSS makes it so that the hamburger only appears on mobile screens. */
+@media (max-width: 600px) {
+    .flexbox-navbar-hamburger {
+      display: block;
+    }
+ }
+
+/* Hamburger animation */
 .flexbox-navbar-hamburger:hover {
     transform: scale(1.1);
 }
