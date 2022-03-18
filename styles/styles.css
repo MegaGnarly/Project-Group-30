@@ -59,6 +59,14 @@ header {
     transform: scale(1.1);
 }
 
+.flexbox-navbar-hamburger {
+    cursor:pointer;
+    transition: all 0.5s ease 0s;
+}
+.flexbox-navbar-hamburger:hover {
+    transform: scale(1.1);
+}
+
 /* Header navbar button properties */
 .flexbox-navbar-button {
     margin-left: 20px;
@@ -105,7 +113,7 @@ header {
     justify-content: flex-start;
     align-items: left;
     flex-direction: column;
-    padding: 10px 6%;   /* First value: padding top and bottom. Second value: padding on sides. */
+    padding: 10px 15%;   /* First value: padding top and bottom. Second value: padding on sides. */
     margin-right: auto;
 }
 
@@ -167,4 +175,11 @@ footer {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
+}
+
+.hamburger {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 15px;
   }
