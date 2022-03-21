@@ -43,6 +43,7 @@ header {
     justify-content: flex-end;
     align-items: center;
     padding: 15px 2%;   /* 15px padding on top and bottom. 2% padding on sides. Note: these numbers were chosen arbitrarily */
+    /* background-color: #F7F7F7; */
 }
 
 /* You can change how the mouse cursor behaves when you hover over the logo. */
@@ -177,12 +178,24 @@ footer {
 .flexbox-footer-row {
     flex-wrap: wrap;    /* When viewport gets smaller each item will wrap onto a new line */
     list-style: none;
+    flex-direction: column;
     margin-bottom: 32px;
 }
-.flexbox-footer-row li a {
-    margin-bottom: 2px;
+.flexbox-footer-row a {
+    margin-bottom: 1px;
     font-weight: bold;
     color:white;
+}
+.flexbox-footer-logo {
+    cursor:pointer;
+    float:right;            /* Important! 'Float' allows the logo to be in the same line as the text. */
+    display: block;         /* Right align the logo */
+    margin-left: auto;      /* Right align the logo */
+    margin-top: 5px;
+    transition: all 0.8s ease 0s;
+}
+.flexbox-footer-logo:hover {
+    transform: scale(1.05);
 }
 .flexbox-footer-row-horizontal {
     list-style: none;
@@ -191,6 +204,9 @@ footer {
 .flexbox-footer-row-horizontal li {
     display: inline-block;  /* Inline block makes it so that list elements appear horizontally */
     padding-right: 8px;
+    color:white;
+}
+.flexbox-footer-row-horizontal a {
     color:white;
 }
 
