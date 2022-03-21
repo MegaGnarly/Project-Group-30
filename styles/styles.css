@@ -43,7 +43,7 @@ header {
     justify-content: flex-end;
     align-items: center;
     padding: 15px 2%;   /* 15px padding on top and bottom. 2% padding on sides. Note: these numbers were chosen arbitrarily */
-    /* background-color: #F7F7F7; */
+    background-color: #F7F7F7;
 }
 
 /* You can change how the mouse cursor behaves when you hover over the logo. */
@@ -64,11 +64,12 @@ header {
 }
 
 /* This CSS makes it so that the hamburger only appears on mobile screens. */
-@media (max-width: 600px) {
+@media only screen and (max-width: 500px) {
     .flexbox-navbar-hamburger {
       display: block;
     }
  }
+
 
 /* Hamburger animation */
 .flexbox-navbar-hamburger:hover {
@@ -103,6 +104,12 @@ header {
     display: inline-block;  /* Inline block makes it so that list elements appear horizontally */
     padding: 0px 20px;
 }
+
+@media (max-width: 500px) {
+    .flexbox-navbar-text  {
+      display: none;
+    }
+ }
 
 /* Target hyperlinks within the navbar */
 .flexbox-navbar-text li a{
