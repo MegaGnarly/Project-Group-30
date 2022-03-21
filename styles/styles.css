@@ -26,20 +26,16 @@ li, a, button {
     color:black;
 }
 
-
 /* Define values for heading tags */
 h1, h2, h3 {
     color:#72A6E8;
 }
-
 
 /* Allows images to scale with the browser window */
 img {
 	max-width: 100%;
 	height: auto;
 }
-
-
 
 /* Flexbox container for the site header*/
 header {
@@ -116,7 +112,6 @@ header {
     font-size: 16.5px;
 }
 
-
 /* flexbox-main-content is the stuff in-between the header and the footer*/
 .flexbox-main-content {
     display: flex;
@@ -130,6 +125,10 @@ header {
 
 .flexbox-main-content-lists {
     padding: 0px 2%; 
+}
+
+.flexbox-main-content-lists li a {
+    color: dodgerblue;
 }
 
 /* Container that stores the YouTube video */
@@ -164,7 +163,7 @@ footer {
     margin-top:auto;    /* Force footer to stick to bottom of page */
 }
 
-.flexbox-footer-container {
+.flexbox-footer-container{
     display: flex;
     flex: 1;
     justify-content: flex-start;
@@ -180,7 +179,7 @@ footer {
     list-style: none;
     margin-bottom: 32px;
 }
-.flexbox-footer-row li {
+.flexbox-footer-row li a {
     margin-bottom: 2px;
     font-weight: bold;
     color:white;
@@ -194,7 +193,6 @@ footer {
     padding-right: 8px;
     color:white;
 }
-
 
 /* Centers a photo */
 .center {
