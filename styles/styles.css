@@ -43,7 +43,7 @@ header {
     justify-content: flex-end;
     align-items: center;
     padding: 15px 2%;   /* 15px padding on top and bottom. 2% padding on sides. Note: these numbers were chosen arbitrarily */
-    /* background-color: #F7F7F7; */
+    background-color: #F7F7F7;
 }
 
 /* You can change how the mouse cursor behaves when you hover over the logo. */
