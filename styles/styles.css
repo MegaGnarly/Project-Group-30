@@ -161,7 +161,7 @@ header {
     /* Activate the sidebar. Sidebar is only accessible when the user has clicked the burger icon */
     .sidebar.active {
         height: 100%;
-        width: 35%;
+        width: 38%;
         display: block;
         position:fixed;                     /* Ensure that the sidebar position is fixed in place */
         z-index: 1;                         /* Bring the sidebar on top of the current page */
