@@ -1,5 +1,4 @@
 /* Load custom Roboto font */
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 /* Override CSS defaults custom values */
@@ -11,7 +10,7 @@
 }
 
 /* Establish some basic properties for the overall website */
-/* This code helps ensure that the footer always sticks to the bottom of the page */
+/* This code ensures that the footer always sticks to the bottom of the page */
 body{
     min-height: 100vh;
     display: flex;
@@ -37,16 +36,19 @@ img {
 	height: auto;
 }
 
+
+/*                              SITE HEADER CSS                             */
 /* Flexbox container for the site header*/
 header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 15px 2%;   /* 15px padding on top and bottom. 2% padding on sides. Note: these numbers were chosen arbitrarily */
+    padding: 15px 2%;               /* Padding padding on top and bottom, padding on sides. */
     background-color: #F7F7F7;
 }
 
-/* You can change how the mouse cursor behaves when you hover over the logo. */
+
+/* Header logo - add animation when hovering on logo */
 .flexbox-navbar-logo {
     cursor:pointer;
     margin-right: auto;
@@ -56,25 +58,6 @@ header {
     transform: scale(1.1);
 }
 
-
-.flexbox-navbar-hamburger {
-    cursor:pointer;
-    display:none;   /* Hide the hamburger menu on big screens */
-    transition: all 0.5s ease 0s;
-}
-
-/* This CSS makes it so that the hamburger only appears on mobile screens. */
-@media only screen and (max-width: 500px) {
-    .flexbox-navbar-hamburger {
-      display: block;
-    }
- }
-
-
-/* Hamburger animation */
-.flexbox-navbar-hamburger:hover {
-    transform: scale(1.1);
-}
 
 /* Header navbar button properties */
 .flexbox-navbar-button {
@@ -89,29 +72,42 @@ header {
     cursor:pointer;
     transition: all 0.5s ease 0s;
 }
-/*  Hover effect for navbar button */
+/*  Header navbar button - animation upon hover */
 .flexbox-navbar-button:hover {
     background-color: #72A6E8;
     transform: scale(1.1);
     /*font-size: 22px;*/
 }
 
-.flexbox-navbar-text {
-    list-style: none;   /* Removes bullet points that appear before list elements on the navbar */
-}
 
+/* Header Hamburger - icon and animation upon hover */
+.flexbox-navbar-hamburger {
+    cursor:pointer;
+    display:none;                   /* Hide the hamburger menu on big screens */
+    transition: all 0.5s ease 0s;
+
+}
+.flexbox-navbar-hamburger:hover {
+    transform: scale(1.1);
+}
+/*  Header Hamburger Bar - properties of the three lines that make up the burger */
+.bar {
+    width: 35px;
+    height: 5px;
+    background-color: #B5D2F6;
+    margin: 6px 15px;
+  }
+
+
+/*  Header navbar links */
+.flexbox-navbar-text {
+    list-style: none;               /* Removes bullet points that appear before list elements on the navbar */
+}
 .flexbox-navbar-text li {
-    display: inline-block;  /* Inline block makes it so that list elements appear horizontally */
+    display: inline-block;          /* Inline block makes it so that list elements appear horizontally */
     padding: 0px 20px;
 }
-
-@media (max-width: 500px) {
-    .flexbox-navbar-text  {
-      display: none;
-    }
- }
-
-/* Target hyperlinks within the navbar */
+/* Header navbar links - animation upon hover*/
 .flexbox-navbar-text li a{
     transition: all 0.8s ease 0s;
 }
@@ -120,7 +116,75 @@ header {
     font-size: 16.5px;
 }
 
-/* flexbox-main-content is the stuff in-between the header and the footer*/
+
+/* Sidebar - the sidebar that appears from the left when a user click the hamburger icon*/
+.sidebar {
+    display: block;
+    height: 100%;
+    width: 10%;
+    position:fixed;
+    left: 0;
+    top: 0;
+    /* Setting z-index to -1 forces the sidebar to appear behind the page. */
+    /* We want it to appear behind the page by default until someone has clicked the burger icon*/
+    /*At that point, the z-index will change values to bring it on top of the page */
+    z-index: -1; /* -1 forces it to appear behind the page.  */
+}
+.sidebar a {
+    color: white;
+}
+
+
+/* When the size of the browser window is small, the following CSS rules will apply */
+@media (max-width: 500px) {
+    /* Show burger icon */
+    .flexbox-navbar-hamburger {
+        display: block;
+      }
+
+
+    /* Hide navbar text */
+    .flexbox-navbar-text  {
+        display: none;
+    }
+
+    /* This CSS is currently not in use. */
+    .flexbox-navbar-hamburger.active {
+        /* z-index: 2;  */
+        z-index: -1;                        /* Bring the hamburger icon on top of the overlay so it is present */
+        padding: 0 0px;
+        /* position:fixed;
+        left: 10px; */
+        /* right: 0; */
+    }
+
+    /* Activate the sidebar. Sidebar is only accessible when the user has clicked the burger icon */
+    .sidebar.active {
+        height: 100%;
+        width: 35%;
+        display: block;
+        position:fixed;                     /* Ensure that the sidebar position is fixed in place */
+        z-index: 1;                         /* Bring the sidebar on top of the current page */
+        background-color: #72A6E8; 
+        /* overflow-x: hidden;                 Disable horizontal scroll */
+        transition: 0.2s;                   /* Animation speed */
+    }
+
+    /* Positioning for the sidebar content */
+    .sidebar-content {
+        position: relative;
+        top: 6%; 
+        width: 100%; 
+        text-align: left; 
+        margin-left: 10px;
+        margin-top: 40px; 
+    }
+ }
+
+
+
+/*                              SITE BODY CSS                             */
+/* Main content - the 'body' of the website. The content in-between the header and the footer */
 .flexbox-main-content {
     display: flex;
     flex-wrap: wrap;
@@ -130,14 +194,13 @@ header {
     padding: 10px 15%;   /* First value: padding top and bottom. Second value: padding on sides. */
     margin-right: auto;
 }
-
 .flexbox-main-content-lists {
-    padding: 0px 2%; 
+    list-style-type: none;
 }
-
 .flexbox-main-content-lists li a {
     color: dodgerblue;
 }
+
 
 /* Container that stores the YouTube video */
 .video-container {
@@ -147,7 +210,6 @@ header {
     padding-bottom: 56.25%;
     height: 0;
 }
-
 .video-container iframe, .video-container embed {
     position: absolute;
     top: 0;
@@ -156,19 +218,21 @@ header {
     height: 100%;
     max-width: 100%;
 }
-
-/* Here we can set the maximum size of the video and the alignment. */
+/* Set the maximum size of the video and the alignment. */
 .video-wrapper {
     width: 100%;
     max-width: 1280px;
     align-self: center;
 }
 
+
+
+/*                              SITE FOOTER CSS                             */
 footer {
     background-color: #72A6E8;
     font-weight: bold;
     color:white;
-    margin-top:auto;    /* Force footer to stick to bottom of page */
+    margin-top:auto;         /* Force footer to stick to bottom of page */
 }
 
 .flexbox-footer-container{
@@ -183,7 +247,7 @@ footer {
 }
 
 .flexbox-footer-row {
-    flex-wrap: wrap;    /* When viewport gets smaller each item will wrap onto a new line */
+    flex-wrap: wrap;        /* When viewport gets smaller each item will wrap onto a new line */
     list-style: none;
     flex-direction: column;
     margin-bottom: 32px;
@@ -217,6 +281,9 @@ footer {
     color:white;
 }
 
+
+
+/*                              MISCELLANEOUS CSS                             */
 /* Centers a photo */
 .center {
     display: block;
@@ -224,10 +291,3 @@ footer {
     margin-right: auto;
     width: 40%;
 }
-
-.hamburger {
-    width: 35px;
-    height: 5px;
-    background-color: #B5D2F6;
-    margin: 6px 15px;
-  }
