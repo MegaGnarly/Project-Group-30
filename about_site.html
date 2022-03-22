@@ -10,42 +10,70 @@
 </head>
 
 <body>
-    <!-- Website header which contains logo and navbar content (e.g. login)-->
+    <!-- Website header which contains navbar elements (hamburger icon, logo, links and log in) -->
     <header>
         <label class="flexbox-navbar-hamburger">
-            <div class="hamburger"></div>
-            <div class="hamburger"></div>
-            <div class="hamburger"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
         </label>
+
         <img class="flexbox-navbar-logo" src="assets/logo_navbar.png" width="175" height="85" alt="Diabetes@Home Logo">
         <nav>
             <ul class="flexbox-navbar-text">
-		<li><a href="about_diabetes.html">About Diabetes</a> </li>
-                <li><a href="about_site.html">About Us</a> </li>
+                <li class="nav-item">
+                    <a href="about_diabetes.html">About Diabetes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about_site.html">About Us</a>
+                </li>
             </ul>
         </nav>
         <a class="login-button" href="#"><button class="flexbox-navbar-button">Log in</button></a>
     </header>
 
-    <!-- The 'body' of the website -->
-    <div class="flexbox-main-content">
-        <!-- TODO: REPLACE THIS WITH A NON COPYRIGHT PHOTO!!! -->
-        <img class="center" src="https://d1edr79mp9g5zc.cloudfront.net/5eb0affe-1991-449b-bfc0-a5a0516548bf/8906c4c8-7f6f-47c0-bdff-1181b4f12352/8906c4c8-7f6f-47c0-bdff-1181b4f12352_source__v.jpg" alt="Flowers in Chania">
-
-        <br>
-
-        <h1>About Us</h1>
-        <p> Diabetes@Home was established in 2022 and is the national body for people affected by all types of diabetes and those at risk. Through leadership, prevention, management and research, Diabetes Australia is committed to reducing the impact of diabetes. We work in partnership with diabetes health professionals and educators, researchers and healthcare providers to minimise the impact of diabetes on the Australian community.</p>
-        <br>
-        <p>Diabetes Australia consists of member organisations, each falling into one (at least) of the following categories:</p>
-        <ul class="flexbox-main-content-lists">
-            <li>Specialist – medical, educational, scientific</li> 
-            <li>Community – state and territory diabetes organisations</li>   
-            <li> Research – Diabetes Australia Research Trust, Kellion Research Foundation, Diabetes Research Foundation – Western Australia.</li>
-        </ul>
-        <br>
-
+    
+    <!-- Hamburger sidebar overlay which contains links. Requires Javascript. -->
+    <div id="myNav" class="sidebar">
+        <div class="sidebar-content">
+            <a href="about_diabetes.html">About Diabetes</a>
+            <br>
+            <a href="about_site.html">About Us</a>
+            <br>
+            <br>
+            <a href="#" class="close-btn">Close</a>
+        </div>
     </div>
+    <script src="script.js"></script>
+
+    <!-- Website body - everything in between the header and the footer -->
+    <main>
+        <div class="flexbox-main-content">
+            <!-- TODO: REPLACE THIS WITH A NON COPYRIGHT PHOTO!!! -->
+            <img class="center"
+                src="https://d1edr79mp9g5zc.cloudfront.net/5eb0affe-1991-449b-bfc0-a5a0516548bf/8906c4c8-7f6f-47c0-bdff-1181b4f12352/8906c4c8-7f6f-47c0-bdff-1181b4f12352_source__v.jpg"
+                alt="Flowers in Chania">
+    
+            <br>
+    
+            <h1>About Us</h1>
+            <p> Diabetes@Home was established in 2022 and is the national body for people affected by all types of diabetes
+                and those at risk. Through leadership, prevention, management and research, Diabetes Australia is committed
+                to reducing the impact of diabetes. We work in partnership with diabetes health professionals and educators,
+                researchers and healthcare providers to minimise the impact of diabetes on the Australian community.</p>
+            <br>
+            <p>Diabetes Australia consists of member organisations, each falling into one (at least) of the following
+                categories:</p>
+            <ul class="flexbox-main-content-lists">
+                <li>Specialist – medical, educational, scientific</li>
+                <li>Community – state and territory diabetes organisations</li>
+                <li> Research – Diabetes Australia Research Trust, Kellion Research Foundation, Diabetes Research Foundation
+                    – Western Australia.</li>
+            </ul>
+            <br>
+        </div>
+    </main>
+
 
     <!-- The bottom portion of the website with a list of URLs and more... -->
     <footer>
