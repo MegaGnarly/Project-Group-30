@@ -59,6 +59,7 @@ header {
 }
 
 
+/* Some text */
 /* Header navbar button properties */
 .flexbox-navbar-button {
     margin-left: 20px;
@@ -178,6 +179,19 @@ header {
         text-align: left; 
         margin-left: 10px;
         margin-top: 40px; 
+    }
+
+    .flexbox-navbar-button.active {
+        margin-left: 20px;
+        padding: 12px 32px;
+        background-color: #7D92DB;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        cursor:pointer;
+        transition: all 0.5s ease 0s;
     }
  }
 

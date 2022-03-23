@@ -12,6 +12,9 @@ const sidebar = document.querySelector(".sidebar")
 // The close button refers to the 'Close' text within the sidebar. 
 const closeBtn = document.querySelector(".close-btn")
 
+// The navbar button
+const navbarButton = document.querySelector(".flexbox-navbar-button")
+
 
 // When a user clicks on the hamburger icon activate the following code...
 hamburger.addEventListener("click", () => {
@@ -19,6 +22,7 @@ hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
     hamburgerLinks.classList.toggle("active");
     sidebar.classList.toggle("active");
+    navbarButton.classList.toggle("active");
 })
 
 // When a user clicks on the close button within the sidebar activate the following code...
