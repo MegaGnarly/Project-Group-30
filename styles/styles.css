@@ -25,6 +25,11 @@ li, a, button {
     color:black;
 }
 
+/* Override the default h1 font-size to 32px. Necessary because h1 tags within a <section> render at 24px */ 
+h1 {
+    font-size: 32px;
+}
+
 /* Define values for heading tags */
 h1, h2, h3 {
     color:#72A6E8;
