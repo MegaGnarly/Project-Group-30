@@ -43,7 +43,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 15px 2%;               /* Padding padding on top and bottom, padding on sides. */
+    padding: 6px 2%;               /* Padding padding on top and bottom, padding on sides. */
     background-color: #F7F7F7;
 }
 
@@ -52,6 +52,7 @@ header {
 .flexbox-navbar-logo {
     cursor:pointer;
     margin-right: auto;
+    margin-top: 5px;
     transition: all 0.5s ease 0s;
 }
 .flexbox-navbar-logo:hover {
