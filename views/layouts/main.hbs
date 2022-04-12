@@ -1,0 +1,76 @@
+{{!-- {{main.hbs is the 'main' template for handlebars}} --}}
+{{!-- {{the output of other templates that are made will replace {{{!body}}} }} --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css"> 
+    <title>Document</title>
+</head>
+<body>
+    <!-- Website header which contains navbar elements (hamburger icon, logo, links and log in) -->
+    <header>
+        <label class="flexbox-navbar-hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </label>
+
+        <a href="about_diabetes" class="flexbox-navbar-logo"><img src="assets/logo_navbar.png" width="175px"
+                height="85px" alt="Diabetes@Home Logo"></a>
+        <nav>
+            <ul class="flexbox-navbar-text">
+                <li class="nav-item">
+                    <a href="about_diabetes">About Diabetes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about_site">About Us</a>
+                </li>
+            </ul>
+        </nav>
+        <a class="login-button" href="#"><button class="flexbox-navbar-button">Log in</button></a>
+    </header>
+
+    <!-- Hamburger sidebar overlay which contains links. Requires Javascript. -->
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <a href="about_diabetes">About Diabetes</a>
+            <br>
+            <a href="about_site">About Us</a>
+            <br>
+            <br>
+            <a href="#" class="close-btn">Close</a>
+        </div>
+    </div>
+    <script src="scripts/script.js"></script>
+
+    <main>
+        {{{body}}}
+    </main>
+
+
+    <!-- Footer: The bottom of the website with a list of URLs and more... -->
+    <footer>
+        <div class="flexbox-footer-container">
+            <ul class="flexbox-footer-row">
+                <img class="flexbox-footer-logo" src="assets/logo_footer.png" width="175" height="85"
+                    alt="Diabetes@Home Logo">
+                <li><a href="about_diabetes">Home</a></li>
+                <li><a href="about_site">About us</a></li>
+                <li><a href="#" onclick="javascript:void(0)">Contact us</a></li>
+            </ul>
+            <ul class="flexbox-footer-row-horizontal">
+                <li>&copy 2022 Diabetes@Home</li>
+                <li>|</li>
+                <li><a href="#" onclick="javascript:void(0)">Terms & Conditions</a></li>
+                <li>|</li>
+                <li><a href="#" onclick="javascript:void(0)">Privacy Policy</a></li>
+                <li>|</li>
+                <li><a href="#" onclick="javascript:void(0)">Cookie Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>

@@ -1,0 +1,23 @@
+{
+  "name": "info30005",
+  "version": "1.0.0",
+  "description": "info project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MegaGnarly/INFO30005.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MegaGnarly/INFO30005/issues"
+  },
+  "homepage": "https://github.com/MegaGnarly/INFO30005#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.5"
+  }
+}
