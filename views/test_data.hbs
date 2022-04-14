@@ -1,0 +1,9 @@
+<h1>Displaying all patient entered data</h1>
+<h2 style="color:Tomato;">Only for testing database connection, delete before submission!!</h2>
+<br>
+<ul>
+{{!-- loops over the data set --}}
+{{#each data}}
+    <li>Entered Value: {{this.measured_value}}, Comment: {{this.comment}}</li>
+{{/each}}
+</ul>

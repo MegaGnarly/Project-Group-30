@@ -20,6 +20,11 @@ app.use((req,res,next) => {
     next()
 })
 
+// link to our router
+const appRouter = require('./routes/appRouter')
+
+// the demo routes are added to the end of the '/test' path
+app.use('/test', appRouter)
 
 // Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
 app.get('/', (req,res) => {
@@ -39,8 +44,15 @@ app.get('/about_site', (req,res) => {
     console.log('SERVER: GET about_diabetes')
     res.render('about_site.hbs')
 })
+app.get('/test_data', (req,res) => {
+    // Tip: you don't need to specify the .hbs extension
+    console.log('SERVER: GET about_diabetes')
+    res.render('test_data.hbs')
+})
 
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Diabetes@Home is running!')
 })
+
+require('./models')
