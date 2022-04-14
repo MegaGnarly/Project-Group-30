@@ -41,7 +41,6 @@ app.get('/about_site', (req,res) => {
 })
 
 
-app.listen(PORT, () => {
-    console.log('SERVER: app.js is listening on port ', PORT);
-    console.log('http://localhost:'+ PORT + '/' + '\n')
+app.listen(process.env.PORT || 3000, () => {
+    console.log('Diabetes@Home is running!')
 })
