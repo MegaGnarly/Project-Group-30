@@ -1,9 +1,18 @@
-<h1>Displaying all patient entered data</h1>
-<h2 style="color:Tomato;">Only for testing database connection, delete before submission!!</h2>
-<br>
-<ul>
-{{!-- loops over the data set --}}
-{{#each data}}
-    <li>Entered Value: {{this.measured_value}}, Comment: {{this.comment}}</li>
-{{/each}}
-</ul>
+<div class="flexbox-main-content">
+    <h1>Displaying all patient entered data</h1>
+    <h2 style="color:Tomato;">Only for testing database connection, delete before submission!!</h2>
+    <h2 style="color:Tomato;">Still don't know how to post to database</h2>
+    <br>
+    <form method="POST" action="/post_values">
+        <label for="measured_value">Blood Glucose:</label><br>
+        <input type="text" id="measured_value" name="measured_value"><br>
+        <label for="comment">Comment:<br><textarea name="comment"></textarea></label><br>
+        <input type="submit" value="Submit">
+    </form>
+    <ul>
+    {{!-- loops over the data set --}}
+    {{#each data}}
+        <li>Entered Value: {{this.measured_value}}, Comment: {{this.comment}}</li>
+    {{/each}}
+    </ul>
+</div>

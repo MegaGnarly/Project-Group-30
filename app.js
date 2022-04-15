@@ -2,7 +2,8 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const exphbs = require('express-handlebars')
+const exphbs = require('express-handlebars');
+const { db } = require('./models/measuredValue');
 require('./models')
 
 // Lines that configure handlebars
@@ -50,6 +51,10 @@ app.get('/patient_dash', (req,res) => {
     res.render('patient_dashboard.hbs')
 })
 
+app.post('/post_values', (req,res) => {
+    console.log('POST!!!')
+    db.collection('info30005-project-group-30.measuredvalues').insertOne(req.body)
+})
 
 app.listen(process.env.PORT || PORT, () => {
     console.log('Diabetes@Home is running!')

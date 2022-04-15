@@ -235,6 +235,7 @@ header {
 }
 
 .button01 {
+    display: flex;
     min-height: 90px;
     max-width: 400px;
     border-radius: 38px;
@@ -244,6 +245,9 @@ header {
     margin: 3%;
     font-size: 24px;
     font-weight: bold;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     border:none;
     cursor:pointer;
     transition: all 0.5s ease 0s;
