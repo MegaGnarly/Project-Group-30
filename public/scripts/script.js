@@ -7,7 +7,7 @@ Summary:
 
 // 'Hamburger' is the hamburger icon. Hamburger links are text within the sidebar.
 const hamburger = document.querySelector(".flexbox-navbar-hamburger")
-const hamburgerLinks = document.querySelector(".flexbox-navbar-text")
+// const hamburgerLinks = document.querySelector(".flexbox-navbar-text")
 const sidebar = document.querySelector(".sidebar")
 // The close button refers to the 'Close' text within the sidebar. 
 const closeBtn = document.querySelector(".close-btn")
@@ -17,7 +17,7 @@ const closeBtn = document.querySelector(".close-btn")
 hamburger.addEventListener("click", () => {
     // Activate/deactivate the following CSS classes
     hamburger.classList.toggle("active");
-    hamburgerLinks.classList.toggle("active");
+    // hamburgerLinks.classList.toggle("active");
     sidebar.classList.toggle("active");
 })
 
@@ -25,6 +25,6 @@ hamburger.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
     // Activate/deactivate the following CSS classes
     hamburger.classList.toggle("active");
-    hamburgerLinks.classList.toggle("active");
+    // hamburgerLinks.classList.toggle("active");
     sidebar.classList.toggle("active");
 })

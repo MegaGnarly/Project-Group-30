@@ -87,11 +87,17 @@ header {
     padding: 0px 20px;
 }
 
-.nav-profile-icon {
+.nav-msg-icon {
+    margin-left: 16px;
     margin-right: 16px;
 }
 
-.flexbox-navbar-profile {
+.nav-profile-icon {                       
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.flexbox-navbar-profile {           /* The profile section on the top right */
     list-style: none;
 }
 
@@ -100,7 +106,7 @@ header {
     font-size: 19px;
     font-weight: bold;
 }
-.nav-userstatus {
+.nav-userstatus {                   
     color: #7D92DB;
     font-size: 14px;
 }
@@ -298,17 +304,25 @@ img {
 }
 
 .element {
-    height: 80px;
+    min-height: 90px;
     max-width: 400px;
     border-radius: 38px;
     background-color: #72A6E8;
     color: white;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
     margin: 3%;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
     border:none;
+    cursor:pointer;
+    transition: all 0.5s ease 0s;
 }
+.element:hover {
+    background-color: #8a3ee2;
+    transform: scale(1.05);
+    /*font-size: 22px;*/
+}
+
 
 
 
@@ -343,8 +357,14 @@ img {
     grid-row-start: 1;
     grid-row-end: 3;
     border:none;
+    cursor:pointer;
+    transition: all 0.5s ease 0s;
 }
-
+.element-msg:hover {
+    background-color: #8a3ee2;
+    transform: scale(1.05);
+    /*font-size: 22px;*/
+}
 
 .username {
     color: #343434;
@@ -378,6 +398,18 @@ img {
     /* Hide navbar text */
     .flexbox-navbar-text  {
         display: none;
+    }
+
+
+    /* Hide username, user status and message icon */
+    .flexbox-navbar-profile {
+        display: none;
+    }
+    .nav-msg-icon {
+        display:none;
+    }
+    .nav-profile-verticle-bar {
+        display:none;
     }
 
     /* This CSS is currently not in use. */
@@ -418,6 +450,7 @@ img {
         padding: 12px 20px;
     }
 
+
     #grid-container {
         grid-template-columns: 1fr;
         justify-items: center;
@@ -427,19 +460,21 @@ img {
     }
     #grid-container-nested {
         grid-template-columns: 1fr;
+        width: 324px;
     }
     .heading {
         text-align: center;
     }
     .element {
         margin-bottom: 2%;
-        min-width: 300px;    
+        /* min-width: 300px;   */
     }
+
     .element-msg {
         grid-column-start: 1;
         grid-row-start: 3;
+        min-height: 124px;
     }
-
 
     #profile {
         text-align: center;
