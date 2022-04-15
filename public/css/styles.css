@@ -1,3 +1,17 @@
+/*
+README: The CSS is organized like this:
+    - FONT AND DEFAULT VALUES
+    - HEADER            CSS for navbar (Diabetes@Home logo, log in button, profile text etc)
+    - SIDEBAR           CSS for sidebar that pops up when you click the hamburger icon on mobile
+    - BODY              CSS for the body of a page goes here
+    - FOOTER            CSS for footer (copyright text, logo etc)
+    - GENERAL STYLES    Miscellaneous CSS (e.g. values for h1, h2)
+    - MOBILE VIEW       CSS that ONLY activates on small screens (e.g. hamburger icon)          
+
+    To keep things organized try and place your CSS in the relevant category :)
+*/
+
+
 /* ------------------------------------------------------------------------------------------------------------------------------- */
 /* ||               FONT AND DEFAULT VALUES              */
 /* Load custom Roboto font */
@@ -60,7 +74,6 @@ header {
     transform: scale(1.1);
     /*font-size: 22px;*/
 }
-
 
 /* Header Hamburger - icon and animation upon hover */
 .flexbox-navbar-hamburger {
@@ -459,20 +472,22 @@ img {
         margin-bottom: 2%;
         /* min-width: 300px;   */
     }
+    .patient-dashboard-notifications-text{
+        text-align: center;
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
 
     .button02 {
         grid-column-start: 1;
-        grid-row-start: 3;
+        grid-row-start: 5;
+        grid-row-end: 5;
         min-height: 124px;
     }
 
     #profile {
         text-align: center;
         margin:auto;
-    }
-
-    .patient-dashboard-notifications-text{
-        text-align: center;
     }
  }
 
