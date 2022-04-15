@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const exphbs = require('express-handlebars')
+require('./models')
 
 // Lines that configure handlebars
 app.engine('hbs', exphbs.engine({
@@ -55,4 +56,3 @@ app.listen(process.env.PORT || PORT, () => {
     console.log('http://127.0.0.1:' + PORT + '/' + '\n')
 })
 
-require('./models')

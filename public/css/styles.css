@@ -1,3 +1,5 @@
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+/* ||               FONT AND DEFAULT VALUES              */
 /* Load custom Roboto font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
@@ -24,7 +26,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 6px 2%;               /* Padding padding on top and bottom, padding on sides. */
+    padding: 12px 2%;               /* Padding padding on top and bottom, padding on sides. */
     background-color: #F7F7F7;
 }
 
@@ -185,6 +187,85 @@ header {
     align-self: center;
 }
 
+.username {
+    color: #343434;
+    margin-bottom: 0%;
+}
+.ranking {
+    color: #7D92DB;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+#profile {
+    text-align: center;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    margin-left: 40%;
+}
+
+#patient-dashboard-grid-container {
+    margin-left: 10%;
+    margin-right: 20%;
+    display: grid;
+    /* grid-template-columns: 200px 200px; */
+    grid-template-columns: 40% auto;
+    align-items: center;
+}
+
+#patient-dashboard-grid-container-nested {
+    max-width: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* background-color: antiquewhite; */
+}
+
+.button01 {
+    min-height: 90px;
+    max-width: 400px;
+    border-radius: 38px;
+    background-color: #72A6E8;
+    color: white;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    margin: 3%;
+    font-size: 24px;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: all 0.5s ease 0s;
+}
+.button01:hover {
+    background-color: #8a3ee2;
+    transform: scale(1.05);
+    /*font-size: 22px;*/
+}
+
+.button02 {
+    border-radius: 38px;
+    max-width: 400px;
+    background-color: #A13376;
+    color: white;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    margin: 3%;
+    text-align: center;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    grid-row-end: 4;
+    border:none;
+    cursor:pointer;
+    transition: all 0.5s ease 0s;
+}
+.button02:hover {
+    background-color: #8a3ee2;
+    transform: scale(1.05);
+    /*font-size: 22px;*/
+}
+.patient-dashboard-notifications-text{
+    margin-left: 5%;
+    color: #72A6E8;
+    font-size: 24px;
+}
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------- */
@@ -246,8 +327,7 @@ footer {
 
 /* ------------------------------------------------------------------------------------------------------------------------------- */
 /* ||               GENERAL STYLES              */
-/* Centers a photo */
-.center {
+.center {                       /* Centers a photo */
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -286,46 +366,6 @@ img {
     margin-top: 0px;
 }
 
-
-#grid-container {
-    margin-left: 10%;
-    margin-right: 20%;
-    display: grid;
-    /* grid-template-columns: 200px 200px; */
-    grid-template-columns: 40% auto;
-    align-items: center;
-}
-
-#grid-container-nested {
-    max-width: 85%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* background-color: antiquewhite; */
-}
-
-.element {
-    min-height: 90px;
-    max-width: 400px;
-    border-radius: 38px;
-    background-color: #72A6E8;
-    color: white;
-    filter: drop-shadow(4px 4px 3px #D4D4D4);
-    margin: 3%;
-    font-size: 24px;
-    font-weight: bold;
-    border:none;
-    cursor:pointer;
-    transition: all 0.5s ease 0s;
-}
-.element:hover {
-    background-color: #8a3ee2;
-    transform: scale(1.05);
-    /*font-size: 22px;*/
-}
-
-
-
-
 .purple1 {
     background-color: #72A6E8;
 }
@@ -345,44 +385,7 @@ img {
     border-width: thin;
 }
 
-.element-msg {
-    border-radius: 38px;
-    max-width: 400px;
-    background-color: #A13376;
-    color: white;
-    filter: drop-shadow(4px 4px 3px #D4D4D4);
-    margin: 3%;
-    text-align: center;
-    grid-column-start: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    border:none;
-    cursor:pointer;
-    transition: all 0.5s ease 0s;
-}
-.element-msg:hover {
-    background-color: #8a3ee2;
-    transform: scale(1.05);
-    /*font-size: 22px;*/
-}
 
-.username {
-    color: #343434;
-    margin-bottom: 0%;
-}
-.ranking {
-    color: #7D92DB;
-    margin-top: 0%;
-    margin-bottom: 0%;
-}
-
-#profile {
-    text-align: center;
-    grid-column-start: 1;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    margin-left: 40%;
-}
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------- */
@@ -394,12 +397,10 @@ img {
         display: block;
       }
 
-
     /* Hide navbar text */
     .flexbox-navbar-text  {
         display: none;
     }
-
 
     /* Hide username, user status and message icon */
     .flexbox-navbar-profile {
@@ -412,15 +413,6 @@ img {
         display:none;
     }
 
-    /* This CSS is currently not in use. */
-    .flexbox-navbar-hamburger.active {
-        /* z-index: 2;  */
-        z-index: -1;                        /* Bring the hamburger icon on top of the overlay so it is present */
-        padding: 0 0px;
-        /* position:fixed;
-        left: 10px; */
-        /* right: 0; */
-    }
 
     /* Activate the sidebar. Sidebar is only accessible when the user has clicked the burger icon */
     .sidebar.active {
@@ -430,7 +422,6 @@ img {
         position:fixed;                     /* Ensure that the sidebar position is fixed in place */
         z-index: 1;                         /* Bring the sidebar on top of the current page */
         background-color: #72A6E8; 
-        /* overflow-x: hidden;                 Disable horizontal scroll */
         transition: 0.2s;                   /* Animation speed */
     }
 
@@ -450,27 +441,26 @@ img {
         padding: 12px 20px;
     }
 
-
-    #grid-container {
+    #patient-dashboard-grid-container {
         grid-template-columns: 1fr;
         justify-items: center;
         align-content: center;
         margin-left: auto;
         margin-right: auto;
     }
-    #grid-container-nested {
+    #patient-dashboard-grid-container-nested {
         grid-template-columns: 1fr;
         width: 324px;
     }
     .heading {
         text-align: center;
     }
-    .element {
+    .button01 {
         margin-bottom: 2%;
         /* min-width: 300px;   */
     }
 
-    .element-msg {
+    .button02 {
         grid-column-start: 1;
         grid-row-start: 3;
         min-height: 124px;
@@ -480,9 +470,9 @@ img {
         text-align: center;
         margin:auto;
     }
+
+    .patient-dashboard-notifications-text{
+        text-align: center;
+    }
  }
-
-
-
-
 

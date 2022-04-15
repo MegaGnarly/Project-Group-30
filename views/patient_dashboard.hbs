@@ -1,43 +1,48 @@
+<br>
+<h1 class="heading">Dashboard</h1>
+<br>
 
-        <br>
-        <h1 class="heading">Dashboard</h1>
-        <br>
+<!-- Grid container that stores profile data and 'buttons' (e.g. record health)-->
+<div id="patient-dashboard-grid-container">
+    <!-- Column 1-->
+    <div id="profile">
+        <img src="assets/icon_profile.png" alt="Profile picture" width="175" height="175">
+        
+        <!-- TODO: NEED TO SWAP THESE WITH ACTUAL DATABASE VARIABLES -->
+        <h2 class="username">John Doe</h2>
+        <p class="ranking">Ranking: 3rd</p>
+    </div>
 
-        <!-- Grid container that stores profile data and 'buttons' (e.g. record health)-->
-        <div id="grid-container">
-            <!-- Column 1-->
-            <div id="profile">
-                <img src="assets/icon_profile.png" alt="Profile picture" width="175" height="175">
-                <h2 class="username">John Doe</h2>
-                <p class="ranking">Ranking: 3rd</p>
-            </div>
+    <!-- Column 2 -->
+    <!-- Grid container that stores buttons-->
+    <div id="patient-dashboard-grid-container-nested">
+        <button class="button01">Record Health</button>
+        <button class="button01 purple1">View History</button>
+        <button class="button01 purple2">Leaderboard</button>
+        <button class="button01 purple3">Settings</button>
 
-            <!-- Column 2 -->
-            <!-- Grid container that stores buttons-->
-            <div id="grid-container-nested">
-                <button class="element">Record Health</button>
-                <button class="element purple1">View History</button>
-                <button class="element purple2">Leaderboard</button>
-                <button class="element purple3">Settings</button>
+    </div>
+</div>
+<br>
 
-            </div>
-        </div>
-        <br>
-        <h1 class="heading">Notifications</h1>
-        <div id="grid-container">
-            <!-- Column 1-->
-            <div id="profile"></div>
+{{!-- <h1 class="heading">Notifications</h1> --}}
+<div id="patient-dashboard-grid-container">
+    <!-- Column 1-->
+    <div id="profile"></div>
 
-            <!-- Column 2 -->
-            <!-- Grid container that stores buttons-->
-            <div id="grid-container-nested">
-                <button class="element white">Dose of insulin</button>
+    <!-- Column 2 -->
+    <!-- Grid container that stores buttons-->
+    <div id="patient-dashboard-grid-container-nested">
+        <h2 class="patient-dashboard-notifications-text">Notifications</h2>
+        <h2 class="container-text"></h2>
 
-                <button class="element-msg">
-                    <h2>New message!</h2>
-                    <p>Great job!</p>
-                </button>
-                <button class="element white">Blood glucose levels</button>
-            </div>
-        </div>
-        <br>
+        <button class="button01 white">Dose of insulin</button>
+
+        <button class="button02">
+            <h2>New message!</h2>
+            <p>Great job!</p>
+        </button>
+        <button class="button01 white">Blood glucose levels</button>
+    </div>
+</div>
+<br>
