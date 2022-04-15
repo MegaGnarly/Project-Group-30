@@ -30,24 +30,23 @@ app.use('/test', appRouter)
 app.get('/', (req,res) => {
     // Tip: you don't need to specify the .hbs extension
     console.log('SERVER: GET homepage')
-    res.render('about_diabetes.hbs')
+    res.render('about_diabetes.hbs', {layout: 'main2'})
 })
 
 // Set some test routes. IMPORTANT: WE SHOULD MOVE THIS TO THE ROUTES FOLDER
 app.get('/about_diabetes', (req,res) => {
     // Tip: you don't need to specify the .hbs extension
     console.log('SERVER: GET about_diabetes')
-    res.render('about_diabetes.hbs')
+    res.render('about_diabetes.hbs', {layout: 'main2'})
 })
 app.get('/about_site', (req,res) => {
-    // Tip: you don't need to specify the .hbs extension
-    console.log('SERVER: GET about_diabetes')
-    res.render('about_site.hbs')
+    res.render('about_site.hbs', {layout: 'main2'})
 })
 app.get('/test_data', (req,res) => {
-    // Tip: you don't need to specify the .hbs extension
-    console.log('SERVER: GET about_diabetes')
     res.render('test_data.hbs')
+})
+app.get('/patient_dash', (req,res) => {
+    res.render('patient_dashboard.hbs')
 })
 
 

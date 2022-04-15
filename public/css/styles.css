@@ -9,41 +9,17 @@
     padding: 0;
 }
 
-/* Establish some basic properties for the overall website */
-/* This code ensures that the footer always sticks to the bottom of the page */
+/* Ensures that the footer always sticks to the bottom of the page */
 body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Define font size and color for lists, html links and buttons */
-li, a, button {
-    font-weight: 500;
-    font-size: 16px;
-    text-decoration: none;
-    color:black;
-}
-
-/* Override the default h1 font-size to 32px. Necessary because h1 tags within a <section> render at 24px */ 
-h1 {
-    font-size: 32px;
-}
-
-/* Define values for heading tags */
-h1, h2, h3 {
-    color:#72A6E8;
-}
-
-/* Allows images to scale with the browser window */
-img {
-	max-width: 100%;
-	height: auto;
-}
 
 
-/*                              SITE HEADER CSS                             */
-/* Flexbox container for the site header*/
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+/* ||               HEADER CSS              */
 header {
     display: flex;
     justify-content: flex-end;
@@ -51,7 +27,6 @@ header {
     padding: 6px 2%;               /* Padding padding on top and bottom, padding on sides. */
     background-color: #F7F7F7;
 }
-
 
 /* Header logo - add animation when hovering on logo */
 .flexbox-navbar-logo {
@@ -64,8 +39,6 @@ header {
     transform: scale(1.1);
 }
 
-
-/* Some text */
 /* Header navbar button properties */
 .flexbox-navbar-button {
     margin-left: 20px;
@@ -105,7 +78,6 @@ header {
     margin: 6px 15px;
   }
 
-
 /*  Header navbar links */
 .flexbox-navbar-text {
     list-style: none;               /* Removes bullet points that appear before list elements on the navbar */
@@ -114,6 +86,25 @@ header {
     display: inline-block;          /* Inline block makes it so that list elements appear horizontally */
     padding: 0px 20px;
 }
+
+.nav-profile-icon {
+    margin-right: 16px;
+}
+
+.flexbox-navbar-profile {
+    list-style: none;
+}
+
+.nav-username {
+    color: #343434;
+    font-size: 19px;
+    font-weight: bold;
+}
+.nav-userstatus {
+    color: #7D92DB;
+    font-size: 14px;
+}
+
 /* Header navbar links - animation upon hover*/
 .flexbox-navbar-text li a{
     transition: all 0.8s ease 0s;
@@ -124,7 +115,10 @@ header {
 }
 
 
-/* Sidebar - the sidebar that appears from the left when a user click the hamburger icon*/
+
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+/* ||               SIDEBAR CSS             */
+/* The sidebar that appears from the left when a user click the hamburger icon*/
 .sidebar {
     display: block;
     height: 100%;
@@ -142,61 +136,9 @@ header {
 }
 
 
-/* When the size of the browser window is small, the following CSS rules will apply */
-@media (max-width: 500px) {
-    /* Show burger icon */
-    .flexbox-navbar-hamburger {
-        display: block;
-      }
 
-
-    /* Hide navbar text */
-    .flexbox-navbar-text  {
-        display: none;
-    }
-
-    /* This CSS is currently not in use. */
-    .flexbox-navbar-hamburger.active {
-        /* z-index: 2;  */
-        z-index: -1;                        /* Bring the hamburger icon on top of the overlay so it is present */
-        padding: 0 0px;
-        /* position:fixed;
-        left: 10px; */
-        /* right: 0; */
-    }
-
-    /* Activate the sidebar. Sidebar is only accessible when the user has clicked the burger icon */
-    .sidebar.active {
-        height: 100%;
-        width: 38%;
-        display: block;
-        position:fixed;                     /* Ensure that the sidebar position is fixed in place */
-        z-index: 1;                         /* Bring the sidebar on top of the current page */
-        background-color: #72A6E8; 
-        /* overflow-x: hidden;                 Disable horizontal scroll */
-        transition: 0.2s;                   /* Animation speed */
-    }
-
-    /* Positioning for the sidebar content */
-    .sidebar-content {
-        position: relative;
-        top: 6%; 
-        width: 100%; 
-        text-align: left; 
-        margin-left: 10px;
-        margin-top: 40px; 
-    }
-
-    /* Make the button slightly smaller on small screens */
-    .flexbox-navbar-button {
-        /* font-size: 20px; */
-        padding: 12px 20px;
-    }
- }
-
-
-
-/*                              SITE BODY CSS                             */
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+/* ||               BODY CSS                */
 /* Main content - the 'body' of the website. The content in-between the header and the footer */
 .flexbox-main-content {
     display: flex;
@@ -214,8 +156,7 @@ header {
     color: dodgerblue;
 }
 
-
-/* Container that stores the YouTube video */
+/* Container that stores the YouTube videos */
 .video-container {
     position: relative;
     overflow:hidden;
@@ -240,7 +181,8 @@ header {
 
 
 
-/*                              SITE FOOTER CSS                             */
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+/* ||               FOOTER CSS              */
 footer {
     background-color: #72A6E8;
     font-weight: bold;
@@ -296,7 +238,8 @@ footer {
 
 
 
-/*                              MISCELLANEOUS CSS                             */
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+/* ||               GENERAL STYLES              */
 /* Centers a photo */
 .center {
     display: block;
@@ -306,3 +249,205 @@ footer {
     width: 1100px;
     object-fit: cover;
 }
+
+/* Define font size and color for lists, html links and buttons */
+li, a, button {
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    color:black;
+}
+
+/* Override the default h1 font-size to 32px. Necessary because h1 tags within a <section> render at 24px */ 
+h1 {
+    font-size: 32px;
+}
+
+/* Define values for heading tags */
+h1{
+    color:#72A6E8;
+}
+
+/* Allows images to scale with the browser window */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.heading {
+    text-align: center;
+    color: #72A6E8;
+    margin-top: 0px;
+}
+
+
+#grid-container {
+    margin-left: 10%;
+    margin-right: 20%;
+    display: grid;
+    /* grid-template-columns: 200px 200px; */
+    grid-template-columns: 40% auto;
+    align-items: center;
+}
+
+#grid-container-nested {
+    max-width: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* background-color: antiquewhite; */
+}
+
+.element {
+    height: 80px;
+    max-width: 400px;
+    border-radius: 38px;
+    background-color: #72A6E8;
+    color: white;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    margin: 3%;
+    font-size: 26px;
+    font-weight: bold;
+    border:none;
+}
+
+
+
+.purple1 {
+    background-color: #72A6E8;
+}
+
+.purple2 {
+    background-color: #8B7CC9;
+}
+.purple3 {
+    background-color: #9765B2;
+}
+.white {
+    background-color: #FFFFFF;
+    color:black;
+    filter: drop-shadow(1px 1px 3px #D4D4D4);
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width: thin;
+}
+
+.element-msg {
+    border-radius: 38px;
+    max-width: 400px;
+    background-color: #A13376;
+    color: white;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    margin: 3%;
+    text-align: center;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    border:none;
+}
+
+
+.username {
+    color: #343434;
+    margin-bottom: 0%;
+}
+.ranking {
+    color: #7D92DB;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+#profile {
+    text-align: center;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    margin-left: 40%;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+/* ||               MOBILE VIEW             */
+/* When the size of the browser window is small, the following CSS rules will apply */
+@media (max-width: 1000px) {
+    /* Show burger icon */
+    .flexbox-navbar-hamburger {
+        display: block;
+      }
+
+
+    /* Hide navbar text */
+    .flexbox-navbar-text  {
+        display: none;
+    }
+
+    /* This CSS is currently not in use. */
+    .flexbox-navbar-hamburger.active {
+        /* z-index: 2;  */
+        z-index: -1;                        /* Bring the hamburger icon on top of the overlay so it is present */
+        padding: 0 0px;
+        /* position:fixed;
+        left: 10px; */
+        /* right: 0; */
+    }
+
+    /* Activate the sidebar. Sidebar is only accessible when the user has clicked the burger icon */
+    .sidebar.active {
+        height: 100%;
+        width: 38%;
+        display: block;
+        position:fixed;                     /* Ensure that the sidebar position is fixed in place */
+        z-index: 1;                         /* Bring the sidebar on top of the current page */
+        background-color: #72A6E8; 
+        /* overflow-x: hidden;                 Disable horizontal scroll */
+        transition: 0.2s;                   /* Animation speed */
+    }
+
+    /* Positioning for the sidebar content */
+    .sidebar-content {
+        position: relative;
+        top: 6%; 
+        width: 100%; 
+        text-align: left; 
+        margin-left: 10px;
+        margin-top: 40px; 
+    }
+
+    /* Make the button slightly smaller on small screens */
+    .flexbox-navbar-button {
+        /* font-size: 20px; */
+        padding: 12px 20px;
+    }
+
+    #grid-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #grid-container-nested {
+        grid-template-columns: 1fr;
+    }
+    .heading {
+        text-align: center;
+    }
+    .element {
+        margin-bottom: 2%;
+        min-width: 300px;    
+    }
+    .element-msg {
+        grid-column-start: 1;
+        grid-row-start: 3;
+    }
+
+
+    #profile {
+        text-align: center;
+        margin:auto;
+    }
+ }
+
+
+
+
+
