@@ -1,7 +1,7 @@
 // Import express and set server port
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const PORT = 3000;
 const exphbs = require('express-handlebars')
 
 // Lines that configure handlebars
@@ -51,8 +51,9 @@ app.get('/test_data', (req,res) => {
 })
 
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log('Diabetes@Home is running!')
+    console.log('http://127.0.0.1:' + PORT + '/' + '\n')
 })
 
 require('./models')
