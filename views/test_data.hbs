@@ -1,14 +1,24 @@
+<body>
 <div class="flexbox-main-content">
-    <h1>Displaying all patient entered data</h1>
-    <h2 style="color:Tomato;">Only for testing database connection, delete before submission!!</h2>
-    <h2 style="color:Tomato;">Still don't know how to post to database</h2>
+    <h1>Testing data retrieval and posting from Atlas</h1>
+    <h2 style="color:Tomato;">Delete before submission!!</h2>
     <br>
-    <form method="POST" action="/post_values">
-        <label for="measured_value">Blood Glucose:</label><br>
-        <input type="text" id="measured_value" name="measured_value"><br>
-        <label for="comment">Comment:<br><textarea name="comment"></textarea></label><br>
-        <input type="submit" value="Submit">
+    <h2 style="color:teal;">Changelog:</h2>
+    <h2 style="color:teal;">15/04 Display data from Atlas, don't know how to post yet</h2>
+    <h2 style="color:teal;">17/04 Can now post to database via form</h2>
+    <br>
+    <form class="container" method="POST" action="/post_values">
+        <label for="measured_value">Blood Glucose:</label>
+        <br>
+        <input id="measured_value" name="measured_value">
+        <br>
+        <label for="comment">Comment:</label>
+        <br>
+        <textarea id="comment" name="comment"></textarea>
+        <br>
+        <button>Submit</button>
     </form>
+    <br>
     <ul>
     {{!-- loops over the data set --}}
     {{#each data}}
@@ -16,3 +26,4 @@
     {{/each}}
     </ul>
 </div>
+</body>
