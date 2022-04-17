@@ -50,7 +50,9 @@ app.get('/test_data', (req,res) => {
 app.get('/patient_dash', (req,res) => {
     res.render('patient_dashboard.hbs')
 })
-
+app.get('/clinician_dash', (req,res) => {
+    res.render('clinician_dashboard.hbs')
+})
 app.post('/post_values', (req,res) => {
     console.log('POST!!!')
     db.collection('info30005-project-group-30.measuredvalues').insertOne(req.body)
