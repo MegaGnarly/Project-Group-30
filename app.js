@@ -1,9 +1,11 @@
 // Import express and set server port
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 const PORT = 3000;
 const exphbs = require('express-handlebars');
-const { db } = require('./models/measuredValue');
+const measuredValue = require('./models/measuredValue');
+
 require('./models')
 
 // Lines that configure handlebars
@@ -15,6 +17,8 @@ app.engine('hbs', exphbs.engine({
 app.set('view engine', 'hbs')           // Set handlebars view engine
 app.use(express.static('public'))       // Define where static assets live
 
+// Used to expose body section for POST method
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Debugging middleware to log a message each time a request arrives at the server - handy for debugging
 app.use((req,res,next) => {
@@ -55,7 +59,12 @@ app.get('/clinician_dash', (req,res) => {
 })
 app.post('/post_values', (req,res) => {
     console.log('POST!!!')
-    db.collection('info30005-project-group-30.measuredvalues').insertOne(req.body)
+    let newValue = new measuredValue({
+        measured_value: req.body.measured_value,
+        comment: req.body.comment
+    })
+    newValue.save()
+    res.redirect('/test')
 })
 
 app.listen(process.env.PORT || PORT, () => {

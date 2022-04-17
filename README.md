@@ -5,7 +5,11 @@ Web Information Technologies
 - Please ensure you have npm version 8.6.0 installed (or greater)
 - How to update npm: https://docs.npmjs.com/try-the-latest-stable-version-of-npm
 - Ensure you have npm express and mongoose installed
-- Commands: npm install express followed by npm install mongoose.
+- Commands: 
+-           npm install express 
+-           npm install mongoose
+-           npm install dotenv
+-           npm install body-parser
 
 # Misc notes
 - Start the server using: npm start
