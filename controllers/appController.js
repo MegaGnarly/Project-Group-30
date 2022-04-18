@@ -1,9 +1,12 @@
 // TODO - connect to Mongoose
 // import people model
 const measuredValue = require('../models/measuredValue')
+const patient = require('../models/patient')
+
 
 // handle request to get all people data instances
 const getAllData = async (req, res, next) => {
+    console.log('Inside getAllData')
     try {
         const values = await measuredValue.find().lean()
         return res.render('test_data', {data: values})
@@ -11,6 +14,18 @@ const getAllData = async (req, res, next) => {
         return next(err)
     }
 }
+
+// Handle request to get patient data (name, rank etc)
+const getAllPatientData = async (req, res, next) => {
+    console.log('Inside getAllPatientData')
+    try {
+        const values = await patient.find().lean()
+        return res.render('test_data.hbs', {data2: values})
+    } catch (err) {
+        return next(err)
+    }
+}
+
 
 // handle request to get one data instance
 // NOT USED YET
@@ -31,6 +46,7 @@ const getDataById = async (req, res, next) => {
 
 // exports an object, which contain functions imported by router
 module.exports = {
+    getAllPatientData,
     getAllData,
     //getDataById,
 }

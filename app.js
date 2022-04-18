@@ -4,7 +4,10 @@ const bodyParser = require('body-parser')
 const app = express();
 const PORT = 3000;
 const exphbs = require('express-handlebars');
+
+// Database schemas
 const measuredValue = require('./models/measuredValue');
+const patient = require('./models/patient')
 
 require('./models')
 
@@ -51,20 +54,32 @@ app.get('/about_site', (req,res) => {
 app.get('/test_data', (req,res) => {
     res.render('test_data.hbs')
 })
+
 app.get('/patient_dash', (req,res) => {
     res.render('patient_dashboard.hbs')
 })
 app.get('/clinician_dash', (req,res) => {
     res.render('clinician_dashboard.hbs')
 })
+// sending blood glucose 
 app.post('/post_values', (req,res) => {
-    console.log('POST!!!')
+    console.log('SERVER: New POST')
     let newValue = new measuredValue({
         measured_value: req.body.measured_value,
         comment: req.body.comment
     })
     newValue.save()
     res.redirect('/test')
+})
+// user account creation
+app.post('/post_values_user', (req,res) => {
+    console.log('SERVER: New POST (acc creation)')
+    let newValue = new patient({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+    })
+    newValue.save()
+    res.redirect('/test/users')
 })
 
 app.listen(process.env.PORT || PORT, () => {

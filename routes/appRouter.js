@@ -9,6 +9,7 @@ const appController = require('../controllers/appController')
 
 // add a route to handle the GET request for all app data
 appRouter.get('/', appController.getAllData)
+appRouter.get('/users', appController.getAllPatientData)
 
 // add a route to handle the GET request for one data instance
 //appRouter.get('/:measuredValue_id', appController.getDataById)
