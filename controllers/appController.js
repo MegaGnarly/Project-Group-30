@@ -26,10 +26,24 @@ const getAllPatientData = async (req, res, next) => {
     }
 }
 
+const getPatientName = async (req, res, next) => {
+    console.log('Inside getPatientName')
+    try {
+        const patientName = await patient.findOne( {id: req.params.id} ).lean()
+        console.log(patientName)
+
+        return res.render('patient_dashboard', {patientData: patientName})
+    } catch (err) {
+        return next(err)
+    }
+}
+
+
 
 // handle request to get one data instance
 // NOT USED YET
 const getDataById = async (req, res, next) => {
+    console.log("Inside getdatabyID")
     // search the database by ID
     try {
         const value = await measuredValue.findById(req.params.measuredValue_id).lean() 
@@ -48,6 +62,7 @@ const getDataById = async (req, res, next) => {
 module.exports = {
     getAllPatientData,
     getAllData,
-    //getDataById,
+    getPatientName,
+    // getDataById
 }
 

@@ -29,11 +29,14 @@ app.use((req,res,next) => {
     next()
 })
 
-// link to our router
+// link to our routers
 const appRouter = require('./routes/appRouter')
+const patientRouter = require('./routes/patientRouter')
 
 // the demo routes are added to the end of the '/test' path
 app.use('/test', appRouter)
+
+app.use('/patient', patientRouter)
 
 // Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
 app.get('/', (req,res) => {
@@ -48,9 +51,11 @@ app.get('/about_diabetes', (req,res) => {
     console.log('SERVER: GET about_diabetes')
     res.render('about_diabetes.hbs', {layout: 'main2'})
 })
+
 app.get('/about_site', (req,res) => {
     res.render('about_site.hbs', {layout: 'main2'})
 })
+
 app.get('/test_data', (req,res) => {
     res.render('test_data.hbs')
 })
@@ -58,9 +63,11 @@ app.get('/test_data', (req,res) => {
 app.get('/patient_dash', (req,res) => {
     res.render('patient_dashboard.hbs')
 })
+
 app.get('/clinician_dash', (req,res) => {
     res.render('clinician_dashboard.hbs')
 })
+
 // sending blood glucose 
 app.post('/post_values', (req,res) => {
     console.log('SERVER: New POST')
@@ -71,19 +78,26 @@ app.post('/post_values', (req,res) => {
     newValue.save()
     res.redirect('/test')
 })
+
+// For testing purposes - give the new user an ID
+// Note: should use the objectID that mongoDB generates instead but not sure how to access it in JS
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 // user account creation
 app.post('/post_values_user', (req,res) => {
     console.log('SERVER: New POST (acc creation)')
     let newValue = new patient({
         firstName: req.body.firstName,
-        lastName: req.body.lastName
+        lastName: req.body.lastName,
+        id: getRandomInt(1000)
     })
     newValue.save()
     res.redirect('/test/users')
 })
 
+
 app.listen(process.env.PORT || PORT, () => {
     console.log('Diabetes@Home is running!')
     console.log('http://127.0.0.1:' + PORT + '/' + '\n')
 })
-
