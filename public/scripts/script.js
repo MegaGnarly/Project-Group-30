@@ -28,3 +28,4 @@ closeBtn.addEventListener("click", () => {
     // hamburgerLinks.classList.toggle("active");
     sidebar.classList.toggle("active");
 })
+

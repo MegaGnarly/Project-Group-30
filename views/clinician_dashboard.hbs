@@ -1,22 +1,155 @@
-<!-- READ ME -->
-<!-- Don't learn how CSS Grid works from this code because i'm not sure if i'm doing it 
-    properly.
-
-    I'll probably come back and rewrite some of this stuff.
-
-    Instead it may be worth watching this youtube vid to learn CSS Grid:
-    https://www.youtube.com/watch?v=9zBsdzdE4sM
-
--->
-
-
 <br>
-<h1>Patient Overview</h1>
-<br>
+<h1 class="clinician-title">Patient Overview</h1>
 
-<!-- Grid container that stores profile data and 'buttons' (e.g. record health)-->
+<div class="topbar">
+    <div class="searchbar">
+        <div class="search-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="InputContainer">
+            <input placeholder="Search Patient"/>
+        </div>
+    </div>
+    <div class="flexbox-sortby">Sort By</div>
+    <form action="#">
+      <select name="sortby" id="sort">
+        <option value="lastupdated">Last Updated ▼</option>
+        <option value="firstupdated">Last Updated ▲</option>
+        <option value="name">Name</option>
+      </select>
+    </form>
+</div>
+
 <div class="flexbox-patient-overview-container">
-    <div class="flexbox-patients-item">one</div>
-    <div class="flexbox-patients-item">two</div>
-    <div class="flexbox-patients-item">three</div>
+    <div class="flexbox-patient-individuals">
+        <div class="grid-patient-item">
+            <div class="grid-patient-profile">
+                <div class="flexbox-patient-profile">
+                    <div class="patient-profile-icon">
+                        <img src="assets/icon_profile.png" width="80" height="80">
+                    </div>
+                    <div>
+                        <div class="patient-name">John Doe</div>
+                        <div class="patient-last-updated">Last Updated: 01/01/2022</div>
+                    </div>
+                </div>
+                <div class="flexbox-patient-button">
+                    <button class="patient-button purple2">View Full</button>
+                    <button class="patient-button purple1">Message</button>
+                </div>
+            </div>
+            <div class="grid-patient-category bold">Blood Glucose</div>
+            <div class="grid-patient-data">4.2</div>
+            <div class="grid-patient-category bold">Weight</div>
+            <div class="grid-patient-data">-</div>
+            <div class="grid-patient-category bold">No. Insulin Doses</div>
+            <div class="grid-patient-data">2</div>
+            <div class="grid-patient-category bold">Exercise(Step Count)</div>
+            <div class="grid-patient-data">5042</div>
+        </div>
+        <div class="grid-patient-action-required">
+            <div class="grid-patient-action-required-title bold">Actions Required</div>
+            <div class="grid-patient-action-required-comment">None</div>
+        </div>
+    </div>
+    <div class="flexbox-patient-individuals">
+        <div class="grid-patient-item">
+            <div class="grid-patient-profile">
+                <div class="flexbox-patient-profile">
+                    <div class="patient-profile-icon">
+                        <img src="assets/icon_profile.png" width="80" height="80">
+                    </div>
+                    <div>
+                        <div class="patient-name">John Doe</div>
+                        <div class="patient-last-updated">Last Updated: 01/01/2022</div>
+                    </div>
+                </div>
+                <div class="flexbox-patient-button">
+                    <button class="patient-button purple2">View Full</button>
+                    <button class="patient-button purple1">Message</button>
+                </div>
+            </div>
+            <div class="grid-patient-category bold">Blood Glucose</div>
+            <div class="grid-patient-data">4.2</div>
+            <div class="grid-patient-category bold">Weight</div>
+            <div class="grid-patient-data">-</div>
+            <div class="grid-patient-category bold">No. Insulin Doses</div>
+            <div class="grid-patient-data">2</div>
+            <div class="grid-patient-category bold">Exercise(Step Count)</div>
+            <div class="grid-patient-data">5042</div>
+        </div>
+        <div class="grid-patient-action-required">
+            <div class="grid-patient-action-required-title bold">Actions Required</div>
+            <div class="grid-patient-action-required-comment">None</div>
+        </div>
+    </div>
+    <div class="flexbox-patient-individuals">
+        <div class="grid-patient-item">
+            <div class="grid-patient-profile">
+                <div class="flexbox-patient-profile">
+                    <div class="patient-profile-icon">
+                        <img src="assets/icon_profile.png" width="80" height="80">
+                    </div>
+                    <div>
+                        <div class="patient-name">John Doe</div>
+                        <div class="patient-last-updated">Last Updated: 01/01/2022</div>
+                    </div>
+                </div>
+                <div class="flexbox-patient-button">
+                    <button class="patient-button purple2">View Full</button>
+                    <button class="patient-button purple1">Message</button>
+                </div>
+            </div>
+            <div class="grid-patient-category bold">Blood Glucose</div>
+            <div class="grid-patient-data">4.2</div>
+            <div class="grid-patient-category bold">Weight</div>
+            <div class="grid-patient-data">-</div>
+            <div class="grid-patient-category bold">No. Insulin Doses</div>
+            <div class="grid-patient-data">2</div>
+            <div class="grid-patient-category bold">Exercise(Step Count)</div>
+            <div class="grid-patient-data">5042</div>
+        </div>
+        <div class="grid-patient-action-required">
+            <div class="grid-patient-action-required-title bold">Actions Required</div>
+            <div class="grid-patient-action-required-comment">None</div>
+        </div>
+    </div>
+</div>
+<br>
+<h1 class="clinician-title">Comments</h1>
+<div class="grid-comment">
+    <div class="grid-comment-cell bold">Date/Time</div>
+    <div class="grid-comment-cell bold">Patient</div>
+    <div class="grid-comment-cell bold grid-no-right-border">Comment</div>
+    <div class="link-cell "></div>
+    <div class="grid-comment-cell">01/01/2022, 1:00PM</div>
+    <div class="grid-comment-cell">John Doe</div>
+    <div class="grid-comment-cell grid-no-right-border ">Got Diabetes from doing assignments</div>
+    <div class="link-cell bold">
+        <a href="about_diabetes" class="link-cell bold grid-no-bottom-border">View Advanced Detail ></a>
+    </div>
+    <div class="grid-comment-cell">01/01/2022, 1:00PM</div>
+    <div class="grid-comment-cell">John Doe</div>
+    <div class="grid-comment-cell grid-no-right-border">Got Diabetes from doing assignments</div>
+    <div class="link-cell bold">
+        <a href="about_diabetes" class="link-cell bold grid-no-bottom-border">View Advanced Detail ></a>
+    </div>
+    <div class="grid-comment-cell">01/01/2022, 1:00PM</div>
+    <div class="grid-comment-cell">John Doe</div>
+    <div class="grid-comment-cell grid-no-right-border">Got Diabetes from doing assignments</div>
+    <div class="link-cell bold">
+        <a href="about_diabetes" class="link-cell bold grid-no-bottom-border">View Advanced Detail ></a>
+    </div>
+    <div class="grid-comment-cell">01/01/2022, 1:00PM</div>
+    <div class="grid-comment-cell">John Doe</div>
+    <div class="grid-comment-cell grid-no-right-border">Got Diabetes from doing assignments</div>
+    <div class="link-cell bold">
+        <a href="about_diabetes" class="link-cell bold grid-no-bottom-border">View Advanced Detail ></a>
+    </div>
+    <div class="grid-comment-cell grid-no-bottom-border">01/01/2022, 1:00PM</div>
+    <div class="grid-comment-cell grid-no-bottom-border">John Doe</div>
+    <div class="grid-comment-cell grid-no-bottom-border grid-no-right-border">Got Diabetes from doing assignments</div>
+    <div class="link-cell bold grid-no-bottom-border">
+        <a href="about_diabetes" class="link-cell bold grid-no-bottom-border">View Advanced Detail ></a>
+    </div>
 </div>

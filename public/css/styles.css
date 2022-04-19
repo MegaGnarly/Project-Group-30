@@ -176,22 +176,268 @@ header {
 .flexbox-main-content-lists li a {
     color: dodgerblue;
 }
+
+/*-------------------------------CLINICIAN PAGES-----------------------------------------*/
+.clinician-title {
+    margin-left: 5%;
+}
+.topbar {
+    display: flex;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    flex-direction: row;
+}
+.searchbar {
+    padding: 1px;
+    border-radius: 10px;
+    width: 73.5%;
+    height: 40px;
+    border: 3px solid #f5f5f5;
+    display: flex;
+    margin-right: 3%;
+}
+
+.search-icon {
+    min-width: 23px;
+    min-height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.InputContainer {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+input {
+    padding: 6px 12px;
+    border: none;
+    display: block;
+    font-weight: 600;
+    width: 100%;
+}
+
+::placeholder {
+    color: #c0c0c0;
+}
+
+input:focus {
+outline: none;
+color: black;
+background-color: #F7F7F7;
+}
+
+.flexbox-sortby {
+    padding-top: 8px;
+    margin-right: 2%;
+}
+/*
+.dropbtn {
+    padding: 1px;
+    border-radius: 10px;
+    width: 100%;
+    height: 40px;
+    border: 3px solid #f5f5f5;
+    height: 40px;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: gray;
+  }
+  
+  .dropdown {
+    width: 12%;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown a:hover {background-color: #ddd;}
+  
+  .show {display: block;} */
+
+  select {
+    margin-bottom: 2%;
+    margin-top: 1%;
+    color: black;
+    outline: 0;
+    padding: 4px;
+    border-radius: 10px;
+    border: 3px solid #f5f5f5;
+    height: 40px;
+  }
+  
 .flexbox-patient-overview-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: auto;
 }
-.flexbox-patients-item {
-    height: 150px;
+.flexbox-patient-individuals {
+    display: flex;
+    flex-direction: row;
     width: 90%;
+    height: 175px;
+    margin-bottom: 2%;
+}
+.grid-patient-item {
+    height: 175px;
+    width: 80%;
     border-radius: 20px;
-    margin-bottom: 50px;
-    border: 3px solid black;
-    background-color: gray;
-    
+    margin-bottom: 50px; 
+    border: 3px solid #ececee;
+    background-color: #f0f0f3;
+    display: grid;
+    grid-template-columns: [first] 32% [line2] 17% [line3] 17% [line4] 17% [line5] 17% [last-line];
+    grid-template-rows: [first-row] 30% [second-row] 70% [last-row];
+}
+.grid-patient-profile {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;    
+}
+.flexbox-patient-profile {
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+}
+.patient-profile-icon {
+    margin-left: 15%;
+    margin-top: auto;
+}
+.patient-name {
+    font-weight: 1000;
+    margin-left: 10%;
+    margin-top: 15%;
+}
+.patient-last-updated {
+    color:#8a3ee2;
+    font-size: small;
+    margin-left: 10%;
+}
+.flexbox-patient-button {
+    display: flex;
+    flex-direction: row;
+    height: 40%;
+}
+.patient-button {
+    height: 50%;
+    font-weight: 700;
+    border: none;
+    border-radius: 20px;
+    width: 38%;
+    margin-left: 8%;
+    margin-top: 4%;
+    color: white;
+    font-size: 90%;
+    transition: all 0.5s ease 0s;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+}
+.patient-button:hover {
+    transform: scale(1.05);
 }
 
+.grid-patient-category {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-left: 3px solid #ececee;
+    border-bottom: 3px solid #ececee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: smaller;
+}
+.grid-patient-data {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    border-left: 3px solid #ececee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grid-patient-action-required {
+    height: 175px;
+    width: 20%;
+    margin-bottom: 50px; 
+    border: 3px solid #ececee;
+    background-color: #f0f0f3;
+    border-radius: 20px;
+    margin-left: 3%;
+    display: grid;
+    grid-template-rows: [first-row] 30% [second-row] 70% [last-row];
+}
+.grid-patient-action-required-title {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-bottom: 3px solid #ececee;
+    font-size: smaller;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grid-patient-action-required-comment {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grid-comment {
+    display: grid;
+    width: 90%;
+    height: 300px;
+    margin-left: 5%;
+    border-radius: 10px;
+    border: 3px solid #ececee;
+    grid-template-columns: [first-column] 20% [second-column] 20% [third-column] 45% [forth-column] 15% [last-column];
+    grid-template-rows: [first-row] 20% [second-row] 16% [second-row] 16% [second-row] 16% [second-row] 16% [second-row] 16% [last-row];
+    margin-bottom: 50px;
+}
+.grid-comment-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #ececee;
+    border-right: 3px solid #ececee;
+}
+.link-cell {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: #A13376;
+    text-decoration: underline;
+    border-bottom: 3px solid #ececee;
+    font-size: small;
+}
+.grid-no-right-border {
+    border-right: none;
+}
+.grid-no-bottom-border {
+    border-bottom: none;
+}
+/*------------------------------------END CLINICIAN PAGES--------------------------*/
 
 /* Container that stores the YouTube videos */
 .video-container {
@@ -417,7 +663,9 @@ img {
     border-color: #E8E8E8;
     border-width: thin;
 }
-
+.bold {
+    font-weight: 700;
+}
 
 
 
