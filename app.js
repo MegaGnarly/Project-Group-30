@@ -61,11 +61,17 @@ app.get('/test_data', (req,res) => {
 })
 
 app.get('/patient_dash', (req,res) => {
-    res.render('patient_dashboard.hbs')
+    // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
+    let userName = "Pat"
+    let userRole = "USER"
+    res.render('patient_dashboard.hbs', {userName:userName, userRole: userRole})
 })
 
 app.get('/clinician_dash', (req,res) => {
-    res.render('clinician_dashboard.hbs')
+    // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
+    let userName = "Chris"
+    let userRole = "CLINICIAN"
+    res.render('clinician_dashboard.hbs', {userName:userName, userRole: userRole})
 })
 
 // sending blood glucose 
