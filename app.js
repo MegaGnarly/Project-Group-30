@@ -62,8 +62,8 @@ app.get('/about_site', (req,res) => {
 })
 
 
-app.get('/test_data', (req,res) => {
-    res.render('test_data.hbs')
+app.get('/record_health', (req,res) => {
+    res.render('record_health.hbs')
 })
 
 
@@ -82,13 +82,17 @@ app.get('/clinician_dash', (req,res) => {
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.
 app.post('/post_values', (req,res) => {
-    console.log('SERVER: New POST')
-    let newValue = new measuredValue({
-        measured_value: req.body.measured_value,
-        comment: req.body.comment
-    })
-    newValue.save()
-    res.redirect('/test')
+    // Check is BloodGlucose is Selected else do nothing
+    if (req.body.BloodGlucoseSelector) {
+        let newValue = new measuredValue({
+            measured_value: req.body.measurement,
+            comment: req.body.comment
+        })
+        newValue.save()
+        res.redirect('/test')
+    } else {
+        res.redirect('record_health')
+    }
 })
 
 
