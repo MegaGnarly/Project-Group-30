@@ -14,16 +14,22 @@
 <h1 class="heading">Dashboard</h1>
 <br>
 
+
 <!-- Grid container that stores profile data and 'buttons' (e.g. record health)-->
 <div id="patient-dashboard-grid-container">
     <!-- Column 1-->
     <div id="profile">
-        <img src="assets/icon_profile.png" alt="Profile picture" width="175" height="175">
+        <img src="../assets/icon_profile.png" alt="Profile picture" width="175" height="175">
 
         <!-- TODO: NEED TO SWAP THESE WITH ACTUAL DATABASE VARIABLES -->
-        <h2 class="username">John Doe</h2>
+        {{!-- {{#with patientData}}
+        <h2 class="username">{{this.firstName}} {{this.lastName}}</h2>
+        {{/with}}  --}}
+
+        <h2 class="username">Pat</h2>
         <p class="ranking">Ranking: 3rd</p>
     </div>
+
 
     <!-- Column 2 -->
     <!-- Grid container that stores buttons-->

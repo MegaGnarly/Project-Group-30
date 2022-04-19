@@ -21,20 +21,21 @@
             <div class="bar"></div>
         </label>
 
-        <a href="about_diabetes" class="flexbox-navbar-logo"><img src="assets/logo_navbar.png" width="175px"
+        <a href="../about_diabetes" class="flexbox-navbar-logo"><img src="../assets/logo_navbar.png" width="175px"
                 height="85px" alt="Diabetes@Home Logo"></a>
 
-        <img class="nav-msg-icon" src="assets/navbar_message_icon.png">
-        <img class="nav-profile-verticle-bar" src="assets/navbar_line_verticle.png">
-        <img class="nav-profile-icon" src="assets/navbar_profile_icon.png">
+        <img class="nav-msg-icon" src="../assets/navbar_message_icon.png">
+        <img class="nav-profile-verticle-bar" src="../assets/navbar_line_verticle.png">
+        <img class="nav-profile-icon" src="../assets/navbar_profile_icon.png">
 
         <nav>
             <ul class="flexbox-navbar-profile">
                 <li class="nav-username">
-                    <p>Username</p>
+                    <p>{{userName}}</p>
                 </li>
                 <li class="nav-userstatus">
-                    <p>USER</p>
+                    <p>{{userRole}}</p>
+                    {{!-- <p>USER</p> --}}
                 </li>
             </ul>
         </nav>
@@ -43,9 +44,9 @@
     <!-- Hamburger sidebar overlay which contains links. Requires Javascript. -->
     <div class="sidebar">
         <div class="sidebar-content">
-            <a href="about_diabetes">About Diabetes</a>
+            <a href="../about_diabetes">About Diabetes</a>
             <br>
-            <a href="about_site">About Us</a>
+            <a href="../about_site">About Us</a>
             <br>
             <br>
             <a href="#" class="close-btn">Close</a>
@@ -62,10 +63,10 @@
     <footer>
         <div class="flexbox-footer-container">
             <ul class="flexbox-footer-row">
-                <img class="flexbox-footer-logo" src="assets/logo_footer.png" width="175" height="85"
+                <img class="flexbox-footer-logo" src="../assets/logo_footer.png" width="175" height="85"
                     alt="Diabetes@Home Logo">
-                <li><a href="about_diabetes">Home</a></li>
-                <li><a href="about_site">About us</a></li>
+                <li><a href="../about_diabetes">Home</a></li>
+                <li><a href="../about_site">About us</a></li>
                 <li><a href="#" onclick="javascript:void(0)">Contact us</a></li>
             </ul>
             <ul class="flexbox-footer-row-horizontal">

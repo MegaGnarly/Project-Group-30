@@ -7,6 +7,7 @@
     <h2 style="color:teal;">15/04 Display data from Atlas, don't know how to post yet</h2>
     <h2 style="color:teal;">17/04 Can now post to database via form</h2>
     <br>
+    <h2>Test submission portal for blood glucose</h2>
     <form class="container" method="POST" action="/post_values">
         <label for="measured_value">Blood Glucose:</label>
         <br>
@@ -18,12 +19,41 @@
         <br>
         <button>Submit</button>
     </form>
+    
     <br>
+    <h2>Blood glucose log from server: </h2>
     <ul>
     {{!-- loops over the data set --}}
     {{#each data}}
         <li>Entered Value: {{this.measured_value}}, Comment: {{this.comment}}</li>
     {{/each}}
     </ul>
+
+    <br>
+    <br>
+    <h2>Test submission portal for user creation</h2>
+    <form class="container" method="POST" action="/post_values_user">
+        <label for="firstName">First name:</label>
+        <br>
+        <input id="firstName" name="firstName">
+        <br>
+        <label for="lastName">Last name:</label>
+        <br>
+        <input id="lastName" name="lastName">
+        <br>
+        <button>Submit</button>
+    </form>
+    <br>
+    <h2>User log from server: </h2>
+    <a href="http://127.0.0.1:3000/test/users">Go to here: http://127.0.0.1:3000/test/users</a>
+    
+
+    <ul>
+    {{!-- loops over the data set --}}
+    {{#each data2}}
+        <li>First name: {{this.firstName}}, Last name: {{this.lastName}}</li>
+    {{/each}}
+    </ul>
+
 </div>
 </body>
