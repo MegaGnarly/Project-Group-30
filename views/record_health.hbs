@@ -1,28 +1,23 @@
-<!-- DRAFT HTML. Work in progress-->
-<!-- Remove HTML after fixing styles-->
+<!-- Converted record_health.html to .hbs, wired to database, MISSING SOME CSS STYLES-->
 
-<head>
-    <link rel="stylesheet" href="record_data.css">
-
-</head>
 <body>
 <br>
 <h1 class="heading">Record Data</h1>
 <br>
 
 <!-- container that stores timestamps and data inputs (e.g. record health)-->
-<div class="flex-container">
+<div class="flexbox-main-content">
     <!-- Column 1 - radio button form-->
     <!-- Form should send selection - need to modify this code once we have databased sorted -->
     <div class="flex-child-timestamp">
         <!-- saw this part online but not sure if relevant to us 'form action'-->
-        <form action="/send" method="POST">
+        <form method="POST" action="/post_values" >
             <h2 class="data-title">Timestamp</h2>
             <div class="radio1">
-                <input name="timestamp-type" type="radio" value="Blood-Glucose">Blood Glucose<br>
+                <input name="BloodGlucoseSelector" type="radio" value="Blood-Glucose">Blood Glucose<br>
             </div>
             <div class="radio2">
-                <input name="timestamp-type" type="radio" value="Doses-of-Insulin">Doses of Insulin<br>
+                <input name="InsulinSelector" type="radio" value="Doses-of-Insulin">Doses of Insulin<br>
             </div>
             <div class="radio3">
                 <input name="timestamp-type" type="radio" value="Weight">Weight<br>
@@ -39,8 +34,8 @@
             <h2 class="data-title"><label for="measurement">Measurement</label></h2><br>
             <input type="text" id="measurement" name="measurement"><br>
 
-            <h2 class="data-title"><label for="comments">Additional Comments</label></h2><br>
-            <input type="text" id="comments" name="comments">
+            <h2 class="data-title"><label for="comment">Additional Comments</label></h2><br>
+            <input type="text" id="comment" name="comment">
         </div> 
        
     </div>
