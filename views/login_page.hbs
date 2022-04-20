@@ -1,0 +1,35 @@
+<head>
+<link rel="stylesheet" href="../public/css/login_thankyou.css">
+
+</head>
+<body>
+<div class="background">
+    <div class="flexbox-form-container">
+        <form action="action_page.php" method="post">
+            <div class="imgcontainer">
+                
+                <h2 class="heading">LOGIN</h2>
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <div class="psw">
+                   <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                    <div>Forgot <a href="#">password?</a></div> 
+                </div>
+                <button type="submit">LOGIN</button>
+                <div class="acc-creation-text">
+                     <div>Don't have an account? <a href="#">Create an Account.</a></div> 
+                 </div>
+                
+            </div>
+            
+        </form>
+    </div>
+</div>
