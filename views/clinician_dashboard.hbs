@@ -1,3 +1,4 @@
+<script src="scripts/script.js"></script>
 <br>
 <h1 class="clinician-title">Patient Overview</h1>
 
@@ -41,7 +42,11 @@
                 </div>
             </div>
             <div class="grid-patient-category bold">Blood Glucose</div>
+            {{#thresholdChecker this.measured_value}}
+            <div class="grid-patient-data red-highlight">{{this.measured_value}}</div>
+            {{else}}
             <div class="grid-patient-data">{{this.measured_value}}</div>
+            {{/thresholdChecker}}
             <div class="grid-patient-category bold">Weight</div>
             <div class="grid-patient-data">-</div>
             <div class="grid-patient-category bold">No. Insulin Doses</div>
