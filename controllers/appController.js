@@ -3,8 +3,8 @@ const measuredValue = require('../models/measuredValue')
 const patient = require('../models/patient')
 
 // Patient identities are hardcoded for this deliverable (see spec sheet)
-patientName = "Pat"
-patientRole = "USER"
+var patientName = "Pat"
+var patientRole = "USER"
 
 
 // Handle request to get all people data instances

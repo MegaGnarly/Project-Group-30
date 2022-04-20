@@ -101,11 +101,15 @@ app.post('/post_values', async (req,res) => {
     // Check is BloodGlucose is Selected else do nothing
     if (req.body.Selector == "BloodGlucoseSelector") {
         let newValue = new measuredValue({
+            // Hardcoded PatientName for now
+            name: "Pat",
+            dateTime: new Date().toLocaleTimeString() + "\n" + new Date().toLocaleDateString(),
             measured_value: req.body.measurement,
             comment: req.body.comment
         })
-        newValue.save()
-        await res.redirect('/test')
+        await newValue.save()
+        // TODO redirect to thank you page
+        await res.redirect('clinician_dashboard')
     } else {
         res.redirect('record_health')
     }
