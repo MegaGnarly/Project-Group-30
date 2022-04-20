@@ -631,7 +631,7 @@ li, a, button {
 
 /* Override the default h1 font-size to 32px. Necessary because h1 tags within a <section> render at 24px */ 
 h1 {
-    font-size: 32px;
+    font-size: 35px;
 }
 
 /* Define values for heading tags */
@@ -649,6 +649,7 @@ img {
     text-align: center;
     color: #72A6E8;
     margin-top: 0px;
+    font-weight: bold;
 }
 
 .purple1 {
