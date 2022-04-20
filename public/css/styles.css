@@ -675,6 +675,9 @@ img {
 .bold {
     font-weight: 700;
 }
+.red-highlight {
+    border: 3px solid red;
+}
 
 /* Login Page Styles*/
 p {

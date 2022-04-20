@@ -132,3 +132,11 @@ app.listen(process.env.PORT || PORT, () => {
     console.log('http://127.0.0.1:' + PORT + '/' + '\n')
 })
 
+var hbs = exphbs.create({});
+
+hbs.handlebars.registerHelper('thresholdChecker', function(num, options) {
+    if(num < 4.0 || num > 7.8) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
