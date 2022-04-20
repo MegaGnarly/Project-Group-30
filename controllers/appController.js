@@ -20,6 +20,18 @@ const getAllData = async (req, res, next) => {
     }
 }
 
+const getAllDataClinician = async (req, res, next) => {
+
+    try {
+        const values = await measuredValue.find().lean()
+        const patientValues = await patient.find().lean()
+        // The user values being passed are for the site header on the top right.
+        return res.render('try_clinician_dash', {data: values, data2: patientValues, userName: patientName, userRole: patientRole})
+    } catch (err) {
+        return next(err)
+    }
+}
+
 // Handle request to get patient data (name, rank etc)
 const getAllPatientData = async (req, res, next) => {
     console.log('Inside getAllPatientData')
@@ -65,6 +77,7 @@ const getDataById = async (req, res, next) => {
 module.exports = {
     getAllPatientData,
     getAllData,
+    getAllDataClinician,
     getPatientName,
     // getDataById
 }

@@ -86,6 +86,14 @@ app.get('/clinician_dash', (req,res) => {
     res.render('clinician_dashboard.hbs', {userName:"Chris", userRole: "CLINICIAN"})
 })
 
+const clinicianRouter = require('./routes/clinicianRouter.js')
+
+app.use('/try2', clinicianRouter)
+
+// app.get('/try2', (req,res) => {
+//     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
+//     res.render('try_clinician_dash.hbs', {userName:"Chris", userRole: "CLINICIAN"})
+// })
 
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.

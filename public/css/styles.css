@@ -408,7 +408,10 @@ background-color: #F7F7F7;
     grid-row-end: 3;
     display: flex;
     justify-content: center;
-    align-items: center;
+    text-align: center;
+    padding: 10%;
+    font-size: smaller;
+    overflow: auto;
 }
 .grid-comment {
     display: grid;
