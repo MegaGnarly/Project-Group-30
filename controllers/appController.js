@@ -26,7 +26,7 @@ const getAllDataClinician = async (req, res, next) => {
         const values = await measuredValue.find().lean()
         const patientValues = await patient.find().lean()
         // The user values being passed are for the site header on the top right.
-        return res.render('try_clinician_dash', {data: values, data2: patientValues, userName: patientName, userRole: patientRole})
+        return res.render('clinician_dashboard', {data: values, data2: patientValues, userName: patientName, userRole: patientRole})
     } catch (err) {
         return next(err)
     }

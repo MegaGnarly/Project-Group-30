@@ -88,7 +88,7 @@ app.get('/clinician_dash', (req,res) => {
 
 const clinicianRouter = require('./routes/clinicianRouter.js')
 
-app.use('/try2', clinicianRouter)
+app.use('/clinician_dashboard', clinicianRouter)
 
 // app.get('/try2', (req,res) => {
 //     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.

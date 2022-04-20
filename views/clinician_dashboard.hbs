@@ -21,6 +21,7 @@
 </div>
 
 <div class="flexbox-patient-overview-container">
+    {{#each data}}
     <div class="flexbox-patient-individuals">
         <div class="grid-patient-item">
             <div class="grid-patient-profile">
@@ -29,7 +30,7 @@
                         <img src="assets/icon_profile.png" width="80" height="80">
                     </div>
                     <div>
-                        <div class="patient-name">John Doe</div>
+                        <div class="patient-name">{{this.name}}</div>
                         <div class="patient-last-updated">Last Updated: 01/01/2022</div>
                     </div>
                 </div>
@@ -39,84 +40,24 @@
                 </div>
             </div>
             <div class="grid-patient-category bold">Blood Glucose</div>
-            <div class="grid-patient-data">4.2</div>
+            <div class="grid-patient-data">{{this.measured_value}}</div>
             <div class="grid-patient-category bold">Weight</div>
             <div class="grid-patient-data">-</div>
             <div class="grid-patient-category bold">No. Insulin Doses</div>
-            <div class="grid-patient-data">2</div>
-            <div class="grid-patient-category bold">Exercise(Step Count)</div>
-            <div class="grid-patient-data">5042</div>
-        </div>
-        <div class="grid-patient-action-required">
-            <div class="grid-patient-action-required-title bold">Actions Required</div>
-            <div class="grid-patient-action-required-comment">None</div>
-        </div>
-    </div>
-    <div class="flexbox-patient-individuals">
-        <div class="grid-patient-item">
-            <div class="grid-patient-profile">
-                <div class="flexbox-patient-profile">
-                    <div class="patient-profile-icon">
-                        <img src="assets/icon_profile.png" width="80" height="80">
-                    </div>
-                    <div>
-                        <div class="patient-name">John Doe</div>
-                        <div class="patient-last-updated">Last Updated: 01/01/2022</div>
-                    </div>
-                </div>
-                <div class="flexbox-patient-button">
-                    <button class="patient-button purple2">View Full</button>
-                    <button class="patient-button purple1">Message</button>
-                </div>
-            </div>
-            <div class="grid-patient-category bold">Blood Glucose</div>
-            <div class="grid-patient-data">4.2</div>
-            <div class="grid-patient-category bold">Weight</div>
             <div class="grid-patient-data">-</div>
-            <div class="grid-patient-category bold">No. Insulin Doses</div>
-            <div class="grid-patient-data">2</div>
             <div class="grid-patient-category bold">Exercise(Step Count)</div>
-            <div class="grid-patient-data">5042</div>
-        </div>
-        <div class="grid-patient-action-required">
-            <div class="grid-patient-action-required-title bold">Actions Required</div>
-            <div class="grid-patient-action-required-comment">None</div>
-        </div>
-    </div>
-    <div class="flexbox-patient-individuals">
-        <div class="grid-patient-item">
-            <div class="grid-patient-profile">
-                <div class="flexbox-patient-profile">
-                    <div class="patient-profile-icon">
-                        <img src="assets/icon_profile.png" width="80" height="80">
-                    </div>
-                    <div>
-                        <div class="patient-name">John Doe</div>
-                        <div class="patient-last-updated">Last Updated: 01/01/2022</div>
-                    </div>
-                </div>
-                <div class="flexbox-patient-button">
-                    <button class="patient-button purple2">View Full</button>
-                    <button class="patient-button purple1">Message</button>
-                </div>
-            </div>
-            <div class="grid-patient-category bold">Blood Glucose</div>
-            <div class="grid-patient-data">4.2</div>
-            <div class="grid-patient-category bold">Weight</div>
             <div class="grid-patient-data">-</div>
-            <div class="grid-patient-category bold">No. Insulin Doses</div>
-            <div class="grid-patient-data">2</div>
-            <div class="grid-patient-category bold">Exercise(Step Count)</div>
-            <div class="grid-patient-data">5042</div>
         </div>
         <div class="grid-patient-action-required">
-            <div class="grid-patient-action-required-title bold">Actions Required</div>
-            <div class="grid-patient-action-required-comment">None</div>
+            <div class="grid-patient-action-required-title bold">Comments</div>
+            <div class="grid-patient-action-required-comment">{{this.comment}}</div>
         </div>
     </div>
+    {{/each}}
+    
 </div>
 <br>
-<h1 class="clinician-title">Comments</h1>
+{{!-- <h1 class="clinician-title">Comments</h1>
 <div class="grid-comment">
     <div class="grid-comment-cell bold">Date/Time</div>
     <div class="grid-comment-cell bold">Patient</div>
@@ -152,4 +93,4 @@
     <div class="link-cell bold grid-no-bottom-border">
         <a href="about_diabetes" class="link-cell bold grid-no-bottom-border">View Advanced Detail ></a>
     </div>
-</div>
+</div> --}}
