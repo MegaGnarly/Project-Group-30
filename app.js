@@ -66,6 +66,14 @@ app.get('/record_health', (req,res) => {
     res.render('record_health.hbs')
 })
 
+app.get('/login_page', (req,res) => {
+    res.render('login_page.hbs', {layout: 'main2'})
+})
+
+app.get('/thankyou_page', (req,res) => {
+    res.render('thankyou_page.hbs', {layout: 'main2'})
+})
+
 
 app.get('/patient_dash', (req,res) => {
     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
