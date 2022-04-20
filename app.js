@@ -111,6 +111,10 @@ app.post('/post_values', async (req,res) => {
     }
 })
 
+app.post('/login', async (req,res) => {
+    res.redirect('patient_dash')
+})
+
 
 // POST test - when the user creates an account, update the database.
 app.post('/post_values_user', (req,res) => {
