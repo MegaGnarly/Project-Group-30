@@ -177,6 +177,12 @@ header {
     color: dodgerblue;
 }
 
+/*-------------------------------RECORD_HEALTH PAGES-------------------------------------*/
+
+
+
+/*-------------------------------END RECORD_HEALTH PAGES---------------------------------*/
+
 /*-------------------------------CLINICIAN PAGES-----------------------------------------*/
 .clinician-title {
     margin-left: 5%;
@@ -648,7 +654,6 @@ img {
 .purple1 {
     background-color: #72A6E8;
 }
-
 .purple2 {
     background-color: #8B7CC9;
 }

@@ -81,15 +81,15 @@ app.get('/clinician_dash', (req,res) => {
 
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.
-app.post('/post_values', (req,res) => {
+app.post('/post_values', async (req,res) => {
     // Check is BloodGlucose is Selected else do nothing
-    if (req.body.BloodGlucoseSelector) {
+    if (req.body.Selector == "BloodGlucoseSelector") {
         let newValue = new measuredValue({
             measured_value: req.body.measurement,
             comment: req.body.comment
         })
         newValue.save()
-        res.redirect('/test')
+        await res.redirect('/test')
     } else {
         res.redirect('record_health')
     }

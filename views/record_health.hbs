@@ -1,6 +1,4 @@
 <!-- Converted record_health.html to .hbs, wired to database, MISSING SOME CSS STYLES-->
-
-<body>
 <br>
 <h1 class="heading">Record Data</h1>
 <br>
@@ -14,16 +12,16 @@
         <form method="POST" action="/post_values" >
             <h2 class="data-title">Timestamp</h2>
             <div class="radio1">
-                <input name="BloodGlucoseSelector" type="radio" value="Blood-Glucose">Blood Glucose<br>
+                <input type="radio" name="Selector" value="BloodGlucoseSelector">Blood Glucose<br>
             </div>
             <div class="radio2">
-                <input name="InsulinSelector" type="radio" value="Doses-of-Insulin">Doses of Insulin<br>
+                <input name="Selector" type="radio">Doses of Insulin<br>
             </div>
             <div class="radio3">
-                <input name="timestamp-type" type="radio" value="Weight">Weight<br>
+                <input name="Selector" type="radio">Weight<br>
             </div>
             <div class="radio4">
-                <input name="timestamp-type" type="radio" value="Exercise">Exercise<br>
+                <input name="Selector" type="radio">Exercise<br>
             </div>
         </div>
     <!-- Column 2 -->
@@ -32,7 +30,7 @@
 
         <div class="flex-child inputs">
             <h2 class="data-title"><label for="measurement">Measurement</label></h2><br>
-            <input type="text" id="measurement" name="measurement"><br>
+            <input type="number" id="measurement" name="measurement"><br>
 
             <h2 class="data-title"><label for="comment">Additional Comments</label></h2><br>
             <input type="text" id="comment" name="comment">
@@ -44,8 +42,4 @@
             <input class="submit" type="submit" value="submit">
 
         </form>
-
-    
 </div>
-
-</body>
