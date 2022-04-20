@@ -697,7 +697,7 @@ p {
     flex-direction: column;
 }
      /* Bordered form */
-form {
+.loginform {
     border: 1px solid #E7E7E7;
     background-color: #FFFFFF;
     border-radius: 38px;
