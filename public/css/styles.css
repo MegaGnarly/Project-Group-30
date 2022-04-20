@@ -408,7 +408,10 @@ background-color: #F7F7F7;
     grid-row-end: 3;
     display: flex;
     justify-content: center;
-    align-items: center;
+    text-align: center;
+    padding: 10%;
+    font-size: smaller;
+    overflow: auto;
 }
 .grid-comment {
     display: grid;
@@ -631,7 +634,7 @@ li, a, button {
 
 /* Override the default h1 font-size to 32px. Necessary because h1 tags within a <section> render at 24px */ 
 h1 {
-    font-size: 32px;
+    font-size: 35px;
 }
 
 /* Define values for heading tags */
@@ -649,6 +652,7 @@ img {
     text-align: center;
     color: #72A6E8;
     margin-top: 0px;
+    font-weight: bold;
 }
 
 .purple1 {
@@ -696,7 +700,7 @@ p {
     flex-direction: column;
 }
      /* Bordered form */
-form {
+.loginform {
     border: 1px solid #E7E7E7;
     background-color: #FFFFFF;
     border-radius: 38px;
@@ -791,6 +795,13 @@ input[type=text], input[type=password] {
 }
   
   .ty-add-button {
+    color: white; padding: 14px 20px;
+    display: flex;
+    font-size: 20px;
+    font-weight:bold;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     width: auto;
     margin: 1em;
     display: inline;
@@ -799,9 +810,23 @@ input[type=text], input[type=password] {
     transition: all 0.5s ease 0s;
     background-color: #7D92DB;
     padding: 2% 5% 2% 5%;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+}
+
+.ty-add-button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
 }
   
   .ty-return-button {
+    color: white; padding: 14px 20px;
+    display: flex;
+    font-size: 20px;
+    font-weight:bold;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     width: auto;
     margin: 1em;
     display: inline;
@@ -810,7 +835,15 @@ input[type=text], input[type=password] {
     transition: all 0.5s ease 0s;
     background-color: #9F4D96;
     padding: 2% 5% 2% 5%;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
 }
+
+.ty-return-button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
 
 .thankyouimg {
     display: block;

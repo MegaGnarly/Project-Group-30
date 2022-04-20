@@ -86,6 +86,14 @@ app.get('/clinician_dash', (req,res) => {
     res.render('clinician_dashboard.hbs', {userName:"Chris", userRole: "CLINICIAN"})
 })
 
+const clinicianRouter = require('./routes/clinicianRouter.js')
+
+app.use('/clinician_dashboard', clinicianRouter)
+
+// app.get('/try2', (req,res) => {
+//     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
+//     res.render('try_clinician_dash.hbs', {userName:"Chris", userRole: "CLINICIAN"})
+// })
 
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.
@@ -104,7 +112,6 @@ app.post('/post_values', async (req,res) => {
 })
 
 app.post('/login', async (req,res) => {
-    // Check is BloodGlucose is Selected else do nothing
     res.redirect('patient_dash')
 })
 
