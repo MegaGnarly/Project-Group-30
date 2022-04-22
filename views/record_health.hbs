@@ -12,7 +12,7 @@
         <form method="POST" action="/post_values" >
             <h2 class="data-title">Timestamp</h2>
             <div class="radio1">
-                <input type="radio" name="Selector" value="BloodGlucoseSelector">Blood Glucose<br>
+                <input type="radio" name="Selector" value="BloodGlucoseSelector" required>Blood Glucose<br>
             </div>
             <div class="radio2">
                 <input name="Selector" type="radio">Doses of Insulin<br>
@@ -30,7 +30,7 @@
 
         <div class="flex-child inputs">
             <h2 class="data-title"><label for="measurement">Measurement</label></h2><br>
-            <input type="number" id="measurement" name="measurement"><br>
+            <input type="text" id="measurement" name="measurement" required><br>
 
             <h2 class="data-title"><label for="comment">Additional Comments</label></h2><br>
             <input type="text" id="comment" name="comment">

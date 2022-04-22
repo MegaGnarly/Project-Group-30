@@ -109,7 +109,7 @@ app.post('/post_values', async (req,res) => {
         })
         await newValue.save()
         // TODO redirect to thank you page
-        await res.redirect('clinician_dashboard')
+        await res.redirect('thankyou_page')
     } else {
         res.redirect('record_health')
     }
