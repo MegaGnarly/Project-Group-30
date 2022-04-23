@@ -103,7 +103,7 @@ app.post('/post_values', async (req,res) => {
         let newValue = new measuredValue({
             // Hardcoded PatientName for now
             name: "Pat",
-            dateTime: new Date().toLocaleTimeString() + "\n" + new Date().toLocaleDateString(),
+            dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
             measured_value: req.body.measurement,
             comment: req.body.comment
         })
@@ -118,7 +118,6 @@ app.post('/post_values', async (req,res) => {
 app.post('/login', async (req,res) => {
     res.redirect('patient_dash')
 })
-
 
 // POST test - when the user creates an account, update the database.
 app.post('/post_values_user', (req,res) => {
