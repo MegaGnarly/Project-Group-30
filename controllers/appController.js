@@ -21,7 +21,7 @@ const getAllData = async (req, res, next) => {
 }
 
 const getAllDataClinician = async (req, res, next) => {
-
+    console.log('Inside getAllDataClinician')
     try {
         const values = await measuredValue.find().lean()
         const patientValues = await patient.find().lean()

@@ -13,10 +13,13 @@ require('./models')
 // link to our routers
 const appRouter = require('./routes/appRouter')
 const patientRouter = require('./routes/patientRouter')
+const clinicianRouter = require('./routes/clinicianRouter.js')
 
 // Routing - set paths
 app.use('/test', appRouter)
 app.use('/patient', patientRouter)
+app.use('/clinician_dashboard', clinicianRouter)
+
 
 // Configure handlebars
 app.engine('hbs', exphbs.engine({
@@ -80,15 +83,6 @@ app.get('/patient_dash', (req,res) => {
     res.render('patient_dashboard.hbs', {userName:"Pat", userRole: "USER"})
 })
 
-
-app.get('/clinician_dash', (req,res) => {
-    // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
-    res.render('clinician_dashboard.hbs', {userName:"Chris", userRole: "CLINICIAN"})
-})
-
-const clinicianRouter = require('./routes/clinicianRouter.js')
-
-app.use('/clinician_dashboard', clinicianRouter)
 
 // app.get('/try2', (req,res) => {
 //     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
