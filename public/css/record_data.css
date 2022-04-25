@@ -134,5 +134,30 @@ input[placeholder='Enter number'] {
     padding-left: 5%;
 }
 
+/* Additional Comments section */
+input[id='comments']{
+    background-color: #FFFFFF;
+    filter: drop-shadow(1px 1px 3px #d4d4d4);
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width: thin;
+    border-radius: 20px;
+    outline: none;
+    width: 100%;
+    height: 200px;
+    margin-top: -20px;
+}
+
+input[placeholder='Type in comments'] {
+    font-family: 'poppins', sans-serif;
+    font-size: 18px;
+    color: #8a8a8a;
+    padding-left: 5%;
+    padding-bottom: 30%;
+}
+
+
+
+
 
 
