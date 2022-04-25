@@ -74,7 +74,7 @@ app.get('/login_page', (req,res) => {
 })
 
 app.get('/thankyou_page', (req,res) => {
-    res.render('thankyou_page.hbs', {layout: 'main2'})
+    res.render('thankyou_page.hbs', {userName:"Pat", userRole: "USER"})
 })
 
 
