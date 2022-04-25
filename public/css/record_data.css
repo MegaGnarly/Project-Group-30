@@ -14,4 +14,47 @@
     font-weight: bold;
 }
 
+/* grid layout for form */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-column-gap: 100px;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+/*responsive design - turn grid into flex */
+
+@media screen and (max-width:640px){
+    .grid-container{
+        display: flex;
+        flex-direction: column;
+        }
+    
+    .grid-timestamp{
+        margin-bottom: 5%;
+    }
+    .grid-inputs{
+        margin-bottom:20%
+    }
+    .radio1{
+        max-height: 40px;
+    }
+    .radio2{
+        max-height: 40px;
+    }
+    .radio3{
+        max-height: 40px;
+    }
+    .radio4{
+        max-height: 40px;
+    }
+    .submit{
+        margin-bottom: 5%;
+    }   
+}
 
