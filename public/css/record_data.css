@@ -1,139 +1,17 @@
-/* work in progress- draft css */
-
 /* headings */
 .heading{
     text-align: center;
     color: #72a6e8;
     font-family: 'poppins', sans-serif;
     font-weight: bolder;
+    font-size: 35px;
 }
 
 .data-title{
     color:#717273;
-    font-size: 30px;
+    font-size: 22px;
     font-family: 'poppins', sans-serif;
     font-weight: bold;
-}
-
-/* containers for the form */
-
-.flex-container{
-    display: flex;
-    align-items: flex-start;
-    min-width: none;
-}
-
-.flex-child {
-    flex: 1;
-    margin-right: 50px;
-    padding-right: 10%;
-    padding-left: 5%;
-}
-
-.flex-child:first-child{
-    margin-right: 10%;
-    filter: grayscale(1);
-}
-
-.flex-child-timestamp{
-    margin-right: 10%;
-    margin-left: 10%;
-}
-
-/*  timestamp section */
-.radio1{
-    background-color: #72a6e8;
-    margin-bottom: 7%;
-    color: white;
-    border-radius: 20px;
-    padding: 10%;
-    width: 120%;
-    text-align: left;
-    font-size: 25px;
-    height: 35px;
-    font-family: 'poppins', sans-serif;
-}
-
-.radio2{
-    background-color: #8b7cc9;
-    margin-bottom: 7%;
-    color: white;
-    border-radius: 20px;
-    padding: 10%;
-    text-align: left;
-    width: 120%;
-    font-size: 25px;
-    height: 35px;
-    font-family: 'poppins', sans-serif;
-}
-
-.radio3{
-    background-color: #7d92db;
-    margin-bottom: 7%;
-    color: white;
-    border-radius: 20px;
-    padding: 10%;
-    text-align: left;
-    width: 120%;
-    font-size: 25px;
-    height: 35px;
-    font-family: 'poppins', sans-serif;
-}
-
-.radio4{
-    background-color: #9765b2;
-    margin-bottom: 7%;
-    color: white;
-    border-radius: 20px;
-    padding: 10%;
-    text-align: left;
-    width: 120%;
-    font-size: 25px;
-    height: 35px;
-    font-family: 'Poppins', sans-serif
-}
-
-/*  inputs section */
-.flex-child-inputs{
-    margin-left: 15%;
-    padding-left: 20%;
-}
-input[id='comments']{
-    background-color: #FFFFFF;
-    filter: drop-shadow(1px 1px 3px #d4d4d4);
-    border-style: solid;
-    border-color: #E8E8E8;
-    border-width: thin;
-    width: 120%;
-    border-radius: 20px;
-    height: 100px;
-}
-
-input[id='measurement']{
-    background-color: #FFFFFF;
-    filter: drop-shadow(1px 1px 3px #d4d4d4);
-    border-style: solid;
-    border-color: #E8E8E8;
-    border-width: thin;
-    width: 120%;
-    border-radius: 20px;
-    height: 50px;
-}
-
-
-.submit{
-    text-align: center;
-    display: block;
-    font-size: 35px;
-    font-family: 'poppins', sans-serif;
-    color: white;
-    background-color: #7D92DB;
-    border-radius: 20px;
-    border-style: none;
-    width: 20%;
-    margin-left:5% ;
-    margin-top: 5%;
-    margin-bottom: 5%;
 }
 
 
