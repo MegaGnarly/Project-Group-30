@@ -58,3 +58,57 @@
     }   
 }
 
+/*  timestamp section radio buttons - Work in Progress - need to add icons */
+
+.radio1{
+    background-color: #72a6e8;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+}
+.timestamp-icon{
+   height: 15px;
+   width: 15px;
+}
+
+.radio2{
+    background-color: #8b7cc9;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+     font-size: 25px;
+    height: 35px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+}
+
+.radio3{
+    background-color: #7d92db;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    height: 35px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+}
+
+.radio4{
+    background-color: #9765b2;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    height: 35px;
+    font-family: 'Poppins', sans-serif;
+    height: 75px;
+}
+
+
