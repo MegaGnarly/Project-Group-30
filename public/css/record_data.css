@@ -111,4 +111,28 @@
     height: 75px;
 }
 
+/* Measurement section */
+
+input[id='measurement']{
+    background-color: #FFFFFF;
+    filter: drop-shadow(1px 1px 3px #d4d4d4);
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width: thin;
+    border-radius: 20px;
+    outline: none;
+    width: 100%;
+    height: 75px;
+    margin-bottom: 2%;
+    margin-top: -20px;
+}
+
+input[placeholder='Enter number'] {
+    font-family: 'poppins', sans-serif;
+    font-size: 18px;
+    color: #8a8a8a;
+    padding-left: 5%;
+}
+
+
 
