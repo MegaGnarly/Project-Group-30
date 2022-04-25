@@ -66,7 +66,7 @@ app.get('/about_site', (req,res) => {
 
 
 app.get('/record_health', (req,res) => {
-    res.render('record_health.hbs')
+    res.render('record_health.hbs', {userName:"Pat", userRole: "USER"})
 })
 
 app.get('/login_page', (req,res) => {
