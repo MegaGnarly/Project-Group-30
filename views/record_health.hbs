@@ -4,10 +4,10 @@
 <br>
 
 <!-- container that stores timestamps and data inputs (e.g. record health)-->
-<div class="flexbox-main-content">
+<div class="grid-content">
     <!-- Column 1 - radio button form-->
     <!-- Form should send selection - need to modify this code once we have databased sorted -->
-    <div class="flex-child-timestamp">
+    <div class="grid-timestamp">
         <!-- saw this part online but not sure if relevant to us 'form action'-->
         <form method="POST" action="/post_values" >
             <h2 class="data-title">Timestamp</h2>
@@ -28,18 +28,18 @@
  
     <!-- Grid container that stores inputs-->
 
-        <div class="flex-child inputs">
+        <div class="grid-inputs">
             <h2 class="data-title"><label for="measurement">Measurement</label></h2><br>
-            <input type="text" id="measurement" name="measurement" required><br>
+            <input type="text" id="measurement" name="measurement" placeholder="Enter number" required><br>
 
             <h2 class="data-title"><label for="comment">Additional Comments</label></h2><br>
-            <input type="text" id="comment" name="comment">
+            <input type="text" id="comment" name="comment" placeholder="Type in comments">
         </div> 
        
     </div>
     <!-- Submit Button -->
 
-            <input class="submit" type="submit" value="submit">
+            <input class="submit" type="submit" value="Submit">
 
         </form>
 </div>
