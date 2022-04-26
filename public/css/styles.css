@@ -1015,8 +1015,18 @@ input[type=text], input[type=password] {
     }   
 }
 
-/*  timestamp section radio buttons - Work in Progress - need to add icons */
+/*  timestamp section radio buttons  */
+.timestamp-icon{
+    height: 35px;
+    width: 35px;
+    margin-top: -35px;
+    margin-left: 15px;
+} 
 
+input[name= "timestamp-type"]{
+     margin-left: 50px;
+     margin-top: 2rem;
+} 
 .radio1{
     background-color: #72a6e8;
     margin-bottom: 4%;
@@ -1026,10 +1036,6 @@ input[type=text], input[type=password] {
     font-size: 25px;
     font-family: 'poppins', sans-serif;
     height: 75px;
-}
-.timestamp-icon{
-   height: 15px;
-   width: 15px;
 }
 
 .radio2{
