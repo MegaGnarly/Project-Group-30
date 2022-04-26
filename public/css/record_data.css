@@ -14,51 +14,80 @@
     font-weight: bold;
 }
 
-/* grid layout for form */
+/* containers for the form */
 
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 1fr;
     grid-column-gap: 100px;
+     /* grid-row-gap: 0.2fr; */
+    /* justify-items: center;
+    align-content: center; */
     align-content: center;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
+    
 }
 
-/*responsive design - turn grid into flex */
+/* responsive design */
 
 @media screen and (max-width:640px){
     .grid-container{
-        display: flex;
+     display: flex;
         flex-direction: column;
-        }
-    
+    }
+
     .grid-timestamp{
         margin-bottom: 5%;
     }
+
     .grid-inputs{
         margin-bottom:20%
     }
+
     .radio1{
-        max-height: 40px;
+        max-height: 45px;
     }
+
     .radio2{
-        max-height: 40px;
+        max-height: 45px;
     }
     .radio3{
-        max-height: 40px;
+        max-height: 45px;
     }
     .radio4{
-        max-height: 40px;
+        max-height: 45px;
     }
+
     .submit{
         margin-bottom: 5%;
-    }   
+    }
+
+    /* .input[name= "timestamp-type"]{
+        margin-top: -2rem;
+    } */
 }
 
-/*  timestamp section radio buttons - Work in Progress - need to add icons */
+
+
+
+
+
+/*  timestamp section */
+
+.timestamp-icon{
+    height: 35px;
+    width: 35px;
+    margin-top: -35px;
+    margin-left: 15px;
+} 
+ 
+input[name= "timestamp-type"]{
+     margin-left: 50px;
+     margin-top: 2rem;
+} 
 
 .radio1{
     background-color: #72a6e8;
@@ -69,10 +98,6 @@
     font-size: 25px;
     font-family: 'poppins', sans-serif;
     height: 75px;
-}
-.timestamp-icon{
-   height: 15px;
-   width: 15px;
 }
 
 .radio2{
@@ -111,7 +136,6 @@
     height: 75px;
 }
 
-/* Measurement section */
 
 input[id='measurement']{
     background-color: #FFFFFF;
@@ -134,7 +158,6 @@ input[placeholder='Enter number'] {
     padding-left: 5%;
 }
 
-/* Additional Comments section */
 input[id='comments']{
     background-color: #FFFFFF;
     filter: drop-shadow(1px 1px 3px #d4d4d4);
@@ -156,7 +179,8 @@ input[placeholder='Type in comments'] {
     padding-bottom: 30%;
 }
 
-/* submit button */
+
+
 .submit{
     text-align: center;
     display: block;
