@@ -962,3 +962,175 @@ input[type=text], input[type=password] {
     }
  }
 
+ /*--------------------------- Record data CSS --------------------------------- */
+ /*subheadings*/
+ .data-title{
+    color:#717273;
+    font-size: 22px;
+    font-family: 'poppins', sans-serif;
+    font-weight: bold;
+}
+
+/* grid layout for form */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-column-gap: 100px;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+/*responsive design - turn grid into flex */
+
+@media screen and (max-width:640px){
+    .grid-container{
+        display: flex;
+        flex-direction: column;
+        }
+    
+    .grid-timestamp{
+        margin-bottom: 5%;
+    }
+    .grid-inputs{
+        margin-bottom:20%
+    }
+    .radio1{
+        max-height: 40px;
+    }
+    .radio2{
+        max-height: 40px;
+    }
+    .radio3{
+        max-height: 40px;
+    }
+    .radio4{
+        max-height: 40px;
+    }
+    .submit{
+        margin-bottom: 5%;
+    }   
+}
+
+/*  timestamp section radio buttons - Work in Progress - need to add icons */
+
+.radio1{
+    background-color: #72a6e8;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+}
+.timestamp-icon{
+   height: 15px;
+   width: 15px;
+}
+
+.radio2{
+    background-color: #8b7cc9;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+     font-size: 25px;
+    height: 35px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+}
+
+.radio3{
+    background-color: #7d92db;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    height: 35px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+}
+
+.radio4{
+    background-color: #9765b2;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    height: 35px;
+    font-family: 'Poppins', sans-serif;
+    height: 75px;
+}
+
+/* Measurement section */
+
+input[id='measurement']{
+    background-color: #FFFFFF;
+    filter: drop-shadow(1px 1px 3px #d4d4d4);
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width: thin;
+    border-radius: 20px;
+    outline: none;
+    width: 100%;
+    height: 75px;
+    margin-bottom: 2%;
+    margin-top: -20px;
+}
+
+input[placeholder='Enter number'] {
+    font-family: 'poppins', sans-serif;
+    font-size: 18px;
+    color: #8a8a8a;
+    padding-left: 5%;
+}
+
+/* Additional Comments section */
+input[id='comments']{
+    background-color: #FFFFFF;
+    filter: drop-shadow(1px 1px 3px #d4d4d4);
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width: thin;
+    border-radius: 20px;
+    outline: none;
+    width: 100%;
+    height: 200px;
+    margin-top: -20px;
+}
+
+input[placeholder='Type in comments'] {
+    font-family: 'poppins', sans-serif;
+    font-size: 18px;
+    color: #8a8a8a;
+    padding-left: 5%;
+    padding-bottom: 30%;
+}
+
+/* submit button */
+.submit{
+    text-align: center;
+    display: block;
+    font-size: 30px;
+    font-family: 'poppins', sans-serif;
+    color: white;
+    background-color: #7D92DB;
+    border-radius: 20px;
+    border-style: none;
+    width: 250px;
+    min-height: 55px;
+    padding: 0%;
+    align-content: center;
+    justify-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -10%;
+    margin-bottom: 7%;
+}
+
