@@ -656,6 +656,10 @@ img {
     font-weight: bold;
 }
 
+.blue{
+    background-color:#72A6E8;
+}
+
 .purple1 {
     background-color: #899CDE;
 }
@@ -1006,18 +1010,6 @@ input[type=text], input[type=password] {
     .grid-inputs{
         margin-bottom:20%
     }
-    .radio1{
-        max-height: 45px;
-    }
-    .radio2{
-        max-height: 45px;
-    }
-    .radio3{
-        max-height: 45px;
-    }
-    .radio4{
-        max-height: 45px;
-    }
     .submit{
         margin-bottom: 5%;
     }   
@@ -1027,19 +1019,19 @@ input[type=text], input[type=password] {
 .timestamp-icon{
     height: 35px;
     width: 35px;
-    margin-left: 15px;
-    margin-top: -50px;
+    margin-left: 10px;
+    margin-right: 5%;
 } 
 
 input[name= "Selector"]{
-     margin-left: 100px;
+     margin-left: 10%;
+     min-height: 20px;
 }
 
 /* input[type="radio"]{s
     margin-left: 95px;
 } */
-.radio1{
-    background-color: #72a6e8;
+.radio{
     margin-bottom: 4%;
     color: white;
     border-radius: 20px;
@@ -1047,7 +1039,12 @@ input[name= "Selector"]{
     font-size: 25px;
     font-family: 'poppins', sans-serif;
     height: 75px;
-    padding-left: 20%;
+    padding-left: 5%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    padding-right: 5%;
 }
 
 .radio2{
@@ -1060,6 +1057,8 @@ input[name= "Selector"]{
     height: 35px;
     font-family: 'poppins', sans-serif;
     height: 75px;
+    display: flex;
+    flex-direction: row;
 }
 
 .radio3{
@@ -1072,6 +1071,8 @@ input[name= "Selector"]{
     height: 35px;
     font-family: 'poppins', sans-serif;
     height: 75px;
+    display: flex;
+    flex-direction: row;
 }
 
 .radio4{
@@ -1084,6 +1085,8 @@ input[name= "Selector"]{
     height: 35px;
     font-family: 'Poppins', sans-serif;
     height: 75px;
+    display: flex;
+    flex-direction: row;
 }
 
 /* Measurement section */

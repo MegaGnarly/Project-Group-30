@@ -11,21 +11,25 @@
         <!-- saw this part online but not sure if relevant to us 'form action'-->
         <form method="POST" action="/post_values" >
             <h2 class="data-title">Timestamp</h2>
-            <div class="radio1">
-                <input type="radio" name="Selector" value="BloodGlucoseSelector" required>Blood Glucose<br>
-                 <img src="../assets/blood glucose.png" class="timestamp-icon">
+            <div class="radio blue">
+                <img src="../assets/blood glucose.png" class="timestamp-icon">
+                <label for="bloodglucose">Blood Glucose</label>
+                <input type="radio" name="Selector" id="bloodglucose" value="BloodGlucoseSelector" required></input>
             </div>
-            <div class="radio2">
-                <input name="Selector" type="radio">Doses of Insulin<br>
-                 <img src="../assets/insulin icon.png" class="timestamp-icon">
+            <div class="radio purple1">
+                <img src="../assets/insulin icon.png" class="timestamp-icon">
+                <label for="insulin">Dose of Insulin</label>
+                <input name="Selector" id="insulin" type="radio"></input>
             </div>
-            <div class="radio3">
-                <input name="Selector" type="radio">Weight<br>
+            <div class="radio purple2">
                 <img src="../assets/Weight White ver.png" class="timestamp-icon">
+                <label for="weight">Weight             </label>
+                <input name="Selector" id="weight" type="radio"></input>
             </div>
-            <div class="radio4">
-                <input name="Selector" type="radio">Exercise<br>
+            <div class="radio purple3">
                 <img src="../assets/exercise icon.png" class="timestamp-icon">
+                <label for="exercise">Exercise            </label>
+                <input name="Selector" id="exercise" type="radio"></input>
             </div>
         </div>
     <!-- Column 2 --> 
