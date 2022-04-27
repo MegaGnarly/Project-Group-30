@@ -1031,6 +1031,50 @@ input[name= "Selector"]{
 /* input[type="radio"]{s
     margin-left: 95px;
 } */
+
+.radiocircle {
+    min-width: 64px;
+}
+
+
+.radioicon {
+    display: flex;
+    align-items: center;
+}
+
+.radiotext {
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
+    margin-left: 8%;
+
+}
+
+.radiocircle {
+    display: flex;
+    grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-items: center;
+    margin-right: 25%;
+}
+
+.radioContainer {
+    display: grid;
+    grid-template-columns: auto 2fr 1fr;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+    padding-left: 5%;
+    align-items: center;
+}
+
+
+
 .radio{
     margin-bottom: 4%;
     color: white;

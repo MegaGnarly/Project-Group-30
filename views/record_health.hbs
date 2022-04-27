@@ -9,12 +9,15 @@
     <!-- Form should send selection - need to modify this code once we have databased sorted -->
     <div class="grid-timestamp">
         <!-- saw this part online but not sure if relevant to us 'form action'-->
-        <form method="POST" action="/post_values" >
+        <form method="POST" action="/post_values">
             <h2 class="data-title">Timestamp</h2>
-            <div class="radio blue">
+
+            <!-- Old code commented out. Kept as a reference for other group mates -->
+            {{!-- <div class="radio blue">
                 <img src="../assets/blood glucose.png" class="timestamp-icon">
                 <label for="bloodglucose">Blood Glucose</label>
-                <input type="radio" name="Selector" id="bloodglucose" value="BloodGlucoseSelector" required></input>
+                <input type="radio" class="radiocircle" name="Selector" id="bloodglucose" value="BloodGlucoseSelector"
+                    required></input>
             </div>
             <div class="radio purple1">
                 <img src="../assets/insulin icon.png" class="timestamp-icon">
@@ -30,24 +33,83 @@
                 <img src="../assets/exercise icon.png" class="timestamp-icon">
                 <label for="exercise">Exercise            </label>
                 <input name="Selector" id="exercise" type="radio"></input>
+            </div> --}}
+
+
+
+            <!-- Sahil note: The blocks of code below are equivalent to your code above but now each radio option grid container. -->
+            <!-- This allows us to make things even more responsive (e.g. circle checkbox doesn't disappear when the screen gets too small) -->
+            
+            <!-- The 'radioContainer' is a grid with 1 row and 3 columns. -->
+            <div class="radioContainer blue">
+                <!-- The first column is an icon -->
+                <div class="radioicon">
+                    <img src="../assets/blood glucose.png" class="timestamp-icon">
+                </div>
+
+                <!-- The second column is the text -->
+                <div class="radiotext">
+                    <label for="bloodglucose">Blood Glucose</label>
+                </div>
+                
+                <!-- The third and final column is the circle that the user can select -->
+                <div class="radiocircle">
+                    <input type="radio" class="radiocircle" name="Selector" id="bloodglucose" value="BloodGlucoseSelector" required></input>
+                </div>
             </div>
-        </div>
-    <!-- Column 2 --> 
- 
-    <!-- Grid container that stores inputs-->
 
-        <div class="grid-inputs">
-            <h2 class="data-title"><label for="measurement">Measurement</label></h2><br>
-            <input type="text" id="measurement" name="measurement" placeholder="Enter number" required><br>
+            <!-- Follows same logic as above container -->
+            <div class="radioContainer purple1">
+                <div class="radioicon">
+                    <img src="../assets/insulin icon.png" class="timestamp-icon">
+                </div>
+                <div class="radiotext">
+                    <label for="insulin">Dose of Insulin</label>
+                </div>
+                <div class="radiocircle">
+                    <input name="Selector" class="radiocircle" id="insulin" type="radio"></input>
+                </div>
+            </div>
 
-            <h2 class="data-title"><label for="comment">Additional Comments</label></h2><br>
-            <input type="text" id="comment" name="comment" placeholder="Type in comments">
-        </div> 
-       
+            <div class="radioContainer purple2">
+                <div class="radioicon">
+                    <img src="../assets/Weight White ver.png" class="timestamp-icon">
+                </div>
+                <div class="radiotext">
+                    <label for="weight">Weight             </label>
+                </div>
+                <div class="radiocircle">
+                    <input name="Selector" class="radiocircle" id="weight" type="radio"></input>
+                </div>
+            </div>
+
+            <div class="radioContainer purple3">
+                <div class="radioicon">
+                    <img src="../assets/exercise icon.png" class="timestamp-icon">
+                </div>
+                <div class="radiotext">
+                    <label for="exercise">Exercise            </label>
+                </div>
+                <div class="radiocircle">
+                    <input name="Selector" class="radiocircle" id="exercise" type="radio"></input>
+                </div>
+            </div>
     </div>
-    <!-- Submit Button -->
 
-            <input class="submit" type="submit" value="Submit">
+    <!-- Column 2 -->
+    <!-- Grid container that stores inputs-->
+    <div class="grid-inputs">
+        <h2 class="data-title"><label for="measurement">Measurement</label></h2><br>
+        <input type="text" id="measurement" name="measurement" placeholder="Enter number" required><br>
 
-        </form>
+        <h2 class="data-title"><label for="comment">Additional Comments</label></h2><br>
+        <input type="text" id="comment" name="comment" placeholder="Type in comments">
+    </div>
+
+</div>
+<!-- Submit Button -->
+
+<input class="submit" type="submit" value="Submit">
+
+</form>
 </div>
