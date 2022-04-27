@@ -872,6 +872,7 @@ input[type=text], input[type=password] {
         min-height: 60px;
         margin: 3%;
         padding: 2% 0% 2% 0%;
+        min-width: 250px;
     }
     .thankyouimg {
         width: 70%;
