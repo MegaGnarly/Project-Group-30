@@ -20,7 +20,6 @@ app.use('/test', appRouter)
 app.use('/patient', patientRouter)
 app.use('/clinician_dashboard', clinicianRouter)
 
-
 // Configure handlebars
 app.engine('hbs', exphbs.engine({
     defaultlayout: 'main',
@@ -28,7 +27,16 @@ app.engine('hbs', exphbs.engine({
 }))
 
 // Set handlebars view engine
-app.set('view engine', 'hbs')           
+app.set('view engine', 'hbs')    
+
+// Clinician Dashboard helper - red outline on user if they violate a safety threshold
+var hbs = exphbs.create({});
+hbs.handlebars.registerHelper('thresholdChecker', function(num, options) {
+    if(num < 4.0 || num > 7.8) {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
 
 // Define where static assets live
 app.use(express.static('public'))       
@@ -46,24 +54,19 @@ app.use((req,res,next) => {
 // **** Application Endpoints ****  
 // Endpoint: site index
 app.get('/', (req,res) => {
-    // Tip: you don't need to specify the .hbs extension
     console.log('SERVER: GET homepage')
     res.render('about_diabetes.hbs', {layout: 'main2'})
 })
 
 // Set some test routes. 
-// TODO: We should move these to the routes folder.
 app.get('/about_diabetes', (req,res) => {
-    // Tip: you don't need to specify the .hbs extension
     console.log('SERVER: GET about_diabetes')
     res.render('about_diabetes.hbs', {layout: 'main2'})
 })
 
-
 app.get('/about_site', (req,res) => {
     res.render('about_site.hbs', {layout: 'main2'})
 })
-
 
 app.get('/record_health', (req,res) => {
     res.render('record_health.hbs', {userName:"Pat", userRole: "USER", logoURL: "../patient_dash"})
@@ -76,7 +79,6 @@ app.get('/login_page', (req,res) => {
 app.get('/thankyou_page', (req,res) => {
     res.render('thankyou_page.hbs', {userName:"Pat", userRole: "USER", logoURL: "../patient_dash"})
 })
-
 
 app.get('/patient_dash', (req,res) => {
     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
@@ -104,11 +106,12 @@ app.post('/post_values', async (req,res) => {
     }
 })
 
+// Login - currently serves as a redirect as per the spec
 app.post('/login', async (req,res) => {
     res.redirect('patient_dash')
 })
 
-// POST test - when the user creates an account, update the database.
+// Testing account registration. Not in use for this deliverable. 
 app.post('/post_values_user', (req,res) => {
     console.log('SERVER: New POST (acc creation)')
     let newValue = new patient({
@@ -122,17 +125,8 @@ app.post('/post_values_user', (req,res) => {
 })
 
 
-// Code to establish the server. 
+// **** Main server code that launches the server ****  
 app.listen(process.env.PORT || PORT, () => {
     console.log('Diabetes@Home is running! CTRL + Click the URL below to open a browser window. Press CTRL + C to shut down the server.')
     console.log('http://127.0.0.1:' + PORT + '/' + '\n')
 })
-
-var hbs = exphbs.create({});
-
-hbs.handlebars.registerHelper('thresholdChecker', function(num, options) {
-    if(num < 4.0 || num > 7.8) {
-      return options.fn(this);
-    }
-    return options.inverse(this);
-  });
