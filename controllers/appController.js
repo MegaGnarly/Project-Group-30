@@ -26,7 +26,7 @@ const getAllDataClinician = async (req, res, next) => {
         const values = await measuredValue.find().lean()
         const patientValues = await patient.find().lean()
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', {data: values, data2: patientValues, userName: 'Chris', userRole: "Clinician"})
+        return res.render('clinician_dashboard', {data: values, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL:"../clinician_dashboard"})
     } catch (err) {
         return next(err)
     }
@@ -48,7 +48,7 @@ const getPatientName = async (req, res, next) => {
     console.log('Inside getPatientName')
     try {
         const patientName = await patient.findOne( {id: req.params.id} ).lean()
-        return res.render('patient_dashboard', {patientData: patientName, userName: patientName, userRole: patientRole})
+        return res.render('patient_dashboard', {patientData: patientName, userName: patientName, userRole: patientRole, logoURL: "../patient_dash"})
     } catch (err) {
         return next(err)
     }

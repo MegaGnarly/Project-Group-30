@@ -66,7 +66,7 @@ app.get('/about_site', (req,res) => {
 
 
 app.get('/record_health', (req,res) => {
-    res.render('record_health.hbs', {userName:"Pat", userRole: "USER"})
+    res.render('record_health.hbs', {userName:"Pat", userRole: "USER", logoURL: "../patient_dash"})
 })
 
 app.get('/login_page', (req,res) => {
@@ -74,7 +74,7 @@ app.get('/login_page', (req,res) => {
 })
 
 app.get('/thankyou_page', (req,res) => {
-    res.render('thankyou_page.hbs', {userName:"Pat", userRole: "USER"})
+    res.render('thankyou_page.hbs', {userName:"Pat", userRole: "USER", logoURL: "../patient_dash"})
 })
 
 
@@ -83,11 +83,6 @@ app.get('/patient_dash', (req,res) => {
     res.render('patient_dashboard.hbs', {userName:"Pat", userRole: "USER"})
 })
 
-
-// app.get('/try2', (req,res) => {
-//     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
-//     res.render('try_clinician_dash.hbs', {userName:"Chris", userRole: "CLINICIAN"})
-// })
 
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.
