@@ -26,6 +26,3 @@ Web Information Technologies
 # Misc notes
 - Start the server using: npm start
 - Stop the server using using CTRL + C so that the port is freed up. 
-
-# TODO
-- Place todo items here...
