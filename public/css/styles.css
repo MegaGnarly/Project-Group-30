@@ -490,8 +490,8 @@ background-color: #F7F7F7;
 }
 
 #patient-dashboard-grid-container {
-    margin-left: 10%;
-    margin-right: 20%;
+    margin-left: 5%;
+    margin-right: 15%;
     display: grid;
     /* grid-template-columns: 200px 200px; */
     grid-template-columns: 40% auto;
@@ -515,7 +515,7 @@ background-color: #F7F7F7;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
     margin: 3%;
     font-size: 24px;
-    font-weight: bold;
+    /* font-weight: bold; */
     text-align: center;
     align-items: center;
     justify-content: center;
