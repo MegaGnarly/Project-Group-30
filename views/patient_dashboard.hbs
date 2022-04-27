@@ -1,55 +1,36 @@
-<!-- READ ME -->
-<!-- Don't learn how CSS Grid works from this code because i'm not sure if i'm doing it 
-    properly.
-
-    I'll probably come back and rewrite some of this stuff.
-
-    Instead it may be worth watching this youtube vid to learn CSS Grid:
-    https://www.youtube.com/watch?v=9zBsdzdE4sM
-
--->
-
-
 <br>
 <h1 class="heading">Dashboard</h1>
 <br>
 
-
 <!-- Grid container that stores profile data and 'buttons' (e.g. record health)-->
 <div id="patient-dashboard-grid-container">
-    <!-- Column 1-->
+    <!-- Column 1: Profile field that contains profile picture, username and ranking-->
     <div id="profile">
         <img src="../assets/icon_profile.png" alt="Profile picture" width="175" height="175">
 
-        <!-- TODO: NEED TO SWAP THESE WITH ACTUAL DATABASE VARIABLES -->
-        {{!-- {{#with patientData}}
-        <h2 class="username">{{this.firstName}} {{this.lastName}}</h2>
-        {{/with}}  --}}
-
+        <!-- NOTE! These values are currently hardcoded and arbitrary (which is fine for this deliverable as per the spec) -->
+        <!-- In the final submission these values need to be fetched from the database -->
         <h2 class="username">Pat</h2>
         <p class="ranking">Ranking: 3rd</p>
     </div>
 
-
     <!-- Column 2 -->
-    <!-- Grid container that stores buttons-->
+    <!-- Nested grid container that stores buttons-->
     <div id="patient-dashboard-grid-container-nested">
         <a href="record_health" class="button01">Record Health</a>
         <button class="button01 purple1">View History</button>
         <button class="button01 purple2">Leaderboard</button>
         <button class="button01 purple3">Settings</button>
-
     </div>
 </div>
 <br>
 
-{{!-- <h1 class="heading">Notifications</h1> --}}
 <div id="patient-dashboard-grid-container">
-    <!-- Column 1-->
-    <div id="profile"></div>
+    <!-- Column 1: Empty field-->
+    <div id=""></div>
 
     <!-- Column 2 -->
-    <!-- Grid container that stores buttons-->
+    <!-- Nested grid container that stores buttons-->
     <div id="patient-dashboard-grid-container-nested">
         <h2 class="patient-dashboard-notifications-text">Notifications</h2>
         <h2 class="container-text"></h2>
