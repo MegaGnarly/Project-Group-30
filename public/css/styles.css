@@ -989,7 +989,7 @@ input[type=text], input[type=password] {
     align-content: center;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 75%;
 }
 
 /*responsive design - turn grid into flex */
@@ -1027,14 +1027,17 @@ input[type=text], input[type=password] {
 .timestamp-icon{
     height: 35px;
     width: 35px;
-    margin-top: -35px;
     margin-left: 15px;
+    margin-top: -50px;
 } 
 
-input[name= "timestamp-type"]{
-     margin-left: 50px;
-     margin-top: 2rem;
-} 
+input[name= "Selector"]{
+     margin-left: 100px;
+}
+
+/* input[type="radio"]{s
+    margin-left: 95px;
+} */
 .radio1{
     background-color: #72a6e8;
     margin-bottom: 4%;
@@ -1044,6 +1047,7 @@ input[name= "timestamp-type"]{
     font-size: 25px;
     font-family: 'poppins', sans-serif;
     height: 75px;
+    padding-left: 20%;
 }
 
 .radio2{
