@@ -1000,7 +1000,6 @@ input[id=email], input[id=psw] {
         display: flex;
         flex-direction: column;
     }
-    
     .grid-timestamp{
         margin-bottom: 5%;
     }
@@ -1010,6 +1009,7 @@ input[id=email], input[id=psw] {
     .submit{
         margin-bottom: 7%;
     }   
+
 }
 
 /*  timestamp section radio buttons  */
@@ -1050,8 +1050,8 @@ input[name= "Selector"]{
     grid-column-start: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    align-items: center;
-    margin-right: 25%;
+    align-items: right;
+    margin-right: 5%;
 }
 
 .radioContainer {
@@ -1062,11 +1062,17 @@ input[name= "Selector"]{
     color: white;
     border-radius: 20px;
     text-align: left;
-    font-size: 25px;
+    font-size: clamp(18px, 2vw, 25px);
     font-family: 'poppins', sans-serif;
     height: 75px;
     padding-left: 5%;
     align-items: center;
+}
+
+.radioContainer:hover {
+    transform: scale(1.05);
+    border: 2px solid #121212;
+    transition: all 0.5s ease 0s;
 }
 
 /* 
