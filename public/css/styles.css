@@ -984,7 +984,6 @@ input[type=text], input[type=password] {
 }
 
 /* grid layout for form */
-
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -997,12 +996,11 @@ input[type=text], input[type=password] {
 }
 
 /*responsive design - turn grid into flex */
-
-@media screen and (max-width:800px){
-    .grid-container{
+@media (max-width: 1000px){
+    .grid-container {
         display: flex;
         flex-direction: column;
-        }
+    }
     
     .grid-timestamp{
         margin-bottom: 5%;
@@ -1019,6 +1017,8 @@ input[type=text], input[type=password] {
 .timestamp-icon{
     height: 35px;
     width: 35px;
+    min-width: 35px;
+    min-height: 35px;
     margin-left: 10px;
     margin-right: 5%;
 } 
@@ -1043,6 +1043,7 @@ input[name= "Selector"]{
 }
 
 .radiotext {
+    min-width: 100px;
     display: flex;
     align-self: center;
     justify-content: flex-start;
@@ -1060,6 +1061,7 @@ input[name= "Selector"]{
 }
 
 .radioContainer {
+    min-width: 280px;
     display: grid;
     grid-template-columns: auto 2fr 1fr;
     margin-bottom: 4%;
