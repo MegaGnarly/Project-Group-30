@@ -13,7 +13,7 @@ Web Information Technologies
 - How to update npm: https://docs.npmjs.com/try-the-latest-stable-version-of-npm
 - Ensure you have npm express and mongoose installed
 - Commands: 
-'''
+```
     npm install express 
 
     npm install mongoose
@@ -21,7 +21,7 @@ Web Information Technologies
     npm install dotenv
 
     npm install body-parser
-'''
+```
 
 # Misc notes
 - Start the server using: npm start
