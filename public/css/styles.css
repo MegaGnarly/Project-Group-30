@@ -998,7 +998,7 @@ input[type=text], input[type=password] {
 
 /*responsive design - turn grid into flex */
 
-@media screen and (max-width:640px){
+@media screen and (max-width:800px){
     .grid-container{
         display: flex;
         flex-direction: column;
