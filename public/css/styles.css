@@ -725,7 +725,7 @@ p {
 }
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input[id=email], input[id=psw] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -987,7 +987,6 @@ input[type=text], input[type=password] {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2fr 1fr;
     grid-column-gap: 100px;
     align-content: center;
     margin-left: auto;
@@ -1001,7 +1000,6 @@ input[type=text], input[type=password] {
         display: flex;
         flex-direction: column;
     }
-    
     .grid-timestamp{
         margin-bottom: 5%;
     }
@@ -1009,8 +1007,9 @@ input[type=text], input[type=password] {
         margin-bottom:20%
     }
     .submit{
-        margin-bottom: 5%;
+        margin-bottom: 7%;
     }   
+
 }
 
 /*  timestamp section radio buttons  */
@@ -1028,14 +1027,9 @@ input[name= "Selector"]{
      min-height: 20px;
 }
 
-/* input[type="radio"]{s
-    margin-left: 95px;
-} */
-
 .radiocircle {
     min-width: 64px;
 }
-
 
 .radioicon {
     display: flex;
@@ -1056,8 +1050,8 @@ input[name= "Selector"]{
     grid-column-start: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    align-items: center;
-    margin-right: 25%;
+    align-items: right;
+    margin-right: 5%;
 }
 
 .radioContainer {
@@ -1068,15 +1062,20 @@ input[name= "Selector"]{
     color: white;
     border-radius: 20px;
     text-align: left;
-    font-size: 25px;
+    font-size: clamp(18px, 2vw, 25px);
     font-family: 'poppins', sans-serif;
     height: 75px;
     padding-left: 5%;
     align-items: center;
 }
 
+.radioContainer:hover {
+    transform: scale(1.05);
+    border: 2px solid #121212;
+    transition: all 0.5s ease 0s;
+}
 
-
+/* 
 .radio{
     margin-bottom: 4%;
     color: white;
@@ -1133,11 +1132,11 @@ input[name= "Selector"]{
     height: 75px;
     display: flex;
     flex-direction: row;
-}
+} */
 
 /* Measurement section */
 
-input[id='measurement']{
+input[id=measurement] {
     background-color: #FFFFFF;
     filter: drop-shadow(1px 1px 3px #d4d4d4);
     border-style: solid;
@@ -1148,40 +1147,40 @@ input[id='measurement']{
     width: 100%;
     height: 75px;
     margin-bottom: 2%;
-    margin-top: -20px;
 }
 
 input[placeholder='Enter number'] {
     font-family: 'poppins', sans-serif;
     font-size: 18px;
-    color: #8a8a8a;
     padding-left: 5%;
 }
 
 /* Additional Comments section */
-input[id='comments']{
+.comments {
     background-color: #FFFFFF;
     filter: drop-shadow(1px 1px 3px #d4d4d4);
+    font-size: 18px;
+    font-weight: 600;
     border-style: solid;
     border-color: #E8E8E8;
     border-width: thin;
     border-radius: 20px;
+    padding-left: 5%;
+    padding-top: 5%;
     outline: none;
     width: 100%;
-    height: 200px;
-    margin-top: -20px;
+    min-height: 200px;
+    height: 45%;
 }
 
-input[placeholder='Type in comments'] {
+textarea::placeholder {
     font-family: 'poppins', sans-serif;
     font-size: 18px;
-    color: #8a8a8a;
-    padding-left: 5%;
-    padding-bottom: 30%;
+    font-weight: 600;
 }
 
 /* submit button */
-.submit{
+.submit {
     text-align: center;
     display: block;
     font-size: 30px;
@@ -1189,15 +1188,13 @@ input[placeholder='Type in comments'] {
     color: white;
     background-color: #7D92DB;
     border-radius: 20px;
-    border-style: none;
-    width: 250px;
+    width: 230px;
     min-height: 55px;
     padding: 0%;
     align-content: center;
     justify-items: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -10%;
-    margin-bottom: 7%;
+    margin-bottom: 50px;
 }
 
