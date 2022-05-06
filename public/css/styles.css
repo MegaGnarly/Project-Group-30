@@ -725,7 +725,7 @@ p {
 }
 
 /* Full-width inputs */
-input[id=email], input[id=psw] {
+input[id=username], input[id=psw] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/MegaGnarly/INFO30005#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "express": "^4.17.3",
     "express-flash": "^0.0.2",

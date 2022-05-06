@@ -15,6 +15,9 @@ const appRouter = require('./routes/appRouter')
 const patientRouter = require('./routes/patientRouter')
 const clinicianRouter = require('./routes/clinicianRouter.js')
 
+const flash = require('express-flash')
+const session = require('express-session')
+
 // Routing - set paths
 app.use('/test', appRouter)
 app.use('/patient', patientRouter)
@@ -109,23 +112,65 @@ app.post('/post_values', async (req,res) => {
     }
 })
 
-// Login - currently serves as a redirect as per the spec
-app.post('/login', async (req,res) => {
-    res.redirect('patient_dash')
+
+//----------------------------------------------------------------------------------------------------
+
+// Flash messages for failed logins, and (possibly) other success/error messages
+app.use(flash())
+// Track authenticated users through login sessions
+app.use(
+session({
+// The secret used to sign session cookies (ADD ENV VAR)
+secret: process.env.SESSION_SECRET || 'keyboard cat',
+name: 'demo', // The cookie name (CHANGE THIS)
+saveUninitialized: false,
+resave: false,
+cookie: {
+sameSite: 'strict',
+httpOnly: true,
+secure: app.get('env') === 'production'
+},
+})
+)
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1); // Trust first proxy
+    }
+    // Initialise Passport.js
+    const passport = require('./passport')
+    app.use(passport.authenticate('session'))
+    // Load authentication router
+    const authRouter = require('./routes/auth');
+const user = require('./models/user');
+    app.use(authRouter)
+
+//----------------------------------------------------------------------------------------------------
+const User = require('./models/user')
+app.post('/register', (req,res) => {
+    if (req.body.password!=req.body.password2){return;}
+    User.create({ username: req.body.username, password: req.body.password, secret: 'INFO30005'}, (err) => {
+        if (err) { console.log(err); return; }
+        console.log('User inserted')
+    })
+    res.render('about_diabetes', {layout:'main2'})
 })
 
+// Login - currently serves as a redirect as per the spec
+// app.post('/login', async (req,res) => {
+//     res.redirect('patient_dash')
+// })
+
 // Testing account registration. Not in use for this deliverable. 
-app.post('/post_values_user', (req,res) => {
-    console.log('SERVER: New POST (acc creation)')
-    let newValue = new patient({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        // Generate a random ID for the user. Ideally we should be using the ID that mongoDB generates.
-        id: Math.floor(Math.random() * 1000)
-    })
-    newValue.save()
-    res.redirect('/test/users')
-})
+// app.post('/post_values_user', (req,res) => {
+//     console.log('SERVER: New POST (acc creation)')
+//     let newValue = new patient({
+//         firstName: req.body.firstName,
+//         lastName: req.body.lastName,
+//         // Generate a random ID for the user. Ideally we should be using the ID that mongoDB generates.
+//         id: Math.floor(Math.random() * 1000)
+//     })
+//     newValue.save()
+//     res.redirect('/test/users')
+// })
 
 
 // **** Main server code that launches the server ****  
