@@ -19,10 +19,10 @@
   "homepage": "https://github.com/MegaGnarly/INFO30005#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
-    "express": "^4.17.3",
+    "express": "^4.18.1",
     "express-handlebars": "^6.0.5",
     "handlebars": "^4.7.7",
-    "mongoose": "^6.3.0"
+    "mongoose": "^6.3.2"
   },
   "devDependencies": {
     "dotenv": "^16.0.0"

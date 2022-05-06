@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 
 const schema = {
-    name: String,
-    dateTime: String,
+    username: String,
+    // dateTime: String,
+    dateTime: {type:Date, default:Date.now},
+    measured_type: String,
     measured_value: String,
     comment: String
 }
