@@ -85,6 +85,9 @@ app.get('/patient_dash', (req,res) => {
     res.render('patient_dashboard.hbs', {userName:"Pat", userRole: "USER"})
 })
 
+app.get('/register_page', (req,res) => {
+    res.render('register_page.hbs', {layout: 'main2'})
+})
 
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.
