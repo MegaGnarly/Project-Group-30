@@ -42,17 +42,17 @@
                 </div>
             </div>
             <div class="grid-patient-category bold">Blood Glucose</div>
-            {{#thresholdChecker this.measured_value}}
-            <div class="grid-patient-data red-highlight">{{this.measured_value}}</div>
+            {{#thresholdChecker this.measured_glucose}}
+            <div class="grid-patient-data red-highlight">{{this.measured_glucose}}</div>
             {{else}}
-            <div class="grid-patient-data">{{this.measured_value}}</div>
+            <div class="grid-patient-data">{{this.measured_glucose}}</div>
             {{/thresholdChecker}}
             <div class="grid-patient-category bold">Weight</div>
-            <div class="grid-patient-data">-</div>
+            <div class="grid-patient-data">{{this.measured_weight}}</div>
             <div class="grid-patient-category bold">No. Insulin Doses</div>
-            <div class="grid-patient-data">-</div>
+            <div class="grid-patient-data">{{this.measured_insulin}}</div>
             <div class="grid-patient-category bold">Exercise (Step Count)</div>
-            <div class="grid-patient-data">-</div>
+            <div class="grid-patient-data">{{this.measured_exercise}}</div>
         </div>
         <div class="grid-patient-action-required">
             <div class="grid-patient-action-required-title bold">Comments</div>

@@ -19,9 +19,9 @@ const patientRouter = require('./routes/patientRouter')         // Handle patien
 const clinicianRouter = require('./routes/clinicianRouter.js')  // Handle clinician routes (e.g. clinician_dashboard)
 
 // Routing - set paths
-app.use('/', appRouter)                             
-app.use('/patient', patientRouter)                  
-app.use('/clinician_dashboard', clinicianRouter)   
+app.use('/', appRouter)
+app.use('/patient', patientRouter)
+app.use('/clinician_dashboard', clinicianRouter)
 
 // Configure handlebars
 app.engine('hbs', exphbs.engine({
@@ -114,16 +114,22 @@ app.get('/thankyou_page', (req, res) => {
 // POST test - when the user fills the form, update the database.
 app.post('/post_values', async (req, res) => {
     // Check is BloodGlucose is Selected else do nothing
-    if (req.body.Selector) {
-        let newValue = new measuredValue({
-            // Hardcoded PatientName for now
-            username: req.user.username,
-            dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
-            measured_type: req.body.Selector,
-            measured_value: req.body.measurement,
-            comment: req.body.comment
-        })
-        await newValue.save()
+    measured_type = req.body.Selector
+    if (measured_type) {
+        exists = await measuredValue.collection.countDocuments({ "username": req.user.username }, { limit: 1 })
+        if (!exists) {
+            let newValue = new measuredValue({
+                username: req.user.username,
+                dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+                measured_glucose: "-",
+                measured_weight: "-",
+                measured_insulin: "-",
+                measured_exercise: "-",
+                comment: req.body.comment
+            })
+            await newValue.save()
+        }
+        measuredValue.collection.updateOne({ "username": req.user.username }, {$set:{ [measured_type]: req.body.measurement }})
         // TODO redirect to thank you page
         await res.redirect('thankyou_page')
     } else {
