@@ -10,18 +10,18 @@ const measuredValue = require('./models/measuredValue');
 const patient = require('./models/patient')
 require('./models')
 
-// link to our routers
-const appRouter = require('./routes/appRouter')
-const patientRouter = require('./routes/patientRouter')
-const clinicianRouter = require('./routes/clinicianRouter.js')
-
 const flash = require('express-flash')
 const session = require('express-session')
 
+// link to our routers
+const appRouter = require('./routes/appRouter')                 // Handle general routes (e.g. about_site)
+const patientRouter = require('./routes/patientRouter')         // Handle patient routes (e.g. record_health)
+const clinicianRouter = require('./routes/clinicianRouter.js')  // Handle clinician routes (e.g. clinician_dashboard)
+
 // Routing - set paths
-app.use('/test', appRouter)
-app.use('/patient', patientRouter)
-app.use('/clinician_dashboard', clinicianRouter)
+app.use('/', appRouter)                             
+app.use('/patient', patientRouter)                  
+app.use('/clinician_dashboard', clinicianRouter)   
 
 // Configure handlebars
 app.engine('hbs', exphbs.engine({
@@ -55,22 +55,6 @@ app.use((req, res, next) => {
 
 
 // **** Application Endpoints ****  
-// Endpoint: site index
-app.get('/', (req, res) => {
-    console.log('SERVER: GET homepage')
-    res.render('about_diabetes.hbs', { layout: 'main2' })
-})
-
-// Set some test routes. 
-app.get('/about_diabetes', (req, res) => {
-    console.log('SERVER: GET about_diabetes')
-    res.render('about_diabetes.hbs', { layout: 'main2' })
-})
-
-app.get('/about_site', (req, res) => {
-    res.render('about_site.hbs', { layout: 'main2' })
-})
-
 app.get('/record_health', (req, res) => {
     res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
 })
