@@ -556,6 +556,32 @@ background-color: #F7F7F7;
     font-size: 24px;
 }
 
+.button03 {
+    display: flex;
+    min-height: 60px;
+    min-width: 270px;
+    max-width: 400px;
+    border-radius: 38px;
+    background-color: #72A6E8;
+    color: white;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    margin: 3%;
+    font-size: 24px;
+    /* font-weight: bold; */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    border:none;
+    cursor:pointer;
+    transition: all 0.5s ease 0s;
+}
+.button03:hover {
+    background-color: #8a3ee2;
+    transform: scale(1.05);
+    /*font-size: 22px;*/
+}
+
 
  /*--------------------------- Record data CSS --------------------------------- */
  /*subheadings*/
@@ -790,21 +816,20 @@ textarea::placeholder {
 
 /* Clinician Dashboard - Patient Specifics Page */
 #patient-specifics-topbar {
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-left: 4%;
+    padding-right: 4%;
 
 }
 
 #patient-specifics-container {
     display: grid;
     grid-template-columns: 30% 70%;
-    grid-gap: 30px;
-
+    grid-gap: 16px;
     /* background-color:#8B7CC9; */
-    padding-left: 8%;
-    padding-right: 8%;
-
-
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
 .patient-specifics-pfp {
@@ -835,10 +860,37 @@ textarea::placeholder {
 
 .patient-specifics-table {
     border:5px solid rebeccapurple;
+    display: grid;
 }
 
+.patient-specifics-notes-container {
+    border:5px solid peachpuff;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
 
+.patient-specifics-overview-container {
+    padding-left: 4%;
+    padding-right: 4%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-column-gap: 16px;
 
+}
+
+.patient-specifics-grid-title {
+    padding-top: 20px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.patient-specifics-graph {
+    border:5px solid pink;
+}
+
+.patient-specifics-month {
+    border:5px solid purple;
+}
 
 
 
