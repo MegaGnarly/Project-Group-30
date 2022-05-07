@@ -1198,3 +1198,7 @@ textarea::placeholder {
     margin-bottom: 50px;
 }
 
+.alert {
+    color: red;
+    font-size: smaller;
+}
