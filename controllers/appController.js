@@ -25,7 +25,7 @@ const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     try {
         const values = await measuredValue.find().lean()
-        const patientValues = await patient.find().lean()
+        const patientValues = await User.find().lean()
         // The user values being passed are for the site header on the top right.
         return res.render('clinician_dashboard', {data: values, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL:"../clinician_dashboard"})
     } catch (err) {
