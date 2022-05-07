@@ -1,10 +1,10 @@
 // Import people and patient model
 const measuredValue = require('../models/measuredValue')
-const patient = require('../models/patient')
+const User = require('../models/user')
 
 // Patient identities are hardcoded for this deliverable (see spec sheet)
-var patientName = "Pat"
-var patientRole = "USER"
+// var patientName = "Pat"
+// var patientRole = "USER"
 
 
 // Handle request to get all people data instances
@@ -52,12 +52,14 @@ const getAllPatientData = async (req, res, next) => {
     }
 }
 
-
+// Currently not used
 const getPatientName = async (req, res, next) => {
     console.log('Inside getPatientName')
     try {
-        const patientName = await patient.findOne( {id: req.params.id} ).lean()
-        return res.render('patient_dashboard', {patientData: patientName, userName: patientName, userRole: patientRole, logoURL: "../patient_dash"})
+        const current_user = await User.findOne( {username: req.params.username} ).lean()
+        const username = current_user.username
+        const role = current_user.role
+        return res.render('patient_dashboard', {patientData: username, userName: username, role: role, logoURL: "../patient_dashboard"})
     } catch (err) {
         return next(err)
     }
