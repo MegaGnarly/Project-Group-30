@@ -5,8 +5,7 @@ const appRouter = express.Router()
 // import app controller functions
 const appController = require('../controllers/appController')
 
-
-// Endpoint: site index
+// *** Application Endpoints ***
 appRouter.get('/', (req, res) => {
     console.log('SERVER: GET homepage')
     res.render('about_diabetes.hbs', { layout: 'main2' })
@@ -22,6 +21,11 @@ appRouter.get('/about_site', (req, res) => {
     res.render('about_site.hbs', { layout: 'main2' })
 })
 
+// Send to registration page
+// Note - logins (/login) is handled in auth.js
+appRouter.get('/register', (req, res) => {
+    res.render('register_page.hbs', { layout: 'main2' })
+})
 
-// export the router
+// Export the router
 module.exports = appRouter

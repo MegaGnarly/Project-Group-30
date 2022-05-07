@@ -59,22 +59,15 @@ app.get('/record_health', (req, res) => {
     res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
 })
 
-app.get('/login_page', (req, res) => {
-    res.render('login_page.hbs', { layout: 'main2' })
-})
+// Sahil - I commented this out because it seemed redundant (we already have /login in auth.js)
+// app.get('/login_page', (req, res) => {
+//     res.render('login_page.hbs', { layout: 'main2' })
+// })
 
 app.get('/thankyou_page', (req, res) => {
     res.render('thankyou_page.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
 })
 
-// app.get('/patient_dash', (req, res) => {
-//     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
-//     res.render('patient_dashboard.hbs', { userName: "Pat", userRole: "USER" })
-// })
-
-app.get('/register_page', (req, res) => {
-    res.render('register_page.hbs', { layout: 'main2' })
-})
 
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.
