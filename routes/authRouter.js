@@ -33,7 +33,7 @@ authRouter.get('/login_page', (req, res) => {
 // )
 authRouter.post('/login',
     passport.authenticate('local', {
-        successRedirect: '/patient_dashboard', failureRedirect: '/login', failureFlash: true
+        successRedirect: '/patient_dashboard', failureRedirect: '/login_page', failureFlash: true
     })
     // (req, res) => {
     //     console.log('user ' + req.user.username + ' logged in with role ' + req.user.role)     // for debugging
