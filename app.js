@@ -32,6 +32,48 @@ app.engine('hbs', exphbs.engine({
 // Set handlebars view engine
 app.set('view engine', 'hbs')
 
+//----------------------------------------------------------------------------------------------------
+
+// Flash messages for failed logins, and (possibly) other success/error messages
+app.use(flash())
+// Track authenticated users through login sessions
+app.use(
+    session({
+        // The secret used to sign session cookies (ADD ENV VAR)
+        secret: process.env.SESSION_SECRET || 'keyboard cat',
+        name: 'demo', // The cookie name (CHANGE THIS)
+        saveUninitialized: false,
+        resave: false,
+        cookie: {
+            sameSite: 'strict',
+            httpOnly: true,
+            secure: app.get('env') === 'production',
+            maxAge: 600000
+        },
+    })
+)
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1); // Trust first proxy
+}
+// Initialise Passport.js
+const passport = require('./passport')
+app.use(passport.authenticate('session'))
+// Load authentication router
+const authRouter = require('./routes/authRouter');
+const user = require('./models/user');
+app.use(authRouter)
+
+const isAuthenticated = (req, res, next) => {
+    // If user is not authenticated via passport, redirect to login page
+    if (!req.isAuthenticated()) {
+        return res.redirect('/login_page')
+    }
+    // Otherwise, proceed to next middleware function
+    return next()
+}
+
+//----------------------------------------------------------------------------------------------------
+
 // Clinician Dashboard helper - red outline on user if they violate a safety threshold
 var hbs = exphbs.create({});
 hbs.handlebars.registerHelper('thresholdChecker', function (num, options) {
@@ -53,9 +95,8 @@ app.use((req, res, next) => {
     next()
 })
 
-
 // **** Application Endpoints ****  
-app.get('/record_health', (req, res) => {
+app.get('/record_health', isAuthenticated, (req, res) => {
     res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
 })
 
@@ -89,39 +130,6 @@ app.post('/post_values', async (req, res) => {
     }
 })
 
-
-//----------------------------------------------------------------------------------------------------
-
-// Flash messages for failed logins, and (possibly) other success/error messages
-app.use(flash())
-// Track authenticated users through login sessions
-app.use(
-    session({
-        // The secret used to sign session cookies (ADD ENV VAR)
-        secret: process.env.SESSION_SECRET || 'keyboard cat',
-        name: 'demo', // The cookie name (CHANGE THIS)
-        saveUninitialized: false,
-        resave: false,
-        cookie: {
-            sameSite: 'strict',
-            httpOnly: true,
-            secure: app.get('env') === 'production',
-            maxAge: 600000
-        },
-    })
-)
-if (app.get('env') === 'production') {
-    app.set('trust proxy', 1); // Trust first proxy
-}
-// Initialise Passport.js
-const passport = require('./passport')
-app.use(passport.authenticate('session'))
-// Load authentication router
-const authRouter = require('./routes/auth');
-const user = require('./models/user');
-app.use(authRouter)
-
-//----------------------------------------------------------------------------------------------------
 const User = require('./models/user')
 app.post('/register', (req, res) => {
     if (req.body.password != req.body.password2) { return; }
