@@ -87,7 +87,7 @@ const getDataById = async (req, res, next) => {
 // Export objects so that they may be used by other files
 module.exports = {
     getAllPatientData,
-    getAllData,
+    //getAllData,
     getAllDataClinician,
     getPatientDataClinician,
     getPatientName,
