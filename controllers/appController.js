@@ -1,31 +1,31 @@
 // Import people and patient model
 const measuredValue = require('../models/measuredValue')
-const User = require('../models/user')
+const user = require('../models/user')
 
 // Patient identities are hardcoded for this deliverable (see spec sheet)
 // var patientName = "Pat"
 // var patientRole = "USER"
 
 
-// Handle request to get all people data instances
-const getAllData = async (req, res, next) => {
+// // Handle request to get all people data instances
+// const getAllData = async (req, res, next) => {
 
-    try {
-        const values = await measuredValue.find().lean()
-        const patientValues = await patient.find().lean()
-        // The user values being passed are for the site header on the top right.
-        return res.render('test_data', {data: values, data2: patientValues, userName: patientName, userRole: patientRole})
-    } catch (err) {
-        return next(err)
-    }
-}
+//     try {
+//         const values = await measuredValue.find().lean()
+//         const patientValues = await patient.find().lean()
+//         // The user values being passed are for the site header on the top right.
+//         return res.render('test_data', {data: values, data2: patientValues, userName: patientName, userRole: patientRole})
+//     } catch (err) {
+//         return next(err)
+//     }
+// }
 
 // Get *all* patient data (used for the clinician dashboard)
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     try {
         const values = await measuredValue.find().lean()
-        const patientValues = await User.find().lean()
+        const patientValues = await user.find().lean()
         // The user values being passed are for the site header on the top right.
         return res.render('clinician_dashboard', {data: values, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL:"../clinician_dashboard"})
     } catch (err) {
