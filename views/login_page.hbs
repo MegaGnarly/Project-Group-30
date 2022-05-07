@@ -1,26 +1,29 @@
 <body class="login_body">
-<div class="background">
-    <div class="flexbox-form-container">
-        <form class="loginform" action="/login" method="post">
+    <div class="background">
+        <div class="flexbox-form-container">
+            <form class="loginform" action="/login" method="post">
                 <h2 class="login_heading">LOGIN</h2>
-            <div class="login_container">
-                <label for="uname"><b>Email</b></label>
-                <input id="email" type="text" placeholder="Enter Email" name="uname">
+                {{#each flash}}
+                <p class="alert">{{this}}</p>
+                {{/each}}
+                <div class="login_container">
+                    <label for="uname"><b>Username</b></label>
+                    <input id="username" type="text" placeholder="Enter Email" name="username">
 
-                <label for="psw"><b>Password</b></label>
-                <input id="psw" type="password" placeholder="Enter Password" name="psw">
-                <div class="psw">
-                   <label>
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
-                    <div>Forgot <a href="#">password?</a></div> 
+                    <label for="psw"><b>Password</b></label>
+                    <input id="psw" type="password" placeholder="Enter Password" name="password">
+                    <div class="psw">
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                        <div><a href="#">Forgot password?</a></div>
+                    </div>
+                    <button class="login_button">LOGIN</button>
+
+                    <div class="acc-creation-text">
+                        <div>Don't have an account? <a href="register_page">Create an Account.</a></div>
+                    </div>
                 </div>
-                <button class="login_button">LOGIN</button>
-                
-                <div class="acc-creation-text">
-                     <div>Don't have an account? <a href="#">Create an Account.</a></div> 
-                </div> 
-            </div>   
-        </form>
+            </form>
+        </div>
     </div>
-</div>
