@@ -16,6 +16,7 @@ const isAuthenticated = (req, res, next) => {
 // Note use of authentication middleware here
 authRouter.get('/patient_dash', isAuthenticated, (req, res) => {
     console.log("1111111111111111111")
+    console.log(req.user.toJSON())
     res.render('patient_dashboard', { title: 'Express', user: req.user.toJSON() })
 })
 // Login page (with failure message displayed upon login failure)
