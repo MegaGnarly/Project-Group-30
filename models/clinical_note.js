@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 const schema = {
     username: String,
-    // dateTime: String,
-    dateTime: {type:Date, default:Date.now},
+    dateTime: String,
+    // dateTime: {type:Date, default:Date.now},
     note: String
 }
 
