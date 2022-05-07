@@ -20,6 +20,7 @@ const getAllData = async (req, res, next) => {
     }
 }
 
+// Get *all* patient data (used for the clinician dashboard)
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     try {
@@ -30,6 +31,14 @@ const getAllDataClinician = async (req, res, next) => {
     } catch (err) {
         return next(err)
     }
+}
+
+
+// Get all data for a *specific* patient (used when you click a patient in the clin dashboard)
+const getPatientDataClinician = async (req, res, next) => {
+    // TODO
+    console.log("inside getPatientDataClinician")
+    return res.render('patient_specifics')
 }
 
 // Handle request to get patient data (name, rank etc)
@@ -78,6 +87,7 @@ module.exports = {
     getAllPatientData,
     getAllData,
     getAllDataClinician,
+    getPatientDataClinician,
     getPatientName,
     // getDataById
 }
