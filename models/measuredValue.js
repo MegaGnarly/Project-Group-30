@@ -6,7 +6,7 @@ const schema = {
     dateTime: {type:Date, default:Date.now},
     measured_type: String,
     measured_value: String,
-    comment: String
+    comment: String,
 }
 
 const measuredValue = mongoose.model('measuredValue', schema)

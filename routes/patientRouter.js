@@ -7,11 +7,25 @@ const patientRouter = express.Router()
 const appController = require('../controllers/appController')
 
 // add a route to handle the GET request for all app data
-// patientRouter.get('/', appController.getPatientName)
+patientRouter.get('/', (req, res) => {
+    console.log("IN PATIENT ROUTER - DBOARD")
+    res.render('patient_dashboard.hbs', { layout: 'main2' })
+})
 
-// Route currently not used
-patientRouter.get('/:username', appController.getPatientName)
-// example: http://127.0.0.1:3000/patient_dashboard/Pat   will show a patient dashboard with patient data for Pat
+
+// patientRouter.get('/:id', appController.getPatientName)
+// example: http://127.0.0.1:3000/patient/849   will show a patient dashboard with patient data for id 849
+
+
+// patientRouter.get('/record_health', (req, res) => {
+//     console.log("IN PATIENT ROUTER - REC HEALTH")
+//     res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
+// })
+
+// patientRouter.get('/thankyou_page', (req, res) => {
+//     console.log("IN PATIENT ROUTER - TY PAGE")
+//     res.render('thankyou_page.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
+// })
 
 
 // export the router

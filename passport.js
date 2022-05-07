@@ -3,6 +3,9 @@ const LocalStrategy = require('passport-local').Strategy
 // Hardcode user for now
 const User = require('./models/user')
 
+const bodyParser = require('body-parser')
+passport.use(bodyParser.urlencoded({ extended: false }));
+
 // Updated serialize/deserialize functions
 passport.serializeUser((user, done) => {
     done(undefined, user._id)

@@ -1,12 +1,13 @@
 const passport = require('passport')
 const express = require('express')
 const authRouter = express.Router()
-
+const bodyParser = require('body-parser')
+authRouter.use(bodyParser.urlencoded({ extended: false }));
 // Authentication middleware
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via passport, redirect to login page
     if (!req.isAuthenticated()) {
-        return res.redirect('/login')
+        return res.redirect('/login_page')
     }
     // Otherwise, proceed to next middleware function
     return next()
@@ -20,16 +21,24 @@ authRouter.get('/patient_dashboard', isAuthenticated, (req, res) => {
 })
 
 // Login page (with failure message displayed upon login failure)
-authRouter.get('/login', (req, res) => {
-    console.log("0000000000000000")
-    res.render('login_page', { flash: req.flash('error'), title: 'Login' , layout:'main2'})
+authRouter.get('/login_page', (req, res) => {
+    res.render('login_page', { flash: req.flash('error'), title: 'Login', layout: 'main2' })
 })
 
 // Handle login
+// authRouter.post('/login',
+//     passport.authenticate('local', {
+//         successRedirect: '/patient_dash', failureRedirect: '/login', failureFlash: true
+//     })
+// )
 authRouter.post('/login',
     passport.authenticate('local', {
         successRedirect: '/patient_dashboard', failureRedirect: '/login', failureFlash: true
     })
+    // (req, res) => {
+    //     console.log('user ' + req.user.username + ' logged in with role ' + req.user.role)     // for debugging
+    //     res.redirect('/patient_dash')   // login was successful, send user to home page
+    // }
 )
 
 // Handle logout
