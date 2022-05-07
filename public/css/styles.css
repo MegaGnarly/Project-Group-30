@@ -557,6 +557,292 @@ background-color: #F7F7F7;
 }
 
 
+ /*--------------------------- Record data CSS --------------------------------- */
+ /*subheadings*/
+ .data-title{
+    color:#717273;
+    font-size: 22px;
+    font-family: 'poppins', sans-serif;
+    font-weight: bold;
+}
+
+/* grid layout for form */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 100px;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+/*responsive design - turn grid into flex */
+@media (max-width: 1000px){
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .grid-timestamp{
+        margin-bottom: 5%;
+    }
+    .grid-inputs{
+        margin-bottom:20%
+    }
+    .submit{
+        margin-bottom: 7%;
+    }   
+
+}
+
+/*  timestamp section radio buttons  */
+.timestamp-icon{
+    height: 35px;
+    width: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    margin-left: 10px;
+    margin-right: 5%;
+} 
+
+input[name= "Selector"]{
+     margin-left: 10%;
+     min-height: 20px;
+}
+
+.radiocircle {
+    min-width: 64px;
+}
+
+.radioicon {
+    display: flex;
+    align-items: center;
+}
+
+.radiotext {
+    min-width: 100px;
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
+    margin-left: 8%;
+
+}
+
+.radiocircle {
+    display: flex;
+    grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-items: right;
+    margin-right: 5%;
+}
+
+.radioContainer {
+    min-width: 280px;
+    display: grid;
+    grid-template-columns: auto 2fr 1fr;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: clamp(18px, 2vw, 25px);
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+    padding-left: 5%;
+    align-items: center;
+}
+
+.radioContainer:hover {
+    transform: scale(1.05);
+    border: 2px solid #121212;
+    transition: all 0.5s ease 0s;
+}
+
+/* 
+.radio{
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+    padding-left: 5%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    padding-right: 5%;
+}
+
+.radio2{
+    background-color: #8b7cc9;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+     font-size: 25px;
+    height: 35px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+}
+
+.radio3{
+    background-color: #7d92db;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    height: 35px;
+    font-family: 'poppins', sans-serif;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+}
+
+.radio4{
+    background-color: #9765b2;
+    margin-bottom: 4%;
+    color: white;
+    border-radius: 20px;
+    text-align: left;
+    font-size: 25px;
+    height: 35px;
+    font-family: 'Poppins', sans-serif;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+} */
+
+/* Measurement section */
+
+input[id=measurement] {
+    background-color: #FFFFFF;
+    filter: drop-shadow(1px 1px 3px #d4d4d4);
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width: thin;
+    border-radius: 20px;
+    outline: none;
+    width: 100%;
+    height: 75px;
+    margin-bottom: 2%;
+}
+
+input[placeholder='Enter number'] {
+    font-family: 'poppins', sans-serif;
+    font-size: 18px;
+    padding-left: 5%;
+}
+
+/* Additional Comments section */
+.comments {
+    background-color: #FFFFFF;
+    filter: drop-shadow(1px 1px 3px #d4d4d4);
+    font-size: 18px;
+    font-weight: 600;
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width: thin;
+    border-radius: 20px;
+    padding-left: 5%;
+    padding-top: 5%;
+    outline: none;
+    width: 100%;
+    min-height: 200px;
+    height: 45%;
+}
+
+textarea::placeholder {
+    font-family: 'poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* submit button */
+.submit {
+    text-align: center;
+    display: block;
+    font-size: 30px;
+    font-family: 'poppins', sans-serif;
+    color: white;
+    background-color: #7D92DB;
+    border-radius: 20px;
+    width: 230px;
+    min-height: 55px;
+    padding: 0%;
+    align-content: center;
+    justify-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.alert {
+    color: red;
+    font-size: smaller;
+}
+
+
+
+/* Clinician Dashboard - Patient Specifics Page */
+#patient-specifics-topbar {
+    padding-left: 8%;
+    padding-right: 8%;
+
+}
+
+#patient-specifics-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-gap: 30px;
+
+    /* background-color:#8B7CC9; */
+    padding-left: 8%;
+    padding-right: 8%;
+
+
+}
+
+.patient-specifics-pfp {
+    border:1px solid black;
+}
+
+.patient-specifics-userbox {
+    border:5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.patient-specifics-userbox-subgrid {
+    border:1px solid red;
+    display: grid;
+    place-items: center;            /* Used to center stuff. Really good */
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.patient-specifics-name {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.patient-specifics-table {
+    border:5px solid rebeccapurple;
+}
+
+
+
+
+
+
+
 /* ------------------------------------------------------------------------------------------------------------------------------- */
 /* ||               FOOTER CSS              */
 footer {
@@ -974,231 +1260,3 @@ input[id=username], input[id=psw] {
     }
  }
 
- /*--------------------------- Record data CSS --------------------------------- */
- /*subheadings*/
- .data-title{
-    color:#717273;
-    font-size: 22px;
-    font-family: 'poppins', sans-serif;
-    font-weight: bold;
-}
-
-/* grid layout for form */
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 100px;
-    align-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-}
-
-/*responsive design - turn grid into flex */
-@media (max-width: 1000px){
-    .grid-container {
-        display: flex;
-        flex-direction: column;
-    }
-    .grid-timestamp{
-        margin-bottom: 5%;
-    }
-    .grid-inputs{
-        margin-bottom:20%
-    }
-    .submit{
-        margin-bottom: 7%;
-    }   
-
-}
-
-/*  timestamp section radio buttons  */
-.timestamp-icon{
-    height: 35px;
-    width: 35px;
-    min-width: 35px;
-    min-height: 35px;
-    margin-left: 10px;
-    margin-right: 5%;
-} 
-
-input[name= "Selector"]{
-     margin-left: 10%;
-     min-height: 20px;
-}
-
-.radiocircle {
-    min-width: 64px;
-}
-
-.radioicon {
-    display: flex;
-    align-items: center;
-}
-
-.radiotext {
-    min-width: 100px;
-    display: flex;
-    align-self: center;
-    justify-content: flex-start;
-    margin-left: 8%;
-
-}
-
-.radiocircle {
-    display: flex;
-    grid-column-start: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    align-items: right;
-    margin-right: 5%;
-}
-
-.radioContainer {
-    min-width: 280px;
-    display: grid;
-    grid-template-columns: auto 2fr 1fr;
-    margin-bottom: 4%;
-    color: white;
-    border-radius: 20px;
-    text-align: left;
-    font-size: clamp(18px, 2vw, 25px);
-    font-family: 'poppins', sans-serif;
-    height: 75px;
-    padding-left: 5%;
-    align-items: center;
-}
-
-.radioContainer:hover {
-    transform: scale(1.05);
-    border: 2px solid #121212;
-    transition: all 0.5s ease 0s;
-}
-
-/* 
-.radio{
-    margin-bottom: 4%;
-    color: white;
-    border-radius: 20px;
-    text-align: left;
-    font-size: 25px;
-    font-family: 'poppins', sans-serif;
-    height: 75px;
-    padding-left: 5%;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    white-space: nowrap;
-    padding-right: 5%;
-}
-
-.radio2{
-    background-color: #8b7cc9;
-    margin-bottom: 4%;
-    color: white;
-    border-radius: 20px;
-    text-align: left;
-     font-size: 25px;
-    height: 35px;
-    font-family: 'poppins', sans-serif;
-    height: 75px;
-    display: flex;
-    flex-direction: row;
-}
-
-.radio3{
-    background-color: #7d92db;
-    margin-bottom: 4%;
-    color: white;
-    border-radius: 20px;
-    text-align: left;
-    font-size: 25px;
-    height: 35px;
-    font-family: 'poppins', sans-serif;
-    height: 75px;
-    display: flex;
-    flex-direction: row;
-}
-
-.radio4{
-    background-color: #9765b2;
-    margin-bottom: 4%;
-    color: white;
-    border-radius: 20px;
-    text-align: left;
-    font-size: 25px;
-    height: 35px;
-    font-family: 'Poppins', sans-serif;
-    height: 75px;
-    display: flex;
-    flex-direction: row;
-} */
-
-/* Measurement section */
-
-input[id=measurement] {
-    background-color: #FFFFFF;
-    filter: drop-shadow(1px 1px 3px #d4d4d4);
-    border-style: solid;
-    border-color: #E8E8E8;
-    border-width: thin;
-    border-radius: 20px;
-    outline: none;
-    width: 100%;
-    height: 75px;
-    margin-bottom: 2%;
-}
-
-input[placeholder='Enter number'] {
-    font-family: 'poppins', sans-serif;
-    font-size: 18px;
-    padding-left: 5%;
-}
-
-/* Additional Comments section */
-.comments {
-    background-color: #FFFFFF;
-    filter: drop-shadow(1px 1px 3px #d4d4d4);
-    font-size: 18px;
-    font-weight: 600;
-    border-style: solid;
-    border-color: #E8E8E8;
-    border-width: thin;
-    border-radius: 20px;
-    padding-left: 5%;
-    padding-top: 5%;
-    outline: none;
-    width: 100%;
-    min-height: 200px;
-    height: 45%;
-}
-
-textarea::placeholder {
-    font-family: 'poppins', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-/* submit button */
-.submit {
-    text-align: center;
-    display: block;
-    font-size: 30px;
-    font-family: 'poppins', sans-serif;
-    color: white;
-    background-color: #7D92DB;
-    border-radius: 20px;
-    width: 230px;
-    min-height: 55px;
-    padding: 0%;
-    align-content: center;
-    justify-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
-}
-
-.alert {
-    color: red;
-    font-size: smaller;
-}
