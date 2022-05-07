@@ -72,7 +72,7 @@ app.get('/about_site', (req, res) => {
 })
 
 app.get('/record_health', (req, res) => {
-    res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
+    res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dashboard" })
 })
 
 app.get('/login_page', (req, res) => {
@@ -80,10 +80,10 @@ app.get('/login_page', (req, res) => {
 })
 
 app.get('/thankyou_page', (req, res) => {
-    res.render('thankyou_page.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
+    res.render('thankyou_page.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dashboard" })
 })
 
-// app.get('/patient_dash', (req, res) => {
+// app.get('/patient_dashboard', (req, res) => {
 //     // NOTE - As per the spec sheet, names are to be hard coded for this deliverable.
 //     res.render('patient_dashboard.hbs', { userName: "Pat", userRole: "USER" })
 // })
@@ -157,7 +157,7 @@ app.post('/register', (req, res) => {
 
 // Login - currently serves as a redirect as per the spec
 // app.post('/login', async (req,res) => {
-//     res.redirect('patient_dash')
+//     res.redirect('patient_dashboard')
 // })
 
 // Testing account registration. Not in use for this deliverable. 
