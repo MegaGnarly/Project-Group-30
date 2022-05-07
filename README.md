@@ -21,6 +21,16 @@ Web Information Technologies
     npm install dotenv
 
     npm install body-parser
+
+    npm install passport
+
+    npm install passport-local
+
+    npm install express-flash
+
+    npm install express-session
+
+    npm install bcryptjs
 ```
 
 # Misc notes
