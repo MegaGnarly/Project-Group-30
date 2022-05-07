@@ -97,7 +97,7 @@ app.use((req, res, next) => {
 
 // **** Application Endpoints ****  
 app.get('/record_health', isAuthenticated, (req, res) => {
-    res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dashboard" })
+    res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dashboard", user: req.user.username })
 })
 
 // Sahil - I commented this out because it seemed redundant (we already have /login in auth.js)
