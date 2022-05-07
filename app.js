@@ -97,7 +97,7 @@ app.use((req, res, next) => {
 
 // **** Application Endpoints ****  
 app.get('/record_health', isAuthenticated, (req, res) => {
-    res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash", user: req.user.toJSON() })
+    res.render('record_health.hbs', { logoURL: "../patient_dash", user: req.user.toJSON() })
 })
 
 // Sahil - I commented this out because it seemed redundant (we already have /login in auth.js)
@@ -106,7 +106,7 @@ app.get('/record_health', isAuthenticated, (req, res) => {
 // })
 
 app.get('/thankyou_page', (req, res) => {
-    res.render('thankyou_page.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
+    res.render('thankyou_page.hbs', { user: req.user.toJSON(), logoURL: "../patient_dash" })
 })
 
 
@@ -114,11 +114,12 @@ app.get('/thankyou_page', (req, res) => {
 // POST test - when the user fills the form, update the database.
 app.post('/post_values', async (req, res) => {
     // Check is BloodGlucose is Selected else do nothing
-    if (req.body.Selector == "BloodGlucoseSelector") {
+    if (req.body.Selector) {
         let newValue = new measuredValue({
             // Hardcoded PatientName for now
-            name: "Pat",
+            username: req.user.username,
             dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            measured_type: req.body.Selector,
             measured_value: req.body.measurement,
             comment: req.body.comment
         })
@@ -126,6 +127,7 @@ app.post('/post_values', async (req, res) => {
         // TODO redirect to thank you page
         await res.redirect('thankyou_page')
     } else {
+        console.log("No data type selected")
         res.redirect('record_health')
     }
 })
