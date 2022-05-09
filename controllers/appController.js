@@ -38,6 +38,16 @@ const getAllDataClinician = async (req, res, next) => {
 const getPatientDataClinician = async (req, res, next) => {
     // TODO
     console.log("inside getPatientDataClinician")
+    try {
+        // Here username is the /:username field in the URL (see clinician router for more)
+        // Example: http://127.0.0.1:3000/clinician_dashboard/alice would yield a username of 'alice'
+        const username = req.params.username;
+        console.log(username)
+    } catch (err) {
+        console.log(err)
+    }
+
+
     return res.render('patient_specifics')
 }
 
