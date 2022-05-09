@@ -138,10 +138,12 @@ app.post('/post_values', async (req, res) => {
     }
 })
 
+// TODO: MOVE THIS TO THE PATIENT ROUTER AND ADD FIRSTNAME/LASTNAME TO REGISTRATION PAGE
 const User = require('./models/user')
 app.post('/register', (req, res) => {
     if (req.body.password != req.body.password2) { return; }
-    User.create({ username: req.body.username, password: req.body.password, secret: 'INFO30005' }, (err) => {
+    // IMPORTANT!!!!! firstName and lastName is temporarily hardcoded because the registration page doesn't have input for these fields.
+    User.create({ username: req.body.username, password: req.body.password, firstName:"John", lastName:"Doe", secret: 'INFO30005' }, (err) => {
         if (err) { console.log(err); return; }
         console.log('User inserted')
     })

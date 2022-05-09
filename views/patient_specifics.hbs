@@ -2,7 +2,7 @@
 
 
 <div id="patient-specifics-topbar">
-    <h2 id="username">Clinical Record for USERNAME</h2>
+    <h2 id="username">Clinical Record for {{profileData.username}}</h2>
 </div>
 
 <div id="patient-specifics-container">
@@ -11,7 +11,7 @@
             <img class="patient-specifics-pfp" src="../assets/icon_profile.png" alt="Profile picture" width="150"
                 height="150">
 
-            <h2 class="patient-specifics-name">Firstname Lastname</h2>
+            <h2 class="patient-specifics-name">{{profileData.firstName}} {{profileData.lastName}}</h2>
 
             <button class="button03 purple2">Adjust Time-Series</button>
             <button class="button03 purple1">Message</button>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="patient-specifics-notes-container">
-        <h2>Clinical Notes for USERNAME</h2>
+        <h2>Clinical Notes for {{profileData.username}}</h2>
         <p>TODO</p>
         <p>TODO</p>
         <p>TODO</p>
@@ -42,7 +42,7 @@
 </div>
 
 <div class="patient-specifics-overview-container">
-    <h2 class="patient-specifics-grid-title">Overview of USERNAME Health Data</h2>
+    <h2 class="patient-specifics-grid-title">Overview of {{profileData.username}}'s Health Data</h2>
 
     <div class="patient-specifics-graph">
         <h2>Statistical Graph</h2>

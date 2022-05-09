@@ -41,12 +41,24 @@ const getPatientDataClinician = async (req, res, next) => {
     try {
         // Here username is the /:username field in the URL (see clinician router for more)
         // Example: http://127.0.0.1:3000/clinician_dashboard/alice would yield a username of 'alice'
-        const username = req.params.username;
-        console.log(username)
+        // const username = req.params.username;
+        // console.log("Username from client:")
+        // console.log(req.params.username)
+
+        // Make sure the username sent from the client actually exists in the database
+        const currentUser = await user.findOne( {username: req.params.username} ).lean()
+        // console.log(currentUser)
+
+        // Get all values from the user
+        const userValues = await measuredValue.find( {username: req.params.username} ).lean()
+        console.log(userValues)
+ 
+
+        return res.render('patient_specifics', {profileData: currentUser})
+
     } catch (err) {
         console.log(err)
     }
-
 
     return res.render('patient_specifics')
 }
