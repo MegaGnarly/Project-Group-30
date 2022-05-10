@@ -582,6 +582,31 @@ background-color: #F7F7F7;
     /*font-size: 22px;*/
 }
 
+.button04 {
+    display: flex;
+    min-height: 60px;
+    min-width: 270px;
+    max-width: 400px;
+    border-radius: 38px;
+    background-color: #72A6E8;
+    color: white;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    margin: 3%;
+    font-size: 24px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    cursor:pointer;
+    transition: all 0.9s ease 0s;
+}
+
+.button04:hover {
+    background-color: #8a3ee2;
+    /* transform: scale(1.01); */
+    /*font-size: 22px;*/
+}
+
 
  /*--------------------------- Record data CSS --------------------------------- */
  /*subheadings*/
@@ -833,20 +858,21 @@ textarea::placeholder {
 }
 
 .patient-specifics-pfp {
-    border:1px solid black;
+    /* border:1px solid black; */
 }
 
 .patient-specifics-userbox {
-    border:5px solid black;
+    border:5px solid #eeeeee;
+    border-radius: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .patient-specifics-userbox-subgrid {
-    border:1px solid red;
+    /* border:1px solid red; */
     display: grid;
-    place-items: center;            /* Used to center stuff. Really good */
+    place-items: center;            /* Used to center stuff. Really useful */
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
@@ -859,15 +885,12 @@ textarea::placeholder {
 }
 
 .patient-specifics-table {
-    border:5px solid rebeccapurple;
     display: grid;
     grid-template-columns: 20% 20% 20% 40%;
     /* grid-template-rows: repeat(999, auto) repeat(3, 1fr); */
-    
     grid-auto-rows: 60px;
-
-    /* grid-template-rows: auto auto 1fr 1fr 1fr auto auto; */
-
+    border:5px solid #eeeeee;
+    border-radius: 25px;
 }
 
 
@@ -879,7 +902,6 @@ textarea::placeholder {
     align-items: center;
     font-size: 18px; 
     font-weight: 600;
-    border:1px solid red;
 }
 
 .patient-specifics-table-data {
@@ -889,15 +911,17 @@ textarea::placeholder {
     display: flex;
     justify-content: center;
     align-items: center; 
-    border:1px solid rgb(4, 0, 255);
+    border:1px solid #eeeeee;
 }
 
 
 
 .patient-specifics-notes-container {
-    border:5px solid peachpuff;
     grid-column-start: 1;
     grid-column-end: 3;
+    border:5px solid #eeeeee;
+    border-radius: 25px;
+    padding: 10px;
 }
 
 .patient-specifics-overview-container {
@@ -906,7 +930,6 @@ textarea::placeholder {
     display: grid;
     grid-template-columns: 70% 30%;
     grid-column-gap: 16px;
-
 }
 
 .patient-specifics-grid-title {
@@ -916,14 +939,103 @@ textarea::placeholder {
 }
 
 .patient-specifics-graph {
-    border:5px solid pink;
+    padding: 10px;
+    border:5px solid #eeeeee;
+    border-radius: 25px;
 }
 
 .patient-specifics-month {
-    border:5px solid purple;
+    padding: 10px;
+    border:5px solid #eeeeee;
+    border-radius: 25px;
 }
 
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 300ms ease-in-out;
+    border: 1px solid rgba(0, 0, 0, 0.329);
+    border-radius: 25px;
+    z-index: 10;
+    background-color: #f7f7f7;
+    width: 800px;
+    max-width: 80%;
+}
 
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+.modal-header {
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header .title {
+    font-size: 1.60rem;
+    font-weight: bold;
+    padding-top: 8px;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px;
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+}
+
+#backgroundMasker {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+  }
+  
+  #backgroundMasker.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  
+  .checkbox {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .checkbox input {
+    width:auto;
+  }
+
+  .popup-input-box-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+  }
+
+  input[id="popup-input-box"] {
+      max-width: 100px;
+      height: 40px;
+      border:1px solid black;
+
+  }
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------- */
@@ -1038,6 +1150,7 @@ img {
 .purple3 {
     background-color: #9765B2;
 }
+
 .white {
     background-color: #FFFFFF;
     color:black;
