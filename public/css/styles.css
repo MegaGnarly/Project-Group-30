@@ -904,6 +904,7 @@ textarea::placeholder {
     font-weight: 600;
 }
 
+
 .patient-specifics-table-data {
     /* grid-row-start: 2;
     grid-row-end: 3;
@@ -922,6 +923,16 @@ textarea::placeholder {
     border:5px solid #eeeeee;
     border-radius: 25px;
     padding: 10px;
+}
+
+.clinician-notes{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.clinician-notes-cell{
+    font-size: 20px;
+    border:1px solid #eeeeee57;
 }
 
 .patient-specifics-overview-container {
