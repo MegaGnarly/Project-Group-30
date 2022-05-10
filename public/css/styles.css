@@ -923,6 +923,7 @@ textarea::placeholder {
     border:5px solid #eeeeee;
     border-radius: 25px;
     padding: 10px;
+    background-color: #f0f0f3a2;
 }
 
 .clinician-notes{
@@ -1049,10 +1050,18 @@ textarea::placeholder {
 
   input[id="clinicanNote"] {
     /* margin-top: 12px; */
-    margin-bottom: 12px;
-    border:2px solid #eeeeee;
+    /* border:2px solid #eeeeee; */
     /* border-radius: 15px; */
     font-size: 18px;
+    font-weight: 200;
+    color: #000000;
+    background-color: #f0f0f3a2;
+    text-align: center;
+}
+
+.clin-note-submit-btn {
+    width: 300px;
+    background-color: #f0f0f3a2;
 }
 
 
