@@ -1,66 +1,4 @@
-<!--      http://127.0.0.1:3000/clinician_dashboard/patient        -->
-
-
-{{!-- <button data-modal-target="#modal">Open Modal</button>
-<div class="modal" id="modal">
-    <div class="modal-header">
-        <div class="title">Required Time-Series</div>
-        <button data-close-button class="close-button">&times;</button>
-    </div>
-    <div class="modal-body">
-        <!-- Grid area -->
-        <p class="popup-table-title">Time Series</p>
-        <p class="popup-table-title">Lower Limit</p>
-        <p class="popup-table-title">Upper Limit</p>
-
-        <label class="checkbox">
-            <input class="input-checkbox" name="checkbox" id="checkboxBlood" value="1" type="checkbox">
-            Blood Glucose (nmol/L)
-        </label>
-        <div class="popup-input-box-container">
-            <input type="text" id="popup-input-box" name="lower_bg" maxlength="10">
-        </div>
-        <div class="popup-input-box-container">
-            <input type="text" id="popup-input-box" name="upper_bg" maxlength="10">
-        </div>
-
-        <label class="checkbox">
-            <input class="input-checkbox" name="checkbox" id="checkboxWeight" value="1" type="checkbox">
-            Weight (kg)
-        </label>
-        <div class="popup-input-box-container">
-            <input type="text" id="popup-input-box" name="lower_weight" maxlength="10">
-        </div>
-        <div class="popup-input-box-container">
-            <input type="text" id="popup-input-box" name="upper_weight" maxlength="10">
-        </div>
-
-        <label class="checkbox">
-            <input class="input-checkbox" name="checkbox" id="checkboxExercise" value="1" type="checkbox">
-            Exercise (Steps)
-        </label>
-        <div class="popup-input-box-container">
-            <input type="text" id="popup-input-box" name="lower_steps" maxlength="10">
-        </div>
-        <div class="popup-input-box-container">
-            <input type="text" id="popup-input-box" name="upper_steps" maxlength="10">
-        </div>
-
-        <label class="checkbox">
-            <input class="input-checkbox" name="checkbox" id="checkboxDoses" value="1" type="checkbox">
-            Num. Doses
-        </label>
-        <div class="popup-input-box-container">
-            <input type="text" id="popup-input-box" name="lower_doses" maxlength="10">
-        </div>
-        <div class="popup-input-box-container">
-            <input type="text" id="popup-input-box" name="upper_doses" maxlength="10">
-        </div>
-
-        <button class="button03 purple1">Update</button>
-    </div>
-</div> --}}
-
+<!--      http://127.0.0.1:3000/clinician_dashboard/Bob       -->
 
 
 <div id="patient-specifics-topbar">
@@ -138,7 +76,7 @@
             <div id="backgroundMasker"></div>
             <script src="../scripts/script.js"></script>
 
-            
+
         </div>
     </div>
 
@@ -164,9 +102,15 @@
             <div class="clinician-notes-cell">Date Entered</div>
             <div class="clinician-notes-cell">Note</div>
             <div class="clinician-notes-cell">11/01/22 3:00 PM</div>
-            <div class="clinician-notes-cell">This is a hardcoded test note. We need to connect this page to the database.</div>
-
+            <div class="clinician-notes-cell">This is a hardcoded test note. We need to connect this page to the
+                database.</div>
         </div>
+        <br>
+        <h3>Enter new note</h3>
+        <form action="/">
+            <input type="text" id="clinicanNote" name="cNote" placeholder="Start typing here...">
+            <input type="submit" value="Submit Note">
+        </form>
 
     </div>
 </div>

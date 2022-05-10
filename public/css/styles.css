@@ -1045,8 +1045,15 @@ textarea::placeholder {
       max-width: 100px;
       height: 40px;
       border:1px solid black;
-
   }
+
+  input[id="clinicanNote"] {
+    /* margin-top: 12px; */
+    margin-bottom: 12px;
+    border:2px solid #eeeeee;
+    /* border-radius: 15px; */
+    font-size: 18px;
+}
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------- */
