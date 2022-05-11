@@ -1,0 +1,27 @@
+<br>
+<h1 class="heading">Record Data</h1>
+<br>
+
+<!-- Grid container that stores timestamps and data inputs (e.g. record health)-->
+<div id="record-data-grid-container">
+    <!-- Column 1 - radio button form-->
+    <!-- Form should send selection - need to modify this code once we have databased sorted -->
+    <div id="timestamp">
+        <form action="/send" method="POST">
+            <h2 class="data-title">Timestamp</h2>
+            <input name="timestamp-type" type="radio" value="Blood-Glucose">Blood Glucose
+            <input name="timestamp-type" type="radio" value="Doses-of-Insulin">Doses of Doses-of-Insulin
+            <input name="timestamp-type" type="radio" value="Weight">Weight
+            <input name="timestamp-type" type="radio" value="Exercise">Exercise
+            <input class="submit" type="submit" value="submit">
+        </form>
+
+    
+        <!-- TODO: NEED TO SWAP THESE WITH ACTUAL DATABASE VARIABLES -->
+       
+    </div>
+
+    <!-- Column 2 -->
+    <!-- Grid container that stores buttons-->
+    
+</div>
