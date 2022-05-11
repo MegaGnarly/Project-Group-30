@@ -835,6 +835,7 @@ textarea::placeholder {
 .alert {
     color: red;
     font-size: smaller;
+    text-align: center;
 }
 
 
@@ -1195,7 +1196,7 @@ img {
 
 /* Login Page Styles*/
 p {
-    text-align: center;
+    text-align: left;
     font-size: 20px;
 }
 .background {
