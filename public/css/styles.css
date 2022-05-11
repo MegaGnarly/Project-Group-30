@@ -1484,8 +1484,8 @@ input[id=username], input[id=psw] {
     }
  }
 
-
-/*Leaderboard CSS -- work in progress, need to make responsivle*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*Leaderboard CSS -- work in progress, need to make responsive*/
 
 /* headings */
 .LB-heading{
@@ -1494,6 +1494,8 @@ input[id=username], input[id=psw] {
     font-family: 'poppins', sans-serif;
     font-weight: bolder;
     font-size: 35px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .top-title{
@@ -1513,6 +1515,7 @@ input[id=username], input[id=psw] {
     margin-right: auto;
     width: 80%;
     padding-bottom: 7%;
+    padding-top: 20px%;
 }
 
 /* top 3 visuals */
@@ -1520,12 +1523,14 @@ input[id=username], input[id=psw] {
     display: flex;
     background-color: #EAF3FF;
     border-radius: 20px;
-    padding-left: 10%;
-    padding-right: 10%;
+    justify-self: center;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: auto;
     padding-bottom: 20px;
     padding-top: 20px;
     align-items: baseline;
-    width: 80%;
 }
 
 .place{
@@ -1556,12 +1561,14 @@ input[id=username], input[id=psw] {
     color: white;
     padding-left: 20px;
     font-size: 18px;
+    padding-top: 15px
 }
 
 .user-score{
     font-family: 'poppins', sans-serif;
     color: white;
-    padding-left: 70%;
+    padding-left: 75%;
+    padding-top: 12px;
 }
 
 
@@ -1598,12 +1605,14 @@ input[id=username], input[id=psw] {
     color: black;
     padding-left: 20px;
     font-size: 18px;
+    padding-top: 15px;
 }
 
 .user-score-2{
     font-family: 'poppins', sans-serif;
     color: black;
-    padding-left: 70%;
+    padding-left: 75%;
+    padding-top: 12px;
 }
 .top-others{
     display: flex;
