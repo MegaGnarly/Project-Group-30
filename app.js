@@ -109,6 +109,10 @@ app.get('/thankyou_page', (req, res) => {
     res.render('thankyou_page.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
 })
 
+app.get('/leaderboard', (req, res) => {
+    res.render('leaderboard.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
+})
+
 
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.
