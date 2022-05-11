@@ -835,6 +835,7 @@ textarea::placeholder {
 .alert {
     color: red;
     font-size: smaller;
+    text-align: center;
 }
 
 
@@ -1195,7 +1196,7 @@ img {
 
 /* Login Page Styles*/
 p {
-    text-align: center;
+    text-align: left;
     font-size: 20px;
 }
 .background {
@@ -1482,4 +1483,142 @@ input[id=username], input[id=psw] {
         margin:auto;
     }
  }
+
+
+/*Leaderboard CSS -- work in progress, need to make responsivle*/
+
+/* headings */
+.LB-heading{
+    text-align: center;
+    color: #72a6e8;
+    font-family: 'poppins', sans-serif;
+    font-weight: bolder;
+    font-size: 35px;
+}
+
+.top-title{
+    color:#717273;
+    font-size: 22px;
+    font-family: 'poppins', sans-serif;
+    font-weight: bold;
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* overall container */
+.leaderboard-container{
+    justify-content: center;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    padding-bottom: 7%;
+}
+
+/* top 3 visuals */
+.leaderboard-image-flex {
+    display: flex;
+    background-color: #EAF3FF;
+    border-radius: 20px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    align-items: baseline;
+    width: 80%;
+}
+
+.place{
+    padding-left: 9%;
+    padding-right: 9%;
+    justify-items: center;
+    align-items: center;
+}
+
+.user-labels{
+    text-align: center;
+    font-family: 'poppins', sans-serif;
+    color:#717273;
+    font-size: 15px;
+}
+
+/* top 5 leaderboard list */
+
+/* top 3 */
+.board-icon{
+    height: 36px;
+    width: 36px;
+    align-self: center;
+}
+
+.board-label{
+    font-family: 'poppins', sans-serif;
+    color: white;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.user-score{
+    font-family: 'poppins', sans-serif;
+    color: white;
+    padding-left: 70%;
+}
+
+
+.top-1{
+    display: flex;
+    background-color: #72a6e8;
+    border-radius: 15px;
+    height: 55px;
+    padding-left: 2%;
+    margin-top: 20px;
+}
+
+.top-2{
+    display: flex;
+    background-color: #9765b2;
+    border-radius: 15px;
+    height: 55px;
+    padding-left: 2%;
+    margin-top: 20px;
+}
+
+.top-3{
+    display: flex;
+    background-color: #9F4D96;
+    border-radius: 15px;
+    height: 55px;
+    padding-left: 2%;
+    margin-top: 20px;
+}
+
+/*4th and 5th */
+.board-label-2{
+    font-family: 'poppins', sans-serif;
+    color: black;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.user-score-2{
+    font-family: 'poppins', sans-serif;
+    color: black;
+    padding-left: 70%;
+}
+.top-others{
+    display: flex;
+    background-color: white;
+    border-radius: 15px;
+    filter: drop-shadow(1px 1px 3px #d4d4d4);
+    border-style: solid;
+    border-color: #E8E8E8;
+    border-width: thin;
+    height: 55px;
+    padding-left: 2%;
+    margin-top: 20px;
+}
+
+
+
+
 
