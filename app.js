@@ -117,27 +117,66 @@ app.get('/leaderboard', (req, res) => {
 // **** Application POSTs ****  
 // POST test - when the user fills the form, update the database.
 app.post('/post_values', async (req, res) => {
-    // Check is BloodGlucose is Selected else do nothing
+    const valid_measurements = ["measured_glucose", "measured_weight", "measured_insulin", "measured_exercise"];
     measured_type = req.body.Selector
-    if (measured_type) {
-        exists = await measuredValue.collection.countDocuments({ "username": req.user.username }, { limit: 1 })
-        if (!exists) {
-            let newValue = new measuredValue({
-                username: req.user.username,
-                dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
-                measured_glucose: "-",
-                measured_weight: "-",
-                measured_insulin: "-",
-                measured_exercise: "-",
-                comment: req.body.comment
-            })
-            await newValue.save()
+
+    console.log("DEBUG: in array: ", valid_measurements.includes(measured_type));
+
+    // Check if the value recieved is a valid meaurement type and that it is not empty.
+    if ( (valid_measurements.includes(measured_type)) && (!measured_type.length) ) {
+        console.log("DEBUG: Within measured type");
+
+        // The old code below had a problem where new entries weren't being inserted into the database.
+            // exists = await measuredValue.collection.countDocuments({ "username": req.user.username }, { limit: 1 })
+            // if (!exists) {
+            //     console.log("DEBUG: Within exists");
+            //     let newValue = new measuredValue({
+            //         username: req.user.username,
+            //         dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            //         measured_glucose: "-",
+            //         measured_weight: "-",
+            //         measured_insulin: "-",
+            //         measured_exercise: "-",
+            //         comment: req.body.comment
+            //     })
+            //     await newValue.save()
+            // }
+            // measuredValue.collection.updateOne({ "username": req.user.username }, { $set: { [measured_type]: req.body.measurement } })
+
+
+        // New code that constructs and entry that will be inserted into the database.
+        // Note that all measured values are blank for now.
+        const doc = {
+            username: req.user.username,
+            dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            measured_glucose: "-",
+            measured_weight: "-",
+            measured_insulin: "-",
+            measured_exercise: "-",
+            comment: req.body.comment
         }
-        measuredValue.collection.updateOne({ "username": req.user.username }, {$set:{ [measured_type]: req.body.measurement }})
-        // TODO redirect to thank you page
+
+        // Determine what type of data the user has inserted and update the above entry accordingly.
+        if (measured_type == "measured_glucose") {
+            doc.measured_glucose = req.body.measurement;
+        }
+        else if (measured_type == "measured_weight") {
+            doc.measured_weight = req.body.measurement;
+        }
+        else if (measured_type == "measured_insulin") {
+            doc.measured_insulin = req.body.measurement;
+        }
+        else if (measured_type == "measured_exercise") {
+            doc.measured_exercise = req.body.measurement;
+        }
+
+        // Insert the final entry into the database and redirect user.
+        measuredValue.collection.insertOne(doc);
+        console.log("DEBUG: Ran insertion")
         await res.redirect('thankyou_page')
+
     } else {
-        console.log("No data type selected")
+        console.log("POST ERROR: Health value from client is not acceptable (either invalid measurement type or empty string). Value will not be inserted into db.")
         res.redirect('record_health')
     }
 })
@@ -147,7 +186,7 @@ const User = require('./models/user')
 app.post('/register', (req, res) => {
     if (req.body.password != req.body.password2) { return; }
     // IMPORTANT!!!!! firstName and lastName is temporarily hardcoded because the registration page doesn't have input for these fields.
-    User.create({ username: req.body.username, password: req.body.password, firstName:"John", lastName:"Doe", secret: 'INFO30005' }, (err) => {
+    User.create({ username: req.body.username, password: req.body.password, firstName: "John", lastName: "Doe", secret: 'INFO30005' }, (err) => {
         if (err) { console.log(err); return; }
         console.log('User inserted')
     })
