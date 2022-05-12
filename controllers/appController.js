@@ -35,35 +35,61 @@ const getAllDataClinician = async (req, res, next) => {
 
 
 // Get all data for a *specific* patient (used when you click a patient in the clin dashboard)
+// Example: http://127.0.0.1:3000/clinician_dashboard/Bob would reveal data for Bob
 const getPatientDataClinician = async (req, res, next) => {
-    // TODO
-    console.log("inside getPatientDataClinician")
+    console.log("DEBUG: inside getPatientDataClinician")
     try {
-        // Here username is the /:username field in the URL (see clinician router for more)
-        // Example: http://127.0.0.1:3000/clinician_dashboard/Bob would yield a username of 'Bob'
-        // const username = req.params.username;
-        // console.log("Username from client:")
-        // console.log(req.params.username)
-
-        // Make sure the username sent from the client actually exists in the database
+        // Get basic information about the patient (first name, last name etc)
+        // Also serves as a way to check whether the user actually exists. If not, the try block will fail.
         const currentUser = await user.findOne( {username: req.params.username} ).lean()
-        console.log("Current user: ")
-        console.log(currentUser)
-        
+        if (currentUser == null) {
+            // Throw page not found error
+            return res.render('error_page', {errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL:"../clinician_dashboard"})
+        }
 
-        // Get all values from the user
+        // Get all measurement values about the patient
         const userValues = await measuredValue.find( {username: req.params.username} ).lean()
-        console.log("User values: ")
-        console.log(userValues)
- 
 
-        return res.render('patient_specifics', {profileData: currentUser, profileValues: userValues})
+        // On the front end we have a table of entries. This code populates the table with rows of data. Each row is a measuredValue entry in the db.
+        // For each entry, construct a row of data which stores date, data type, data value and patient comment.
+        const tableRowArray = [];
+        userValues.forEach(function (arrayItem) {
+            const rowOfData = {
+                dateTime: arrayItem.dateTime, 
+                dataType: "",
+                value: "",
+                comment: arrayItem.comment
+            }
+
+            // Determine the data type and data value for the row.
+            if (arrayItem.measured_glucose != "-") {
+                rowOfData.dataType = "Blood Glucose";
+                rowOfData.value = arrayItem.measured_glucose;
+            }
+            else if (arrayItem.measured_weight != "-") {
+                rowOfData.dataType = "Weight";
+                rowOfData.value = arrayItem.measured_weight;
+            }
+            else if (arrayItem.measured_insulin != "-") {
+                rowOfData.dataType = "Insulin Doses";
+                rowOfData.value = arrayItem.measured_insulin;
+            }
+            else if (arrayItem.measured_exercise != "-") {
+                rowOfData.dataType = "Exercise (steps)";
+                rowOfData.value = arrayItem.measured_exercise;
+            }
+
+            // Append to array
+            tableRowArray.push(rowOfData)
+        })
+
+        return res.render('patient_specifics', {profileData: currentUser, patientValues: tableRowArray, logoURL:"../clinician_dashboard"})
 
     } catch (err) {
         console.log(err)
+        console.log("ERROR in getPatientDataClinician. Perhaps the user does not exist?")
+        return res.render('error_page', {errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL:"../clinician_dashboard"})
     }
-
-    return res.render('patient_specifics')
 }
 
 // Handle request to get patient data (name, rank etc)
