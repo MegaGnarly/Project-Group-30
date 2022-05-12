@@ -5,8 +5,6 @@
     <h2 id="username">Clinical Record for {{profileData.username}}</h2>
 </div>
 
-{{!-- {{each profileValues}} --}}
-
 
 <div id="patient-specifics-container">
     <div class="patient-specifics-userbox">
@@ -89,12 +87,12 @@
         <div class="patient-specifics-table-header">Value</div>
         <div class="patient-specifics-table-header">Comment</div>
 
-
+        {{#each profileValues}}
+        <div class="patient-specifics-table-data">{{dateTime}}</div>
         <div class="patient-specifics-table-data">-</div>
         <div class="patient-specifics-table-data">-</div>
-        <div class="patient-specifics-table-data">-</div>
-        <div class="patient-specifics-table-data">-</div>
-
+        <div class="patient-specifics-table-data">{{comment}}</div>
+        {{/each}}
 
     </div>
 
