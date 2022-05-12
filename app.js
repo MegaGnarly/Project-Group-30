@@ -104,7 +104,7 @@ app.get('/patient/record_health', isAuthenticated, (req, res) => {
     const userData = req.user.toJSON();
 
     // res.render('record_health.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
-    appController.getRecordHealthPage(req, res, userData )
+    appController.getRecordHealthPage(req, res, userData)
 })
 
 
@@ -207,20 +207,21 @@ app.post('/post_time_series/:id', async (req, res) => {
     // console.log("DEBUG: Time series posted")
     // console.log("DEBUG:", req.body.checkbox)
 
-    // If no checkboxes have been selected, update the database accordingly
-    if (req.body.checkbox === undefined || req.body.checkbox.length == 0) {
-        console.log("DEBUG: No checkboxes were selected.")
-        // Refresh the page
-        res.redirect(req.get('referer'));
-        return
-    }
-
     try {
         // Get username of sender
         const username = req.params.id
 
-        // Default state - update database to not allow any values to be recorded.
-        // TODO
+        // If no checkboxes have been selected, update the database accordingly
+        if (req.body.checkbox === undefined || req.body.checkbox.length == 0) {
+            console.log("DEBUG: No checkboxes were selected.")
+            user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: false, lower: 0, upper: 0 } } })
+            // Refresh the page
+            res.redirect(req.get('referer'));
+            return
+        }
 
         // Read checkbox selection and update the allowed measurable values 
         if (req.body.checkbox.includes("blood_glucose")) {
