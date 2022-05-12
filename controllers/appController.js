@@ -93,6 +93,7 @@ const getPatientDataClinician = async (req, res, next) => {
 }
 
 // Handle request to get patient data (name, rank etc)
+// Currently not used
 const getAllPatientData = async (req, res, next) => {
     console.log('Inside getAllPatientData')
     try {
@@ -117,7 +118,8 @@ const getPatientName = async (req, res, next) => {
 }
 
 
-// Handle request to get one data instance - not in use!
+// Handle request to get one data instance
+// Currently not used
 const getDataById = async (req, res, next) => {
     console.log("Inside getdatabyID")
     // search the database by ID

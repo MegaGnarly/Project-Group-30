@@ -330,7 +330,7 @@ background-color: #F7F7F7;
     flex-direction: row;
 }
 .patient-profile-icon {
-    margin-left: 15%;
+    margin-left: 12%;
     margin-top: auto;
 }
 .patient-name {
@@ -354,12 +354,14 @@ background-color: #F7F7F7;
     border: none;
     border-radius: 20px;
     width: 38%;
-    margin-left: 8%;
-    margin-top: 4%;
+    margin: auto;
+    padding: 1%;
     color: white;
     font-size: 90%;
     transition: all 0.5s ease 0s;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
+    text-align: center;
+    line-height: 25px;
 }
 .patient-button:hover {
     transform: scale(1.05);
@@ -479,6 +481,10 @@ background-color: #F7F7F7;
     color: #7D92DB;
     margin-top: 0%;
     margin-bottom: 0%;
+    text-align: center;
+}
+.messages {
+    text-align: center;
 }
 
 #profile {
@@ -1515,7 +1521,7 @@ input[id=username], input[id=psw] {
     margin-right: auto;
     width: 80%;
     padding-bottom: 7%;
-    padding-top: 20px%;
+    padding-top: 20px;
 }
 
 /* top 3 visuals */

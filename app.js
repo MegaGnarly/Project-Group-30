@@ -121,7 +121,7 @@ app.post('/post_values', async (req, res) => {
     const measuredType = req.body.Selector
     const valueIsEmpty = !req.body.measurement;
 
-    // Check if the value recieved is a valid meaurement type and that it is not empty.
+    // Check if the value recieved is a valid measurement type and that it is not empty.
     if ( (valid_measurements.includes(measuredType)) && (!valueIsEmpty) ) {
         console.log("DEBUG: Within measured type");
 
