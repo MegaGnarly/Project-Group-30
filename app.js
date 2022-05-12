@@ -238,11 +238,24 @@ const User = require('./models/user')
 app.post('/register', (req, res) => {
     if (req.body.password != req.body.password2) { return; }
     // IMPORTANT!!!!! firstName and lastName is temporarily hardcoded because the registration page doesn't have input for these fields.
-    User.create({ username: req.body.username, password: req.body.password, firstName: "John", lastName: "Doe", secret: 'INFO30005' }, (err) => {
+    User.create({ 
+        username: req.body.username, 
+        password: req.body.password, 
+        firstName: "John", 
+        lastName: "Doe", 
+        secret: 'INFO30005',
+
+        // Set default values for safety thresholds - these can be modified by the clinician
+        threshold_bg : {lower: 4.0, upper: 7.8},
+        threshold_weight: {lower: 0, upper: 1000},
+        threshold_exercise: {lower: 0, upper: 10000},
+        threshold_insulin: {lower: 0, upper: 10}
+
+    }, (err) => {
         if (err) { console.log(err); return; }
         console.log('User inserted')
     })
-    res.render('about_diabetes', { layout: 'main2' })
+    res.render('login_page', { layout: 'main2' })
 })
 
 // Login - currently serves as a redirect as per the spec
