@@ -87,10 +87,10 @@
         <div class="patient-specifics-table-header">Value</div>
         <div class="patient-specifics-table-header">Comment</div>
 
-        {{#each profileValues}}
+        {{#each patientValues}}
         <div class="patient-specifics-table-data">{{dateTime}}</div>
-        <div class="patient-specifics-table-data">-</div>
-        <div class="patient-specifics-table-data">-</div>
+        <div class="patient-specifics-table-data">{{dataType}}</div>
+        <div class="patient-specifics-table-data">{{value}}</div>
         <div class="patient-specifics-table-data">{{comment}}</div>
         {{/each}}
 
