@@ -122,25 +122,25 @@ app.post('/post_values', async (req, res) => {
     const valueIsEmpty = !req.body.measurement;
 
     // Check if the value recieved is a valid meaurement type and that it is not empty.
-    if ( (valid_measurements.includes(measuredType)) && (!valueIsEmpty) ) {
+    if ((valid_measurements.includes(measuredType)) && (!valueIsEmpty)) {
         console.log("DEBUG: Within measured type");
 
         // The old code below had a problem where new entries weren't being inserted into the database.
-            // exists = await measuredValue.collection.countDocuments({ "username": req.user.username }, { limit: 1 })
-            // if (!exists) {
-            //     console.log("DEBUG: Within exists");
-            //     let newValue = new measuredValue({
-            //         username: req.user.username,
-            //         dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
-            //         measured_glucose: "-",
-            //         measured_weight: "-",
-            //         measured_insulin: "-",
-            //         measured_exercise: "-",
-            //         comment: req.body.comment
-            //     })
-            //     await newValue.save()
-            // }
-            // measuredValue.collection.updateOne({ "username": req.user.username }, { $set: { [measuredType]: req.body.measurement } })
+        // exists = await measuredValue.collection.countDocuments({ "username": req.user.username }, { limit: 1 })
+        // if (!exists) {
+        //     console.log("DEBUG: Within exists");
+        //     let newValue = new measuredValue({
+        //         username: req.user.username,
+        //         dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+        //         measured_glucose: "-",
+        //         measured_weight: "-",
+        //         measured_insulin: "-",
+        //         measured_exercise: "-",
+        //         comment: req.body.comment
+        //     })
+        //     await newValue.save()
+        // }
+        // measuredValue.collection.updateOne({ "username": req.user.username }, { $set: { [measuredType]: req.body.measurement } })
 
 
         // New code that constructs and entry that will be inserted into the database.
@@ -179,6 +179,59 @@ app.post('/post_values', async (req, res) => {
         res.redirect('record_health')
     }
 })
+
+app.post('/post_time_series', async (req, res) => {
+    console.log("DEBUG: Time series posted")
+    console.log("DEBUG:", req.body.checkbox)
+
+    // console.log("DEBUG: Checkbox bg ", req.body.checkbox_bg)
+    // console.log("DEBUG: Checkbox weight ", req.body.checkbox_weight)
+    // console.log("DEBUG: Checkbox steps ", req.body.checkbox_steps)
+    // console.log("DEBUG: Checkbox insulin ", req.body.checkbox_insulin)
+
+
+    // If no checkboxes have been selected, update the database accordingly
+    if (req.body.checkbox === undefined || req.body.checkbox.length == 0) {
+        console.log("DEBUG: No checkboxes were selected.")
+        // Refresh the page
+        res.redirect(req.get('referer'));
+        return
+    }
+
+    try {
+        // Default state - update database to not allow any values to be recorded.
+
+
+        // Read checkbox selection and update the allowed measurable values 
+        if (req.body.checkbox.includes("blood_glucose")) {
+            // Update database to allow the user to record blood glucose
+            console.log("BG LT: ", req.body.lower_bg)
+            // Update lower threshold
+
+            // Update higher threshold
+        }
+
+        if (req.body.checkbox.includes("weight")) {
+            // Update database to allow the user to record their weight
+        }
+
+        if (req.body.checkbox.includes("steps")) {
+            // Update database to allow the user to record steps (exercise)
+        }
+
+        if (req.body.checkbox.includes("insulin")) {
+            // Update database to allow the user to record insulin doses
+        }
+
+        // Refresh the page
+        res.redirect(req.get('referer'));
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
 
 // TODO: MOVE THIS TO THE PATIENT ROUTER AND ADD FIRSTNAME/LASTNAME TO REGISTRATION PAGE
 const User = require('./models/user')
