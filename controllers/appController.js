@@ -157,7 +157,6 @@ const getRecordHealthPage = async (req, res, userData, next) => {
         
         // Check if patient is permitted to record blood glucose data
         var allowGlucose = currentUser.threshold_bg.prescribed;
-        console.log(allowGlucose)
 
         // Check if patient is permitted to record weight data
         var allowWeight = currentUser.threshold_weight.prescribed;
@@ -169,9 +168,7 @@ const getRecordHealthPage = async (req, res, userData, next) => {
         var allowInsulin = currentUser.threshold_insulin.prescribed;
 
         // Render page
-        console.log("Rendering page")
         res.render('record_health.hbs',  { logoURL: "../patient_dashboard", user: userData, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin})
-        console.log("page rendered")
 
     } catch (error) {
         console.log(error)

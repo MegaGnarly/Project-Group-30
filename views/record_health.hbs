@@ -77,12 +77,17 @@
                     <img src="../assets/exercise icon.png" class="timestamp-icon">
                 </div>
 
+                {{#if allowExercise}}
                 <div class="radiotext">Exercise</div>
 
                 <div class="radiocircle">
                     <input name="Selector" class="radiocircle" id="exercise" type="radio"
                         value="measured_exercise"></input>
                 </div>
+                {{/if}}
+                {{#unless allowExercise}}
+                <div class="radiotext">Exercise (ineligible)</div>
+                {{/unless}}
             </label>
         </div>
         <!-- Column 2 -->
