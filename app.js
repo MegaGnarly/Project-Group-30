@@ -18,6 +18,10 @@ const appRouter = require('./routes/appRouter')                 // Handle genera
 const patientRouter = require('./routes/patientRouter')         // Handle patient routes (e.g. record_health)
 const clinicianRouter = require('./routes/clinicianRouter.js')  // Handle clinician routes (e.g. clinician_dashboard)
 
+
+const appController = require('./controllers/appController')
+
+
 // Routing - set paths
 app.use('/', appRouter)
 app.use('/patient', patientRouter)
@@ -73,7 +77,6 @@ const isAuthenticated = (req, res, next) => {
 }
 
 //----------------------------------------------------------------------------------------------------
-
 // Clinician Dashboard helper - red outline on user if they violate a safety threshold
 var hbs = exphbs.create({});
 hbs.handlebars.registerHelper('thresholdChecker', function (num, options) {
@@ -95,21 +98,22 @@ app.use((req, res, next) => {
     next()
 })
 
+
 // **** Application Endpoints ****  
-app.get('/record_health', isAuthenticated, (req, res) => {
-    res.render('record_health.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
+app.get('/patient/record_health', isAuthenticated, (req, res) => {
+    const userData = req.user.toJSON();
+
+    // res.render('record_health.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
+    appController.getRecordHealthPage(req, res, userData )
 })
 
-// Sahil - I commented this out because it seemed redundant (we already have /login in auth.js)
-// app.get('/login_page', (req, res) => {
-//     res.render('login_page.hbs', { layout: 'main2' })
-// })
 
 app.get('/thankyou_page', (req, res) => {
     res.render('thankyou_page.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
 })
 
 app.get('/leaderboard', (req, res) => {
+    console.log("IN LEADERBOARD")
     res.render('leaderboard.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
 })
 
@@ -285,24 +289,6 @@ app.post('/register', (req, res) => {
     })
     res.render('login_page', { layout: 'main2' })
 })
-
-// Login - currently serves as a redirect as per the spec
-// app.post('/login', async (req,res) => {
-//     res.redirect('patient_dash')
-// })
-
-// Testing account registration. Not in use for this deliverable. 
-// app.post('/post_values_user', (req,res) => {
-//     console.log('SERVER: New POST (acc creation)')
-//     let newValue = new patient({
-//         firstName: req.body.firstName,
-//         lastName: req.body.lastName,
-//         // Generate a random ID for the user. Ideally we should be using the ID that mongoDB generates.
-//         id: Math.floor(Math.random() * 1000)
-//     })
-//     newValue.save()
-//     res.redirect('/test/users')
-// })
 
 
 // **** Main server code that launches the server ****  

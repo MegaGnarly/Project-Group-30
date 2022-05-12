@@ -3,13 +3,15 @@
 <h1 class="heading">Record Data</h1>
 <br>
 
+
+
 <form method="POST" action="/post_values">
-<!-- container that stores timestamps and data inputs (e.g. record health)-->
+    <!-- container that stores timestamps and data inputs (e.g. record health)-->
     <div class="grid-container">
         <!-- Column 1 - radio button form-->
         <!-- Form should send selection - need to modify this code once we have databased sorted -->
         <div class="grid-timestamp">
-                <!-- saw this part online but not sure if relevant to us 'form action'-->
+            <!-- saw this part online but not sure if relevant to us 'form action'-->
             <h2 class="data-title">Timestamp</h2><br>
 
             <!-- The 'radioContainer' is a grid with 1 row and 3 columns. -->
@@ -19,13 +21,20 @@
                     <img src="../assets/blood glucose.png" class="timestamp-icon">
                 </div>
 
+                {{#if allowGlucose}}
                 <!-- The second column is the text -->
                 <div class="radiotext">Blood Glucose</div>
-                
+
                 <!-- The third and final column is the circle that the user can select -->
                 <div class="radiocircle">
-                    <input type="radio" class="radiocircle" name="Selector" id="bloodglucose" value="measured_glucose"></input>
+                    <input type="radio" class="radiocircle" name="Selector" id="bloodglucose"
+                        value="measured_glucose"></input>
                 </div>
+                {{/if}}
+                {{#unless allowGlucose}}
+                <div class="radiotext">Blood Glucose (ineligible)</div>
+                {{/unless}}
+
             </label>
 
             <!-- Follows same logic as above container -->
@@ -33,11 +42,12 @@
                 <div class="radioicon">
                     <img src="../assets/insulin icon.png" class="timestamp-icon">
                 </div>
-                
+
                 <div class="radiotext">Dose of Insulin</div>
 
                 <div class="radiocircle">
-                    <input name="Selector" class="radiocircle" id="insulin" type="radio" value="measured_insulin"></input>
+                    <input name="Selector" class="radiocircle" id="insulin" type="radio"
+                        value="measured_insulin"></input>
                 </div>
             </label>
 
@@ -61,7 +71,8 @@
                 <div class="radiotext">Exercise</div>
 
                 <div class="radiocircle">
-                    <input name="Selector" class="radiocircle" id="exercise" type="radio" value="measured_exercise"></input>
+                    <input name="Selector" class="radiocircle" id="exercise" type="radio"
+                        value="measured_exercise"></input>
                 </div>
             </label>
         </div>
@@ -72,9 +83,10 @@
             <input type="text" id="measurement" name="measurement" placeholder="Enter number" required><br>
 
             <h2 class="data-title"><label for="comment">Additional Comments</label></h2><br>
-            <textarea class="comments" type="text" id="comment" name="comment" placeholder="Type in comments"></textarea>
+            <textarea class="comments" type="text" id="comment" name="comment"
+                placeholder="Type in comments"></textarea>
         </div>
     </div>
-        <!-- Submit Button -->
-        <input class="button01 submit" type="submit" value="Submit">
+    <!-- Submit Button -->
+    <input class="button01 submit" type="submit" value="Submit">
 </form>
