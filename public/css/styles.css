@@ -335,13 +335,13 @@ background-color: #F7F7F7;
 }
 .patient-name {
     font-weight: 1000;
-    margin-left: 10%;
+    margin-left: 25px;
     margin-top: 15%;
 }
 .patient-last-updated {
     color:#8a3ee2;
     font-size: small;
-    margin-left: 10%;
+    margin-left: 25px;
 }
 .flexbox-patient-button {
     display: flex;
@@ -480,6 +480,11 @@ background-color: #F7F7F7;
     color: #7D92DB;
     margin-top: 0%;
     margin-bottom: 0%;
+    text-align: center;
+}
+
+.center-text {
+    text-align: center;
 }
 
 #profile {
@@ -888,7 +893,7 @@ textarea::placeholder {
 
 .patient-specifics-table {
     display: grid;
-    grid-template-columns: 20% 20% 20% 40%;
+    grid-template-columns: 15% 15% 15% 15% 40%;
     /* grid-template-rows: repeat(999, auto) repeat(3, 1fr); */
     grid-auto-rows: 60px;
     border:5px solid #eeeeee;
@@ -1516,7 +1521,7 @@ input[id=username], input[id=psw] {
     margin-right: auto;
     width: 80%;
     padding-bottom: 7%;
-    padding-top: 20px%;
+    padding-top: 20px;
 }
 
 /* top 3 visuals */

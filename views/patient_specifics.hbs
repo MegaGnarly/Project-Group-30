@@ -91,13 +91,15 @@
     </div>
 
     <div class="patient-specifics-table">
-        <div class="patient-specifics-table-header">Date/Time</div>
+        <div class="patient-specifics-table-header">Date</div>
+        <div class="patient-specifics-table-header">Time</div>
         <div class="patient-specifics-table-header">Data Type</div>
         <div class="patient-specifics-table-header">Value</div>
         <div class="patient-specifics-table-header">Comment</div>
 
         {{#each patientValues}}
-        <div class="patient-specifics-table-data">{{dateTime}}</div>
+        <div class="patient-specifics-table-data">{{date}}</div>
+        <div class="patient-specifics-table-data">{{time}}</div>
         <div class="patient-specifics-table-data">{{dataType}}</div>
         <div class="patient-specifics-table-data">{{value}}</div>
         <div class="patient-specifics-table-data">{{comment}}</div>
