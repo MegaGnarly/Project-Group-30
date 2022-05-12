@@ -266,12 +266,11 @@ app.post('/post_time_series/:id', async (req, res) => {
 const User = require('./models/user')
 app.post('/register', (req, res) => {
     if (req.body.password != req.body.password2) { return; }
-    // IMPORTANT!!!!! firstName and lastName is temporarily hardcoded because the registration page doesn't have input for these fields.
     User.create({
         username: req.body.username,
         password: req.body.password,
-        firstName: "John",
-        lastName: "Doe",
+        firstName: req.body.fname,
+        lastName: req.body.lname,
         secret: 'INFO30005',
 
         // Set permissions and default values for safety thresholds - these can be modified by the clinician
