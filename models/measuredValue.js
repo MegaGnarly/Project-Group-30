@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 const schema = {
     username: String,
-    dateTime: String,
+    date: String,
+    time: String,
     // dateTime: {type:Date, default:Date.now},
     // measured_type: String,
     measured_glucose: String,

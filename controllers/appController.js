@@ -24,12 +24,58 @@ const user = require('../models/user')
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     try {
-        const values = await measuredValue.find().lean()
+        
+        const userArray = await measuredValue.collection.distinct("username")
+
+        const tableRowArray = [];
+        
         const patientValues = await user.find().lean()
+
+        for (const user of userArray) {
+            // Queries the DB and returns all data of 1 user
+            const currentUser = await measuredValue.find( {username: user} ).lean()
+            console.log(currentUser)
+            const rowOfData = {
+                username: user,
+                time: "",
+                date: "",
+                measured_glucose: "-",
+                measured_weight: "-",
+                measured_insulin: "-",
+                measured_exercise: "-",
+                comment: "",
+            }
+            currentUser.forEach(function (arrayItem) {
+                
+                // Update the date and time
+                rowOfData.time = arrayItem.time
+                rowOfData.date = arrayItem.date
+                rowOfData.comment = arrayItem.comment
+
+                // Update the measurement, if it exists
+                if (arrayItem.measured_glucose != "-") {
+                    rowOfData.measured_glucose = arrayItem.measured_glucose;
+                }
+                if (arrayItem.measured_weight != "-") {
+                    rowOfData.measured_weight = arrayItem.measured_weight;
+                }
+                if (arrayItem.measured_insulin != "-") {
+                    rowOfData.measured_insulin = arrayItem.measured_insulin;
+                }
+                if (arrayItem.measured_exercise != "-") {
+                    rowOfData.measured_exercise = arrayItem.measured_exercise;
+                }
+            })
+            // Append to array
+            tableRowArray.push(rowOfData)
+        }
+
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', {data: values, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL:"../clinician_dashboard"})
+        return res.render('clinician_dashboard', {data: tableRowArray, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL:"../clinician_dashboard"})
     } catch (err) {
-        return next(err)
+        console.log(err)
+        console.log("ERROR in getAllDataClinician.")
+        return res.render('error_page', {errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL:"../clinician_dashboard"})
     }
 }
 
@@ -55,7 +101,8 @@ const getPatientDataClinician = async (req, res, next) => {
         const tableRowArray = [];
         userValues.forEach(function (arrayItem) {
             const rowOfData = {
-                dateTime: arrayItem.dateTime, 
+                date: arrayItem.date, 
+                time: arrayItem.time,
                 dataType: "",
                 value: "",
                 comment: arrayItem.comment

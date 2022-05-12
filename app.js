@@ -125,13 +125,14 @@ app.post('/post_values', async (req, res) => {
     if ((valid_measurements.includes(measuredType)) && (!valueIsEmpty)) {
         console.log("DEBUG: Within measured type");
 
-        // The old code below had a problem where new entries weren't being inserted into the database.
+        // // The old code below had a problem where new entries weren't being inserted into the database.
         // exists = await measuredValue.collection.countDocuments({ "username": req.user.username }, { limit: 1 })
         // if (!exists) {
         //     console.log("DEBUG: Within exists");
         //     let newValue = new measuredValue({
         //         username: req.user.username,
-        //         dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+        //         date: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }),
+        //         time:  new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
         //         measured_glucose: "-",
         //         measured_weight: "-",
         //         measured_insulin: "-",
@@ -147,7 +148,8 @@ app.post('/post_values', async (req, res) => {
         // Note that all measured values are blank for now.
         const doc = {
             username: req.user.username,
-            dateTime: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }) + "\n" + new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            date: new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            time:  new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }),
             measured_glucose: "-",
             measured_weight: "-",
             measured_insulin: "-",
@@ -169,8 +171,9 @@ app.post('/post_values', async (req, res) => {
             doc.measured_exercise = req.body.measurement;
         }
 
-        // Insert the final entry into the database and redirect user.
+        //Insert the final entry into the database and redirect user.
         measuredValue.collection.insertOne(doc);
+        
         console.log("DEBUG: Ran insertion")
         await res.redirect('thankyou_page')
 
