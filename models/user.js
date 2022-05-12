@@ -11,10 +11,10 @@ const userSchema = new mongoose.Schema({
   age: Number,
   secret: { type: String, required: true },
 
-  threshold_bg: {lower: String, upper: String},
-  threshold_weight: {lower: Number, upper: Number},
-  threshold_exercise: {lower: Number, upper: Number},
-  threshold_insulin: {lower: Number, upper: Number}
+  threshold_bg: {prescribed: Boolean, lower: String, upper: String},
+  threshold_weight: {prescribed: Boolean, lower: Number, upper: Number},
+  threshold_exercise: {prescribed: Boolean, lower: Number, upper: Number},
+  threshold_insulin: {prescribed: Boolean, lower: Number, upper: Number}
 
 })
 
