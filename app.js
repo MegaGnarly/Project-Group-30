@@ -184,6 +184,11 @@ app.post('/post_values', async (req, res) => {
 Check if input string is a valid number. Supports strings that contain decimal places.
 */
 function isValidNumber(input) {
+    if (!input || input.length === 0) {
+        console.log("isValidNumber: Not a valid number.");
+        return false;
+    }
+
     // If string does not contain a decimal point AND there is not a number
     if ((input.indexOf(".")) && (isNaN(input))) {
         console.log("isValidNumber: Not a valid number.");

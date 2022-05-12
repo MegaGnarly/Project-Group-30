@@ -11,7 +11,6 @@ clinicianRouter.get('/', (req, res) => {
 })
 
 clinicianRouter.get('/:username', (req, res) => {
-    console.log("The ID is: ")
     appController.getPatientDataClinician(req, res)
 })
 
