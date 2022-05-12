@@ -19,6 +19,16 @@ const user = require('../models/user')
 //         return next(err)
 //     }
 // }
+const getPatientHistory = async (req, res, next) => {
+    console.log('getPatientHistory')
+    try {
+        const values = await measuredValue.find({username: req.user.username}).lean()
+        // The user values being passed are for the site header on the top right.
+        return res.render('patient_history', {data: values, logoURL:"../clinician_dashboard"})
+    } catch (err) {
+        return next(err)
+    }
+}
 
 // Get *all* patient data (used for the clinician dashboard)
 const getAllDataClinician = async (req, res, next) => {

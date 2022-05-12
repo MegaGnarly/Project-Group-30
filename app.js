@@ -100,6 +100,10 @@ app.get('/record_health', isAuthenticated, (req, res) => {
     res.render('record_health.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
 })
 
+app.get('/patient_history', isAuthenticated, (req, res) => {
+    res.render('patient_history.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
+})
+
 // Sahil - I commented this out because it seemed redundant (we already have /login in auth.js)
 // app.get('/login_page', (req, res) => {
 //     res.render('login_page.hbs', { layout: 'main2' })
