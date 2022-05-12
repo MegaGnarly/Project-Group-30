@@ -34,7 +34,6 @@
                 {{#unless allowGlucose}}
                 <div class="radiotext">Blood Glucose (ineligible)</div>
                 {{/unless}}
-
             </label>
 
             <!-- Follows same logic as above container -->
@@ -43,12 +42,17 @@
                     <img src="../assets/insulin icon.png" class="timestamp-icon">
                 </div>
 
+                {{#if allowInsulin}}
                 <div class="radiotext">Dose of Insulin</div>
 
                 <div class="radiocircle">
                     <input name="Selector" class="radiocircle" id="insulin" type="radio"
                         value="measured_insulin"></input>
                 </div>
+                {{/if}}
+                {{#unless allowInsulin}}
+                <div class="radiotext">Dose of Insulin (ineligible)</div>
+                {{/unless}}
             </label>
 
             <label for="weight" class="radioContainer purple2">
@@ -56,11 +60,16 @@
                     <img src="../assets/Weight White ver.png" class="timestamp-icon">
                 </div>
 
+                {{#if allowWeight}}
                 <div class="radiotext">Weight</div>
 
                 <div class="radiocircle">
                     <input name="Selector" class="radiocircle" id="weight" type="radio" value="measured_weight"></input>
                 </div>
+                {{/if}}
+                {{#unless allowWeight}}
+                <div class="radiotext">Weight (ineligible)</div>
+                {{/unless}}
             </label>
 
             <label for="exercise" class="radioContainer purple3">
