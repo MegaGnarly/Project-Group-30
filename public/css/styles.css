@@ -358,6 +358,7 @@ background-color: #F7F7F7;
     margin-top: 4%;
     color: white;
     font-size: 90%;
+    cursor:pointer;
     transition: all 0.5s ease 0s;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
 }

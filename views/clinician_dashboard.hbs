@@ -5,19 +5,23 @@
 <div class="topbar">
     <div class="searchbar">
         <div class="search-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
         </div>
         <div class="InputContainer">
-            <input placeholder="Search Patient"/>
+            <input placeholder="Search Patient" />
         </div>
     </div>
     <div class="flexbox-sortby">Sort By</div>
     <form class="clinician-sortby-form" action="#">
-      <select name="sortby" id="sort">
-        <option value="lastupdated">Last Updated ▼</option>
-        <option value="firstupdated">Last Updated ▲</option>
-        <option value="name">Name </option>
-      </select>
+        <select name="sortby" id="sort">
+            <option value="lastupdated">Last Updated ▼</option>
+            <option value="firstupdated">Last Updated ▲</option>
+            <option value="name">Name </option>
+        </select>
     </form>
 </div>
 
@@ -31,13 +35,14 @@
                         <img src="assets/icon_profile.png" width="80" height="80">
                     </div>
                     <div>
-                        <div class="patient-name">{{this.username}}</div>
+                        {{!-- <div class="patient-name">{{this.username}}</div> --}}
+                        <a href="clinician_dashboard/{{this.username}}"><div class="patient-name">{{this.username}}</div></a>
                         <div class="patient-last-updated">Last Updated:</div>
                         <div class="patient-last-updated">{{this.dateTime}}</div>
                     </div>
                 </div>
                 <div class="flexbox-patient-button">
-                    <button class="patient-button purple2">View Full</button>
+                    <button class="patient-button purple2" onclick="location.href='clinician_dashboard/{{this.username}}'">View Full</button>
                     <button class="patient-button purple1">Message</button>
                 </div>
             </div>
@@ -60,7 +65,7 @@
         </div>
     </div>
     {{/each}}
-    
+
 </div>
 <br>
 {{!-- <h1 class="clinician-title">Comments</h1>
