@@ -118,12 +118,11 @@ app.get('/leaderboard', (req, res) => {
 // POST test - when the user fills the form, update the database.
 app.post('/post_values', async (req, res) => {
     const valid_measurements = ["measured_glucose", "measured_weight", "measured_insulin", "measured_exercise"];
-    measured_type = req.body.Selector
-
-    console.log("DEBUG: in array: ", valid_measurements.includes(measured_type));
+    const measuredType = req.body.Selector
+    const valueIsEmpty = !req.body.measurement;
 
     // Check if the value recieved is a valid meaurement type and that it is not empty.
-    if ( (valid_measurements.includes(measured_type)) && (!measured_type.length) ) {
+    if ( (valid_measurements.includes(measuredType)) && (!valueIsEmpty) ) {
         console.log("DEBUG: Within measured type");
 
         // The old code below had a problem where new entries weren't being inserted into the database.
@@ -141,7 +140,7 @@ app.post('/post_values', async (req, res) => {
             //     })
             //     await newValue.save()
             // }
-            // measuredValue.collection.updateOne({ "username": req.user.username }, { $set: { [measured_type]: req.body.measurement } })
+            // measuredValue.collection.updateOne({ "username": req.user.username }, { $set: { [measuredType]: req.body.measurement } })
 
 
         // New code that constructs and entry that will be inserted into the database.
@@ -157,16 +156,16 @@ app.post('/post_values', async (req, res) => {
         }
 
         // Determine what type of data the user has inserted and update the above entry accordingly.
-        if (measured_type == "measured_glucose") {
+        if (measuredType == "measured_glucose") {
             doc.measured_glucose = req.body.measurement;
         }
-        else if (measured_type == "measured_weight") {
+        else if (measuredType == "measured_weight") {
             doc.measured_weight = req.body.measurement;
         }
-        else if (measured_type == "measured_insulin") {
+        else if (measuredType == "measured_insulin") {
             doc.measured_insulin = req.body.measurement;
         }
-        else if (measured_type == "measured_exercise") {
+        else if (measuredType == "measured_exercise") {
             doc.measured_exercise = req.body.measurement;
         }
 
