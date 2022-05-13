@@ -1,32 +1,50 @@
 // Import people and patient model
 const measuredValue = require('../models/measuredValue')
 const user = require('../models/user')
-
-// Patient identities are hardcoded for this deliverable (see spec sheet)
-// var patientName = "Pat"
-// var patientRole = "USER"
+const sessionStorage = require('sessionstorage')
 
 
-// // Handle request to get all people data instances
-// const getAllData = async (req, res, next) => {
-
-//     try {
-//         const values = await measuredValue.find().lean()
-//         const patientValues = await patient.find().lean()
-//         // The user values being passed are for the site header on the top right.
-//         return res.render('test_data', {data: values, data2: patientValues, userName: patientName, userRole: patientRole})
-//     } catch (err) {
-//         return next(err)
-//     }
-// }
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
     try {
-        const values = await measuredValue.find({username: req.user.username}).lean()
+        const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
+
+        const tableRowArray = [];
+        userValues.forEach(function (arrayItem) {
+            const rowOfData = {
+                date: arrayItem.date, 
+                time: arrayItem.time,
+                dataType: "",
+                value: "",
+                comment: arrayItem.comment
+            }
+
+            // Determine the data type and data value for the row.
+            if (arrayItem.measured_glucose != "-") {
+                rowOfData.dataType = "Blood Glucose";
+                rowOfData.value = arrayItem.measured_glucose;
+            }
+            else if (arrayItem.measured_weight != "-") {
+                rowOfData.dataType = "Weight";
+                rowOfData.value = arrayItem.measured_weight;
+            }
+            else if (arrayItem.measured_insulin != "-") {
+                rowOfData.dataType = "Insulin Doses";
+                rowOfData.value = arrayItem.measured_insulin;
+            }
+            else if (arrayItem.measured_exercise != "-") {
+                rowOfData.dataType = "Exercise (steps)";
+                rowOfData.value = arrayItem.measured_exercise;
+            }
+
+            // Append to array
+            tableRowArray.push(rowOfData)
+        })
+
         // The user values being passed are for the site header on the top right.
-        return res.render('patient_history', {data: values, logoURL:"../clinician_dashboard"})
+        return res.render('patient_history', {data: tableRowArray, logoURL:"../clinician_dashboard"})
     } catch (err) {
-        return next(err)
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
     }
 }
 
@@ -150,11 +168,13 @@ const getPatientDataClinician = async (req, res, next) => {
 }
 
 
-const getRecordHealthPage = async (req, res, userData, next) => {
+const getRecordHealthPage = async (req, res, next) => {
     try {
+        // const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
+
         // See if user exists in the database
-        const currentUser = await user.findOne({ username: userData.username }).lean()
-        
+        const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+
         // Check if patient is permitted to record blood glucose data
         var allowGlucose = currentUser.threshold_bg.prescribed;
 
@@ -168,10 +188,11 @@ const getRecordHealthPage = async (req, res, userData, next) => {
         var allowInsulin = currentUser.threshold_insulin.prescribed;
 
         // Render page
-        res.render('record_health.hbs',  { logoURL: "../patient_dashboard", user: userData, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin})
+        res.render('record_health.hbs',  { logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin})
 
     } catch (error) {
         console.log(error)
+        return res.render('error_page', { errorHeading: "An error occurred", errorText: "An error occurred when performing your request. This may occur if you are not logged in.", logoURL: "../patient_dashboard" })
     }
 
 }
@@ -226,10 +247,10 @@ const getDataById = async (req, res, next) => {
 // Export objects so that they may be used by other files
 module.exports = {
     getAllPatientData,
-    //getAllData,
     getAllDataClinician,
     getPatientDataClinician,
     getPatientName,
     getRecordHealthPage,
+    getPatientHistory
     // getDataById
 }
