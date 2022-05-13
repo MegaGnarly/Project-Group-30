@@ -184,11 +184,13 @@ const getPatientDataClinician = async (req, res, next) => {
 }
 
 
-const getRecordHealthPage = async (req, res, userData, next) => {
+const getRecordHealthPage = async (req, res, next) => {
     try {
+        // const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
+
         // See if user exists in the database
-        const currentUser = await user.findOne({ username: userData.username }).lean()
-        
+        const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+
         // Check if patient is permitted to record blood glucose data
         var allowGlucose = currentUser.threshold_bg.prescribed;
 
@@ -202,10 +204,11 @@ const getRecordHealthPage = async (req, res, userData, next) => {
         var allowInsulin = currentUser.threshold_insulin.prescribed;
 
         // Render page
-        res.render('record_health.hbs',  { logoURL: "../patient_dashboard", user: userData, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin})
+        res.render('record_health.hbs',  { logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin})
 
     } catch (error) {
         console.log(error)
+        return res.render('error_page', { errorHeading: "An error occurred", errorText: "An error occurred when performing your request. This may occur if you are not logged in.", logoURL: "../patient_dashboard" })
     }
 
 }

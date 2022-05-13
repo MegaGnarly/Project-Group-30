@@ -20,11 +20,11 @@ patientRouter.get('/history', (req, res) => {
 // example: http://127.0.0.1:3000/patient/849   will show a patient dashboard with patient data for id 849
 
 
-// patientRouter.get('/record_health',  (req, res) => {
-//     console.log("IN PATIENT ROUTER - REC HEALTH")
-//     appController.getRecordHealthPage(req, res)
-//     // res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
-// })
+patientRouter.get('/record_health',  (req, res) => {
+    console.log("IN PATIENT ROUTER - REC HEALTH")
+    appController.getRecordHealthPage(req, res)
+    // res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
+})
 
 // patientRouter.get('/thankyou_page', (req, res) => {
 //     console.log("IN PATIENT ROUTER - TY PAGE")
