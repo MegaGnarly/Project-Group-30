@@ -935,12 +935,17 @@ textarea::placeholder {
 
 .clinician-notes{
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 12% 12% 76%;
 }
 
 .clinician-notes-cell{
     font-size: 20px;
     border:1px solid #eeeeee57;
+}
+
+.scroll{
+    max-height: 125px;
+    overflow: auto;
 }
 
 .patient-specifics-overview-container {

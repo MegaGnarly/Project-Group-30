@@ -7,6 +7,7 @@ const exphbs = require('express-handlebars');
 
 // Load database schemas
 const measuredValue = require('./models/measuredValue');
+const clinicalNote = require('./models/clinicalNote');
 const patient = require('./models/patient')
 require('./models')
 
@@ -175,6 +176,30 @@ app.post('/post_values', async (req, res) => {
     }
 })
 
+// Post Clinician Notes
+app.post('/submit_note/:id', async (req, res) => {
+    
+    try {
+        // New code that constructs and entry that will be inserted into the database.
+        // Note that all measured values are blank for now.
+        const doc = {
+            username: req.params.id,
+            date: new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            note: req.body.cNote
+        }
+
+        //Insert the final entry into the database and redirect user.
+        clinicalNote.collection.insertOne(doc);
+
+        await res.redirect('/clinician_dashboard/' + req.params.id)
+    } catch (error) {
+        console.log(error);
+        return res.render('error_page', { buttonURL: "/login_page", buttonText: "Login Page", errorHeading: "An error occurred", errorText: "An error occurred when posting to clinicalNote database", logoURL: "../patient_dashboard" })
+    }
+})
+
+
 /*
 Check if input string is a valid number. Supports strings that contain decimal places.
 */
@@ -269,7 +294,7 @@ app.post('/post_time_series/:id', async (req, res) => {
 
 
 // TODO: MOVE THIS TO THE PATIENT ROUTER AND ADD FIRSTNAME/LASTNAME TO REGISTRATION PAGE
-const User = require('./models/user')
+const User = require('./models/user');
 app.post('/register', (req, res) => {
     if (req.body.password != req.body.password2) { return; }
     User.create({

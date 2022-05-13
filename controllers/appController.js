@@ -1,6 +1,7 @@
 // Import people and patient model
 const measuredValue = require('../models/measuredValue')
 const user = require('../models/user')
+const clinicalNote = require('../models/clinicalNote')
 const sessionStorage = require('sessionstorage')
 
 
@@ -62,7 +63,6 @@ const getAllDataClinician = async (req, res, next) => {
         for (const user of userArray) {
             // Queries the DB and returns all data of 1 user
             const currentUser = await measuredValue.find( {username: user} ).lean()
-            console.log(currentUser)
             const rowOfData = {
                 username: user,
                 time: "",
@@ -116,6 +116,7 @@ const getPatientDataClinician = async (req, res, next) => {
         // Get basic information about the patient (first name, last name etc)
         // Also serves as a way to check whether the user actually exists. If not, the try block will fail.
         const currentUser = await user.findOne({ username: req.params.username }).lean()
+
         if (currentUser == null) {
             // Throw page not found error
             return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
@@ -158,7 +159,10 @@ const getPatientDataClinician = async (req, res, next) => {
             tableRowArray.push(rowOfData)
         })
 
-        return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, logoURL: "../clinician_dashboard" })
+        // Get clinical Notes
+        const allNotes = await clinicalNote.find({ username: req.params.username }).lean()
+
+        return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, clinicianNote: allNotes, logoURL: "../clinician_dashboard" })
 
     } catch (err) {
         console.log(err)
