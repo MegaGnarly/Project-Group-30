@@ -171,7 +171,7 @@ app.post('/post_values', async (req, res) => {
 
     } else {
         console.log("POST ERROR: Health value from client is not acceptable (either invalid measurement type or empty string). Value will not be inserted into db.")
-        res.redirect('record_health')
+        return res.render('error_page', { errorHeading: "An error occurred when recording your data. Please try again!", errorText: "Please ensure that you have selected the correct measurement type and that you are entering acceptable values.", logoURL: "../patient_dashboard" })
     }
 })
 
