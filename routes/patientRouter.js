@@ -12,6 +12,9 @@ patientRouter.get('/', (req, res) => {
     res.render('patient_dashboard.hbs', { layout: 'main2' })
 })
 
+patientRouter.get('/history', (req, res) => {
+    appController.getPatientHistory(req, res)
+})
 
 // patientRouter.get('/:id', appController.getPatientName)
 // example: http://127.0.0.1:3000/patient/849   will show a patient dashboard with patient data for id 849

@@ -1,6 +1,7 @@
 // Import people and patient model
 const measuredValue = require('../models/measuredValue')
 const user = require('../models/user')
+const sessionStorage = require('sessionstorage')
 
 // Patient identities are hardcoded for this deliverable (see spec sheet)
 // var patientName = "Pat"
@@ -22,11 +23,44 @@ const user = require('../models/user')
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
     try {
-        const values = await measuredValue.find({username: req.user.username}).lean()
+        const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
+
+        const tableRowArray = [];
+        userValues.forEach(function (arrayItem) {
+            const rowOfData = {
+                date: arrayItem.date, 
+                time: arrayItem.time,
+                dataType: "",
+                value: "",
+                comment: arrayItem.comment
+            }
+
+            // Determine the data type and data value for the row.
+            if (arrayItem.measured_glucose != "-") {
+                rowOfData.dataType = "Blood Glucose";
+                rowOfData.value = arrayItem.measured_glucose;
+            }
+            else if (arrayItem.measured_weight != "-") {
+                rowOfData.dataType = "Weight";
+                rowOfData.value = arrayItem.measured_weight;
+            }
+            else if (arrayItem.measured_insulin != "-") {
+                rowOfData.dataType = "Insulin Doses";
+                rowOfData.value = arrayItem.measured_insulin;
+            }
+            else if (arrayItem.measured_exercise != "-") {
+                rowOfData.dataType = "Exercise (steps)";
+                rowOfData.value = arrayItem.measured_exercise;
+            }
+
+            // Append to array
+            tableRowArray.push(rowOfData)
+        })
+
         // The user values being passed are for the site header on the top right.
-        return res.render('patient_history', {data: values, logoURL:"../clinician_dashboard"})
+        return res.render('patient_history', {data: tableRowArray, logoURL:"../clinician_dashboard"})
     } catch (err) {
-        return next(err)
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
     }
 }
 
@@ -229,5 +263,6 @@ module.exports = {
     getPatientDataClinician,
     getPatientName,
     getRecordHealthPage,
+    getPatientHistory
     // getDataById
 }

@@ -27,7 +27,9 @@
     "handlebars": "^4.7.7",
     "mongoose": "^6.3.0",
     "passport": "^0.5.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "sessionstorage": "^0.1.0",
+    "window": "^4.2.7"
   },
   "devDependencies": {
     "dotenv": "^16.0.0"
