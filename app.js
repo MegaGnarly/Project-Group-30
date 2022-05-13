@@ -165,13 +165,13 @@ app.post('/post_values', async (req, res) => {
             await res.redirect('thankyou_page')
         } catch (error) {
             console.log(error);
-            return res.render('error_page', { errorHeading: "An error occurred", errorText: "An error occurred when performing your request. This may occur if you are not logged in.", logoURL: "../patient_dashboard" })
+            return res.render('error_page', { buttonURL: "/login_page", buttonText: "Login Page", errorHeading: "An error occurred", errorText: "An error occurred when performing your request. This may occur if you are not logged in.", logoURL: "../patient_dashboard" })
         }
 
 
     } else {
         console.log("POST ERROR: Health value from client is not acceptable (either invalid measurement type or empty string). Value will not be inserted into db.")
-        return res.render('error_page', { errorHeading: "An error occurred when recording your data. Please try again!", errorText: "Please ensure that you have selected the correct measurement type and that you are entering acceptable values.", logoURL: "../patient_dashboard" })
+        return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "An error occurred when recording your data. Please try again!", errorText: "Please ensure that you have selected the correct measurement type and that you are entering acceptable values.", logoURL: "../patient_dashboard" })
     }
 })
 
@@ -195,26 +195,11 @@ function isValidNumber(input) {
 }
 
 app.post('/post_time_series/:id', async (req, res) => {
-    // console.log("DEBUG: Time series posted")
-    // console.log("DEBUG:", req.body.checkbox)
-
     try {
         // Get username of sender
         const username = req.params.id
 
-        // If no checkboxes have been selected, update the database accordingly
-        if (req.body.checkbox === undefined || req.body.checkbox.length == 0) {
-            console.log("DEBUG: No checkboxes were selected.")
-            user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: false, lower: 0, upper: 0 } } })
-            user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: false, lower: 0, upper: 0 } } })
-            user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: false, lower: 0, upper: 0 } } })
-            user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: false, lower: 0, upper: 0 } } })
-            // Refresh the page
-            res.redirect(req.get('referer'));
-            return
-        }
-
-        // Read checkbox selection and update the allowed measurable values 
+        // Read each checkbox selection and progressively update the allowed measurable values 
         if (req.body.checkbox.includes("blood_glucose")) {
             // Check if user submitted values are valid (numerical or numerical with decimal)
             if (isValidNumber(req.body.lower_bg) || (isValidNumber(req.body.upper_bg))) {
@@ -222,6 +207,13 @@ app.post('/post_time_series/:id', async (req, res) => {
                 user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: true, lower: req.body.lower_bg, upper: req.body.upper_bg } } })
                 console.log("Updated blood glucose safety threshold")
             }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            // If the checkbox is not selected then set prescribed to false so that the patient cannot record data for this measurement type.
+            user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: false, lower: 0, upper: 0 } } })
         }
 
         if (req.body.checkbox.includes("weight")) {
@@ -230,6 +222,12 @@ app.post('/post_time_series/:id', async (req, res) => {
                 user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: true, lower: req.body.lower_weight, upper: req.body.upper_weight } } })
                 console.log("Updated weight safety threshold")
             }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: false, lower: 0, upper: 0 } } })
         }
 
         if (req.body.checkbox.includes("steps")) {
@@ -238,6 +236,12 @@ app.post('/post_time_series/:id', async (req, res) => {
                 user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: true, lower: req.body.lower_steps, upper: req.body.upper_steps } } })
                 console.log("Updated exercise (steps) safety threshold")
             }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: false, lower: 0, upper: 0 } } })
         }
 
         if (req.body.checkbox.includes("insulin")) {
@@ -246,6 +250,12 @@ app.post('/post_time_series/:id', async (req, res) => {
                 user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: true, lower: req.body.lower_doses, upper: req.body.upper_doses } } })
                 console.log("Updated insulin doseage safety threshold")
             }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin (doses) was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: false, lower: 0, upper: 0 } } })
         }
 
         // Refresh the page
