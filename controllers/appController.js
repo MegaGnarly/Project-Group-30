@@ -3,23 +3,7 @@ const measuredValue = require('../models/measuredValue')
 const user = require('../models/user')
 const sessionStorage = require('sessionstorage')
 
-// Patient identities are hardcoded for this deliverable (see spec sheet)
-// var patientName = "Pat"
-// var patientRole = "USER"
 
-
-// // Handle request to get all people data instances
-// const getAllData = async (req, res, next) => {
-
-//     try {
-//         const values = await measuredValue.find().lean()
-//         const patientValues = await patient.find().lean()
-//         // The user values being passed are for the site header on the top right.
-//         return res.render('test_data', {data: values, data2: patientValues, userName: patientName, userRole: patientRole})
-//     } catch (err) {
-//         return next(err)
-//     }
-// }
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
     try {
@@ -261,7 +245,6 @@ const getDataById = async (req, res, next) => {
 // Export objects so that they may be used by other files
 module.exports = {
     getAllPatientData,
-    //getAllData,
     getAllDataClinician,
     getPatientDataClinician,
     getPatientName,
