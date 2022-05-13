@@ -1,5 +1,8 @@
 const mongoose = require("mongoose")
 
+
+// This schema has never been used. 
+// Instead it's been rolled into user.js
 const patientSchema = new mongoose.Schema({  // declare a Mongoose schema
   username: String,
   firstName: String,

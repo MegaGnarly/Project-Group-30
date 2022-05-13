@@ -14,65 +14,74 @@
 
             <h2 class="patient-specifics-name">{{profileData.firstName}} {{profileData.lastName}}</h2>
 
+            <!-- HTML related to the clickable 'Adjust Time Series' button-->
             <button data-modal-target="#modal" class="button04 purple2">Adjust Time-Series</button>
-            <div class="modal" id="modal">
-                <div class="modal-header">
-                    <div class="title">Required Time-Series</div>
-                    <button data-close-button class="close-button">&times;</button>
+
+
+
+            <form method="POST" action="/post_time_series/{{profileData.username}}">
+                <div class="modal" id="modal">
+                    <div class="modal-header">
+                        <div class="title">Required Time-Series</div>
+                        <button data-close-button class="close-button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Grid area -->
+                        <p class="popup-table-title">Time Series</p>
+                        <p class="popup-table-title">Lower Limit</p>
+                        <p class="popup-table-title">Upper Limit</p>
+
+                        <label class="checkbox">
+                            <input class="input-checkbox" name="checkbox" id="checkbox_bg" value="blood_glucose" type="checkbox">
+                            Blood Glucose (nmol/L)
+                        </label>
+                        <div class="popup-input-box-container">
+                            <input type="text" id="popup-input-box" name="lower_bg" maxlength="10">
+                        </div>
+                        <div class="popup-input-box-container">
+                            <input type="text" id="popup-input-box" name="upper_bg" maxlength="10">
+                        </div>
+
+                        <label class="checkbox">
+                            <input class="input-checkbox" name="checkbox" id="checkbox_weight" value="weight" type="checkbox">
+                            Weight (kg)
+                        </label>
+                        <div class="popup-input-box-container">
+                            <input type="text" id="popup-input-box" name="lower_weight" maxlength="10">
+                        </div>
+                        <div class="popup-input-box-container">
+                            <input type="text" id="popup-input-box" name="upper_weight" maxlength="10">
+                        </div>
+
+                        <label class="checkbox">
+                            <input class="input-checkbox" name="checkbox" id="checkbox_steps" value="steps"
+                                type="checkbox">
+                            Exercise (Steps)
+                        </label>
+                        <div class="popup-input-box-container">
+                            <input type="text" id="popup-input-box" name="lower_steps" maxlength="10">
+                        </div>
+                        <div class="popup-input-box-container">
+                            <input type="text" id="popup-input-box" name="upper_steps" maxlength="10">
+                        </div>
+
+                        <label class="checkbox">
+                            <input class="input-checkbox" name="checkbox" id="checkbox_insulin" value="insulin" type="checkbox">
+                            Num. Doses
+                        </label>
+                        <div class="popup-input-box-container">
+                            <input type="text" id="popup-input-box" name="lower_doses" maxlength="10">
+                        </div>
+                        <div class="popup-input-box-container">
+                            <input type="text" id="popup-input-box" name="upper_doses" maxlength="10">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <input class="button01 submit" type="submit" value="Submit">
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <!-- Grid area -->
-                    <p class="popup-table-title">Time Series</p>
-                    <p class="popup-table-title">Lower Limit</p>
-                    <p class="popup-table-title">Upper Limit</p>
+            </form>
 
-                    <label class="checkbox">
-                        <input class="input-checkbox" name="checkbox" id="checkboxBlood" value="1" type="checkbox">
-                        Blood Glucose (nmol/L)
-                    </label>
-                    <div class="popup-input-box-container">
-                        <input type="text" id="popup-input-box" name="lower_bg" maxlength="10">
-                    </div>
-                    <div class="popup-input-box-container">
-                        <input type="text" id="popup-input-box" name="upper_bg" maxlength="10">
-                    </div>
-
-                    <label class="checkbox">
-                        <input class="input-checkbox" name="checkbox" id="checkboxWeight" value="1" type="checkbox">
-                        Weight (kg)
-                    </label>
-                    <div class="popup-input-box-container">
-                        <input type="text" id="popup-input-box" name="lower_weight" maxlength="10">
-                    </div>
-                    <div class="popup-input-box-container">
-                        <input type="text" id="popup-input-box" name="upper_weight" maxlength="10">
-                    </div>
-
-                    <label class="checkbox">
-                        <input class="input-checkbox" name="checkbox" id="checkboxExercise" value="1" type="checkbox">
-                        Exercise (Steps)
-                    </label>
-                    <div class="popup-input-box-container">
-                        <input type="text" id="popup-input-box" name="lower_steps" maxlength="10">
-                    </div>
-                    <div class="popup-input-box-container">
-                        <input type="text" id="popup-input-box" name="upper_steps" maxlength="10">
-                    </div>
-
-                    <label class="checkbox">
-                        <input class="input-checkbox" name="checkbox" id="checkboxDoses" value="1" type="checkbox">
-                        Num. Doses
-                    </label>
-                    <div class="popup-input-box-container">
-                        <input type="text" id="popup-input-box" name="lower_doses" maxlength="10">
-                    </div>
-                    <div class="popup-input-box-container">
-                        <input type="text" id="popup-input-box" name="upper_doses" maxlength="10">
-                    </div>
-
-                    <button class="button04 purple1">Update</button>
-                </div>
-            </div>
             <button class="button04 purple1">Message</button>
             <div id="backgroundMasker"></div>
             <script src="../scripts/script.js"></script>
@@ -82,13 +91,15 @@
     </div>
 
     <div class="patient-specifics-table">
-        <div class="patient-specifics-table-header">Date/Time</div>
+        <div class="patient-specifics-table-header">Date</div>
+        <div class="patient-specifics-table-header">Time</div>
         <div class="patient-specifics-table-header">Data Type</div>
         <div class="patient-specifics-table-header">Value</div>
         <div class="patient-specifics-table-header">Comment</div>
 
         {{#each patientValues}}
-        <div class="patient-specifics-table-data">{{dateTime}}</div>
+        <div class="patient-specifics-table-data">{{date}}</div>
+        <div class="patient-specifics-table-data">{{time}}</div>
         <div class="patient-specifics-table-data">{{dataType}}</div>
         <div class="patient-specifics-table-data">{{value}}</div>
         <div class="patient-specifics-table-data">{{comment}}</div>

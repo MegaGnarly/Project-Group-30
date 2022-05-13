@@ -9,7 +9,13 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   role: String,     // Patient or Clinician 
   age: Number,
-  secret: { type: String, required: true }
+  secret: { type: String, required: true },
+
+  threshold_bg: {prescribed: Boolean, lower: String, upper: String},
+  threshold_weight: {prescribed: Boolean, lower: Number, upper: Number},
+  threshold_exercise: {prescribed: Boolean, lower: Number, upper: Number},
+  threshold_insulin: {prescribed: Boolean, lower: Number, upper: Number}
+
 })
 
 userSchema.methods.verifyPassword = function (password, callback) {
