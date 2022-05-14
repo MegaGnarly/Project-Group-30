@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const exphbs = require('express-handlebars');
+const passport = require('./passport')
 
 // Load database schemas
 const measuredValue = require('./models/measuredValue');
@@ -20,10 +21,7 @@ const patientRouter = require('./routes/patientRouter')         // Handle patien
 const clinicianRouter = require('./routes/clinicianRouter.js')  // Handle clinician routes (e.g. clinician_dashboard)
 
 
-const appController = require('./controllers/appController')
-
-
-// Routing - set paths
+// Routing - set site routes
 app.use('/', appRouter)
 app.use('/patient', patientRouter)
 app.use('/clinician_dashboard', clinicianRouter)
@@ -37,10 +35,9 @@ app.engine('hbs', exphbs.engine({
 // Set handlebars view engine
 app.set('view engine', 'hbs')
 
-//----------------------------------------------------------------------------------------------------
-
 // Flash messages for failed logins, and (possibly) other success/error messages
 app.use(flash())
+
 // Track authenticated users through login sessions
 app.use(
     session({
@@ -60,12 +57,12 @@ app.use(
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1); // Trust first proxy
 }
+
 // Initialise Passport.js
-const passport = require('./passport')
 app.use(passport.authenticate('session'))
+
 // Load authentication router
 const authRouter = require('./routes/authRouter');
-const user = require('./models/user');
 app.use(authRouter)
 
 const isAuthenticated = (req, res, next) => {
@@ -76,16 +73,6 @@ const isAuthenticated = (req, res, next) => {
     // Otherwise, proceed to next middleware function
     return next()
 }
-
-//----------------------------------------------------------------------------------------------------
-// Clinician Dashboard helper - red outline on user if they violate a safety threshold
-var hbs = exphbs.create({});
-hbs.handlebars.registerHelper('thresholdChecker', function (num, options) {
-    if (num < 4.0 || num > 7.8) {
-        return options.fn(this);
-    }
-    return options.inverse(this);
-});
 
 // Define where static assets live
 app.use(express.static('public'))
@@ -100,14 +87,7 @@ app.use((req, res, next) => {
 })
 
 
-// **** Application Endpoints ****  
-// app.get('/patient/record_health', isAuthenticated, (req, res) => {
-//     const userData = req.user.toJSON();
-
-//     // res.render('record_health.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
-//     appController.getRecordHealthPage(req, res, userData)
-// })
-
+// **** Application GETs ****  
 app.get('/patient_history', isAuthenticated, (req, res) => {
     res.render('patient_history.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
 })
@@ -123,7 +103,6 @@ app.get('/leaderboard', (req, res) => {
 
 
 // **** Application POSTs ****  
-// POST test - when the user fills the form, update the database.
 app.post('/post_values', async (req, res) => {
     const valid_measurements = ["measured_glucose", "measured_weight", "measured_insulin", "measured_exercise"];
     const measuredType = req.body.Selector
@@ -169,7 +148,6 @@ app.post('/post_values', async (req, res) => {
             return res.render('error_page', { buttonURL: "/login_page", buttonText: "Login Page", errorHeading: "An error occurred", errorText: "An error occurred when performing your request. This may occur if you are not logged in.", logoURL: "../patient_dashboard" })
         }
 
-
     } else {
         console.log("POST ERROR: Health value from client is not acceptable (either invalid measurement type or empty string). Value will not be inserted into db.")
         return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "An error occurred when recording your data. Please try again!", errorText: "Please ensure that you have selected the correct measurement type and that you are entering acceptable values.", logoURL: "../patient_dashboard" })
@@ -177,8 +155,7 @@ app.post('/post_values', async (req, res) => {
 })
 
 
-
-// User registration can stay on app.js. 
+// User registration. We can keep this code on app.js
 const User = require('./models/user');
 app.post('/register', (req, res) => {
     if (req.body.password != req.body.password2) { return; }
@@ -203,7 +180,18 @@ app.post('/register', (req, res) => {
 })
 
 
-// **** Main server code that launches the server ****  
+// **** Handlebars Helpers ****
+// Clinician Dashboard helper - red outline on user if they violate a safety threshold
+var hbs = exphbs.create({});
+hbs.handlebars.registerHelper('thresholdChecker', function (num, options) {
+    if (num < 4.0 || num > 7.8) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+});
+
+
+// **** Main code that launches the server ****  
 app.listen(process.env.PORT || PORT, () => {
     console.log('Diabetes@Home is running! CTRL + Click the URL below to open a browser window. Press CTRL + C to shut down the server.')
     console.log('http://127.0.0.1:' + PORT + '/' + '\n')

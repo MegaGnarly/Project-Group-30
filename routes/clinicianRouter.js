@@ -9,7 +9,6 @@ clinicianRouter.use(bodyParser.urlencoded({ extended: false }));
 
 const appController = require('../controllers/appController.js')
 
-
 clinicianRouter.get('/', (req, res) => {
     appController.getAllDataClinician(req, res)
 })
@@ -17,7 +16,6 @@ clinicianRouter.get('/', (req, res) => {
 clinicianRouter.get('/:username', (req, res) => {
     appController.getPatientDataClinician(req, res)
 })
-
 
 clinicianRouter.post('/post_submit_msg/:id', async (req, res) => {
     appController.submitSupportMessage(req, res)
@@ -27,13 +25,10 @@ clinicianRouter.post('/post_time_series/:id', async (req, res) => {
     appController.setPatientTimeSeries(req, res)
 })
 
-
-
 // // Post Clinician Notes
 clinicianRouter.post('/submit_note/:id', async (req, res) => {
     appController.setClinicianNote(req, res)
 })
-
 
 
 module.exports = clinicianRouter
