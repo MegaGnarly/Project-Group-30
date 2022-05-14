@@ -116,7 +116,7 @@ app.post('/post_values', async (req, res) => {
             const doc = {
                 username: req.user.username,
                 date: new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
-                time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }),
+                time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne', hour: '2-digit', minute:'2-digit' }),
                 measured_glucose: "-",
                 measured_weight: "-",
                 measured_insulin: "-",

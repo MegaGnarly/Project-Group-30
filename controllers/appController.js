@@ -289,7 +289,7 @@ const setClinicianNote = async (req, res, next) => {
         const doc = {
             username: req.params.id,
             date: new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
-            time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne', hour: '2-digit', minute:'2-digit' }),
             note: req.body.cNote
         }
 
