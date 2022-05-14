@@ -5,6 +5,7 @@ const clinicalNote = require('../models/clinicalNote')
 const sessionStorage = require('sessionstorage')
 
 
+// Get a patients medical history
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
     try {
@@ -54,7 +55,7 @@ const getPatientHistory = async (req, res, next) => {
     }
 }
 
-// Get *all* patient data (used for the clinician dashboard)
+// Used for clinician dashboard - get patient data
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     try {
@@ -113,7 +114,8 @@ const getAllDataClinician = async (req, res, next) => {
 }
 
 
-// Get all data for a *specific* patient (used when you click a patient in the clin dashboard)
+// Used in clinician dashboard -> click on patient name
+// Function that pulls data to create a 'patient specifics' page. Get all data for a specific* patient.
 // Example: http://127.0.0.1:3000/clinician_dashboard/Bob would reveal data for Bob
 const getPatientDataClinician = async (req, res, next) => {
     console.log("DEBUG: inside getPatientDataClinician")
@@ -195,7 +197,7 @@ function isValidNumber(input) {
     }
 }
 
-
+// Used for clinician -> patient specifics page.
 const setPatientTimeSeries = async (req, res, next) => {
     try {
         // Get username of sender
@@ -279,7 +281,7 @@ const setPatientTimeSeries = async (req, res, next) => {
     }
 }
 
-
+// Used for clinician -> patient specifics page.
 const setClinicianNote = async (req, res, next) => {
         try {
         // New code that constructs and entry that will be inserted into the database.
@@ -293,15 +295,15 @@ const setClinicianNote = async (req, res, next) => {
 
         //Insert the final entry into the database and redirect user.
         clinicalNote.collection.insertOne(doc);
-
         await res.redirect('/clinician_dashboard/' + req.params.id)
+
     } catch (error) {
         console.log(error);
         return res.render('error_page', { buttonURL: "/login_page", buttonText: "Login Page", errorHeading: "An error occurred", errorText: "An error occurred when posting to clinicalNote database", logoURL: "../patient_dashboard" })
     }
 }
 
-
+// Used for clinician -> patient specifics page.
 const submitSupportMessage = async (req, res, next) => {
     try {
         const username = req.params.id;
@@ -318,15 +320,7 @@ const submitSupportMessage = async (req, res, next) => {
     }
 }
 
-const getSupportMessage = async (req, res, next) => {
-    try {
-
-    } catch (error) {
-
-    }
-}
-
-
+// Used for patient -> record health page.
 const getRecordHealthPage = async (req, res, next) => {
     try {
         // const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
@@ -353,9 +347,7 @@ const getRecordHealthPage = async (req, res, next) => {
         console.log(error)
         return res.render('error_page', { errorHeading: "An error occurred", errorText: "An error occurred when performing your request. This may occur if you are not logged in.", logoURL: "../patient_dashboard" })
     }
-
 }
-
 
 
 // Handle request to get patient data (name, rank etc)
@@ -377,24 +369,6 @@ const getPatientName = async (req, res, next) => {
         const username = current_user.username
         const role = current_user.role
         return res.render('patient_dashboard', { patientData: username, userName: username, role: role, logoURL: "../patient_dashboard" })
-    } catch (err) {
-        return next(err)
-    }
-}
-
-
-// Handle request to get one data instance - not in use!
-const getDataById = async (req, res, next) => {
-    console.log("Inside getdatabyID")
-    // search the database by ID
-    try {
-        const value = await measuredValue.findById(req.params.measuredValue_id).lean()
-        if (!value) {
-            // no value found in database return res.sendStatus(404)
-            return res.sendStatus(404)
-        }
-        // found person
-        return res.render('oneData', { oneItem: value })
     } catch (err) {
         return next(err)
     }
