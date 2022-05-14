@@ -18,16 +18,8 @@ clinicianRouter.get('/:username', (req, res) => {
     appController.getPatientDataClinician(req, res)
 })
 
-// clinicianRouter.get('/:username/patient_message', (req, res) => {
-//     console.log("Support message route")
-//     console.log("Support message route")
-//     console.log("Support message route")
-// })
 
 clinicianRouter.post('/post_submit_msg/:id', async (req, res) => {
-    // console.log("Values: ")
-    // console.log(req.body);
-    // console.log(req.body.cMsg)
     appController.submitSupportMessage(req, res)
 })
 

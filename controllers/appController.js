@@ -179,15 +179,20 @@ const submitSupportMessage = async (req, res, next) => {
         // Access the database for this user and update the support message field
         user.collection.updateOne({ username: username }, { $set: {support_msg: clinician_supportMsg} });
         console.log("Updated support message for", username);
+        res.redirect(req.get('referer'));
 
     } catch (error) {
         console.log(error)
         return res.render('error_page', { errorHeading: "Error when submitting clinician message", errorText: "Please try again.", logoURL: "../clinician_dashboard" })
     }
+}
 
-
-
-
+const getSupportMessage = async (req, res, next) => {
+    try {
+        
+    } catch (error) {
+        
+    }
 }
 
 

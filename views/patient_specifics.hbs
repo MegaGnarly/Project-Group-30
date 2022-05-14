@@ -114,11 +114,11 @@
 
     <div class="patient-specifics-notes-container">
         <h2>Support Message for {{profileData.username}}</h2>
-        
-        <h3>Update message</h3>
+        {{profileData.support_msg}}
+        <h3>Set new message</h3>
         <form method="POST" action="/clinician_dashboard/post_submit_msg/{{profileData.username}}">
             <input type="text" id="cMsg" name="cMsg" placeholder="Start typing here..." required>
-            <input class="todo" type="submit" value="Submit Note">
+            <input class="todo" type="submit" value="Update Support Message">
         </form>
     </div>
 
