@@ -3,7 +3,10 @@ const express = require('express')
 const authRouter = express.Router()
 const bodyParser = require('body-parser')
 const sessionStorage = require('sessionstorage')
+const appController = require('../controllers/appController.js')
+
 authRouter.use(bodyParser.urlencoded({ extended: false }));
+
 // Authentication middleware
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via passport, redirect to login page
@@ -17,10 +20,12 @@ const isAuthenticated = (req, res, next) => {
 // Main page which requires login to access
 // Note use of authentication middleware here
 authRouter.get('/patient_dashboard', isAuthenticated, (req, res) => {
-    console.log("1111111111111111111")
+    console.log("Loaded patient dashboard (authRouter.js)")
     console.log(req.user.username)
     sessionStorage.setItem('username', req.user.username)
-    res.render('patient_dashboard', { user: req.user.toJSON() })
+    appController.getPatientDashboard(req, res)
+
+    // res.render('patient_dashboard', { user: req.user.toJSON() })
 })
 
 // Login page (with failure message displayed upon login failure)

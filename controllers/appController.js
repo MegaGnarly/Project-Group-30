@@ -5,15 +5,16 @@ const clinicalNote = require('../models/clinicalNote')
 const sessionStorage = require('sessionstorage')
 
 
+// Get a patients medical history
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
     try {
-        const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
+        const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).lean()
 
         const tableRowArray = [];
         userValues.forEach(function (arrayItem) {
             const rowOfData = {
-                date: arrayItem.date, 
+                date: arrayItem.date,
                 time: arrayItem.time,
                 dataType: "",
                 value: "",
@@ -48,26 +49,26 @@ const getPatientHistory = async (req, res, next) => {
         })
 
         // The user values being passed are for the site header on the top right.
-        return res.render('patient_history', {data: tableRowArray, logoURL:"../clinician_dashboard"})
+        return res.render('patient_history', { data: tableRowArray, logoURL: "../patient_dashboard" })
     } catch (err) {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
     }
 }
 
-// Get *all* patient data (used for the clinician dashboard)
+// Used for clinician dashboard - get patient data
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     try {
-        
+
         const userArray = await measuredValue.collection.distinct("username")
 
         const tableRowArray = [];
-        
+
         const patientValues = await user.find().lean()
 
         for (const user of userArray) {
             // Queries the DB and returns all data of 1 user
-            const currentUser = await measuredValue.find( {username: user} ).lean()
+            const currentUser = await measuredValue.find({ username: user }).lean()
             const rowOfData = {
                 username: user,
                 time: "",
@@ -79,7 +80,7 @@ const getAllDataClinician = async (req, res, next) => {
                 comment: "",
             }
             currentUser.forEach(function (arrayItem) {
-                
+
                 // Update the date and time
                 rowOfData.time = arrayItem.time
                 rowOfData.date = arrayItem.date
@@ -104,16 +105,17 @@ const getAllDataClinician = async (req, res, next) => {
         }
 
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', {data: tableRowArray, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL:"../clinician_dashboard"})
+        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL: "../clinician_dashboard" })
     } catch (err) {
         console.log(err)
         console.log("ERROR in getAllDataClinician.")
-        return res.render('error_page', {errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL:"../clinician_dashboard"})
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
     }
 }
 
 
-// Get all data for a *specific* patient (used when you click a patient in the clin dashboard)
+// Used in clinician dashboard -> click on patient name
+// Function that pulls data to create a 'patient specifics' page. Get all data for a specific* patient.
 // Example: http://127.0.0.1:3000/clinician_dashboard/Bob would reveal data for Bob
 const getPatientDataClinician = async (req, res, next) => {
     console.log("DEBUG: inside getPatientDataClinician")
@@ -135,7 +137,7 @@ const getPatientDataClinician = async (req, res, next) => {
         const tableRowArray = [];
         userValues.forEach(function (arrayItem) {
             const rowOfData = {
-                date: arrayItem.date, 
+                date: arrayItem.date,
                 time: arrayItem.time,
                 dataType: "",
                 value: "",
@@ -176,7 +178,165 @@ const getPatientDataClinician = async (req, res, next) => {
     }
 }
 
+/*
+Check if input string is a valid number. Supports strings that contain decimal places.
+*/
+function isValidNumber(input) {
+    if (!input || input.length === 0) {
+        console.log("isValidNumber: Not a valid number.");
+        return false;
+    }
 
+    // If string does not contain a decimal point AND there is not a number
+    if ((input.indexOf(".")) && (isNaN(input))) {
+        console.log("isValidNumber: Not a valid number.");
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+// Used for clinician -> patient specifics page.
+const setPatientTimeSeries = async (req, res, next) => {
+    try {
+        // Get username of sender
+        const username = req.params.id
+
+        // If no checkboxes have been selected then set 'prescribed' to false on all measurements and return.
+        if (req.body.checkbox === undefined) {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: false, lower: 0, upper: 0 } } })
+
+            // Refresh the page
+            return res.redirect(req.get('referer'));
+        }
+
+        // Read each checkbox selection and progressively update the allowed measurable values 
+        if (req.body.checkbox.includes("blood_glucose")) {
+            // Check if user submitted values are valid (numerical or numerical with decimal)
+            if (isValidNumber(req.body.lower_bg) || (isValidNumber(req.body.upper_bg))) {
+                // Update permission and safety thresholds
+                user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: true, lower: req.body.lower_bg, upper: req.body.upper_bg } } })
+                console.log("Updated blood glucose safety threshold")
+            }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            // If the checkbox is not selected then set prescribed to false so that the patient cannot record data for this measurement type.
+            user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: false, lower: 0, upper: 0 } } })
+        }
+
+        if (req.body.checkbox.includes("weight")) {
+            if (isValidNumber(req.body.lower_weight) || (isValidNumber(req.body.upper_weight))) {
+                // Update permission and safety thresholds
+                user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: true, lower: req.body.lower_weight, upper: req.body.upper_weight } } })
+                console.log("Updated weight safety threshold")
+            }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: false, lower: 0, upper: 0 } } })
+        }
+
+        if (req.body.checkbox.includes("steps")) {
+            if (isValidNumber(req.body.lower_steps) || (isValidNumber(req.body.upper_steps))) {
+                // Update permission and safety thresholds
+                user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: true, lower: req.body.lower_steps, upper: req.body.upper_steps } } })
+                console.log("Updated exercise (steps) safety threshold")
+            }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: false, lower: 0, upper: 0 } } })
+        }
+
+        if (req.body.checkbox.includes("insulin")) {
+            if (isValidNumber(req.body.lower_doses) || (isValidNumber(req.body.upper_doses))) {
+                // Update permission and safety thresholds
+                user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: true, lower: req.body.lower_doses, upper: req.body.upper_doses } } })
+                console.log("Updated insulin doseage safety threshold")
+            }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin (doses) was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: false, lower: 0, upper: 0 } } })
+        }
+
+        // Refresh the page
+        res.redirect(req.get('referer'));
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// Used for clinician -> patient specifics page.
+const setClinicianNote = async (req, res, next) => {
+        try {
+        // New code that constructs and entry that will be inserted into the database.
+        // Note that all measured values are blank for now.
+        const doc = {
+            username: req.params.id,
+            date: new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            note: req.body.cNote
+        }
+
+        //Insert the final entry into the database and redirect user.
+        clinicalNote.collection.insertOne(doc);
+        await res.redirect('/clinician_dashboard/' + req.params.id)
+
+    } catch (error) {
+        console.log(error);
+        return res.render('error_page', { buttonURL: "/login_page", buttonText: "Login Page", errorHeading: "An error occurred", errorText: "An error occurred when posting to clinicalNote database", logoURL: "../patient_dashboard" })
+    }
+}
+
+// Used for clinician -> patient specifics page.
+const submitSupportMessage = async (req, res, next) => {
+    try {
+        const username = req.params.id;
+        const clinician_supportMsg = req.body.cMsg;
+
+        // Access the database for this user and update the support message field
+        user.collection.updateOne({ username: username }, { $set: { support_msg: clinician_supportMsg } });
+        console.log("Updated support message for", username);
+        res.redirect(req.get('referer'));
+
+    } catch (error) {
+        console.log(error)
+        return res.render('error_page', { errorHeading: "Error when submitting clinician message", errorText: "Please try again.", logoURL: "../clinician_dashboard" })
+    }
+}
+
+
+// Used for patient dashboard 
+const getPatientDashboard = async (req, res, next) => {
+    try {
+        const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+        const supportMsg = currentUser.support_msg;
+
+        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser})
+
+    } catch (error) {
+        console.log(error)
+        return res.render('error_page', { errorHeading: "Error when displaying dashboard", errorText: "Please ensure that you are logged in", logoURL: "../login" })
+    }
+}
+
+
+// Used for patient -> record health page.
 const getRecordHealthPage = async (req, res, next) => {
     try {
         // const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
@@ -197,15 +357,13 @@ const getRecordHealthPage = async (req, res, next) => {
         var allowInsulin = currentUser.threshold_insulin.prescribed;
 
         // Render page
-        res.render('record_health.hbs',  { logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin})
+        res.render('record_health.hbs', { logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin })
 
     } catch (error) {
         console.log(error)
         return res.render('error_page', { errorHeading: "An error occurred", errorText: "An error occurred when performing your request. This may occur if you are not logged in.", logoURL: "../patient_dashboard" })
     }
-
 }
-
 
 
 // Handle request to get patient data (name, rank etc)
@@ -233,31 +391,17 @@ const getPatientName = async (req, res, next) => {
 }
 
 
-// Handle request to get one data instance - not in use!
-const getDataById = async (req, res, next) => {
-    console.log("Inside getdatabyID")
-    // search the database by ID
-    try {
-        const value = await measuredValue.findById(req.params.measuredValue_id).lean()
-        if (!value) {
-            // no value found in database return res.sendStatus(404)
-            return res.sendStatus(404)
-        }
-        // found person
-        return res.render('oneData', { oneItem: value })
-    } catch (err) {
-        return next(err)
-    }
-}
-
-
 // Export objects so that they may be used by other files
 module.exports = {
     getAllPatientData,
     getAllDataClinician,
     getPatientDataClinician,
     getPatientName,
+    getPatientDashboard,
     getRecordHealthPage,
-    getPatientHistory
+    getPatientHistory,
+    submitSupportMessage,
+    setPatientTimeSeries,
+    setClinicianNote
     // getDataById
 }
