@@ -23,5 +23,11 @@ clinicianRouter.post('/post_submit_msg/:id', async (req, res) => {
     appController.submitSupportMessage(req, res)
 })
 
+clinicianRouter.post('/post_time_series/:id', async (req, res) => {
+    appController.setPatientTimeSeries(req, res)
+})
+
+
+
 
 module.exports = clinicianRouter

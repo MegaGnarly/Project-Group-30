@@ -171,13 +171,117 @@ const getPatientDataClinician = async (req, res, next) => {
     }
 }
 
+/*
+Check if input string is a valid number. Supports strings that contain decimal places.
+*/
+function isValidNumber(input) {
+    if (!input || input.length === 0) {
+        console.log("isValidNumber: Not a valid number.");
+        return false;
+    }
+
+    // If string does not contain a decimal point AND there is not a number
+    if ((input.indexOf(".")) && (isNaN(input))) {
+        console.log("isValidNumber: Not a valid number.");
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
+const setPatientTimeSeries = async (req, res, next) => {
+    try {
+        // Get username of sender
+        const username = req.params.id
+
+        // If no checkboxes have been selected then set 'prescribed' to false on all measurements and return.
+        if (req.body.checkbox === undefined) {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: false, lower: 0, upper: 0 } } })
+            user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: false, lower: 0, upper: 0 } } })
+
+            // Refresh the page
+            return res.redirect(req.get('referer'));
+        }
+
+        // Read each checkbox selection and progressively update the allowed measurable values 
+        if (req.body.checkbox.includes("blood_glucose")) {
+            // Check if user submitted values are valid (numerical or numerical with decimal)
+            if (isValidNumber(req.body.lower_bg) || (isValidNumber(req.body.upper_bg))) {
+                // Update permission and safety thresholds
+                user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: true, lower: req.body.lower_bg, upper: req.body.upper_bg } } })
+                console.log("Updated blood glucose safety threshold")
+            }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            // If the checkbox is not selected then set prescribed to false so that the patient cannot record data for this measurement type.
+            user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: false, lower: 0, upper: 0 } } })
+        }
+
+        if (req.body.checkbox.includes("weight")) {
+            if (isValidNumber(req.body.lower_weight) || (isValidNumber(req.body.upper_weight))) {
+                // Update permission and safety thresholds
+                user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: true, lower: req.body.lower_weight, upper: req.body.upper_weight } } })
+                console.log("Updated weight safety threshold")
+            }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: false, lower: 0, upper: 0 } } })
+        }
+
+        if (req.body.checkbox.includes("steps")) {
+            if (isValidNumber(req.body.lower_steps) || (isValidNumber(req.body.upper_steps))) {
+                // Update permission and safety thresholds
+                user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: true, lower: req.body.lower_steps, upper: req.body.upper_steps } } })
+                console.log("Updated exercise (steps) safety threshold")
+            }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: false, lower: 0, upper: 0 } } })
+        }
+
+        if (req.body.checkbox.includes("insulin")) {
+            if (isValidNumber(req.body.lower_doses) || (isValidNumber(req.body.upper_doses))) {
+                // Update permission and safety thresholds
+                user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: true, lower: req.body.lower_doses, upper: req.body.upper_doses } } })
+                console.log("Updated insulin doseage safety threshold")
+            }
+            else {
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin (doses) was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        }
+        else {
+            user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: false, lower: 0, upper: 0 } } })
+        }
+
+        // Refresh the page
+        res.redirect(req.get('referer'));
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 const submitSupportMessage = async (req, res, next) => {
     try {
         const username = req.params.id;
         const clinician_supportMsg = req.body.cMsg;
 
         // Access the database for this user and update the support message field
-        user.collection.updateOne({ username: username }, { $set: {support_msg: clinician_supportMsg} });
+        user.collection.updateOne({ username: username }, { $set: { support_msg: clinician_supportMsg } });
         console.log("Updated support message for", username);
         res.redirect(req.get('referer'));
 
@@ -189,9 +293,9 @@ const submitSupportMessage = async (req, res, next) => {
 
 const getSupportMessage = async (req, res, next) => {
     try {
-        
+
     } catch (error) {
-        
+
     }
 }
 
@@ -278,6 +382,7 @@ module.exports = {
     getPatientName,
     getRecordHealthPage,
     getPatientHistory,
-    submitSupportMessage
+    submitSupportMessage,
+    setPatientTimeSeries
     // getDataById
 }
