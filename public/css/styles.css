@@ -1642,13 +1642,13 @@ input[id=username], input[id=psw] {
     padding-top: 20px;
 }
 
-/* top 3 visuals */
+/* top 3 visuals at the top */
 .leaderboard-image-flex {
     display: flex;
     background-color: #EAF3FF;
     border-radius: 20px;
-    justify-self: center;
-    align-self: center;
+    justify-content: center;
+    align-content: center;
     margin-left: auto;
     margin-right: auto;
     padding-right: auto;
@@ -1670,7 +1670,7 @@ input[id=username], input[id=psw] {
     color:#717273;
     font-size: 15px;
 }
-
+ /* end of top 3 section */
 /* top 5 leaderboard list */
 
 /* top 3 */
@@ -1683,16 +1683,16 @@ input[id=username], input[id=psw] {
 .board-label{
     font-family: 'poppins', sans-serif;
     color: white;
-    padding-left: 20px;
     font-size: 18px;
-    padding-top: 15px
+    padding-top: 15px;
+    margin-left: 20px;
 }
 
 .user-score{
     font-family: 'poppins', sans-serif;
     color: white;
-    padding-left: 75%;
-    padding-top: 12px;
+    margin: auto;
+    margin-right: 5% ;
 }
 
 
@@ -1727,16 +1727,17 @@ input[id=username], input[id=psw] {
 .board-label-2{
     font-family: 'poppins', sans-serif;
     color: black;
-    padding-left: 20px;
     font-size: 18px;
     padding-top: 15px;
+    margin-left: 20px;
 }
+
 
 .user-score-2{
     font-family: 'poppins', sans-serif;
     color: black;
-    padding-left: 75%;
-    padding-top: 12px;
+    margin: auto;
+    margin-right: 5% ;
 }
 .top-others{
     display: flex;
