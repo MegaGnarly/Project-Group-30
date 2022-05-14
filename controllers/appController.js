@@ -17,25 +17,30 @@ const getPatientHistory = async (req, res, next) => {
                 time: arrayItem.time,
                 dataType: "",
                 value: "",
-                comment: arrayItem.comment
+                comment: arrayItem.comment,
+                pic: ""
             }
-
             // Determine the data type and data value for the row.
             if (arrayItem.measured_glucose != "-") {
                 rowOfData.dataType = "Blood Glucose";
                 rowOfData.value = arrayItem.measured_glucose;
+                rowOfData.pic = "../assets/blood glucose.png"
             }
             else if (arrayItem.measured_weight != "-") {
                 rowOfData.dataType = "Weight";
                 rowOfData.value = arrayItem.measured_weight;
+                rowOfData.pic = "../assets/Weight White ver.png"
+
             }
             else if (arrayItem.measured_insulin != "-") {
                 rowOfData.dataType = "Insulin Doses";
                 rowOfData.value = arrayItem.measured_insulin;
+                rowOfData.pic = "../assets/insulin icon.png"
             }
             else if (arrayItem.measured_exercise != "-") {
                 rowOfData.dataType = "Exercise (steps)";
                 rowOfData.value = arrayItem.measured_exercise;
+                rowOfData.pic = "../assets/exercise icon.png"
             }
 
             // Append to array

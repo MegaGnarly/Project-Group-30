@@ -1132,6 +1132,110 @@ footer {
     color:white;
 }
 
+/* ----------------- HISTORY CSS---------------------*/
+
+.history-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 5%;
+}
+
+.history-title {
+    display: flex;
+    width: 90%;
+    height: 45px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    align-self: center;
+}
+
+.history-icon {
+    width: 10%;
+    justify-content: center;
+    display: flex;
+}
+
+.timestamp-history {
+    width: 35%;
+
+}
+
+.measurement-history {
+    width: 25%;
+}
+
+.date-history {
+    width: 15%;
+    justify-content: center;
+}
+
+.time-history{
+    width: 15%;
+    justify-content: center;
+}
+
+.history-row {
+    display: flex;
+    width: 90%;
+    height: 45px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    /* color: black; */
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    align-self: center;
+    transition: 0.25s;
+    border: 2px solid #ececee;
+    background-color: #f0f0f3;
+}
+
+.history-pic {
+    height: 40px;
+    width: 40px;
+    align-self: center;
+    filter: opacity(0.5) drop-shadow(0 0 0 #0024a5);
+}
+
+.history-data {
+    width: 100%;
+    display: flex;
+    font-weight: bold;
+}
+
+.history-row:hover {
+    background-color: #72A6E8;
+    border: 2px solid #72A6E8;
+}
+.history-row .history-comment {
+    display: none;
+}
+
+.history-row:hover .history-data{
+    display: none;
+}
+
+.history-row:hover .history-comment{
+    display: flex;
+    height: 100%;
+    color: white;
+    width: 100%;
+}
+
+.history-row:hover .history-pic {
+    height: 40px;
+    width: 40px;
+    align-self: center;
+    filter: none;
+    overflow: auto;
+}
+
+.center-hist {
+    align-items: center;
+    display: flex;
+}
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------- */
@@ -1493,6 +1597,15 @@ input[id=username], input[id=psw] {
         text-align: center;
         margin:auto;
     }
+    
+    .history-title {
+        font-size: 75%;
+    }
+
+    .history-data {
+        font-size: smaller;
+    }
+
  }
 
 /*----------------------------------------------------------------------------------------------------------------------*/
@@ -1529,13 +1642,13 @@ input[id=username], input[id=psw] {
     padding-top: 20px;
 }
 
-/* top 3 visuals */
+/* top 3 visuals at the top */
 .leaderboard-image-flex {
     display: flex;
     background-color: #EAF3FF;
     border-radius: 20px;
-    justify-self: center;
-    align-self: center;
+    justify-content: center;
+    align-content: center;
     margin-left: auto;
     margin-right: auto;
     padding-right: auto;
@@ -1557,7 +1670,7 @@ input[id=username], input[id=psw] {
     color:#717273;
     font-size: 15px;
 }
-
+ /* end of top 3 section */
 /* top 5 leaderboard list */
 
 /* top 3 */
@@ -1570,16 +1683,16 @@ input[id=username], input[id=psw] {
 .board-label{
     font-family: 'poppins', sans-serif;
     color: white;
-    padding-left: 20px;
     font-size: 18px;
-    padding-top: 15px
+    padding-top: 15px;
+    margin-left: 20px;
 }
 
 .user-score{
     font-family: 'poppins', sans-serif;
     color: white;
-    padding-left: 75%;
-    padding-top: 12px;
+    margin: auto;
+    margin-right: 5% ;
 }
 
 
@@ -1614,16 +1727,17 @@ input[id=username], input[id=psw] {
 .board-label-2{
     font-family: 'poppins', sans-serif;
     color: black;
-    padding-left: 20px;
     font-size: 18px;
     padding-top: 15px;
+    margin-left: 20px;
 }
+
 
 .user-score-2{
     font-family: 'poppins', sans-serif;
     color: black;
-    padding-left: 75%;
-    padding-top: 12px;
+    margin: auto;
+    margin-right: 5% ;
 }
 .top-others{
     display: flex;
