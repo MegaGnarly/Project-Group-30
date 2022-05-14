@@ -176,6 +176,14 @@ app.post('/post_values', async (req, res) => {
     }
 })
 
+// app.post('/clinician_dashboard/post_submit_msg/:id', async (req, res) => {
+//     console.log("Debug: Support message received")
+//     console.log(req.body.clinician_msg)
+//     // appController.submitSupportMessage(req, res)
+// })
+
+
+
 // Post Clinician Notes
 app.post('/submit_note/:id', async (req, res) => {
     
@@ -290,7 +298,6 @@ app.post('/post_time_series/:id', async (req, res) => {
         console.log(error)
     }
 })
-
 
 
 // TODO: MOVE THIS TO THE PATIENT ROUTER AND ADD FIRSTNAME/LASTNAME TO REGISTRATION PAGE

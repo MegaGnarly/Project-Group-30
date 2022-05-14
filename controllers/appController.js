@@ -8,12 +8,12 @@ const sessionStorage = require('sessionstorage')
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
     try {
-        const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
+        const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).lean()
 
         const tableRowArray = [];
         userValues.forEach(function (arrayItem) {
             const rowOfData = {
-                date: arrayItem.date, 
+                date: arrayItem.date,
                 time: arrayItem.time,
                 dataType: "",
                 value: "",
@@ -43,7 +43,7 @@ const getPatientHistory = async (req, res, next) => {
         })
 
         // The user values being passed are for the site header on the top right.
-        return res.render('patient_history', {data: tableRowArray, logoURL:"../clinician_dashboard"})
+        return res.render('patient_history', { data: tableRowArray, logoURL: "../clinician_dashboard" })
     } catch (err) {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
     }
@@ -53,16 +53,16 @@ const getPatientHistory = async (req, res, next) => {
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     try {
-        
+
         const userArray = await measuredValue.collection.distinct("username")
 
         const tableRowArray = [];
-        
+
         const patientValues = await user.find().lean()
 
         for (const user of userArray) {
             // Queries the DB and returns all data of 1 user
-            const currentUser = await measuredValue.find( {username: user} ).lean()
+            const currentUser = await measuredValue.find({ username: user }).lean()
             const rowOfData = {
                 username: user,
                 time: "",
@@ -74,7 +74,7 @@ const getAllDataClinician = async (req, res, next) => {
                 comment: "",
             }
             currentUser.forEach(function (arrayItem) {
-                
+
                 // Update the date and time
                 rowOfData.time = arrayItem.time
                 rowOfData.date = arrayItem.date
@@ -99,11 +99,11 @@ const getAllDataClinician = async (req, res, next) => {
         }
 
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', {data: tableRowArray, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL:"../clinician_dashboard"})
+        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL: "../clinician_dashboard" })
     } catch (err) {
         console.log(err)
         console.log("ERROR in getAllDataClinician.")
-        return res.render('error_page', {errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL:"../clinician_dashboard"})
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
     }
 }
 
@@ -130,7 +130,7 @@ const getPatientDataClinician = async (req, res, next) => {
         const tableRowArray = [];
         userValues.forEach(function (arrayItem) {
             const rowOfData = {
-                date: arrayItem.date, 
+                date: arrayItem.date,
                 time: arrayItem.time,
                 dataType: "",
                 value: "",
@@ -171,6 +171,25 @@ const getPatientDataClinician = async (req, res, next) => {
     }
 }
 
+const submitSupportMessage = async (req, res, next) => {
+    try {
+        const username = req.params.id;
+        const clinician_supportMsg = req.body.cMsg;
+
+        // Access the database for this user and update the support message field
+        user.collection.updateOne({ username: username }, { $set: {support_msg: clinician_supportMsg} });
+        console.log("Updated support message for", username);
+
+    } catch (error) {
+        console.log(error)
+        return res.render('error_page', { errorHeading: "Error when submitting clinician message", errorText: "Please try again.", logoURL: "../clinician_dashboard" })
+    }
+
+
+
+
+}
+
 
 const getRecordHealthPage = async (req, res, next) => {
     try {
@@ -192,7 +211,7 @@ const getRecordHealthPage = async (req, res, next) => {
         var allowInsulin = currentUser.threshold_insulin.prescribed;
 
         // Render page
-        res.render('record_health.hbs',  { logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin})
+        res.render('record_health.hbs', { logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin })
 
     } catch (error) {
         console.log(error)
@@ -253,6 +272,7 @@ module.exports = {
     getPatientDataClinician,
     getPatientName,
     getRecordHealthPage,
-    getPatientHistory
+    getPatientHistory,
+    submitSupportMessage
     // getDataById
 }
