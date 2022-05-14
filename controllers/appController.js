@@ -49,7 +49,7 @@ const getPatientHistory = async (req, res, next) => {
         })
 
         // The user values being passed are for the site header on the top right.
-        return res.render('patient_history', { data: tableRowArray, logoURL: "../clinician_dashboard" })
+        return res.render('patient_history', { data: tableRowArray, logoURL: "../patient_dashboard" })
     } catch (err) {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
     }
@@ -320,6 +320,22 @@ const submitSupportMessage = async (req, res, next) => {
     }
 }
 
+
+// Used for patient dashboard 
+const getPatientDashboard = async (req, res, next) => {
+    try {
+        const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+        const supportMsg = currentUser.support_msg;
+
+        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser})
+
+    } catch (error) {
+        console.log(error)
+        return res.render('error_page', { errorHeading: "Error when displaying dashboard", errorText: "Please ensure that you are logged in", logoURL: "../login" })
+    }
+}
+
+
 // Used for patient -> record health page.
 const getRecordHealthPage = async (req, res, next) => {
     try {
@@ -381,6 +397,7 @@ module.exports = {
     getAllDataClinician,
     getPatientDataClinician,
     getPatientName,
+    getPatientDashboard,
     getRecordHealthPage,
     getPatientHistory,
     submitSupportMessage,

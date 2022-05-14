@@ -88,9 +88,9 @@ app.use((req, res, next) => {
 
 
 // **** Application GETs ****  
-app.get('/patient_history', isAuthenticated, (req, res) => {
-    res.render('patient_history.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
-})
+// app.get('/patient_history', isAuthenticated, (req, res) => {
+//     res.render('patient_history.hbs', { logoURL: "../patient_dashboard", user: req.user.toJSON() })
+// })
 
 app.get('/thankyou_page', (req, res) => {
     res.render('thankyou_page.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })

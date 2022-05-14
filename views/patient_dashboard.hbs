@@ -32,16 +32,18 @@
     <!-- Column 2 -->
     <!-- Nested grid container that stores buttons-->
     <div id="patient-dashboard-grid-container-nested">
-        <h2 class="patient-dashboard-notifications-text">Notifications</h2>
-        <h2 class="container-text"></h2>
+        <h2 class="patient-dashboard-notifications-text">Todays Requirements</h2>
+        {{!-- <h1 class="container-text"></h1> --}}
 
-        <button class="button01 white">Dose of insulin</button>
+        <div class ="dataToRecord white">Data</div>
+        <div class ="dataToRecord white">Data</div>
+
+        {{!-- <button class="button01 white">Blood glucose levels</button> --}}
 
         <button class="button02">
-            <h2>Recent Messages</h2>
-            <p class="center-text">No messages.</p>
+            <h2>Latest Clinician Message</h2>
+            <p class="center-text">{{profileData.support_msg}}</p>
         </button>
-        <button class="button01 white">Blood glucose levels</button>
     </div>
 </div>
 <br>
