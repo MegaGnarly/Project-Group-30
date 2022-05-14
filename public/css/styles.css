@@ -1655,6 +1655,7 @@ input[id=username], input[id=psw] {
     padding-bottom: 20px;
     padding-top: 20px;
     align-items: baseline;
+    min-height: 170px;
 }
 
 .place{
@@ -1771,5 +1772,40 @@ input[id=username], input[id=psw] {
     transition: all 0.5s ease 0s;
 }
 
+/* ---------------responsive design--------------------- */
+
+@media (max-width: 950px){
+    /* overall container */
+
+
+    .place{
+        padding-left: 2%;
+        padding-right: 2%;
+        justify-items: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        align-content: center;
+    }
+    .second-icon{
+        max-height: 100px;
+        max-width: 100px;
+        padding-left: 10px;
+    }
+    
+    .first-icon{
+        max-height: 150px;
+        max-width: 150px;
+        padding-right: 10px;
+    }
+
+    .third-icon{
+        max-height: 100px;
+        max-width: 100px;
+        padding-right: 10px;
+    }
+
+}
 
 
