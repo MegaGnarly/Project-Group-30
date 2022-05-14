@@ -280,6 +280,28 @@ const setPatientTimeSeries = async (req, res, next) => {
 }
 
 
+const setClinicianNote = async (req, res, next) => {
+        try {
+        // New code that constructs and entry that will be inserted into the database.
+        // Note that all measured values are blank for now.
+        const doc = {
+            username: req.params.id,
+            date: new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne' }),
+            note: req.body.cNote
+        }
+
+        //Insert the final entry into the database and redirect user.
+        clinicalNote.collection.insertOne(doc);
+
+        await res.redirect('/clinician_dashboard/' + req.params.id)
+    } catch (error) {
+        console.log(error);
+        return res.render('error_page', { buttonURL: "/login_page", buttonText: "Login Page", errorHeading: "An error occurred", errorText: "An error occurred when posting to clinicalNote database", logoURL: "../patient_dashboard" })
+    }
+}
+
+
 const submitSupportMessage = async (req, res, next) => {
     try {
         const username = req.params.id;
@@ -388,6 +410,7 @@ module.exports = {
     getRecordHealthPage,
     getPatientHistory,
     submitSupportMessage,
-    setPatientTimeSeries
+    setPatientTimeSeries,
+    setClinicianNote
     // getDataById
 }
