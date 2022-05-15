@@ -1179,11 +1179,12 @@ footer {
     width: 10%;
     justify-content: center;
     display: flex;
+    align-self: center;
+    height: 100%;
 }
 
 .timestamp-history {
     width: 35%;
-
 }
 
 .measurement-history {
@@ -1212,6 +1213,7 @@ footer {
     transition: 0.25s;
     border: 2px solid #ececee;
     background-color: #f0f0f3;
+
 }
 
 .history-pic {
@@ -1223,6 +1225,7 @@ footer {
 
 .history-data {
     width: 100%;
+    height: 100%;
     display: flex;
     font-weight: bold;
 }
@@ -1627,15 +1630,40 @@ input[id=username], input[id=psw] {
     }
     
     .history-title {
-        font-size: 75%;
+        font-size: 70%;
     }
-
+    .timestamp-history {
+        width: 30%;
+    }
+    
+    .measurement-history {
+        width: 20%;
+    }
+    
+    .date-history {
+        width: 25%;
+        justify-content: center;
+    }
+    
+    .time-history{
+        width: 20%;
+        justify-content: center;
+    }
     .history-data {
-        font-size: smaller;
+        font-size: 70%;
     }
 
- }
+    .history-pic{
+        height: 30px;
+        width: 30px;
+        display: flex;
+    }
 
+    .history-row:hover .history-pic {
+        height: 30px;
+        width: 30px;
+    }
+}
 /*----------------------------------------------------------------------------------------------------------------------*/
 /*Leaderboard CSS -- work in progress, need to make responsive*/
 
@@ -1837,5 +1865,4 @@ input[id=username], input[id=psw] {
 }
 
 /* ------------------ leaderboard end ------------------ */
-
 
