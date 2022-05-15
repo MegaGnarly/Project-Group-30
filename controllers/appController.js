@@ -283,13 +283,13 @@ const setPatientTimeSeries = async (req, res, next) => {
 
 // Used for clinician -> patient specifics page.
 const setClinicianNote = async (req, res, next) => {
-        try {
+    try {
         // New code that constructs and entry that will be inserted into the database.
         // Note that all measured values are blank for now.
         const doc = {
             username: req.params.id,
             date: new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
-            time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne', hour: '2-digit', minute:'2-digit' }),
+            time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne', hour: '2-digit', minute: '2-digit' }),
             note: req.body.cNote
         }
 
@@ -322,9 +322,32 @@ const submitSupportMessage = async (req, res, next) => {
 
 const getLeaderboard = async (req, res, next) => {
     try {
-        const rankings = await measuredValue.aggregate([{ $sortByCount: "$username" }])
-  
-        res.render('leaderboard', { rank: rankings })
+        const allUsers = await user.collection.distinct("username")
+        const rankingRowArray = []
+
+        for (const currUser of allUsers) {
+            const rowOfData = {
+                username: currUser,
+                engagementRate: ""
+            }
+            // For every user, count their distinct dates
+            const daysOfEngagement = (await measuredValue.find({ username: [currUser] }).distinct("date")).length
+            const sinceDate = await user.findOne({ username: [currUser] }, { _id: 0, dateSince: 1 })
+            const registeredDate = sinceDate.dateSince
+            const today = new Date()
+            const todaysDate = new Date(today.getTime())
+            // To calculate the time difference of two dates
+            const differenceInTime = todaysDate - registeredDate;
+            // To calculate the no. of days between two dates
+            const totalDaysRegistered = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+
+            // Engagement rate as per spec - For example, if a patient has been registered for 20 days, 
+            // and entered some data on 16 of those days, their current engagement rate is 80%.
+            rowOfData.engagementRate = (daysOfEngagement/totalDaysRegistered) * 100;
+            rankingRowArray.push(rowOfData)
+        }
+
+        res.render('leaderboard', { rank: rankingRowArray, logoURL: "../patient_dashboard"})
 
     } catch (error) {
         console.log(error)
@@ -338,9 +361,9 @@ const getLeaderboard = async (req, res, next) => {
 const getPatientDashboard = async (req, res, next) => {
     try {
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
-       
 
-        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser})
+
+        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser })
 
     } catch (error) {
         console.log(error)

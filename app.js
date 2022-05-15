@@ -164,6 +164,7 @@ app.post('/register', (req, res) => {
         password: req.body.password,
         firstName: req.body.fname,
         lastName: req.body.lname,
+        dateSince: Date.now(),
         secret: 'INFO30005',
 
         // Set permissions and default values for safety thresholds - these can be modified by the clinician
