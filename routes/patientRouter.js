@@ -25,7 +25,10 @@ patientRouter.get('/record_health',  (req, res) => {
     // res.render('record_health.hbs', { userName: "Pat", userRole: "USER", logoURL: "../patient_dash" })
 })
 
-
+patientRouter.get('/leaderboard',  (req, res) => {
+    console.log("IN PATIENT ROUTER - LEADERBOARD")
+    appController.getLeaderboard(req, res)
+})
 
 // export the router
 module.exports = patientRouter

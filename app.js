@@ -96,10 +96,10 @@ app.get('/thankyou_page', (req, res) => {
     res.render('thankyou_page.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
 })
 
-app.get('/leaderboard', (req, res) => {
-    console.log("IN LEADERBOARD")
-    res.render('leaderboard.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
-})
+// app.get('/leaderboard', (req, res) => {
+//     console.log("IN LEADERBOARD")
+//     res.render('leaderboard.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
+// })
 
 
 // **** Application POSTs ****  
@@ -190,6 +190,11 @@ hbs.handlebars.registerHelper('thresholdChecker', function (num, options) {
     return options.inverse(this);
 });
 
+// Used to make the index in leaderboard start from 1 instead of 0
+hbs.handlebars.registerHelper('inc', function(value, options)
+{
+    return parseInt(value) + 1;
+});
 
 // **** Main code that launches the server ****  
 app.listen(process.env.PORT || PORT, () => {

@@ -320,12 +320,25 @@ const submitSupportMessage = async (req, res, next) => {
     }
 }
 
+const getLeaderboard = async (req, res, next) => {
+    try {
+        const rankings = await measuredValue.aggregate([{ $sortByCount: "$username" }])
+  
+        res.render('leaderboard', { rank: rankings })
+
+    } catch (error) {
+        console.log(error)
+        return res.render('error_page', { errorHeading: "Error when displaying getLeaderboard", errorText: "Error when displaying getLeaderboard", logoURL: "../patient_dashboard" })
+    }
+
+}
+
 
 // Used for patient dashboard 
 const getPatientDashboard = async (req, res, next) => {
     try {
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
-        const supportMsg = currentUser.support_msg;
+       
 
         res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser})
 
@@ -398,6 +411,7 @@ module.exports = {
     getPatientDataClinician,
     getPatientName,
     getPatientDashboard,
+    getLeaderboard,
     getRecordHealthPage,
     getPatientHistory,
     submitSupportMessage,

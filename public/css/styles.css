@@ -1711,7 +1711,7 @@ input[id=username], input[id=psw] {
 
 .board-label{
     font-family: 'poppins', sans-serif;
-    color: white;
+    color: black;
     font-size: 18px;
     padding-top: 15px;
     margin-left: 20px;
@@ -1719,7 +1719,7 @@ input[id=username], input[id=psw] {
 
 .user-score{
     font-family: 'poppins', sans-serif;
-    color: white;
+    color: black;
     margin: auto;
     margin-right: 5% ;
 }
