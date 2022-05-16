@@ -150,44 +150,27 @@ const getPatientEntryData = async (req, res, next) => {
         console.log(userValues)
 
         // Get data about the user (what type of measurements they are permitted to record)
-            // const currentUser = await user.findOne({ username: userValues.username }).lean()
-            // var isPermittedBg = currentUser.threshold_bg.prescribed;
-            // var isPermittedWeight = currentUser.threshold_weight.prescribed;
-            // var isPermittedExercise = currentUser.threshold_exercise.prescribed;
-            // var isPermittedInsulin = currentUser.threshold_insulin.prescribed;
-            // console.log(isPermittedBg, isPermittedExercise, isPermittedInsulin, isPermittedWeight)
+        // const currentUser = await user.findOne({ username: userValues.username }).lean()
+        // var isPermittedBg = currentUser.threshold_bg.prescribed;
+        // var isPermittedWeight = currentUser.threshold_weight.prescribed;
+        // var isPermittedExercise = currentUser.threshold_exercise.prescribed;
+        // var isPermittedInsulin = currentUser.threshold_insulin.prescribed;
+        // console.log(isPermittedBg, isPermittedExercise, isPermittedInsulin, isPermittedWeight)
 
-        var glucose, weight, exercise, insulin;
-        var displayGlucose = false;
-        var displayWeight = false;
-        var displayExercise = false;
-        var displayInsulin = false;
+
         var date = userValues.date;
         var time = userValues.time;
         var username = userValues.username;
         var comment = userValues.comment;
+        var glucose = userValues.measured_glucose;
+        var weight = userValues.measured_weight;
+        var exercise = userValues.measured_exercise;
+        var insulin = userValues.measured_insulin;
 
-        if (userValues.measured_glucose != "-") {
-            displayGlucose = true;
-            glucose = userValues.measured_glucose;
-        }
-        if (userValues.measured_weight != "-") {
-            displayWeight = true;
-            weight = userValues.measured_weight;
-        }
-        if (userValues.measured_exercise != "-") {
-            displayExercise = true;
-            exercise = userValues.measured_exercise;
-        }
-        if (userValues.measured_insulin != "-") {
-            displayInsulin = true;
-            insulin = userValues.measured_insulin;
-        }
-
-
-
-        return res.render('attached_data', { patientValues: userValues, displayGlucose: displayGlucose, displayWeight: displayWeight, displayExercise: displayExercise, displayInsulin: displayInsulin, 
-            date: date, time: time, username: username, comment: comment, glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, logoURL: "../" })
+        return res.render('attached_data', {
+            patientValues: userValues, date: date, time: time, username: username, comment: comment,
+            glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, logoURL: "../"
+        })
 
     } catch (error) {
         console.log(error)
