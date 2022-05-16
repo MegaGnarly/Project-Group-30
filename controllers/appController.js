@@ -150,7 +150,7 @@ const getPatientEntryData = async (req, res, next) => {
         console.log(userValues)
 
         // Get data about the user (what type of measurements they are permitted to record)
-        // const currentUser = await user.findOne({ username: userValues.username }).lean()
+        const currentUser = await user.findOne({ username: userValues.username }).lean()
         // var isPermittedBg = currentUser.threshold_bg.prescribed;
         // var isPermittedWeight = currentUser.threshold_weight.prescribed;
         // var isPermittedExercise = currentUser.threshold_exercise.prescribed;
@@ -161,15 +161,18 @@ const getPatientEntryData = async (req, res, next) => {
         var date = userValues.date;
         var time = userValues.time;
         var username = userValues.username;
+        var fName = currentUser.firstName;
+        var lName = currentUser.lastName;
         var comment = userValues.comment;
         var glucose = userValues.measured_glucose;
         var weight = userValues.measured_weight;
         var exercise = userValues.measured_exercise;
         var insulin = userValues.measured_insulin;
+        var dob = userValues.dob;
 
         return res.render('attached_data', {
-            patientValues: userValues, date: date, time: time, username: username, comment: comment,
-            glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, logoURL: "../"
+            patientValues: userValues, date: date, time: time, username: username, comment: comment, dob,
+            glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, fName: fName, lName: lName, logoURL: "../"
         })
 
     } catch (error) {

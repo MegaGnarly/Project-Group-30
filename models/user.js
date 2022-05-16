@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   role: String,     // Patient or Clinician 
   age: Number,
+  dob: String,
   dateSince: Date, // Date since registration of user, required to calculate engagement
   secret: { type: String, required: true },
   threshold_bg: {prescribed: Boolean, lower: String, upper: String},

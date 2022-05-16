@@ -1,6 +1,8 @@
-<br>
-<h1 class="clinician-title">Entry Data for {{username}}</h1>
+{{!-- <h1 class="clinician-title">Entry Data for {{username}}</h1> --}}
 
+<div id="patient-specifics-topbar">
+    <h1>Entry Data for {{username}}</h1>
+</div>
 
 <div id="patient-specifics-container">
     <div class="patient-specifics-userbox">
@@ -8,24 +10,39 @@
             <img class="patient-specifics-pfp" src="../assets/icon_profile.png" alt="Profile picture" width="150"
                 height="150">
 
-            <h2 class="patient-specifics-name">{{profileData.firstName}} {{profileData.lastName}}</h2>
+            <h2 class="patient-specifics-name">{{fName}} {{lName}}</h2>
+            <p>DOB: {{dob}}</p>
+            <button class="button04 purple2" onclick="location.href='/clinician_dashboard/patient/{{username}}'">View Record</button>
         </div>
     </div>
 
-    <div class="patient-specifics-table">
+    <div class="patient-specifics-table patient-specifics-table-attachedData">
         <div class="patient-specifics-table-header">Date/Time</div>
         <div class="patient-specifics-table-header">Blood Glucose</div>
         <div class="patient-specifics-table-header">Weight</div>
         <div class="patient-specifics-table-header">No. Insulin Doses</div>
         <div class="patient-specifics-table-header">Exercise (Steps)</div>
 
-        <div class="patient-specifics-table-data">{{date}}</div>
+        <div class="patient-specifics-table-data">{{date}} at {{time}}</div>
         <div class="patient-specifics-table-data">{{glucose}}</div>
         <div class="patient-specifics-table-data">{{weight}}</div>
         <div class="patient-specifics-table-data">{{insulin}}</div>
         <div class="patient-specifics-table-data">{{exercise}}</div>
     </div>
+
+    <div class="patient-specifics-notes-container">
+        <p class="blue-heading-medium">Attached Comment from {{username}}</p>
+        "{{comment}}"
+    </div>
+
+    <div class="patient-specifics-notes-container">
+        <p class="blue-heading-medium">Send {{username}} a message</p>
+
+        <h3>Support Message</h3>
+        <form method="POST" action="/clinician_dashboard/post_submit_msg/{{profileData.username}}">
+            <input type="text" id="cMsg" name="cMsg" placeholder="Start typing here..." required>
+            <input class="todo" type="submit" value="Update Support Message">
+        </form>
+    </div>
+
 </div>
-
-
-{{comment}}

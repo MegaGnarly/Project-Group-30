@@ -910,7 +910,7 @@ textarea::placeholder {
 
 .patient-specifics-name {
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .patient-specifics-table {
@@ -920,6 +920,10 @@ textarea::placeholder {
     grid-auto-rows: 60px;
     border:5px solid #eeeeee;
     border-radius: 25px;
+}
+
+.patient-specifics-table-attachedData {
+    grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 
@@ -1366,8 +1370,12 @@ img {
     font-weight: bold;
 }
 
-.blue{
+.blue {
     background-color:#72A6E8;
+}
+
+.blue-text {
+    color: #72A6E8;
 }
 
 .purple1 {
@@ -1887,6 +1895,12 @@ input[id=username], input[id=psw] {
     border:none;
     cursor:pointer;
     transition: all 0.5s ease 0s;
+}
+
+.blue-heading-medium {
+    font-size: 24px;
+    font-weight: bold;
+    color: #72A6E8;
 }
 
 /* ---------------responsive design--------------------- */

@@ -39,13 +39,9 @@
 
         <div class="comments-table-cell">
             <div class="comments-table-cell-text">{{comment}}</div>
-            {{!-- <div class="comments-table-cell-link">View Attached Data ></div> --}}
-
-
-                {{!-- <div class="comments-table-cell-link" onclick="location.href='/clinician_dashboard/patient/{{username}}'">View Attached Data</div> --}}
-                <div class="comments-table-cell-link" onclick="location.href='/clinician_dashboard/entry/{{_id}}'">View Attached Data > </div>
-
-
+            <div class="comments-table-cell-link" onclick="location.href='/clinician_dashboard/entry/{{_id}}'">View
+                Attached Data >
+            </div>
         </div>
         {{/each}}
 
