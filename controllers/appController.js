@@ -51,7 +51,7 @@ const getPatientHistory = async (req, res, next) => {
         // The user values being passed are for the site header on the top right.
         return res.render('patient_history', { data: tableRowArray, logoURL: "../patient_dashboard" })
     } catch (err) {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../" })
     }
 }
 
@@ -105,12 +105,17 @@ const getAllDataClinician = async (req, res, next) => {
         }
 
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL: "../clinician_dashboard" })
+        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL: "../" })
     } catch (err) {
         console.log(err)
         console.log("ERROR in getAllDataClinician.")
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../" })
     }
+}
+
+
+const getAllPatientComments = async (req, res, next) => {
+    return res.render('comments', { logoURL: "../" })
 }
 
 
@@ -126,7 +131,7 @@ const getPatientDataClinician = async (req, res, next) => {
 
         if (currentUser == null) {
             // Throw page not found error
-            return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
+            return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../" })
         }
 
         // Get all measurement values about the patient
@@ -169,12 +174,12 @@ const getPatientDataClinician = async (req, res, next) => {
         // Get clinical Notes
         const allNotes = await clinicalNote.find({ username: req.params.username }).lean()
 
-        return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, clinicianNote: allNotes, logoURL: "../clinician_dashboard" })
+        return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, clinicianNote: allNotes, logoURL: "../" })
 
     } catch (err) {
         console.log(err)
         console.log("ERROR in getPatientDataClinician. Perhaps the user does not exist?")
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../clinician_dashboard" })
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../" })
     }
 }
 
@@ -223,7 +228,7 @@ const setPatientTimeSeries = async (req, res, next) => {
                 console.log("Updated blood glucose safety threshold")
             }
             else {
-                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please try again.", logoURL: "../" })
             }
         }
         else {
@@ -238,7 +243,7 @@ const setPatientTimeSeries = async (req, res, next) => {
                 console.log("Updated weight safety threshold")
             }
             else {
-                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Please try again.", logoURL: "../" })
             }
         }
         else {
@@ -252,7 +257,7 @@ const setPatientTimeSeries = async (req, res, next) => {
                 console.log("Updated exercise (steps) safety threshold")
             }
             else {
-                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../" })
             }
         }
         else {
@@ -266,7 +271,7 @@ const setPatientTimeSeries = async (req, res, next) => {
                 console.log("Updated insulin doseage safety threshold")
             }
             else {
-                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin (doses) was not accepted by the server. Please try again.", logoURL: "../clinician_dashboard" })
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin (doses) was not accepted by the server. Please try again.", logoURL: "../" })
             }
         }
         else {
@@ -295,7 +300,7 @@ const setClinicianNote = async (req, res, next) => {
 
         //Insert the final entry into the database and redirect user.
         clinicalNote.collection.insertOne(doc);
-        await res.redirect('/clinician_dashboard/' + req.params.id)
+        await res.redirect('/clinician_dashboard/patient/' + req.params.id)
 
     } catch (error) {
         console.log(error);
@@ -312,11 +317,11 @@ const submitSupportMessage = async (req, res, next) => {
         // Access the database for this user and update the support message field
         user.collection.updateOne({ username: username }, { $set: { support_msg: clinician_supportMsg } });
         console.log("Updated support message for", username);
-        res.redirect(req.get('referer'));
+        await res.redirect('/clinician_dashboard/patient/' + req.params.id)
 
     } catch (error) {
         console.log(error)
-        return res.render('error_page', { errorHeading: "Error when submitting clinician message", errorText: "Please try again.", logoURL: "../clinician_dashboard" })
+        return res.render('error_page', { errorHeading: "Error when submitting clinician message", errorText: "Please try again.", logoURL: "../" })
     }
 }
 
@@ -432,6 +437,7 @@ module.exports = {
     getAllPatientData,
     getAllDataClinician,
     getPatientDataClinician,
+    getAllPatientComments,
     getPatientName,
     getPatientDashboard,
     getLeaderboard,

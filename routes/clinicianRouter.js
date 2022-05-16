@@ -7,15 +7,23 @@ const clinicianRouter = express.Router()
 const bodyParser = require('body-parser')
 clinicianRouter.use(bodyParser.urlencoded({ extended: false }));
 
+clinicianRouter.use('/', express.static('public'))
+
+
 const appController = require('../controllers/appController.js')
 
 clinicianRouter.get('/', (req, res) => {
     appController.getAllDataClinician(req, res)
 })
 
-clinicianRouter.get('/:username', (req, res) => {
+clinicianRouter.get('/patient/:username', (req, res) => {
     appController.getPatientDataClinician(req, res)
 })
+
+clinicianRouter.get('/comments/all', (req, res) => {
+    appController.getAllPatientComments(req, res)
+})
+
 
 clinicianRouter.post('/post_submit_msg/:id', async (req, res) => {
     appController.submitSupportMessage(req, res)
