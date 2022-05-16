@@ -32,17 +32,17 @@
             <div class="grid-patient-profile">
                 <div class="flexbox-patient-profile">
                     <div class="patient-profile-icon">
-                        <img src="assets/icon_profile.png" width="80" height="80">
+                        <img src="../assets/icon_profile.png" width="80" height="80">
                     </div>
                     <div>
-                        <a href="clinician_dashboard/{{username}}"><div class="patient-name">{{username}}</div></a>
+                        <a href="/clinician_dashboard/{{username}}"><div class="patient-name">{{username}}</div></a>
                         <div class="patient-last-updated">Last Updated:</div>
                         <div class="patient-last-updated">{{date}}</div>
                         <div class="patient-last-updated">{{time}}</div>
                     </div>
                 </div>
                 <div class="flexbox-patient-button">
-                    <button class="patient-button purple2" onclick="location.href='clinician_dashboard/{{username}}'">View Full</button>
+                    <button class="patient-button purple2" onclick="location.href='/clinician_dashboard/{{username}}'">View Full</button>
                     <button class="patient-button purple1">Message</button>
                 </div>
             </div>
