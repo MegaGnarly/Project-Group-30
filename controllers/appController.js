@@ -119,7 +119,7 @@ const getAllPatientComments = async (req, res, next) => {
     try {
         // Load database and get all measured values
         // Get all measurement values about the patient
-        const userValues = await measuredValue.find().lean();
+        const userValues = await measuredValue.find().sort({date: -1}).lean();
 
         console.log(userValues)
 

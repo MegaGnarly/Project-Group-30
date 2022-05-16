@@ -1273,7 +1273,7 @@ footer {
 
 .comments-grid-table{
     display: grid;
-    grid-template-columns: 15% 15% 70%;
+    grid-template-columns: 15% 10% 75%;
     /* border:2px solid #eeeeee;
     border-radius: 25px; */
 }
@@ -1305,12 +1305,16 @@ footer {
 .comments-table-cell-header{
     font-size: 20px;
     font-weight: bold;
-    margin-left: 2%;
+    margin-left: 10px;
     margin-right: 2%;
 }
 
 .comments-table-cell-text{
-    margin-left: 2%;
+    margin-left: 10px;
+}
+
+.cell-text-bold {
+    font-weight: 600;
 }
 
 
