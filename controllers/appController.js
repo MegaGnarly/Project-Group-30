@@ -411,7 +411,9 @@ const getLeaderboard = async (req, res, next) => {
 
             // Engagement rate as per spec - For example, if a patient has been registered for 20 days, 
             // and entered some data on 16 of those days, their current engagement rate is 80%.
-            rowOfData.engagementRate = (daysOfEngagement / totalDaysRegistered) * 100;
+            const engagementRate = (daysOfEngagement / totalDaysRegistered) * 100;
+            // This rounds the rate to 1 decimal place
+            rowOfData.engagementRate = Math.round(engagementRate*10) / 10
             rankingRowArray.push(rowOfData)
         }
 
