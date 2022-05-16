@@ -1328,6 +1328,7 @@ footer {
 
 
 
+
 /* ------------------------------------------------------------------------------------------------------------------------------- */
 /* ||               GENERAL STYLES              */
 .center {                       /* Centers a photo */
@@ -1503,6 +1504,19 @@ input[id=username], input[id=psw] {
     justify-content: center;
     padding-top: 4%;
 }
+
+.topbar-tree{
+    font-size: 16px;
+    display:inline;
+}
+
+.ul-text {
+    text-decoration: underline;
+}
+
+
+
+
 
 
 /* Thankyou Page Styles */
