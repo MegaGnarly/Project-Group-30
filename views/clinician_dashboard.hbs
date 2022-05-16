@@ -2,6 +2,9 @@
 <br>
 <h1 class="clinician-title">Patient Overview</h1>
 
+<button class="clinician-view-comments" onclick="location.href='/clinician_dashboard/comments'">View All Patient Comments (Can someone please style/format this button with the rest of the page lol)</button>
+
+
 <div class="topbar">
     <div class="searchbar">
         <div class="search-icon">
@@ -43,7 +46,9 @@
                 </div>
                 <div class="flexbox-patient-button">
                     <button class="patient-button purple2" onclick="location.href='/clinician_dashboard/patient/{{username}}'">View Full</button>
-                    <button class="patient-button purple1">Message</button>
+
+                    <!-- Disabled since messaging is technically handled within a patients profile now... -->
+                    {{!-- <button class="patient-button purple1">Message</button> --}}
                 </div>
             </div>
             <div class="grid-patient-category bold">Blood Glucose</div>

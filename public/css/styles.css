@@ -187,6 +187,11 @@ header {
 .clinician-title {
     margin-left: 5%;
 }
+
+.clinician-view-comments{
+    font-size: 22px;
+}
+
 .topbar {
     display: flex;
     margin-top: 1%;
@@ -1287,7 +1292,6 @@ footer {
     border:1px solid #eeeeee;
 }
 
-
 .comments-table-cell{
     display: grid;
     grid-template-columns: 70% 30%;
@@ -1304,8 +1308,8 @@ footer {
     font-size: 14px;
     justify-self: end;
     margin-top: 10px;
+    cursor:pointer;
 }
-
 
 .comments-table-cell-header{
     font-size: 20px;
@@ -1324,8 +1328,6 @@ footer {
 .cell-text-bold {
     font-weight: 600;
 }
-
-
 
 
 
