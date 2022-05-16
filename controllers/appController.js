@@ -391,11 +391,13 @@ const submitSupportMessage = async (req, res, next) => {
 const getLeaderboard = async (req, res, next) => {
     try {
         const allUsers = await user.collection.distinct("username")
-        const rankingRowArray = []
+        var rankingRowArray = []
 
         for (const currUser of allUsers) {
             const rowOfData = {
                 username: currUser,
+                daysRegistered: "",
+                daysEngaged: "",
                 engagementRate: ""
             }
             // For every user, count their distinct dates
@@ -408,16 +410,27 @@ const getLeaderboard = async (req, res, next) => {
             const differenceInTime = todaysDate - registeredDate;
             // To calculate the no. of days between two dates
             const totalDaysRegistered = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-
             // Engagement rate as per spec - For example, if a patient has been registered for 20 days, 
             // and entered some data on 16 of those days, their current engagement rate is 80%.
             const engagementRate = (daysOfEngagement / totalDaysRegistered) * 100;
             // This rounds the rate to 1 decimal place
-            rowOfData.engagementRate = Math.round(engagementRate*10) / 10
+            // Converts all NaN to 0 for sorting purposes
+            rowOfData.engagementRate = (Math.round(engagementRate*10) / 10) || 0
+            rowOfData.daysRegistered = totalDaysRegistered || 0
+            rowOfData.daysEngaged = daysOfEngagement || 0
+            
             rankingRowArray.push(rowOfData)
         }
 
-        res.render('leaderboard', { rank: rankingRowArray, logoURL: "../patient_dashboard" })
+        // Reverse sort based on the engagement rate
+        rankingRowArray.sort((a,b) => b.engagementRate - a.engagementRate); 
+        
+        // Used to display top 3
+        var first = rankingRowArray[0].username
+        var second = rankingRowArray[1].username
+        var third = rankingRowArray[2].username
+    
+        res.render('leaderboard', { rank: rankingRowArray, first: first, second: second, third: third ,logoURL: "../patient_dashboard" })
 
     } catch (error) {
         console.log(error)
