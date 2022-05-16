@@ -1296,9 +1296,10 @@ footer {
     color: #b45d92;
     font-weight: bold;
     text-align: right;
-    margin-right: 5%;
+    margin-right: 10px;
     font-size: 14px;
     justify-self: end;
+    margin-top: 10px;
 }
 
 
@@ -1306,11 +1307,14 @@ footer {
     font-size: 20px;
     font-weight: bold;
     margin-left: 10px;
-    margin-right: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .comments-table-cell-text{
     margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .cell-text-bold {

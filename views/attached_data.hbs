@@ -1,0 +1,33 @@
+<br>
+<h1 class="clinician-title">Entry Data for {{username}}</h1>
+
+
+<div id="patient-specifics-container">
+    <div class="patient-specifics-userbox">
+        <div class="patient-specifics-userbox-subgrid">
+            <img class="patient-specifics-pfp" src="../assets/icon_profile.png" alt="Profile picture" width="150"
+                height="150">
+
+            <h2 class="patient-specifics-name">{{profileData.firstName}} {{profileData.lastName}}</h2>
+        </div>
+    </div>
+
+    <div class="patient-specifics-table">
+        <div class="patient-specifics-table-header">Date/Time</div>
+        <div class="patient-specifics-table-header">Blood Glucose</div>
+        <div class="patient-specifics-table-header">Weight</div>
+        <div class="patient-specifics-table-header">No. Insulin Doses</div>
+        <div class="patient-specifics-table-header">Exercise (Steps)</div>
+
+        {{#each patientValues}}
+        <div class="patient-specifics-table-data">{{date}}</div>
+        <div class="patient-specifics-table-data">{{measured_glucose}}</div>
+        <div class="patient-specifics-table-data">{{measured_weight}}</div>
+        <div class="patient-specifics-table-data">{{measured_insulin}}</div>
+        <div class="patient-specifics-table-data">{{measured_exercise}}</div>
+        {{/each}}
+    </div>
+</div>
+
+
+{{comment}}

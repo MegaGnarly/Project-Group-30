@@ -115,22 +115,84 @@ const getAllDataClinician = async (req, res, next) => {
 
 
 const getAllPatientComments = async (req, res, next) => {
-
     try {
         // Load database and get all measured values
-        // Get all measurement values about the patient
-        const userValues = await measuredValue.find().sort({date: -1}).lean();
+        const userValues = await measuredValue.find().sort({ date: -1 }).lean();
 
-        console.log(userValues)
-
+        // Extract the entry ID from the rest of the string
+        // Example of string: new ObjectId("6281c2556cc848bf7a19edbf")
+        // So we are only interested in the numbers within the quotations.
+        for (const user of userValues) {
+            // Get entryID
+            var entryID = user._id;
+            entryID = entryID.toString();
+            user._id = entryID;
+            // console.log(user);
+        }
 
         // Return values to client
-        return res.render('comments', { patientValues:userValues, logoURL: "../" })
+        return res.render('comments', { patientValues: userValues, logoURL: "../" })
 
     } catch (error) {
+        console.log(error)
         return res.render('error_page', { errorHeading: "Error", errorText: "Could not load patient comment data. Is your URL correct?", logoURL: "../" })
     }
+}
 
+
+const getPatientEntryData = async (req, res, next) => {
+    try {
+        // Get entryID
+        var entryID = req.params.entryid
+
+        // Get data for the specific entry
+        const userValues = await measuredValue.findOne({ _id: entryID })
+        console.log(userValues)
+
+        // Get data about the user (what type of measurements they are permitted to record)
+            // const currentUser = await user.findOne({ username: userValues.username }).lean()
+            // var isPermittedBg = currentUser.threshold_bg.prescribed;
+            // var isPermittedWeight = currentUser.threshold_weight.prescribed;
+            // var isPermittedExercise = currentUser.threshold_exercise.prescribed;
+            // var isPermittedInsulin = currentUser.threshold_insulin.prescribed;
+            // console.log(isPermittedBg, isPermittedExercise, isPermittedInsulin, isPermittedWeight)
+
+        var glucose, weight, exercise, insulin;
+        var displayGlucose = false;
+        var displayWeight = false;
+        var displayExercise = false;
+        var displayInsulin = false;
+        var date = userValues.date;
+        var time = userValues.time;
+        var username = userValues.username;
+        var comment = userValues.comment;
+
+        if (userValues.measured_glucose != "-") {
+            displayGlucose = true;
+            glucose = userValues.measured_glucose;
+        }
+        if (userValues.measured_weight != "-") {
+            displayWeight = true;
+            weight = userValues.measured_weight;
+        }
+        if (userValues.measured_exercise != "-") {
+            displayExercise = true;
+            exercise = userValues.measured_exercise;
+        }
+        if (userValues.measured_insulin != "-") {
+            displayInsulin = true;
+            insulin = userValues.measured_insulin;
+        }
+
+
+
+        return res.render('attached_data', { patientValues: userValues, displayGlucose: displayGlucose, displayWeight: displayWeight, displayExercise: displayExercise, displayInsulin: displayInsulin, 
+            date: date, time: time, username: username, comment: comment, glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, logoURL: "../" })
+
+    } catch (error) {
+        console.log(error)
+        return res.render('error_page', { errorHeading: "Error", errorText: "Could not load entry data. Is your URL correct?", logoURL: "../" })
+    }
 }
 
 
@@ -453,6 +515,7 @@ module.exports = {
     getAllDataClinician,
     getPatientDataClinician,
     getAllPatientComments,
+    getPatientEntryData,
     getPatientName,
     getPatientDashboard,
     getLeaderboard,

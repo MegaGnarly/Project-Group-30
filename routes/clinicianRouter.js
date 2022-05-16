@@ -24,6 +24,9 @@ clinicianRouter.get('/comments', (req, res) => {
     appController.getAllPatientComments(req, res)
 })
 
+clinicianRouter.get('/entry/:entryid', (req, res) => {
+    appController.getPatientEntryData(req, res)
+})
 
 clinicianRouter.post('/post_submit_msg/:id', async (req, res) => {
     appController.submitSupportMessage(req, res)
