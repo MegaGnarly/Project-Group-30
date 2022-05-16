@@ -1,0 +1,44 @@
+<br>
+<h1 class="clinician-title">All Patient Comments</h1>
+
+<div class="comments-grid-container">
+    <div class="comments-grid-table">
+
+        <!-- Heading Row -->
+        <div class="comments-table-cell">
+            <div class="comments-table-cell-header">
+                Date/Time
+            </div>
+        </div>
+
+        <div class="comments-table-cell">
+            <div class="comments-table-cell-header">
+                Patient
+            </div>
+        </div>
+
+        <div class="comments-table-cell">
+            <div class="comments-table-cell-header">
+                Comment
+            </div>
+        </div>
+
+
+        <!-- Other Rows -->
+        {{#each patientValues}}
+        <div class="comments-table-cell-datetime">
+            <div class="comments-table-cell-text">{{date}} &nbsp &nbsp {{time}}</div>
+        </div>
+
+        <div class="comments-table-cell">
+            <div class="comments-table-cell-text">{{username}}</div>
+        </div>
+
+        <div class="comments-table-cell">
+            <div class="comments-table-cell-text">{{comment}}</div>
+            <div class="comments-table-cell-link">View Attached Data ></div>
+        </div>
+        {{/each}}
+
+    </div>
+</div>

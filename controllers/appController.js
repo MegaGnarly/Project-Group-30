@@ -115,7 +115,22 @@ const getAllDataClinician = async (req, res, next) => {
 
 
 const getAllPatientComments = async (req, res, next) => {
-    return res.render('comments', { logoURL: "../" })
+
+    try {
+        // Load database and get all measured values
+        // Get all measurement values about the patient
+        const userValues = await measuredValue.find().lean();
+
+        console.log(userValues)
+
+
+        // Return values to client
+        return res.render('comments', { patientValues:userValues, logoURL: "../" })
+
+    } catch (error) {
+        return res.render('error_page', { errorHeading: "Error", errorText: "Could not load patient comment data. Is your URL correct?", logoURL: "../" })
+    }
+
 }
 
 
@@ -348,11 +363,11 @@ const getLeaderboard = async (req, res, next) => {
 
             // Engagement rate as per spec - For example, if a patient has been registered for 20 days, 
             // and entered some data on 16 of those days, their current engagement rate is 80%.
-            rowOfData.engagementRate = (daysOfEngagement/totalDaysRegistered) * 100;
+            rowOfData.engagementRate = (daysOfEngagement / totalDaysRegistered) * 100;
             rankingRowArray.push(rowOfData)
         }
 
-        res.render('leaderboard', { rank: rankingRowArray, logoURL: "../patient_dashboard"})
+        res.render('leaderboard', { rank: rankingRowArray, logoURL: "../patient_dashboard" })
 
     } catch (error) {
         console.log(error)

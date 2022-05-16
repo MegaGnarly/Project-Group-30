@@ -20,7 +20,7 @@ clinicianRouter.get('/patient/:username', (req, res) => {
     appController.getPatientDataClinician(req, res)
 })
 
-clinicianRouter.get('/comments/all', (req, res) => {
+clinicianRouter.get('/comments', (req, res) => {
     appController.getAllPatientComments(req, res)
 })
 

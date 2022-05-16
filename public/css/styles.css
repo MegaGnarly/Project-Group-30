@@ -1263,6 +1263,59 @@ footer {
 }
 
 
+
+/* ----------------- PATIENT COMMENTS CSS---------------------*/
+.comments-grid-container {
+    display: grid;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.comments-grid-table{
+    display: grid;
+    grid-template-columns: 15% 15% 70%;
+    /* border:2px solid #eeeeee;
+    border-radius: 25px; */
+}
+
+.comments-table-cell-datetime{
+    display: grid;
+    border:1px solid #eeeeee;
+}
+
+
+.comments-table-cell{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    border:1px solid #eeeeee;
+}
+
+.comments-table-cell-link {
+    width: fit-content;
+    block-size: fit-content;
+    color: #b45d92;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 5%;
+    font-size: 14px;
+    justify-self: end;
+}
+
+
+.comments-table-cell-header{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.comments-table-cell-text{
+    margin-left: 2%;
+}
+
+
+
+
 /* ------------------------------------------------------------------------------------------------------------------------------- */
 /* ||               GENERAL STYLES              */
 .center {                       /* Centers a photo */
