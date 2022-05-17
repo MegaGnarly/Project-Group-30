@@ -192,7 +192,7 @@ const getPatientDataClinician = async (req, res, next) => {
         }
 
         // Get all measurement values about the patient
-        const userValues = await measuredValue.find({ username: req.params.username }).sort({date: -1, time: -1}).lean()
+        const userValues = await measuredValue.find({ username: req.params.username }).sort({ date: -1, time: -1 }).lean()
 
         // On the front end we have a table of entries. This code populates the table with rows of data. Each row is a measuredValue entry in the db.
         // For each entry, construct a row of data which stores date, data type, data value and patient comment.
@@ -521,10 +521,10 @@ const getPatientDashboard = async (req, res, next) => {
 // Used for patient -> record health page.
 const getRecordHealthPage = async (req, res, next) => {
     try {
-        // const userValues = await measuredValue.find({username: sessionStorage.getItem('username')}).lean()
-
         // See if user exists in the database
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+
+        console.log(currentUser)
 
         // Check if patient is permitted to record blood glucose data
         var allowGlucose = currentUser.threshold_bg.prescribed;
@@ -538,8 +538,16 @@ const getRecordHealthPage = async (req, res, next) => {
         // Check if patient is permitted to record insulin data
         var allowInsulin = currentUser.threshold_insulin.prescribed;
 
-        // Render page
-        res.render('record_health.hbs', { logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight, allowExercise: allowExercise, allowInsulin, allowInsulin })
+        // Check if the patient is permitted to record anything at all...
+        var permittedToRecordAnything = true;
+        if (!allowGlucose && !allowWeight && !allowExercise && !allowInsulin) {
+            permittedToRecordAnything = false;
+        }
+
+        res.render('record_health.hbs', {
+            logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight,
+            allowExercise: allowExercise, allowInsulin: allowInsulin, permittedToRecordAnything: permittedToRecordAnything
+        })
 
     } catch (error) {
         console.log(error)

@@ -726,11 +726,12 @@ select {
     }
 
     .grid-inputs {
-        margin-bottom: 20%
+        margin-bottom: 5%
     }
 
     .submit {
-        margin-bottom: 7%;
+        margin-top: 3%;
+        margin-bottom: 10%;
     }
 
 }
@@ -796,6 +797,10 @@ input[name="Selector"] {
     transform: scale(1.05);
     border: 2px solid #121212;
     transition: all 0.5s ease 0s;
+}
+
+.guidance-dotpoint {
+    margin-left: 5%;
 }
 
 /* 

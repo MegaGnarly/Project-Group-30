@@ -100,7 +100,55 @@
             <textarea class="comments" type="text" id="comment" name="comment"
                 placeholder="Type in comments"></textarea>
         </div>
+
+        <h2 class="data-title">Clinical Guidance</h2>
+        {{#if permittedToRecordAnything}}
+            {{#if allowGlucose}}
+            <p></p>
+            <ul>
+                <li class="guidance-dotpoint">You are advised to aim for daily blood glucose levels that are between
+                    {{user.threshold_bg.lower}} nmol/L and {{user.threshold_bg.upper}} nmol/L.</li>
+            </ul>
+
+            {{/if}}
+
+            {{#if allowInsulin}}
+            <p></p>
+            <ul>
+                <li class="guidance-dotpoint">You should aim for {{user.threshold_insulin.lower}} to
+                    {{user.threshold_insulin.upper}} daily insulin doses.</li>
+            </ul>
+            {{/if}}
+
+            {{#if allowWeight}}
+            <p></p>
+            <ul>
+                <li class="guidance-dotpoint">You should maintain a body weight between
+                    {{user.threshold_weight.lower}} kg and
+                    {{user.threshold_weight.upper}} kg.</li>
+            </ul>
+            {{/if}}
+
+            {{#if allowExercise}}
+            <p></p>
+            <ul>
+                <li class="guidance-dotpoint">You have been allocated a daily step count of between
+                    {{user.threshold_exercise.lower}} and {{user.threshold_exercise.upper}} steps a day.</li>
+            </ul>
+            {{/if}}
+        {{else}}
+        <p></p>
+        <ul>
+            <li class="guidance-dotpoint bold">Your clinician has not allocated any time series for you to record. You are unable to submit any measurements at this stage. </li>
+            <li class="guidance-dotpoint">Once your clinician has allocated you one or more time series it will appear here along with its safety thresholds. </li>
+            <br>
+        </ul>
+        {{/if}}
     </div>
+
+    {{#if permittedToRecordAnything}}
     <!-- Submit Button -->
     <input class="button01 submit" type="submit" value="Submit">
+    <br>
+    {{/if}}
 </form>

@@ -168,10 +168,10 @@ app.post('/register', (req, res) => {
         secret: 'INFO30005',
 
         // Set permissions and default values for safety thresholds - these can be modified by the clinician
-        threshold_bg: { prescribed: true, lower: 4.0, upper: 7.8 },
-        threshold_weight: { prescribed: true, lower: 0, upper: 1000 },
-        threshold_exercise: { prescribed: true, lower: 0, upper: 10000 },
-        threshold_insulin: { prescribed: true, lower: 0, upper: 10 }
+        threshold_bg: { prescribed: false, lower: 4.0, upper: 7.8 },
+        threshold_weight: { prescribed: false, lower: 50, upper: 90 },
+        threshold_exercise: { prescribed: false, lower: 5000, upper: 8000 },
+        threshold_insulin: { prescribed: false, lower: 0, upper: 10 }
 
     }, (err) => {
         if (err) { console.log(err); return; }
