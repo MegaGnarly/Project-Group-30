@@ -35,8 +35,21 @@
         <h2 class="patient-dashboard-notifications-text">Todays Requirements</h2>
         {{!-- <h1 class="container-text"></h1> --}}
 
-        <div class ="dataToRecord white">Data</div>
-        <div class ="dataToRecord white">Data</div>
+        <!-- Show notifications/current measurement tasks -->
+        {{!-- <p>Your clinician has advised you to record the following: </p> --}}
+        {{#if displayBg}}
+        <div class="dataToRecord white">Blood Glucose</div>
+        {{/if}}
+        {{#if displayWeight}}
+        <div class="dataToRecord white">Weight</div>
+        {{/if}}
+        {{#if displayInsulin}}
+        <div class="dataToRecord white">Insulin</div>
+        {{/if}}
+        {{#if displayExercise}}
+        <div class="dataToRecord white">Exercise</div>
+        {{/if}}
+
 
         {{!-- <button class="button01 white">Blood glucose levels</button> --}}
 

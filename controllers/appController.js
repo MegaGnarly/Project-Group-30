@@ -151,12 +151,6 @@ const getPatientEntryData = async (req, res, next) => {
 
         // Get data about the user (what type of measurements they are permitted to record)
         const currentUser = await user.findOne({ username: userValues.username }).lean()
-        // var isPermittedBg = currentUser.threshold_bg.prescribed;
-        // var isPermittedWeight = currentUser.threshold_weight.prescribed;
-        // var isPermittedExercise = currentUser.threshold_exercise.prescribed;
-        // var isPermittedInsulin = currentUser.threshold_insulin.prescribed;
-        // console.log(isPermittedBg, isPermittedExercise, isPermittedInsulin, isPermittedWeight)
-
 
         var date = userValues.date;
         var time = userValues.time;
@@ -388,6 +382,7 @@ const submitSupportMessage = async (req, res, next) => {
     }
 }
 
+
 const getLeaderboard = async (req, res, next) => {
     try {
         const allUsers = await user.collection.distinct("username")
@@ -415,22 +410,22 @@ const getLeaderboard = async (req, res, next) => {
             const engagementRate = (daysOfEngagement / totalDaysRegistered) * 100;
             // This rounds the rate to 1 decimal place
             // Converts all NaN to 0 for sorting purposes
-            rowOfData.engagementRate = (Math.round(engagementRate*10) / 10) || 0
+            rowOfData.engagementRate = (Math.round(engagementRate * 10) / 10) || 0
             rowOfData.daysRegistered = totalDaysRegistered || 0
             rowOfData.daysEngaged = daysOfEngagement || 0
-            
+
             rankingRowArray.push(rowOfData)
         }
 
         // Reverse sort based on the engagement rate
-        rankingRowArray.sort((a,b) => b.engagementRate - a.engagementRate); 
-        
+        rankingRowArray.sort((a, b) => b.engagementRate - a.engagementRate);
+
         // Used to display top 3
         var first = rankingRowArray[0].username
         var second = rankingRowArray[1].username
         var third = rankingRowArray[2].username
-    
-        res.render('leaderboard', { rank: rankingRowArray, first: first, second: second, third: third ,logoURL: "../patient_dashboard" })
+
+        res.render('leaderboard', { rank: rankingRowArray, first: first, second: second, third: third, logoURL: "../patient_dashboard" })
 
     } catch (error) {
         console.log(error)
@@ -440,14 +435,118 @@ const getLeaderboard = async (req, res, next) => {
 }
 
 
-// Used for patient dashboard 
+// Helper function used for patient dashboard
+// Compare argument date with current date
+function dateComparison(date) {
+    try {
+        let currentDate = new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' });
+        return currentDate > date;
+
+    } catch (error) {
+        console.log("Error")
+        return false
+    }
+}
+
+
+
+// Patient Dashboard logic
 const getPatientDashboard = async (req, res, next) => {
     try {
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+        // Determine whether we should display the measurement values for the client
+        var isPermittedBg = currentUser.threshold_bg.prescribed;
+        var isPermittedWeight = currentUser.threshold_weight.prescribed;
+        var isPermittedExercise = currentUser.threshold_exercise.prescribed;
+        var isPermittedInsulin = currentUser.threshold_insulin.prescribed;
+        var displayBg, displayWeight, displayExercise, displayInsulin;
+
+        const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') },
+            { measured_glucose: 1, measured_weight: 1, measured_exercise: 1, measured_insulin: 1, date: 1 }).sort({ date: -1 }).lean();
+        for (const entry of userValues) {
+            // Basically - does the patient have permission for this measurement type? Is the entry for this field empty?
+            if (isPermittedBg && entry.measured_glucose != "-" && displayBg === undefined) {
+                // Compare the date this entry was made with the current date
+                displayBg = dateComparison(entry.date);
+                // console.log("bg vals:", entry.date, entry.measured_glucose, displayBg)
+            }
+
+            if (isPermittedWeight && entry.measured_weight != "-" && displayWeight === undefined) {
+                displayWeight = dateComparison(entry.date);
+            }
+
+            if (isPermittedExercise && entry.measured_exercise != "-" && displayExercise === undefined) {
+                displayExercise = dateComparison(entry.date);
+            }
+
+            if (isPermittedInsulin && entry.measured_insulin != "-" && displayInsulin === undefined) {
+                displayInsulin = dateComparison(entry.date);
+            }
+        }
+
+        // If a patient has zero entries for a field by the end of the loop AND 
+        // if they have permission for the field then set display status to true
+        if (displayBg === undefined && isPermittedBg) {
+            displayBg = true;
+        }
+        if (displayWeight === undefined && isPermittedWeight) {
+            displayWeight = true;
+        }
+        if (displayExercise === undefined && isPermittedExercise) {
+            displayExercise = true;
+        }
+        if (displayInsulin === undefined && isPermittedInsulin) {
+            displayInsulin = true;
+        }
 
 
-        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser })
+        console.log("display bg notification:", displayBg)
+        console.log("display weight notification:", displayWeight)
+        console.log("display exercise notification:", displayExercise)
+        console.log("display insulin notification:", displayInsulin)
 
+
+        // If it's been more than 24 hours since the last entry for a permitted value then notify the user.
+        // if (isPermittedBg) {
+        //     const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }, { measured_glucose: 1, date: 1 }).sort({ date: -1 }).lean();
+        //     // Find the most recent entry of the measurement type
+        //     for (const entry of userValues) {
+        //         if (entry.measured_glucose != "-") {
+        //             // Compare the date this entry was made with the current date
+        //             displayBg = dateComparison(entry.date);
+        //             break;
+        //         }
+        //     }
+        //     console.log("display bg notification:", displayBg);
+        // }
+
+        // if (isPermittedWeight) {
+        //     const userValue = await measuredValue.find({ username: sessionStorage.getItem('username') }, { measured_weight: 1, date: 1 }).sort({ date: -1 }).lean();
+        //     let dateOfLastEntry = userValue[0].date;
+        //     displayWeight = dateComparison(dateOfLastEntry);
+        //     console.log("display weight", displayWeight);
+        // }
+
+        // if (isPermittedExercise) {
+        //     const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }, { measured_exercise: 1, date: 1 }).sort({ date: -1 }).lean();
+        //     for (const entry of userValues) {
+        //         if (entry.measured_exercise != "-") {
+        //             displayExercise = dateComparison(entry.date);
+        //             break;
+        //         }
+        //     }
+        //     console.log("display exercise notification:", displayExercise);
+        // }
+
+        // if (isPermittedInsulin) {
+        //     const userValue = await measuredValue.find({ username: sessionStorage.getItem('username') }, { measured_insulin: 1, date: 1 }).sort({ date: -1 }).lean();
+        //     let dateOfLastEntry = userValue[0].date;
+        //     displayInsulin = dateComparison(dateOfLastEntry);
+        //     console.log("display insulin:", displayInsulin)
+        // }
+
+
+        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight })
     } catch (error) {
         console.log(error)
         return res.render('error_page', { errorHeading: "Error when displaying dashboard", errorText: "Please ensure that you are logged in", logoURL: "../login" })
