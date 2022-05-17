@@ -166,12 +166,14 @@ app.post('/register', (req, res) => {
         lastName: req.body.lname,
         dateSince: Date.now(),
         secret: 'INFO30005',
-
         // Set permissions and default values for safety thresholds - these can be modified by the clinician
         threshold_bg: { prescribed: false, lower: 4.0, upper: 7.8 },
         threshold_weight: { prescribed: false, lower: 50, upper: 90 },
         threshold_exercise: { prescribed: false, lower: 5000, upper: 8000 },
-        threshold_insulin: { prescribed: false, lower: 0, upper: 10 }
+        threshold_insulin: { prescribed: false, lower: 0, upper: 10 },
+
+        // Set default support message from clinician
+        support_msg: "Welcome to Diabetes@Home! Messages from your clinician will appear here 😊"
 
     }, (err) => {
         if (err) { console.log(err); return; }
