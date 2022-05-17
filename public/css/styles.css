@@ -204,19 +204,53 @@ header {
 .clinician-title {
     margin-left: 5%;
 }
-
-.clinician-view-comments {
-    font-size: 22px;
+.header-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 2%;
+}
+.header-items {
+    display: flex;
+    border-radius: 38px;
+    background-color: #72A6E8;
+    color: white;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    padding: 1% 2% 1% 2%;
+    border: none;
+    transition: all 0.5s ease 0s;
+}
+.patients-item {
+    width: 22.5%;
+    margin: 1.5% 1% 1.5% 1%;
+    cursor: default;
+}
+.data-item {
+    width: 48%;
+    margin: 1.5% 2.5% 1.5% 0%;
+    cursor: default;
+}
+.comments-button {
+    width: 18%;
+    cursor: pointer;
+    margin: 1.5% 3% 1.5% 0%;
+}
+.comments-button:hover {
+    background-color: #8a3ee2;
+    transform: scale(1.05);
+    /*font-size: 22px;*/
 }
 
 .topbar {
     display: flex;
     margin-top: 1%;
     margin-left: 5%;
-    margin-bottom: 2%;
     flex-direction: row;
 }
-
 .searchbar {
     padding: 1px;
     border-radius: 10px;

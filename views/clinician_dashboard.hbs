@@ -2,9 +2,6 @@
 <br>
 <h1 class="clinician-title">Patient Overview</h1>
 
-<button class="clinician-view-comments" onclick="location.href='/clinician_dashboard/comments'">View All Patient Comments (Can someone please style/format this button with the rest of the page lol)</button>
-
-
 <div class="topbar">
     <div class="searchbar">
         <div class="search-icon">
@@ -27,7 +24,11 @@
         </select>
     </form>
 </div>
-
+<div class="header-bar">
+    <div class="header-items patients-item">Patients</div>
+    <div class="header-items data-item">Recorded Data</div>
+    <button class="header-items comments-button purple2" onclick="location.href='/clinician_dashboard/comments'">View All Comments</button>
+</div>
 <div class="flexbox-patient-overview-container">
     {{#each data}}
     <div class="flexbox-patient-individuals">
