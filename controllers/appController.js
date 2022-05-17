@@ -60,13 +60,11 @@ const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     try {
 
-        const userArray = await measuredValue.collection.distinct("username")
-
+        const userValuesArray = await measuredValue.collection.distinct("username")
         const tableRowArray = [];
-
         const patientValues = await user.find().lean()
 
-        for (const user of userArray) {
+        for (const user of userValuesArray) {
             // Queries the DB and returns all data of 1 user
             const currentUser = await measuredValue.find({ username: user }).lean()
             const rowOfData = {
@@ -80,7 +78,6 @@ const getAllDataClinician = async (req, res, next) => {
                 comment: "",
             }
             currentUser.forEach(function (arrayItem) {
-
                 // Update the date and time
                 rowOfData.time = arrayItem.time
                 rowOfData.date = arrayItem.date
@@ -104,8 +101,28 @@ const getAllDataClinician = async (req, res, next) => {
             tableRowArray.push(rowOfData)
         }
 
+        // Append new users that have zero measurement entries into the array
+        const patients = await user.find().sort({ datesince: -1 }).lean()
+        for (const patient of patients) {
+            if (!userValuesArray.includes(patient.username)) {
+                const rowOfData = {
+                    username: patient.username,
+                    time: "N/A (new user)",
+                    date: "N/A (new user)",
+                    measured_glucose: "-",
+                    measured_weight: "-",
+                    measured_insulin: "-",
+                    measured_exercise: "-",
+                    comment: "NOTE: This is a new user that has not submitted any records. Ensure that they have been allocated a time series.",
+                }
+                tableRowArray.push(rowOfData)
+            }
+        }
+
+        console.log(tableRowArray)
+
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'Chris', userRole: "Clinician", logoURL: "../" })
+        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'N/A', userRole: "N/A", logoURL: "../" })
     } catch (err) {
         console.log(err)
         console.log("ERROR in getAllDataClinician.")
