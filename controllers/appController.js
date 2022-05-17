@@ -117,7 +117,7 @@ const getAllDataClinician = async (req, res, next) => {
 const getAllPatientComments = async (req, res, next) => {
     try {
         // Load database and get all measured values
-        const userValues = await measuredValue.find().sort({ date: -1 }).lean();
+        const userValues = await measuredValue.find().sort({ date: -1, time: -1 }).lean();
 
         // Extract the entry ID from the rest of the string
         // Example of string: new ObjectId("6281c2556cc848bf7a19edbf")
@@ -192,7 +192,7 @@ const getPatientDataClinician = async (req, res, next) => {
         }
 
         // Get all measurement values about the patient
-        const userValues = await measuredValue.find({ username: req.params.username }).lean()
+        const userValues = await measuredValue.find({ username: req.params.username }).sort({date: -1, time: -1}).lean()
 
         // On the front end we have a table of entries. This code populates the table with rows of data. Each row is a measuredValue entry in the db.
         // For each entry, construct a row of data which stores date, data type, data value and patient comment.
