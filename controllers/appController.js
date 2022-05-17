@@ -131,11 +131,11 @@ const getAllPatientComments = async (req, res, next) => {
         }
 
         // Return values to client
-        return res.render('comments', { patientValues: userValues, logoURL: "../" })
+        return res.render('comments', { patientValues: userValues, logoURL: "./" })
 
     } catch (error) {
         console.log(error)
-        return res.render('error_page', { errorHeading: "Error", errorText: "Could not load patient comment data. Is your URL correct?", logoURL: "../" })
+        return res.render('error_page', { errorHeading: "Error", errorText: "Could not load patient comment data. Is your URL correct?", logoURL: "./" })
     }
 }
 
