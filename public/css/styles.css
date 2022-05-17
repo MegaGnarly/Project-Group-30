@@ -2079,3 +2079,95 @@ input[id=psw] {
 }
 
 /* ------------------ leaderboard end ------------------ */
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*Clinician and Patient Profile Settings CSS -- work in progress, need to make responsive*/
+.detailsform {
+    border: 1px solid #E7E7E7;
+    background-color: #FFFFFF;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #858484);
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.settings_heading{
+    text-align: left;
+    color: #7D92DB;
+    font-family: 'poppins', sans-serif;
+    font-weight: bolder;
+}
+
+.page_heading{
+    text-align: left;
+    color: #7D92DB;
+    font-family: 'poppins', sans-serif;
+    font-weight: bolder;
+    padding: 2%;
+}
+
+input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #E7E7E7;
+    box-sizing: border-box;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.settings-form-container {
+    display: flex;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Add padding to containers */
+.settings_container {
+    padding: 10px 15%;/* First value: padding top and bottom. Second value: padding on sides. */ 
+}
+.settings_button {
+    background-color: #7D92DB;
+    color: white; padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    font-size: 20px;
+    font-weight:bold;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease 0s;
+    margin-top: 5%;
+}
+  
+  /* Add a hover effect for buttons */
+.settings_button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+
+}
+
+.placeholderimg{
+    border: 5px solid #555;
+    border-radius: 50%;
+    max-height: 200px;
+}
+
+.innerbound{
+    display: flex;
+    justify-content: center;
+    padding: 2% 10% 2% 10%;
+
+}
