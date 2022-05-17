@@ -201,6 +201,8 @@ hbs.handlebars.registerHelper('inc', function(value, options)
 
 // **** Main code that launches the server ****  
 app.listen(process.env.PORT || PORT, () => {
-    console.log('Diabetes@Home is running! CTRL + Click the URL below to open a browser window. Press CTRL + C to shut down the server.')
-    console.log('http://127.0.0.1:' + PORT + '/' + '\n')
+    console.log('\n\nDiabetes@Home is running! CTRL + Click the URL below to open a browser window. Press CTRL + C to shut down the server.')
+    console.log('http://127.0.0.1:' + PORT + '/login_page' + '\n')
+    console.log('Visit the clinician dashboard on:')
+    console.log('http://127.0.0.1:' + PORT + '/clinician_dashboard/' + '\n')
 })

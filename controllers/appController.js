@@ -119,7 +119,7 @@ const getAllDataClinician = async (req, res, next) => {
             }
         }
 
-        console.log(tableRowArray)
+        // console.log(tableRowArray)
 
         // The user values being passed are for the site header on the top right.
         return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'N/A', userRole: "N/A", logoURL: "../" })
