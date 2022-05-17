@@ -36,23 +36,24 @@
         {{!-- <h1 class="container-text"></h1> --}}
 
         <!-- Show notifications/current measurement tasks -->
-        {{!-- <p>Your clinician has advised you to record the following: </p> --}}
-        {{#if displayBg}}
-        <div class="dataToRecord white">Blood Glucose</div>
+        {{#if enteredAllData}}
+        <p class="patient-dashboard-notifications-text2">You have no more data to record today </p>
+        {{else}}
+            <p class="patient-dashboard-notifications-text2">Your clinician has advised you to record the following: </p>
+            {{#if displayBg}}
+            <div class="dataToRecord white">Blood Glucose</div>
+            {{/if}}
+            {{#if displayWeight}}
+            <div class="dataToRecord white">Weight</div>
+            {{/if}}
+            {{#if displayInsulin}}
+            <div class="dataToRecord white">Insulin</div>
+            {{/if}}
+            {{#if displayExercise}}
+            <div class="dataToRecord white">Exercise</div>
+            {{/if}}
         {{/if}}
-        {{#if displayWeight}}
-        <div class="dataToRecord white">Weight</div>
-        {{/if}}
-        {{#if displayInsulin}}
-        <div class="dataToRecord white">Insulin</div>
-        {{/if}}
-        {{#if displayExercise}}
-        <div class="dataToRecord white">Exercise</div>
-        {{/if}}
-
-
-        {{!-- <button class="button01 white">Blood glucose levels</button> --}}
-
+        
         <button class="button02">
             <h2>Latest Clinician Message</h2>
             <p class="center-text">{{profileData.support_msg}}</p>

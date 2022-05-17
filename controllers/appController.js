@@ -499,54 +499,18 @@ const getPatientDashboard = async (req, res, next) => {
             displayInsulin = true;
         }
 
+        // If the user has entered all the required data for today
+        var enteredAllData = false;
+        if (!displayBg && !displayWeight && !displayExercise && !displayInsulin) {
+            enteredAllData = true;
+        }
 
         console.log("display bg notification:", displayBg)
         console.log("display weight notification:", displayWeight)
         console.log("display exercise notification:", displayExercise)
         console.log("display insulin notification:", displayInsulin)
 
-
-        // If it's been more than 24 hours since the last entry for a permitted value then notify the user.
-        // if (isPermittedBg) {
-        //     const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }, { measured_glucose: 1, date: 1 }).sort({ date: -1 }).lean();
-        //     // Find the most recent entry of the measurement type
-        //     for (const entry of userValues) {
-        //         if (entry.measured_glucose != "-") {
-        //             // Compare the date this entry was made with the current date
-        //             displayBg = dateComparison(entry.date);
-        //             break;
-        //         }
-        //     }
-        //     console.log("display bg notification:", displayBg);
-        // }
-
-        // if (isPermittedWeight) {
-        //     const userValue = await measuredValue.find({ username: sessionStorage.getItem('username') }, { measured_weight: 1, date: 1 }).sort({ date: -1 }).lean();
-        //     let dateOfLastEntry = userValue[0].date;
-        //     displayWeight = dateComparison(dateOfLastEntry);
-        //     console.log("display weight", displayWeight);
-        // }
-
-        // if (isPermittedExercise) {
-        //     const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }, { measured_exercise: 1, date: 1 }).sort({ date: -1 }).lean();
-        //     for (const entry of userValues) {
-        //         if (entry.measured_exercise != "-") {
-        //             displayExercise = dateComparison(entry.date);
-        //             break;
-        //         }
-        //     }
-        //     console.log("display exercise notification:", displayExercise);
-        // }
-
-        // if (isPermittedInsulin) {
-        //     const userValue = await measuredValue.find({ username: sessionStorage.getItem('username') }, { measured_insulin: 1, date: 1 }).sort({ date: -1 }).lean();
-        //     let dateOfLastEntry = userValue[0].date;
-        //     displayInsulin = dateComparison(dateOfLastEntry);
-        //     console.log("display insulin:", displayInsulin)
-        // }
-
-
-        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight })
+        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData })
     } catch (error) {
         console.log(error)
         return res.render('error_page', { errorHeading: "Error when displaying dashboard", errorText: "Please ensure that you are logged in", logoURL: "../login" })

@@ -26,7 +26,7 @@ README: The CSS is organized like this:
 }
 
 /* Ensures that the footer always sticks to the bottom of the page */
-body{
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -40,17 +40,19 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 12px 2%;               /* Padding padding on top and bottom, padding on sides. */
+    padding: 12px 2%;
+    /* Padding padding on top and bottom, padding on sides. */
     background-color: #F7F7F7;
 }
 
 /* Header logo - add animation when hovering on logo */
 .flexbox-navbar-logo {
-    cursor:pointer;
+    cursor: pointer;
     margin-right: auto;
     margin-top: 5px;
     transition: all 0.5s ease 0s;
 }
+
 .flexbox-navbar-logo:hover {
     transform: scale(1.1);
 }
@@ -65,9 +67,10 @@ header {
     font-weight: bold;
     border: none;
     border-radius: 50px;
-    cursor:pointer;
+    cursor: pointer;
     transition: all 0.5s ease 0s;
 }
+
 /*  Header navbar button - animation upon hover */
 .flexbox-navbar-button:hover {
     background-color: #72A6E8;
@@ -77,28 +80,34 @@ header {
 
 /* Header Hamburger - icon and animation upon hover */
 .flexbox-navbar-hamburger {
-    cursor:pointer;
-    display:none;                   /* Hide the hamburger menu on big screens */
+    cursor: pointer;
+    display: none;
+    /* Hide the hamburger menu on big screens */
     transition: all 0.5s ease 0s;
 
 }
+
 .flexbox-navbar-hamburger:hover {
     transform: scale(1.1);
 }
+
 /*  Header Hamburger Bar - properties of the three lines that make up the burger */
 .bar {
     width: 35px;
     height: 5px;
     background-color: #B5D2F6;
     margin: 6px 15px;
-  }
+}
 
 /*  Header navbar links */
 .flexbox-navbar-text {
-    list-style: none;               /* Removes bullet points that appear before list elements on the navbar */
+    list-style: none;
+    /* Removes bullet points that appear before list elements on the navbar */
 }
+
 .flexbox-navbar-text li {
-    display: inline-block;          /* Inline block makes it so that list elements appear horizontally */
+    display: inline-block;
+    /* Inline block makes it so that list elements appear horizontally */
     padding: 0px 20px;
 }
 
@@ -107,12 +116,13 @@ header {
     margin-right: 16px;
 }
 
-.nav-profile-icon {                       
+.nav-profile-icon {
     margin-left: 16px;
     margin-right: 16px;
 }
 
-.flexbox-navbar-profile {           /* The profile section on the top right */
+.flexbox-navbar-profile {
+    /* The profile section on the top right */
     list-style: none;
 }
 
@@ -121,17 +131,19 @@ header {
     font-size: 19px;
     font-weight: bold;
 }
-.nav-userstatus {                   
+
+.nav-userstatus {
     color: #7D92DB;
     font-size: 14px;
 }
 
 /* Header navbar links - animation upon hover*/
-.flexbox-navbar-text li a{
+.flexbox-navbar-text li a {
     transition: all 0.8s ease 0s;
 }
-.flexbox-navbar-text li a:hover{
-    color:#72A6E8;
+
+.flexbox-navbar-text li a:hover {
+    color: #72A6E8;
     font-size: 16.5px;
 }
 
@@ -144,14 +156,16 @@ header {
     display: block;
     height: 100%;
     width: 10%;
-    position:fixed;
+    position: fixed;
     left: 0;
     top: 0;
     /* Setting z-index to -1 forces the sidebar to appear behind the page. */
     /* We want it to appear behind the page by default until someone has clicked the burger icon*/
     /*At that point, the z-index will change values to bring it on top of the page */
-    z-index: -1; /* -1 forces it to appear behind the page.  */
+    z-index: -1;
+    /* -1 forces it to appear behind the page.  */
 }
+
 .sidebar a {
     color: white;
 }
@@ -167,12 +181,15 @@ header {
     justify-content: flex-start;
     align-items: left;
     flex-direction: column;
-    padding: 10px 15%;   /* First value: padding top and bottom. Second value: padding on sides. */
+    padding: 10px 15%;
+    /* First value: padding top and bottom. Second value: padding on sides. */
     margin-right: auto;
 }
+
 .flexbox-main-content-lists {
     list-style-type: none;
 }
+
 .flexbox-main-content-lists li a {
     color: dodgerblue;
 }
@@ -188,7 +205,7 @@ header {
     margin-left: 5%;
 }
 
-.clinician-view-comments{
+.clinician-view-comments {
     font-size: 22px;
 }
 
@@ -199,6 +216,7 @@ header {
     margin-bottom: 2%;
     flex-direction: row;
 }
+
 .searchbar {
     padding: 1px;
     border-radius: 10px;
@@ -238,15 +256,16 @@ input {
 }
 
 input:focus {
-outline: none;
-color: black;
-background-color: #F7F7F7;
+    outline: none;
+    color: black;
+    background-color: #F7F7F7;
 }
 
 .flexbox-sortby {
     padding-top: 8px;
     margin-right: 2%;
 }
+
 /*
 .dropbtn {
     padding: 1px;
@@ -288,7 +307,7 @@ background-color: #F7F7F7;
   
   .show {display: block;} */
 
-  select {
+select {
     margin-bottom: 2%;
     margin-top: 1%;
     color: black;
@@ -297,14 +316,15 @@ background-color: #F7F7F7;
     border-radius: 10px;
     border: 3px solid #f5f5f5;
     height: 40px;
-  }
-  
+}
+
 .flexbox-patient-overview-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: auto;
 }
+
 .flexbox-patient-individuals {
     display: flex;
     flex-direction: row;
@@ -312,47 +332,55 @@ background-color: #F7F7F7;
     height: 175px;
     margin-bottom: 2%;
 }
+
 .grid-patient-item {
     height: 175px;
     width: 80%;
     border-radius: 20px;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
     border: 3px solid #ececee;
     background-color: #f0f0f3;
     display: grid;
     grid-template-columns: [first] 32% [line2] 17% [line3] 17% [line4] 17% [line5] 17% [last-line];
     grid-template-rows: [first-row] 30% [second-row] 70% [last-row];
 }
+
 .grid-patient-profile {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
-    grid-row-end: 3;    
+    grid-row-end: 3;
 }
+
 .flexbox-patient-profile {
     height: 60%;
     display: flex;
     flex-direction: row;
 }
+
 .patient-profile-icon {
     margin-left: 15%;
     margin-top: auto;
 }
+
 .patient-name {
     font-weight: 1000;
     margin-left: 25px;
     margin-top: 15%;
 }
+
 .patient-last-updated {
-    color:#8a3ee2;
+    color: #8a3ee2;
     font-size: small;
     margin-left: 25px;
 }
+
 .flexbox-patient-button {
     display: flex;
     flex-direction: row;
     height: 40%;
 }
+
 .patient-button {
     height: 50%;
     font-weight: 700;
@@ -363,10 +391,11 @@ background-color: #F7F7F7;
     margin-top: 4%;
     color: white;
     font-size: 90%;
-    cursor:pointer;
+    cursor: pointer;
     transition: all 0.5s ease 0s;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
 }
+
 .patient-button:hover {
     transform: scale(1.05);
 }
@@ -381,6 +410,7 @@ background-color: #F7F7F7;
     align-items: center;
     font-size: smaller;
 }
+
 .grid-patient-data {
     grid-row-start: 2;
     grid-row-end: 3;
@@ -389,10 +419,11 @@ background-color: #F7F7F7;
     justify-content: center;
     align-items: center;
 }
+
 .grid-patient-action-required {
     height: 175px;
     width: 20%;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
     border: 3px solid #ececee;
     background-color: #f0f0f3;
     border-radius: 20px;
@@ -400,6 +431,7 @@ background-color: #F7F7F7;
     display: grid;
     grid-template-rows: [first-row] 30% [second-row] 70% [last-row];
 }
+
 .grid-patient-action-required-title {
     grid-row-start: 1;
     grid-row-end: 2;
@@ -409,6 +441,7 @@ background-color: #F7F7F7;
     justify-content: center;
     align-items: center;
 }
+
 .grid-patient-action-required-comment {
     grid-row-start: 2;
     grid-row-end: 3;
@@ -419,6 +452,7 @@ background-color: #F7F7F7;
     font-size: smaller;
     overflow: auto;
 }
+
 .grid-comment {
     display: grid;
     width: 90%;
@@ -430,6 +464,7 @@ background-color: #F7F7F7;
     grid-template-rows: [first-row] 20% [second-row] 16% [second-row] 16% [second-row] 16% [second-row] 16% [second-row] 16% [last-row];
     margin-bottom: 50px;
 }
+
 .grid-comment-cell {
     display: flex;
     justify-content: center;
@@ -437,6 +472,7 @@ background-color: #F7F7F7;
     border-bottom: 3px solid #ececee;
     border-right: 3px solid #ececee;
 }
+
 .link-cell {
     display: flex;
     justify-content: right;
@@ -446,23 +482,28 @@ background-color: #F7F7F7;
     border-bottom: 3px solid #ececee;
     font-size: small;
 }
+
 .grid-no-right-border {
     border-right: none;
 }
+
 .grid-no-bottom-border {
     border-bottom: none;
 }
+
 /*------------------------------------END CLINICIAN PAGES--------------------------*/
 
 /* Container that stores the YouTube videos */
 .video-container {
     position: relative;
-    overflow:hidden;
+    overflow: hidden;
     /* The value below will display the video in 16:9 format */
     padding-bottom: 56.25%;
     height: 0;
 }
-.video-container iframe, .video-container embed {
+
+.video-container iframe,
+.video-container embed {
     position: absolute;
     top: 0;
     left: 0;
@@ -470,6 +511,7 @@ background-color: #F7F7F7;
     height: 100%;
     max-width: 100%;
 }
+
 /* Set the maximum size of the video and the alignment. */
 .video-wrapper {
     width: 100%;
@@ -481,6 +523,7 @@ background-color: #F7F7F7;
     color: #343434;
     margin-bottom: 0%;
 }
+
 .ranking {
     color: #7D92DB;
     margin-top: 0%;
@@ -531,7 +574,7 @@ background-color: #F7F7F7;
     align-items: center;
     justify-content: center;
     padding: 1% 3% 1% 3%;
-    border:none;
+    border: none;
 }
 
 
@@ -550,10 +593,11 @@ background-color: #F7F7F7;
     align-items: center;
     justify-content: center;
     padding: 1% 3% 1% 3%;
-    border:none;
-    cursor:pointer;
+    border: none;
+    cursor: pointer;
     transition: all 0.5s ease 0s;
 }
+
 .button01:hover {
     background-color: #8a3ee2;
     transform: scale(1.05);
@@ -566,27 +610,35 @@ background-color: #F7F7F7;
     background-color: #A13376;
     color: white;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
-    margin: 3%;
+    margin: 2%;
     padding: 5%;
     text-align: center;
-    grid-row-start: 4;
+    grid-row-start: 5;
     grid-column-start: 1;
     grid-column-end: 3;
-    grid-row-end: 4;
-    border:none;
+    grid-row-end: 6;
+    border: none;
     transition: all 0.5s ease 0s;
 }
+
 .button02:hover {
     background-color: #8a3ee2;
     /*font-size: 22px;*/
 }
-.patient-dashboard-notifications-text{
+
+.patient-dashboard-notifications-text {
     margin-left: 2%;
     color: #72A6E8;
     font-size: 24px;
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
+}
+
+.patient-dashboard-notifications-text2 {
+    margin-left: 2%;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 
 .button03 {
@@ -605,10 +657,11 @@ background-color: #F7F7F7;
     align-items: center;
     justify-content: center;
 
-    border:none;
-    cursor:pointer;
+    border: none;
+    cursor: pointer;
     transition: all 0.5s ease 0s;
 }
+
 .button03:hover {
     background-color: #8a3ee2;
     transform: scale(1.05);
@@ -629,8 +682,8 @@ background-color: #F7F7F7;
     text-align: center;
     align-items: center;
     justify-content: center;
-    border:none;
-    cursor:pointer;
+    border: none;
+    cursor: pointer;
     transition: all 0.9s ease 0s;
 }
 
@@ -641,10 +694,10 @@ background-color: #F7F7F7;
 }
 
 
- /*--------------------------- Record data CSS --------------------------------- */
- /*subheadings*/
- .data-title{
-    color:#717273;
+/*--------------------------- Record data CSS --------------------------------- */
+/*subheadings*/
+.data-title {
+    color: #717273;
     font-size: 22px;
     font-family: 'poppins', sans-serif;
     font-weight: bold;
@@ -662,36 +715,39 @@ background-color: #F7F7F7;
 }
 
 /*responsive design - turn grid into flex */
-@media (max-width: 1000px){
+@media (max-width: 1000px) {
     .grid-container {
         display: flex;
         flex-direction: column;
     }
-    .grid-timestamp{
+
+    .grid-timestamp {
         margin-bottom: 5%;
     }
-    .grid-inputs{
-        margin-bottom:20%
+
+    .grid-inputs {
+        margin-bottom: 20%
     }
-    .submit{
+
+    .submit {
         margin-bottom: 7%;
-    }   
+    }
 
 }
 
 /*  timestamp section radio buttons  */
-.timestamp-icon{
+.timestamp-icon {
     height: 35px;
     width: 35px;
     min-width: 35px;
     min-height: 35px;
     margin-left: 10px;
     margin-right: 5%;
-} 
+}
 
-input[name= "Selector"]{
-     margin-left: 10%;
-     min-height: 20px;
+input[name="Selector"] {
+    margin-left: 10%;
+    min-height: 20px;
 }
 
 .radiocircle {
@@ -896,7 +952,7 @@ textarea::placeholder {
 }
 
 .patient-specifics-userbox {
-    border:5px solid #eeeeee;
+    border: 5px solid #eeeeee;
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -906,7 +962,8 @@ textarea::placeholder {
 .patient-specifics-userbox-subgrid {
     /* border:1px solid red; */
     display: grid;
-    place-items: center;            /* Used to center stuff. Really useful */
+    place-items: center;
+    /* Used to center stuff. Really useful */
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 30px;
@@ -923,7 +980,7 @@ textarea::placeholder {
     grid-template-columns: 15% 15% 15% 15% 40%;
     /* grid-template-rows: repeat(999, auto) repeat(3, 1fr); */
     grid-auto-rows: 60px;
-    border:5px solid #eeeeee;
+    border: 5px solid #eeeeee;
     border-radius: 25px;
 }
 
@@ -938,7 +995,7 @@ textarea::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px; 
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -949,8 +1006,8 @@ textarea::placeholder {
     border-left: 3px solid #ececee; */
     display: flex;
     justify-content: center;
-    align-items: center; 
-    border:1px solid #eeeeee;
+    align-items: center;
+    border: 1px solid #eeeeee;
 }
 
 
@@ -958,23 +1015,23 @@ textarea::placeholder {
 .patient-specifics-notes-container {
     grid-column-start: 1;
     grid-column-end: 3;
-    border:5px solid #eeeeee;
+    border: 5px solid #eeeeee;
     border-radius: 25px;
     padding: 10px;
     background-color: #f0f0f3a2;
 }
 
-.clinician-notes{
+.clinician-notes {
     display: grid;
     grid-template-columns: 12% 12% 76%;
 }
 
-.clinician-notes-cell{
+.clinician-notes-cell {
     font-size: 20px;
-    border:1px solid #eeeeee57;
+    border: 1px solid #eeeeee57;
 }
 
-.scroll{
+.scroll {
     max-height: 125px;
     overflow: auto;
 }
@@ -995,13 +1052,13 @@ textarea::placeholder {
 
 .patient-specifics-graph {
     padding: 10px;
-    border:5px solid #eeeeee;
+    border: 5px solid #eeeeee;
     border-radius: 25px;
 }
 
 .patient-specifics-month {
     padding: 10px;
-    border:5px solid #eeeeee;
+    border: 5px solid #eeeeee;
     border-radius: 25px;
 }
 
@@ -1062,36 +1119,37 @@ textarea::placeholder {
     bottom: 0;
     background-color: rgba(0, 0, 0, .5);
     pointer-events: none;
-  }
-  
-  #backgroundMasker.active {
+}
+
+#backgroundMasker.active {
     opacity: 1;
     pointer-events: all;
-  }
+}
 
-  
-  .checkbox {
+
+.checkbox {
     display: inline-block;
     margin-bottom: 20px;
-  }
-  .checkbox input {
-    width:auto;
-  }
+}
 
-  .popup-input-box-container{
+.checkbox input {
+    width: auto;
+}
+
+.popup-input-box-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
-  }
+    align-items: center;
+}
 
-  input[id="popup-input-box"] {
-      max-width: 100px;
-      height: 40px;
-      border:1px solid black;
-  }
+input[id="popup-input-box"] {
+    max-width: 100px;
+    height: 40px;
+    border: 1px solid black;
+}
 
-  input[id="clinicanNote"] {
+input[id="clinicanNote"] {
     /* margin-top: 12px; */
     /* border:2px solid #eeeeee; */
     /* border-radius: 15px; */
@@ -1113,11 +1171,12 @@ textarea::placeholder {
 footer {
     background-color: #72A6E8;
     font-weight: bold;
-    color:white;
-    margin-top:auto;         /* Force footer to stick to bottom of page */
+    color: white;
+    margin-top: auto;
+    /* Force footer to stick to bottom of page */
 }
 
-.flexbox-footer-container{
+.flexbox-footer-container {
     display: flex;
     flex: 1;
     justify-content: flex-start;
@@ -1129,38 +1188,49 @@ footer {
 }
 
 .flexbox-footer-row {
-    flex-wrap: wrap;        /* When viewport gets smaller each item will wrap onto a new line */
+    flex-wrap: wrap;
+    /* When viewport gets smaller each item will wrap onto a new line */
     list-style: none;
     flex-direction: column;
     margin-bottom: 32px;
 }
+
 .flexbox-footer-row a {
     margin-bottom: 1px;
     font-weight: bold;
-    color:white;
+    color: white;
 }
+
 .flexbox-footer-logo {
-    cursor:pointer;
-    float:right;            /* Important! 'Float' allows the logo to be in the same line as the text. */
-    display: block;         /* Right align the logo */
-    margin-left: auto;      /* Right align the logo */
+    cursor: pointer;
+    float: right;
+    /* Important! 'Float' allows the logo to be in the same line as the text. */
+    display: block;
+    /* Right align the logo */
+    margin-left: auto;
+    /* Right align the logo */
     margin-top: 5px;
     transition: all 0.8s ease 0s;
 }
+
 .flexbox-footer-logo:hover {
     transform: scale(1.05);
 }
+
 .flexbox-footer-row-horizontal {
     list-style: none;
     text-align: center;
 }
+
 .flexbox-footer-row-horizontal li {
-    display: inline-block;  /* Inline block makes it so that list elements appear horizontally */
+    display: inline-block;
+    /* Inline block makes it so that list elements appear horizontally */
     padding-right: 8px;
-    color:white;
+    color: white;
 }
+
 .flexbox-footer-row-horizontal a {
-    color:white;
+    color: white;
 }
 
 /* ----------------- HISTORY CSS---------------------*/
@@ -1205,7 +1275,7 @@ footer {
     justify-content: center;
 }
 
-.time-history{
+.time-history {
     width: 15%;
     justify-content: center;
 }
@@ -1243,15 +1313,16 @@ footer {
     background-color: #72A6E8;
     border: 2px solid #72A6E8;
 }
+
 .history-row .history-comment {
     display: none;
 }
 
-.history-row:hover .history-data{
+.history-row:hover .history-data {
     display: none;
 }
 
-.history-row:hover .history-comment{
+.history-row:hover .history-comment {
     display: flex;
     height: 100%;
     color: white;
@@ -1280,22 +1351,22 @@ footer {
     margin-right: 5%;
 }
 
-.comments-grid-table{
+.comments-grid-table {
     display: grid;
     grid-template-columns: 15% 10% 75%;
     /* border:2px solid #eeeeee;
     border-radius: 25px; */
 }
 
-.comments-table-cell-datetime{
+.comments-table-cell-datetime {
     display: grid;
-    border:1px solid #eeeeee;
+    border: 1px solid #eeeeee;
 }
 
-.comments-table-cell{
+.comments-table-cell {
     display: grid;
     grid-template-columns: 70% 30%;
-    border:1px solid #eeeeee;
+    border: 1px solid #eeeeee;
 }
 
 .comments-table-cell-link {
@@ -1308,10 +1379,10 @@ footer {
     font-size: 14px;
     justify-self: end;
     margin-top: 10px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.comments-table-cell-header{
+.comments-table-cell-header {
     font-size: 20px;
     font-weight: bold;
     margin-left: 10px;
@@ -1319,7 +1390,7 @@ footer {
     margin-bottom: 10px;
 }
 
-.comments-table-cell-text{
+.comments-table-cell-text {
     margin-left: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -1333,7 +1404,8 @@ footer {
 
 /* ------------------------------------------------------------------------------------------------------------------------------- */
 /* ||               GENERAL STYLES              */
-.center {                       /* Centers a photo */
+.center {
+    /* Centers a photo */
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -1343,27 +1415,29 @@ footer {
 }
 
 /* Define font size and color for lists, html links and buttons */
-li, a, button {
+li,
+a,
+button {
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
-    color:black;
+    color: black;
 }
 
-/* Override the default h1 font-size to 32px. Necessary because h1 tags within a <section> render at 24px */ 
+/* Override the default h1 font-size to 32px. Necessary because h1 tags within a <section> render at 24px */
 h1 {
     font-size: 35px;
 }
 
 /* Define values for heading tags */
-h1{
-    color:#72A6E8;
+h1 {
+    color: #72A6E8;
 }
 
 /* Allows images to scale with the browser window */
 img {
-	max-width: 100%;
-	height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .heading {
@@ -1374,7 +1448,7 @@ img {
 }
 
 .blue {
-    background-color:#72A6E8;
+    background-color: #72A6E8;
 }
 
 .blue-text {
@@ -1384,26 +1458,30 @@ img {
 .purple1 {
     background-color: #899CDE;
 }
+
 .purple2 {
     background-color: #8B7CC9;
 }
+
 .purple3 {
     background-color: #9765B2;
 }
 
 .white {
     background-color: #FFFFFF;
-    color:black;
+    color: black;
     filter: drop-shadow(1px 1px 3px #D4D4D4);
     border-style: solid;
     border-color: #E8E8E8;
     border-width: thin;
 }
+
 .bold {
     font-weight: 700;
 }
+
 .red-highlight {
-    border: 5px solid rgba(255,0,0,0.5);
+    border: 5px solid rgba(255, 0, 0, 0.5);
 }
 
 /* Login Page Styles*/
@@ -1411,6 +1489,7 @@ p {
     text-align: left;
     font-size: 20px;
 }
+
 .background {
     background-image: url("../assets/bg_image.png");
     background-position: center;
@@ -1429,7 +1508,8 @@ p {
     justify-content: center;
     flex-direction: column;
 }
-     /* Bordered form */
+
+/* Bordered form */
 .loginform {
     border: 1px solid #E7E7E7;
     background-color: #FFFFFF;
@@ -1439,7 +1519,7 @@ p {
     padding-bottom: 10%;
 }
 
-.login_heading{
+.login_heading {
     text-align: center;
     color: #000000;
     font-family: 'poppins', sans-serif;
@@ -1447,7 +1527,8 @@ p {
 }
 
 /* Full-width inputs */
-input[id=username], input[id=psw] {
+input[id=username],
+input[id=psw] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -1464,11 +1545,14 @@ input[id=username], input[id=psw] {
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
-    padding: 10px 15%;   /* First value: padding top and bottom. Second value: padding on sides. */
+    padding: 10px 15%;
+    /* First value: padding top and bottom. Second value: padding on sides. */
 }
+
 .login_button {
     background-color: #7D92DB;
-    color: white; padding: 14px 20px;
+    color: white;
+    padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -1477,22 +1561,24 @@ input[id=username], input[id=psw] {
     border-radius: 38px;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
     font-size: 20px;
-    font-weight:bold;
+    font-weight: bold;
     text-align: center;
     align-items: center;
     justify-content: center;
     transition: all 0.5s ease 0s;
 }
-  
-  /* Add a hover effect for buttons */
+
+/* Add a hover effect for buttons */
 .login_button:hover {
     opacity: 0.8;
     transform: scale(1.05);
     /*font-size: 22px;*/
 }
+
 .login_body {
     min-height: 100vh;
 }
+
 /* The "Forgot password" text */
 .psw {
     display: flex;
@@ -1500,16 +1586,16 @@ input[id=username], input[id=psw] {
     padding-bottom: 5%;
     justify-content: space-between;
 }
-  
+
 .acc-creation-text {
     display: flex;
     justify-content: center;
     padding-top: 4%;
 }
 
-.topbar-tree{
+.topbar-tree {
     font-size: 16px;
-    display:inline;
+    display: inline;
 }
 
 .ul-text {
@@ -1532,12 +1618,13 @@ input[id=username], input[id=psw] {
     justify-content: center;
     flex-direction: column;
 }
+
 .thankyou-buttons {
     display: flex;
     justify-content: center;
     flex-direction: row;
 }
-  
+
 .ty-button {
     display: flex;
     min-height: 90px;
@@ -1552,15 +1639,16 @@ input[id=username], input[id=psw] {
     align-items: center;
     justify-content: center;
     padding: 1% 3% 1% 3%;
-    border:none;
-    cursor:pointer;
+    border: none;
+    cursor: pointer;
     transition: all 0.5s ease 0s;
 }
+
 .ty-button:hover {
     opacity: 0.8;
     transform: scale(1.05);
 }
-  
+
 .thankyouimg {
     display: block;
     margin-left: auto;
@@ -1568,28 +1656,38 @@ input[id=username], input[id=psw] {
     width: 30%;
     max-width: 350px;
 }
+
 /*Login and Thankyou Page Resizing*/
 @media (max-width: 1020px) {
-    .form, .flexbox-form-container {
-      max-width: 600px;
+
+    .form,
+    .flexbox-form-container {
+        max-width: 600px;
     }
 }
-  
- @media (max-width: 800px) {
-    .form, .flexbox-form-container {
-      max-width: 500px;
+
+@media (max-width: 800px) {
+
+    .form,
+    .flexbox-form-container {
+        max-width: 500px;
     }
+
     .container {
-      padding: 10px 12%;
+        padding: 10px 12%;
     }
 }
-  
+
 @media (max-width: 500px) {
-    .form, .flexbox-form-container, p {
+
+    .form,
+    .flexbox-form-container,
+    p {
         max-width: 360px;
         margin-left: auto;
         margin-right: auto;
     }
+
     .psw {
         display: flex;
         padding-top: 3%;
@@ -1598,14 +1696,17 @@ input[id=username], input[id=psw] {
         justify-content: center;
         align-items: center;
     }
+
     .container {
         padding: 10px 10%;
     }
+
     .thankyou-buttons {
         flex-direction: column;
         max-width: 80vh;
         padding: 2% 6% 2% 6%;
     }
+
     .ty-button {
         font-size: 18px;
         min-height: 60px;
@@ -1613,6 +1714,7 @@ input[id=username], input[id=psw] {
         padding: 2% 0% 2% 0%;
         min-width: 250px;
     }
+
     .thankyouimg {
         width: 70%;
     }
@@ -1623,13 +1725,14 @@ input[id=username], input[id=psw] {
 /* ||               MOBILE VIEW             */
 /* When the size of the browser window is small, the following CSS rules will apply */
 @media (max-width: 1000px) {
+
     /* Show burger icon */
     .flexbox-navbar-hamburger {
         display: block;
-      }
+    }
 
     /* Hide navbar text */
-    .flexbox-navbar-text  {
+    .flexbox-navbar-text {
         display: none;
     }
 
@@ -1637,11 +1740,13 @@ input[id=username], input[id=psw] {
     .flexbox-navbar-profile {
         display: none;
     }
+
     .nav-msg-icon {
-        display:none;
+        display: none;
     }
+
     .nav-profile-verticle-bar {
-        display:none;
+        display: none;
     }
 
 
@@ -1650,20 +1755,23 @@ input[id=username], input[id=psw] {
         height: 100%;
         width: 38%;
         display: block;
-        position:fixed;                     /* Ensure that the sidebar position is fixed in place */
-        z-index: 1;                         /* Bring the sidebar on top of the current page */
-        background-color: #72A6E8; 
-        transition: 0.2s;                   /* Animation speed */
+        position: fixed;
+        /* Ensure that the sidebar position is fixed in place */
+        z-index: 1;
+        /* Bring the sidebar on top of the current page */
+        background-color: #72A6E8;
+        transition: 0.2s;
+        /* Animation speed */
     }
 
     /* Positioning for the sidebar content */
     .sidebar-content {
         position: relative;
-        top: 6%; 
-        width: 100%; 
-        text-align: left; 
+        top: 6%;
+        width: 100%;
+        text-align: left;
         margin-left: 10px;
-        margin-top: 40px; 
+        margin-top: 40px;
     }
 
     /* Make the button slightly smaller on small screens */
@@ -1679,18 +1787,22 @@ input[id=username], input[id=psw] {
         margin-left: auto;
         margin-right: auto;
     }
+
     #patient-dashboard-grid-container-nested {
         grid-template-columns: 1fr;
         width: 324px;
     }
+
     .heading {
         text-align: center;
     }
+
     .button01 {
         margin-bottom: 2%;
         /* min-width: 300px;   */
     }
-    .patient-dashboard-notifications-text{
+
+    .patient-dashboard-notifications-text {
         text-align: center;
         grid-column-start: 1;
         grid-row-start: 1;
@@ -1711,34 +1823,36 @@ input[id=username], input[id=psw] {
 
     #profile {
         text-align: center;
-        margin:auto;
+        margin: auto;
     }
-    
+
     .history-title {
         font-size: 70%;
     }
+
     .timestamp-history {
         width: 30%;
     }
-    
+
     .measurement-history {
         width: 20%;
     }
-    
+
     .date-history {
         width: 25%;
         justify-content: center;
     }
-    
-    .time-history{
+
+    .time-history {
         width: 20%;
         justify-content: center;
     }
+
     .history-data {
         font-size: 70%;
     }
 
-    .history-pic{
+    .history-pic {
         height: 30px;
         width: 30px;
         display: flex;
@@ -1749,11 +1863,12 @@ input[id=username], input[id=psw] {
         width: 30px;
     }
 }
+
 /*----------------------------------------------------------------------------------------------------------------------*/
 /*Leaderboard CSS -- work in progress, need to make responsive*/
 
 /* headings */
-.LB-heading{
+.LB-heading {
     text-align: center;
     color: #72a6e8;
     font-family: 'poppins', sans-serif;
@@ -1763,8 +1878,8 @@ input[id=username], input[id=psw] {
     padding-bottom: 20px;
 }
 
-.top-title{
-    color:#717273;
+.top-title {
+    color: #717273;
     font-size: 22px;
     font-family: 'poppins', sans-serif;
     font-weight: bold;
@@ -1773,7 +1888,7 @@ input[id=username], input[id=psw] {
 }
 
 /* overall container */
-.leaderboard-container{
+.leaderboard-container {
     justify-content: center;
     align-content: center;
     margin-left: auto;
@@ -1799,30 +1914,31 @@ input[id=username], input[id=psw] {
     min-height: 170px;
 }
 
-.place{
+.place {
     padding-left: 9%;
     padding-right: 9%;
     justify-items: center;
     align-items: center;
 }
 
-.user-labels{
+.user-labels {
     text-align: center;
     font-family: 'poppins', sans-serif;
-    color:#717273;
+    color: #717273;
     font-size: 15px;
 }
- /* end of top 3 section */
+
+/* end of top 3 section */
 /* top 5 leaderboard list */
 
 /* top 3 */
-.board-icon{
+.board-icon {
     height: 36px;
     width: 36px;
     align-self: center;
 }
 
-.board-label{
+.board-label {
     font-family: 'poppins', sans-serif;
     color: black;
     font-size: 18px;
@@ -1830,15 +1946,15 @@ input[id=username], input[id=psw] {
     margin-left: 20px;
 }
 
-.user-score{
+.user-score {
     font-family: 'poppins', sans-serif;
     color: black;
     margin: auto;
-    margin-right: 5% ;
+    margin-right: 5%;
 }
 
 
-.top-1{
+.top-1 {
     display: flex;
     background-color: #72a6e8;
     border-radius: 15px;
@@ -1847,7 +1963,7 @@ input[id=username], input[id=psw] {
     margin-top: 20px;
 }
 
-.top-2{
+.top-2 {
     display: flex;
     background-color: #9765b2;
     border-radius: 15px;
@@ -1856,7 +1972,7 @@ input[id=username], input[id=psw] {
     margin-top: 20px;
 }
 
-.top-3{
+.top-3 {
     display: flex;
     background-color: #9F4D96;
     border-radius: 15px;
@@ -1866,7 +1982,7 @@ input[id=username], input[id=psw] {
 }
 
 /*4th and 5th */
-.board-label-2{
+.board-label-2 {
     font-family: 'poppins', sans-serif;
     color: black;
     font-size: 18px;
@@ -1875,13 +1991,14 @@ input[id=username], input[id=psw] {
 }
 
 
-.user-score-2{
+.user-score-2 {
     font-family: 'poppins', sans-serif;
     color: black;
     margin: auto;
-    margin-right: 5% ;
+    margin-right: 5%;
 }
-.top-others{
+
+.top-others {
     display: flex;
     background-color: white;
     border-radius: 15px;
@@ -1908,8 +2025,8 @@ input[id=username], input[id=psw] {
     align-items: center;
     justify-content: center;
     padding: 1% 3% 1% 3%;
-    border:none;
-    cursor:pointer;
+    border: none;
+    cursor: pointer;
     transition: all 0.5s ease 0s;
 }
 
@@ -1921,11 +2038,11 @@ input[id=username], input[id=psw] {
 
 /* ---------------responsive design--------------------- */
 
-@media (max-width: 950px){
+@media (max-width: 950px) {
     /* overall container */
 
 
-    .place{
+    .place {
         padding-left: 2%;
         padding-right: 2%;
         justify-items: center;
@@ -1935,19 +2052,20 @@ input[id=username], input[id=psw] {
         justify-content: center;
         align-content: center;
     }
-    .second-icon{
+
+    .second-icon {
         max-height: 100px;
         max-width: 100px;
         padding-left: 10px;
     }
-    
-    .first-icon{
+
+    .first-icon {
         max-height: 150px;
         max-width: 150px;
         padding-right: 10px;
     }
 
-    .third-icon{
+    .third-icon {
         max-height: 100px;
         max-width: 100px;
         padding-right: 10px;
@@ -1956,4 +2074,3 @@ input[id=username], input[id=psw] {
 }
 
 /* ------------------ leaderboard end ------------------ */
-
