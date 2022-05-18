@@ -24,10 +24,12 @@ authRouter.get('/patient_dashboard', isAuthenticated, (req, res) => {
     console.log("Loaded patient dashboard (authRouter.js)")
     console.log(req.user.username)
     sessionStorage.setItem('username', req.user.username)
+    sessionStorage.setItem('role', req.user.role)
     appController.getPatientDashboard(req, res)
 
     // res.render('patient_dashboard', { user: req.user.toJSON() })
 })
+
 
 // Login page (with failure message displayed upon login failure)
 authRouter.get('/login_page', (req, res) => {
@@ -47,6 +49,7 @@ authRouter.post('/login',
     function(req, res){
         const role = appController.getPatientRole(req, res) 
         console.log(role)
+        sessionStorage.setItem('role', role)
         if (role=="patient"){
             res.redirect('/patient_dashboard')
         }
