@@ -67,7 +67,8 @@ authRouter.post('/login',
 )
 
 // Handle logout
-authRouter.post('/logout', (req, res) => {
+authRouter.get('/logout', (req, res) => {
+    console.log("Running Logout")
     req.logout()
     res.redirect('/')
 })

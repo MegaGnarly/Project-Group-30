@@ -44,6 +44,7 @@ patientRouter.get('/patient_change_pwd', (req, res) => {
     appController.getPatientChangePass(req, res);
 })
 
+
 // patientRouter.post('/change_pwd', async (req, res) => {
 //     console.log("POSTED AAAAAAAAAAAHHHHHHHH")
 //     appController.setNewPatientPass(req, res)

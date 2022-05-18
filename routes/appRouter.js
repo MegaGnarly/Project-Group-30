@@ -27,5 +27,6 @@ appRouter.get('/register', (req, res) => {
     res.render('register_page.hbs', { layout: 'main2' })
 })
 
+
 // Export the router
 module.exports = appRouter
