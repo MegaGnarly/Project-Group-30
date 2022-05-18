@@ -371,6 +371,29 @@ const setPatientTimeSeries = async (req, res, next) => {
 
         if (req.body.checkbox.includes("weight")) {
             if (isValidNumber(req.body.lower_weight) || (isValidNumber(req.body.upper_weight))) {
+                var acceptedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
+
+                // Validate input. Note that decimal places are allowed for weight entries
+                for (const char of req.body.lower_weight) {
+                    if (!acceptedValues.includes(char)) {
+                        console.log("Invalid input for measured weight")
+                        return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "../" })
+                    }
+                    if (char === ".") {
+                        acceptedValues.pop();
+                    }
+                }
+                acceptedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
+                for (const char of req.body.upper_weight) {
+                    if (!acceptedValues.includes(char)) {
+                        console.log("Invalid input for measured weight")
+                        return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "../" })
+                    }
+                    if (char === ".") {
+                        acceptedValues.pop();
+                    }
+                }
+
                 // Update permission and safety thresholds
                 user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: true, lower: req.body.lower_weight, upper: req.body.upper_weight } } })
                 console.log("Updated weight safety threshold")
