@@ -111,10 +111,11 @@ header {
     padding: 0px 20px;
 }
 
-.nav-logout-icon{
+.nav-logout-icon {
     height: 50px;
     width: 50px;
 }
+
 .nav-msg-icon {
     margin-left: 16px;
     margin-right: 16px;
@@ -205,12 +206,13 @@ header {
 /*-------------------------------END RECORD_HEALTH PAGES---------------------------------*/
 
 /*-------------------------------CLINICIAN PAGES-----------------------------------------*/
-.header-bar{
+.header-bar {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     margin-right: 2%;
 }
+
 .header-items {
     display: flex;
     border-radius: 38px;
@@ -225,21 +227,25 @@ header {
     border: none;
     transition: all 0.5s ease 0s;
 }
+
 .patients-item {
     width: 22.5%;
     margin: 1.5% 1% 1.5% 1%;
     cursor: default;
 }
+
 .data-item {
     width: 48%;
     margin: 1.5% 2.5% 1.5% 0%;
     cursor: default;
 }
+
 .comments-button {
     width: 18%;
     cursor: pointer;
     margin: 1.5% 3% 1.5% 0%;
 }
+
 .comments-button:hover {
     background-color: #8a3ee2;
     transform: scale(1.05);
@@ -252,6 +258,7 @@ header {
     margin-left: 5%;
     flex-direction: row;
 }
+
 .searchbar {
     padding: 1px;
     border-radius: 10px;
@@ -563,10 +570,22 @@ select {
 }
 
 .ranking {
-    color: #7D92DB;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
     margin-top: 0%;
     margin-bottom: 0%;
     text-align: center;
+}
+
+.engagementCard {
+    background-color: #a9c9ff;
+    background-image: linear-gradient(40deg,#5FFBF1 0%,#86A8E7 45%,#D16BA5 100%);
+    padding: 10%;
+    border-radius: 30px;
+    margin: 0% 15% 15% 15%;
+    justify-content: center;
+    align-items: center;
 }
 
 .center-text {
@@ -2130,7 +2149,7 @@ input[id=lname] {
     border-top: #7D92DB 5px solid;
 }
 
-.settings_heading{
+.settings_heading {
     text-align: left;
     color: #7D92DB;
     font-family: 'poppins', sans-serif;
@@ -2138,7 +2157,7 @@ input[id=lname] {
     margin-bottom: 5%;
 }
 
-.page_heading{
+.page_heading {
     text-align: left;
     color: #7D92DB;
     font-family: 'poppins', sans-serif;
@@ -2146,7 +2165,10 @@ input[id=lname] {
     padding: 2%;
 }
 
-input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
+input[id=firstname],
+input[id=lastname],
+input[id=Username],
+input[id=psw] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -2172,11 +2194,14 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 /* Add padding to containers */
 .settings_container {
-    padding: 10px 15%;/* First value: padding top and bottom. Second value: padding on sides. */ 
+    padding: 10px 15%;
+    /* First value: padding top and bottom. Second value: padding on sides. */
 }
+
 .settings_button {
     background-color: #7D92DB;
-    color: white; padding: 14px 20px;
+    color: white;
+    padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -2184,7 +2209,7 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     border-radius: 38px;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
     font-size: 20px;
-    font-weight:bold;
+    font-weight: bold;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -2192,8 +2217,8 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     margin-top: 5%;
     width: 100%;
 }
-  
-  /* Add a hover effect for buttons */
+
+/* Add a hover effect for buttons */
 .settings_button:hover {
     opacity: 0.8;
     transform: scale(1.05);
@@ -2202,9 +2227,9 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 .settings_btn {
     background-color: #7D92DB;
-    color: white; 
+    color: white;
     padding: 18px;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: 5%;
     border: none;
     cursor: pointer;
@@ -2217,20 +2242,20 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     transition: all 0.5s ease 0s;
 }
 
-  /* Add a hover effect for buttons */
+/* Add a hover effect for buttons */
 .settings_btn:hover {
     opacity: 0.8;
     transform: scale(1.05);
 
 }
 
-.placeholderimg{
+.placeholderimg {
     border: 5px solid #555;
     border-radius: 50%;
     max-height: 200px;
 }
 
-.innerbound{
+.innerbound {
     display: flex;
     justify-content: center;
     padding: 2% 8% 2% 8%;
@@ -2242,12 +2267,12 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     overflow: hidden;
     background-color: #f1f1f1;
     border-radius: 15px 15px 0 0;
-    margin:0% 5% 0% 5%;
+    margin: 0% 5% 0% 5%;
     filter: drop-shadow(4px 4px 3px #858484);
-  }
-  
-  /* Style buttons tab content */
-  .tab button {
+}
+
+/* Style buttons tab content */
+.tab button {
     background-color: inherit;
     float: left;
     border: none;
@@ -2260,51 +2285,57 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     font-weight: bolder;
     border-radius: 15px 15px 0 0;
     width: 50%;
-  }
-  
-  /* Background color of buttons on hover */
-  .tab button:hover {
+}
+
+/* Background color of buttons on hover */
+.tab button:hover {
     background-color: #ddd;
-  }
-  
-  /* Active/current tablink class */
-  .tab button.active {
+}
+
+/* Active/current tablink class */
+.tab button.active {
     background-color: #7D92DB;
     color: #FFFFFF
-  }
-  
-  /* tab content */
-  .tabcontent {
+}
+
+/* tab content */
+.tabcontent {
     display: none;
     padding: 6px 12px;
     border-top: none;
-  }
+}
 
-  .tabcontent {
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
-  }
-  
-  /* Go from zero to full opacity */
-  @keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
+.tabcontent {
+    animation: fadeEffect 1s;
+    /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 
 /*---------------- graphs --------------------*/
 /*patient specifics*/
-.line-graph{
+.line-graph {
     height: 82%;
     width: 100%;
     padding-top: 20px;
 }
 
-.overview-graph{
+.overview-graph {
     padding-top: 20px;
 }
 
 /*history*/
-.history-graph{
+.history-graph {
     width: 90%;
     justify-self: center;
     align-self: center;
@@ -2312,7 +2343,7 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 }
 
-.patient-graph{
+.patient-graph {
     padding-top: 10px;
     /* justify-self: center;
     align-content: center; */
@@ -2321,9 +2352,3 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 }
 
 /* ---------------- end of graph styling--------------------- */
-
-
-
-
-
-

@@ -11,10 +11,6 @@
         <!-- NOTE! These values are currently hardcoded and arbitrary (which is fine for this deliverable as per the spec) -->
         <!-- In the final submission these values need to be fetched from the database -->
         <h2 class="username">{{user.username}}</h2>
-        <p class="ranking">Engagement Rate: {{engagementData.engagementRate}}</p>
-        {{#badgeChecker engagementData.engagementRate}}
-            <div class="grid-patient-data red-highlight">SHOW BADGE</div>
-        {{/badgeChecker}}
     </div>
 
     <!-- Column 2 -->
@@ -28,10 +24,18 @@
     </div>
 </div>
 <br>
-
 <div id="patient-dashboard-grid-container">
     <!-- Column 1: Empty field-->
-    <div id=""></div>
+    <div id="profile">
+        <div class="container engagementCard">
+            <p class="ranking">Engaged: {{engagementData.daysEngaged}}/{{engagementData.daysRegistered}} days</p>
+            <p class="ranking">Rate: {{engagementData.engagementRate}}%</p>
+            <br>
+            {{#badgeChecker engagementData.engagementRate}}
+            <img src="../assets/badge.png" alt="badge" width="125" height="125">
+            {{/badgeChecker}}
+        </div>
+    </div>
 
     <!-- Column 2 -->
     <!-- Nested grid container that stores buttons-->
@@ -43,21 +47,21 @@
         {{#if enteredAllData}}
         <p class="patient-dashboard-notifications-text2">You have no more data to record today </p>
         {{else}}
-            <p class="patient-dashboard-notifications-text2">Your clinician has advised you to record the following: </p>
-            {{#if displayBg}}
-            <div class="dataToRecord white">Blood Glucose</div>
-            {{/if}}
-            {{#if displayWeight}}
-            <div class="dataToRecord white">Weight</div>
-            {{/if}}
-            {{#if displayInsulin}}
-            <div class="dataToRecord white">Insulin</div>
-            {{/if}}
-            {{#if displayExercise}}
-            <div class="dataToRecord white">Exercise</div>
-            {{/if}}
+        <p class="patient-dashboard-notifications-text2">Your clinician has advised you to record the following: </p>
+        {{#if displayBg}}
+        <div class="dataToRecord white">Blood Glucose</div>
         {{/if}}
-        
+        {{#if displayWeight}}
+        <div class="dataToRecord white">Weight</div>
+        {{/if}}
+        {{#if displayInsulin}}
+        <div class="dataToRecord white">Insulin</div>
+        {{/if}}
+        {{#if displayExercise}}
+        <div class="dataToRecord white">Exercise</div>
+        {{/if}}
+        {{/if}}
+
         <button class="button02">
             <h2>Latest Clinician Message</h2>
             <p class="center-text">{{profileData.support_msg}}</p>
