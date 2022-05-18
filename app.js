@@ -181,6 +181,19 @@ app.post('/register', (req, res) => {
     res.render('login_page', { layout: 'main2' })
 })
 
+// Patient changes password in settings. MOVE TO ROUTER
+app.post('/change_pwd', async (req, res) => {
+    console.log("Debug: inside change pwd")
+    // Verify user input (make sure passwords match)
+    console.log(req.body.password)
+
+    // Update database
+
+    // Return
+
+
+})
+
 
 // **** Handlebars Helpers ****
 // Clinician Dashboard helper - red outline on user if they violate a safety threshold

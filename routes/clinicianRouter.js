@@ -20,6 +20,17 @@ clinicianRouter.get('/patient/:username', (req, res) => {
     appController.getPatientDataClinician(req, res)
 })
 
+clinicianRouter.get('/edit', (req, res) => {
+    console.log("INSIDE Edit profile")
+    appController.getClinicianEditProfile(req, res)
+})
+
+clinicianRouter.get('/settings', (req, res) => {
+    console.log("INSIDE Profile Settings");
+    appController.getClinicianProfileSettings(req, res)
+})
+
+
 clinicianRouter.get('/comments', (req, res) => {
     appController.getAllPatientComments(req, res)
 })
@@ -27,6 +38,11 @@ clinicianRouter.get('/comments', (req, res) => {
 clinicianRouter.get('/entry/:entryid', (req, res) => {
     appController.getPatientEntryData(req, res)
 })
+
+// clinicianRouter.get('/edit'), (req, res) => {
+//     console.log("INSIDE Edit profile")
+//     appController.getClinicianEditProfile(req, res)
+// }
 
 clinicianRouter.post('/post_submit_msg/:id', async (req, res) => {
     appController.submitSupportMessage(req, res)

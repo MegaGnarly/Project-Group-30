@@ -8,6 +8,7 @@ const sessionStorage = require('sessionstorage')
 // Get a patients medical history
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
+
     try {
         const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).lean()
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
@@ -618,6 +619,31 @@ const getPatientName = async (req, res, next) => {
     }
 }
 
+const getPatientRole = (req, res) => {
+    return req.user.role
+}
+
+
+const getClinicianEditProfile = async (req, res, next) => {
+    try {
+        return res.render('clinician_edit_profile', { logoURL: "./" })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getClinicianProfileSettings = async (req, res, next) => {
+    try {
+        return res.render('clinician_profile_settings', { logoURL: "./" })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
 
 // Export objects so that they may be used by other files
 module.exports = {
@@ -635,6 +661,9 @@ module.exports = {
     setPatientTimeSeries,
     setClinicianNote,
     getPatientSettings,
-    getPatientChangePass
+    getPatientChangePass,
+    getClinicianEditProfile,
+    getClinicianProfileSettings,
+    getPatientRole
     // getDataById
 }
