@@ -2207,3 +2207,16 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     padding: 2% 10% 2% 10%;
 
 }
+
+
+/*---------------- graphs --------------------*/
+
+.line-graph{
+    height: 485px;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.overview-graph{
+    padding-top: 20px;
+}
