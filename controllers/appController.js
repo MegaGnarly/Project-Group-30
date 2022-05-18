@@ -362,6 +362,12 @@ const setPatientTimeSeries = async (req, res, next) => {
                         acceptedValues.pop();
                     }
                 }
+
+                // Make sure lower value is less than/equal to upper value
+                if (parseInt(req.body.lower_bg) > (parseInt(req.body.upper_bg))) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Lower safety threshold cannot exceed higher threshold. Please try again", logoURL: "../" })
+                }
+
                 // Update permission and safety thresholds
                 user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: true, lower: req.body.lower_bg, upper: req.body.upper_bg } } })
                 console.log("Updated blood glucose safety threshold")
@@ -400,6 +406,12 @@ const setPatientTimeSeries = async (req, res, next) => {
                     }
                 }
 
+                // Make sure lower value is less than/equal to upper value
+                if (parseInt(req.body.lower_weight) > (parseInt(req.body.upper_weight))) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Lower safety threshold cannot exceed higher threshold. Please try again", logoURL: "../" })
+                }
+
+
                 // Update permission and safety thresholds
                 user.collection.updateOne({ "username": username }, { $set: { threshold_weight: { prescribed: true, lower: req.body.lower_weight, upper: req.body.upper_weight } } })
                 console.log("Updated weight safety threshold")
@@ -423,7 +435,7 @@ const setPatientTimeSeries = async (req, res, next) => {
 
                 // Make sure lower value is less than/equal to upper value
                 if (parseInt(req.body.lower_steps) > (parseInt(req.body.upper_steps))) {
-                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../" })
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Lower safety threshold cannot exceed higher threshold. Please try again.", logoURL: "../" })
                 }
 
                 // Update permission and safety thresholds
@@ -431,7 +443,7 @@ const setPatientTimeSeries = async (req, res, next) => {
                 console.log("Updated exercise (steps) safety threshold")
             }
             else {
-                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Lower safety threshold cannot exceed higher threshold. Please try again.", logoURL: "../" })
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../" })
             }
         }
         else {
@@ -445,6 +457,11 @@ const setPatientTimeSeries = async (req, res, next) => {
                 }
                 if (!stringValidation(req.body.upper_doses)) {
                     return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin doses was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "../" })
+                }
+
+                // Make sure lower value is less than/equal to upper value
+                if (parseInt(req.body.lower_doses) > (parseInt(req.body.upper_doses))) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin was not accepted by the server. Lower safety threshold cannot exceed higher threshold. Please try again", logoURL: "../" })
                 }
 
                 // Update permission and safety thresholds
