@@ -257,6 +257,9 @@ const getPatientDataClinician = async (req, res, next) => {
     }
 }
 
+
+//
+
 /*
 Check if input string is a valid number. Supports strings that contain decimal places.
 */
@@ -273,6 +276,22 @@ function isValidNumber(input) {
     }
     else {
         return true;
+    }
+}
+
+const getPatientSettings = async (req, res, next) => {
+    try {
+        return res.render('patient_acc_setting', { user: sessionStorage.getItem('username'), logoURL: "../" })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getPatientChangePass = async (req, res, next) => {
+    try {
+        return res.render('patient_change_pwd', { user: sessionStorage.getItem('username'), logoURL: "../" })
+    } catch (error) {
+        console.log(error)
     }
 }
 
@@ -612,6 +631,8 @@ module.exports = {
     getPatientHistory,
     submitSupportMessage,
     setPatientTimeSeries,
-    setClinicianNote
+    setClinicianNote,
+    getPatientSettings,
+    getPatientChangePass
     // getDataById
 }
