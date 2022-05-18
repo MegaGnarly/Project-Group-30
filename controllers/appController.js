@@ -10,6 +10,7 @@ const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
     try {
         const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).lean()
+        const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
 
         const tableRowArray = [];
         userValues.forEach(function (arrayItem) {
@@ -49,7 +50,7 @@ const getPatientHistory = async (req, res, next) => {
         })
 
         // The user values being passed are for the site header on the top right.
-        return res.render('patient_history', { data: tableRowArray, logoURL: "../patient_dashboard" })
+        return res.render('patient_history', { user: currentUser, data: tableRowArray, logoURL: "../patient_dashboard" })
     } catch (err) {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../" })
     }
@@ -423,6 +424,7 @@ const getLeaderboard = async (req, res, next) => {
     try {
         const allUsers = await user.collection.distinct("username")
         var rankingRowArray = []
+        const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
 
         for (const currUser of allUsers) {
             const rowOfData = {
@@ -461,7 +463,7 @@ const getLeaderboard = async (req, res, next) => {
         var second = rankingRowArray[1].username
         var third = rankingRowArray[2].username
 
-        res.render('leaderboard', { rank: rankingRowArray, first: first, second: second, third: third, logoURL: "../patient_dashboard" })
+        res.render('leaderboard', { user: currentUser, rank: rankingRowArray, first: first, second: second, third: third, logoURL: "../patient_dashboard" })
 
     } catch (error) {
         console.log(error)
