@@ -2212,6 +2212,37 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 }
 
+
+/*---------------- graphs --------------------*/
+/*patient specifics*/
+.line-graph{
+    height: 82%;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.overview-graph{
+    padding-top: 20px;
+}
+
+/*history*/
+.history-graph{
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    padding-top: 60px;
+
+}
+
+.patient-graph{
+    padding-top: 10px;
+    /* justify-self: center;
+    align-content: center; */
+    width: 100%;
+    max-height: 700px;
+}
+
+/* ---------------- end of graph styling--------------------- */
 /* Clinician  Tab Styling*/
 .tab {
     overflow: hidden;
@@ -2269,15 +2300,4 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 
 
-/*---------------- graphs --------------------*/
-
-.line-graph{
-    height: 485px;
-    width: 100%;
-    padding-top: 20px;
-}
-
-.overview-graph{
-    padding-top: 20px;
-}
 
