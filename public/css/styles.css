@@ -1567,7 +1567,9 @@ p {
 
 /* Full-width inputs */
 input[id=username],
-input[id=psw] {
+input[id=psw],
+input[id=fname],
+input[id=lname] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
