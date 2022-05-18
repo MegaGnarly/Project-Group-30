@@ -340,11 +340,20 @@ const setPatientTimeSeries = async (req, res, next) => {
                         console.log("Invalid input for blood glucose")
                         return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "patient_dashboard" })
                     }
+                    // Decimal places are permitted but we need to handle the edge case of input like this: "5...6"
+                    // Only allow one decimal overall. Just pop the last element of the array as this element is the decimal.
+                    if (char === ".") {
+                        acceptedValues.pop();
+                    }
                 }
+                acceptedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
                 for (const char of req.body.upper_bg) {
                     if (!acceptedValues.includes(char)) {
                         console.log("Invalid input for blood glucose")
                         return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "patient_dashboard" })
+                    }
+                    if (char === ".") {
+                        acceptedValues.pop();
                     }
                 }
                 // Update permission and safety thresholds

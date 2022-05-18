@@ -141,6 +141,11 @@ app.post('/post_values', async (req, res) => {
                         console.log("Invalid input for blood glucose")
                         return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "patient_dashboard" })
                     }
+                    // Decimal places are permitted but we need to handle the edge case of input like this: "5...6"
+                    // Only allow one decimal overall. Just pop the last element of the array as this element is the decimal.
+                    if (char === ".") {
+                        acceptedValues.pop();   
+                    }
                 }
             }
             else if (measuredType == "measured_weight") {
