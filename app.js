@@ -107,6 +107,8 @@ app.post('/post_values', async (req, res) => {
     const measuredType = req.body.Selector
     const valueIsEmpty = !req.body.measurement;
 
+    console.log(req)
+
     // Check if the value recieved is a valid meaurement type and that it is not empty.
     if ((valid_measurements.includes(measuredType)) && (!valueIsEmpty)) {
         try {
@@ -183,15 +185,43 @@ app.post('/register', (req, res) => {
 
 // Patient changes password in settings. MOVE TO ROUTER
 app.post('/change_pwd', async (req, res) => {
-    console.log("Debug: inside change pwd")
-    // Verify user input (make sure passwords match)
-    console.log(req.body.password)
+    try {
+        var newPasswords = req.body.password;
+        console.log(newPasswords);
 
-    // Update database
+        // Make sure password is not blank
+        if ((!newPasswords[0].length)) {
+            return res.render('error_page', { buttonURL: "/patient/patient_change_pwd", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
+        }
 
-    // Return
+        // Verify user input (make sure passwords match)
+        if (newPasswords[0] != newPasswords[1]) {
+            console.log("Error. Passwords do not match.")
+            return res.render('error_page', { buttonURL: "/patient/patient_change_pwd", buttonText: "Go Back", errorHeading: "Passwords do not match", errorText: "Please verify that your passwords match and try again.", logoURL: "../patient_dashboard" })
+        }
+        else {
+            console.log("HASHING STUFF")
 
+            // Hash password
+            const SALT_FACTOR = 10
+            var hashedPassword;
+            bcrypt.hash([newPasswords[0]], SALT_FACTOR, (err, hash) => {
+                if (err) {
+                  return next(err)
+                }
+                // Replace password with hash
+                hashedPassword = hash
+                print(hashedPassword)
+                next()
+              })
 
+              // Update database with new password
+
+        }
+    // Return  
+    } catch (error) {
+        
+    }
 })
 
 
