@@ -619,6 +619,10 @@ const getPatientName = async (req, res, next) => {
     }
 }
 
+const getPatientRole = (req, res) => {
+    return req.user.role
+}
+
 
 const getClinicianEditProfile = async (req, res, next) => {
     try {
@@ -659,7 +663,7 @@ module.exports = {
     getPatientSettings,
     getPatientChangePass,
     getClinicianEditProfile,
-    getClinicianProfileSettings
-    
+    getClinicianProfileSettings,
+    getPatientRole
     // getDataById
 }

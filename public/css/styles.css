@@ -2211,6 +2211,20 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 }
 
+<<<<<<< HEAD
+
+/*---------------- graphs --------------------*/
+
+.line-graph{
+    height: 485px;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.overview-graph{
+    padding-top: 20px;
+}
+=======
 /* Clinician  Tab Styling*/
 .tab {
     overflow: hidden;
@@ -2256,3 +2270,4 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     from {opacity: 0;}
     to {opacity: 1;}
   }
+>>>>>>> bf87b3fcf901ed712b4d3ff9e74685fe43f1de85
