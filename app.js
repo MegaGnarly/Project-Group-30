@@ -102,13 +102,18 @@ app.get('/thankyou_page', (req, res) => {
 //     res.render('leaderboard.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
 // })
 
+
+// Check if string only contains numbers
+function stringValidation(str) {
+    return /^\d+$/.test(str);
+}
+
+
 // **** Application POSTs ****  
 app.post('/post_values', async (req, res) => {
     const valid_measurements = ["measured_glucose", "measured_weight", "measured_insulin", "measured_exercise"];
     const measuredType = req.body.Selector
     const valueIsEmpty = !req.body.measurement;
-
-    console.log(req)
 
     // Check if the value recieved is a valid meaurement type and that it is not empty.
     if ((valid_measurements.includes(measuredType)) && (!valueIsEmpty)) {
@@ -118,7 +123,7 @@ app.post('/post_values', async (req, res) => {
             const doc = {
                 username: req.user.username,
                 date: new Date().toLocaleDateString('en-AU', { timeZone: 'Australia/Melbourne' }),
-                time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne', hour: '2-digit', minute:'2-digit' }),
+                time: new Date().toLocaleTimeString('en-AU', { timeZone: 'Australia/Melbourne', hour: '2-digit', minute: '2-digit' }),
                 measured_glucose: "-",
                 measured_weight: "-",
                 measured_insulin: "-",
@@ -128,16 +133,55 @@ app.post('/post_values', async (req, res) => {
 
             // Determine what type of data the user has inserted and update the above entry accordingly.
             if (measuredType == "measured_glucose") {
+                var acceptedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
                 doc.measured_glucose = req.body.measurement;
+
+                // Validate input. Note that decimal places are allowed for blood glucose entries
+                for (const char of doc.measured_glucose) {
+                    if (!acceptedValues.includes(char)) {
+                        console.log("Invalid input for blood glucose")
+                        return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "patient_dashboard" })
+                    }
+                    // Decimal places are permitted but we need to handle the edge case of input like this: "5...6"
+                    // Only allow one decimal overall. Just pop the last element of the array as this element is the decimal.
+                    if (char === ".") {
+                        acceptedValues.pop();
+                    }
+                }
             }
+
             else if (measuredType == "measured_weight") {
                 doc.measured_weight = req.body.measurement;
+                var acceptedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
+
+                // Validate input. Note that decimal places are allowed for weight entries
+                for (const char of doc.measured_weight) {
+                    if (!acceptedValues.includes(char)) {
+                        console.log("Invalid input for measured weight")
+                        return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for weight was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "patient_dashboard" })
+                    }
+                    // Decimal places are permitted but we need to handle the edge case of input like this: "5...6"
+                    // Only allow one decimal overall. Just pop the last element of the array as this element is the decimal.
+                    if (char === ".") {
+                        acceptedValues.pop();
+                    }
+                }
             }
+
             else if (measuredType == "measured_insulin") {
                 doc.measured_insulin = req.body.measurement;
+                // Validate input. Assuming full doses are required so numeric inputs only (no decimals)
+                if (!stringValidation(doc.measured_insulin)) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin doses was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "patient_dashboard" })
+                }
             }
+
             else if (measuredType == "measured_exercise") {
                 doc.measured_exercise = req.body.measurement;
+                if (!stringValidation(doc.measured_exercise)) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "patient_dashboard" })
+                }
+
             }
 
             //Insert the final entry into the database and redirect user.
@@ -208,7 +252,7 @@ app.post('/change_pwd', async (req, res) => {
 
             // Hash password
             const SALT_FACTOR = 10
-    
+
             bcrypt.hash(newPasswords[0], SALT_FACTOR, (err, hash) => {
                 if (err) {
                     console.log(err)
@@ -218,14 +262,14 @@ app.post('/change_pwd', async (req, res) => {
                 hashedPassword = hash
 
                 // Update database with hash
-                console.log("Updating database with ",hashedPassword)
+                console.log("Updating database with ", hashedPassword)
                 // Access the database for this user and update the support message field
                 user.collection.updateOne({ username: req.user.username }, { $set: { password: hashedPassword } });
-              })
+            })
 
-              res.redirect('patient_dashboard')
+            res.redirect('patient_dashboard')
         }
-    // Return  
+        // Return  
     } catch (error) {
         console.log(error)
     }
@@ -243,8 +287,7 @@ hbs.handlebars.registerHelper('thresholdChecker', function (num, options) {
 });
 
 // Used to make the index in leaderboard start from 1 instead of 0
-hbs.handlebars.registerHelper('inc', function(value, options)
-{
+hbs.handlebars.registerHelper('inc', function (value, options) {
     return parseInt(value) + 1;
 });
 
