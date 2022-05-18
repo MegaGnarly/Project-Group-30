@@ -319,6 +319,13 @@ hbs.handlebars.registerHelper('thresholdChecker', function (num, options) {
     return options.inverse(this);
 });
 
+// Check if engagement rate above 80% to show badge
+hbs.handlebars.registerHelper('badgeChecker', function (num, options) {
+    if (num > 80) {
+        return options.fn(this);
+    }
+});
+
 // Used to make the index in leaderboard start from 1 instead of 0
 hbs.handlebars.registerHelper('inc', function (value, options) {
     return parseInt(value) + 1;

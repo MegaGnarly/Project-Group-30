@@ -11,7 +11,10 @@
         <!-- NOTE! These values are currently hardcoded and arbitrary (which is fine for this deliverable as per the spec) -->
         <!-- In the final submission these values need to be fetched from the database -->
         <h2 class="username">{{user.username}}</h2>
-        <p class="ranking">Ranking: 3rd</p>
+        <p class="ranking">Engagement Rate: {{engagementData.engagementRate}}</p>
+        {{#badgeChecker engagementData.engagementRate}}
+            <div class="grid-patient-data red-highlight">SHOW BADGE</div>
+        {{/badgeChecker}}
     </div>
 
     <!-- Column 2 -->

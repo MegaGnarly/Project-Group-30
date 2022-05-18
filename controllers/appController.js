@@ -604,7 +604,34 @@ const getPatientDashboard = async (req, res, next) => {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
+
+        // Get Engagement Rate
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+
+        const engagementData = {
+            daysRegistered: "",
+            daysEngaged: "",
+            engagementRate: ""
+        }
+        // For every user, count their distinct dates
+        const daysOfEngagement = (await measuredValue.find({ username: currentUser.username }).distinct("date")).length
+        const sinceDate = await user.findOne({ username: currentUser.username }, { _id: 0, dateSince: 1 })
+        const registeredDate = sinceDate.dateSince
+        const today = new Date()
+        const todaysDate = new Date(today.getTime())
+        // To calculate the time difference of two dates
+        const differenceInTime = todaysDate - registeredDate;
+        // To calculate the no. of days between two dates
+        const totalDaysRegistered = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+        // Engagement rate as per spec - For example, if a patient has been registered for 20 days, 
+        // and entered some data on 16 of those days, their current engagement rate is 80%.
+        const engagementRate = (daysOfEngagement / totalDaysRegistered) * 100;
+        // This rounds the rate to 1 decimal place
+        // Converts all NaN to 0 for sorting purposes
+        engagementData.engagementRate = (Math.round(engagementRate * 10) / 10) || 0
+        engagementData.daysRegistered = totalDaysRegistered || 0
+        engagementData.daysEngaged = daysOfEngagement || 0
+
         // Determine whether we should display the measurement values for the client
         var isPermittedBg = currentUser.threshold_bg.prescribed;
         var isPermittedWeight = currentUser.threshold_weight.prescribed;
@@ -661,7 +688,7 @@ const getPatientDashboard = async (req, res, next) => {
         console.log("display exercise notification:", displayExercise)
         console.log("display insulin notification:", displayInsulin)
 
-        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
+        res.render('patient_dashboard', { user: req.user.toJSON(), engagementData: engagementData, profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {
         console.log(error)
         return res.render('error_page', { errorHeading: "Error when displaying dashboard", errorText: "Please ensure that you are logged in", logoURL: "../login" })
