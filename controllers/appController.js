@@ -8,7 +8,9 @@ const sessionStorage = require('sessionstorage')
 // Get a patients medical history
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
-
+    if (sessionStorage.getItem('role') != 'patient'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).lean()
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
@@ -51,7 +53,7 @@ const getPatientHistory = async (req, res, next) => {
         })
 
         // The user values being passed are for the site header on the top right.
-        return res.render('patient_history', { user: currentUser, data: tableRowArray, logoURL: "../patient_dashboard" })
+        return res.render('patient_history', { user: currentUser, data: tableRowArray, logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (err) {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../" })
     }
@@ -60,6 +62,9 @@ const getPatientHistory = async (req, res, next) => {
 // Used for clinician dashboard - get patient data
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
+    if (sessionStorage.getItem('role') != 'clinician'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
 
         const userValuesArray = await measuredValue.collection.distinct("username")
@@ -124,7 +129,7 @@ const getAllDataClinician = async (req, res, next) => {
         // console.log(tableRowArray)
 
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'N/A', userRole: "N/A", logoURL: "../" })
+        return res.render('clinician_dashboard', {data: tableRowArray, data2: patientValues, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role'), logoURL: "../" })
     } catch (err) {
         console.log(err)
         console.log("ERROR in getAllDataClinician.")
@@ -134,6 +139,9 @@ const getAllDataClinician = async (req, res, next) => {
 
 
 const getAllPatientComments = async (req, res, next) => {
+    if (sessionStorage.getItem('role') != 'clinician'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         // Load database and get all measured values
         const userValues = await measuredValue.find().sort({ date: -1, time: -1 }).lean();
@@ -150,7 +158,7 @@ const getAllPatientComments = async (req, res, next) => {
         }
 
         // Return values to client
-        return res.render('comments', { patientValues: userValues, logoURL: "./" })
+        return res.render('comments', { patientValues: userValues, logoURL: "./", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
     } catch (error) {
         console.log(error)
@@ -160,6 +168,9 @@ const getAllPatientComments = async (req, res, next) => {
 
 
 const getPatientEntryData = async (req, res, next) => {
+    if (sessionStorage.getItem('role') != 'clinician'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         // Get entryID
         var entryID = req.params.entryid
@@ -185,7 +196,8 @@ const getPatientEntryData = async (req, res, next) => {
 
         return res.render('attached_data', {
             patientValues: userValues, date: date, time: time, username: username, comment: comment, dob,
-            glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, fName: fName, lName: lName, logoURL: "../"
+            glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, fName: fName, lName: lName, logoURL: "../",
+            userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role')
         })
 
     } catch (error) {
@@ -200,6 +212,9 @@ const getPatientEntryData = async (req, res, next) => {
 // Example: http://127.0.0.1:3000/clinician_dashboard/Bob would reveal data for Bob
 const getPatientDataClinician = async (req, res, next) => {
     console.log("DEBUG: inside getPatientDataClinician")
+    if (sessionStorage.getItem('role') != 'clinician'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         // Get basic information about the patient (first name, last name etc)
         // Also serves as a way to check whether the user actually exists. If not, the try block will fail.
@@ -250,7 +265,7 @@ const getPatientDataClinician = async (req, res, next) => {
         // Get clinical Notes
         const allNotes = await clinicalNote.find({ username: req.params.username }).lean()
 
-        return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, clinicianNote: allNotes, logoURL: "../" })
+        return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, clinicianNote: allNotes, logoURL: "../", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
     } catch (err) {
         console.log(err)
@@ -283,7 +298,7 @@ function isValidNumber(input) {
 
 const getPatientSettings = async (req, res, next) => {
     try {
-        return res.render('patient_acc_setting', { user: sessionStorage.getItem('username'), logoURL: "../" })
+        return res.render('patient_acc_setting', { user: sessionStorage.getItem('username'), logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {
         console.log(error)
     }
@@ -291,7 +306,7 @@ const getPatientSettings = async (req, res, next) => {
 
 const getPatientChangePass = async (req, res, next) => {
     try {
-        return res.render('patient_change_pwd', { user: sessionStorage.getItem('username'), logoURL: "../" })
+        return res.render('patient_change_pwd', { user: sessionStorage.getItem('username'), logoURL: "../patient_dashboard" })
     } catch (error) {
         console.log(error)
     }
@@ -383,6 +398,9 @@ const setPatientTimeSeries = async (req, res, next) => {
 
 // Used for clinician -> patient specifics page.
 const setClinicianNote = async (req, res, next) => {
+    if (sessionStorage.getItem('role') != 'clinician'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         // New code that constructs and entry that will be inserted into the database.
         // Note that all measured values are blank for now.
@@ -422,6 +440,9 @@ const submitSupportMessage = async (req, res, next) => {
 
 
 const getLeaderboard = async (req, res, next) => {
+    if (sessionStorage.getItem('role') != 'patient'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         const allUsers = await user.collection.distinct("username")
         var rankingRowArray = []
@@ -464,7 +485,7 @@ const getLeaderboard = async (req, res, next) => {
         var second = rankingRowArray[1].username
         var third = rankingRowArray[2].username
 
-        res.render('leaderboard', { user: currentUser, rank: rankingRowArray, first: first, second: second, third: third, logoURL: "../patient_dashboard" })
+        res.render('leaderboard', { user: currentUser, rank: rankingRowArray, first: first, second: second, third: third, logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
     } catch (error) {
         console.log(error)
@@ -491,6 +512,9 @@ function dateComparison(date) {
 
 // Patient Dashboard logic
 const getPatientDashboard = async (req, res, next) => {
+    if (sessionStorage.getItem('role') != 'patient'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
         // Determine whether we should display the measurement values for the client
@@ -549,7 +573,7 @@ const getPatientDashboard = async (req, res, next) => {
         console.log("display exercise notification:", displayExercise)
         console.log("display insulin notification:", displayInsulin)
 
-        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData })
+        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {
         console.log(error)
         return res.render('error_page', { errorHeading: "Error when displaying dashboard", errorText: "Please ensure that you are logged in", logoURL: "../login" })
@@ -559,6 +583,9 @@ const getPatientDashboard = async (req, res, next) => {
 
 // Used for patient -> record health page.
 const getRecordHealthPage = async (req, res, next) => {
+    if (sessionStorage.getItem('role') != 'patient'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         // See if user exists in the database
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
@@ -585,7 +612,8 @@ const getRecordHealthPage = async (req, res, next) => {
 
         res.render('record_health.hbs', {
             logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight,
-            allowExercise: allowExercise, allowInsulin: allowInsulin, permittedToRecordAnything: permittedToRecordAnything
+            allowExercise: allowExercise, allowInsulin: allowInsulin, permittedToRecordAnything: permittedToRecordAnything,
+            userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role')
         })
 
     } catch (error) {
@@ -601,7 +629,7 @@ const getAllPatientData = async (req, res, next) => {
     console.log('Inside getAllPatientData')
     try {
         const values = await patient.find().lean()
-        return res.render('test_data.hbs', { data2: values, userName: patientName, userRole: patientRole })
+        return res.render('test_data.hbs', { data2: values, userName: patientName, userRole: patientRole, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (err) {
         return next(err)
     }
@@ -626,6 +654,9 @@ const getPatientRole = (req, res) => {
 
 
 const getClinicianEditProfile = async (req, res, next) => {
+    if (sessionStorage.getItem('role') != 'clinician'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
         return res.render('clinician_edit_profile', { logoURL: "./" })
 
@@ -635,8 +666,11 @@ const getClinicianEditProfile = async (req, res, next) => {
 }
 
 const getClinicianProfileSettings = async (req, res, next) => {
+    if (sessionStorage.getItem('role') != 'clinician'){
+        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
+    }
     try {
-        return res.render('clinician_profile_settings', { logoURL: "./" })
+        return res.render('clinician_profile_settings', { logoURL: "./", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
     } catch (error) {
         console.log(error)
