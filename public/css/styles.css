@@ -1042,7 +1042,6 @@ textarea::placeholder {
     font-weight: 600;
 }
 
-
 .patient-specifics-table-data {
     /* grid-row-start: 2;
     grid-row-end: 3;
@@ -1052,8 +1051,6 @@ textarea::placeholder {
     align-items: center;
     border: 1px solid #eeeeee;
 }
-
-
 
 .patient-specifics-notes-container {
     grid-column-start: 1;
@@ -2198,6 +2195,30 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
   
   /* Add a hover effect for buttons */
 .settings_button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+
+}
+
+.settings_btn {
+    background-color: #7D92DB;
+    color: white; 
+    padding: 18px;
+    margin-left: auto; 
+    margin-right: 5%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease 0s;
+}
+
+  /* Add a hover effect for buttons */
+.settings_btn:hover {
     opacity: 0.8;
     transform: scale(1.05);
 
