@@ -19,8 +19,9 @@
     <div id="patient-dashboard-grid-container-nested">
         <a href="/patient/record_health" class="button01">Record Health</a>
         <a href="/patient/history" class="button01 purple1">View History</a>
-        <a href="leaderboard" class="button01">Leaderboard</a>
-        <button class="button01 purple3">Settings</button>
+        <a href="/patient/leaderboard" class="button01">Leaderboard</a>
+        <!--<button class="button01 purple3">Settings</button>-->
+        <a href="/patient/settings" class="button01 purple3">Settings</a>
     </div>
 </div>
 <br>
@@ -32,20 +33,40 @@
     <!-- Column 2 -->
     <!-- Nested grid container that stores buttons-->
     <div id="patient-dashboard-grid-container-nested">
-        <h2 class="patient-dashboard-notifications-text">Notifications</h2>
-        <h2 class="container-text"></h2>
+        <h2 class="patient-dashboard-notifications-text">Todays Requirements</h2>
+        {{!-- <h1 class="container-text"></h1> --}}
 
-        <button class="button01 white">Dose of insulin</button>
-
+        <!-- Show notifications/current measurement tasks -->
+        {{#if enteredAllData}}
+        <p class="patient-dashboard-notifications-text2">You have no more data to record today </p>
+        {{else}}
+            <p class="patient-dashboard-notifications-text2">Your clinician has advised you to record the following: </p>
+            {{#if displayBg}}
+            <div class="dataToRecord white">Blood Glucose</div>
+            {{/if}}
+            {{#if displayWeight}}
+            <div class="dataToRecord white">Weight</div>
+            {{/if}}
+            {{#if displayInsulin}}
+            <div class="dataToRecord white">Insulin</div>
+            {{/if}}
+            {{#if displayExercise}}
+            <div class="dataToRecord white">Exercise</div>
+            {{/if}}
+        {{/if}}
+        
         <button class="button02">
+<<<<<<< HEAD
             <h2>Recent Messages</h2>
 <<<<<<< HEAD
-            <p class="messages">No messages.</p>
 =======
             <p class="center-text">No messages.</p>
 >>>>>>> 5423a64ff5f2fdb11264a5902d6e27bc45cba512
+=======
+            <h2>Latest Clinician Message</h2>
+            <p class="center-text">{{profileData.support_msg}}</p>
+>>>>>>> 07ce27431a9135619c6d232426856cfa3068db9a
         </button>
-        <button class="button01 white">Blood glucose levels</button>
     </div>
 </div>
 <br>

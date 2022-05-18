@@ -1,10 +1,37 @@
-<head>PATIENT HISTORY HERE</head>
-{{#each data}}
+<br>
+<h1 class="heading">History</h1>
+<br>
+<div class="history-container">
+    <div class="history-title blue">
+        <div class="history-icon"></div>
+        <div class="timestamp-history center-hist">Timestamp</div>
+        <div class="measurement-history center-hist">Measurement</div>
+        <div class="date-history center-hist">Date</div>
+        <div class="time-history center-hist">Time</div>
+    </div>
+    {{#each data}}
+    <button class="history-row">
+        <span class="history-data">
+            <div class="history-icon" >
+                <img src="{{pic}}" class="history-pic center-hist">
+            </div>
+            <div class="timestamp-history center-hist">{{dataType}}</div>
+            <div class="measurement-history center-hist">{{value}}</div>
+            <div class="date-history center-hist">{{date}}</div>
+            <div class="time-history center-hist">{{time}}</div>
+        </span>
+        <span class="history-comment center-hist">
+                <div class="history-icon" >
+                <img src="{{pic}}" class="history-pic center-hist">
+            </div>
+            {{comment}}
+        </span>
+    </button>
+    {{/each}}
 
-    <div>{{date}}</div>
-    <div>{{time}}</div>
-    <div>{{dataType}}</div>
-    <div>{{value}}</div>
-    <div>{{comment}}</div>
+    <div class="history-graph">
+        <h2 class="blue-text">Overview</h2>
+        <img src="../assets/line-graph.png" class="patient-graph">
+    </div>
+</div>
 
-{{/each}}

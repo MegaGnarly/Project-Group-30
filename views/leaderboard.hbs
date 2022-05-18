@@ -9,27 +9,34 @@
 <!-- Need to replace pat_username with his username and replace other usernames-->
     <div class="leaderboard-image-flex">
         <div class="place">
-            <img src="../assets/2nd.png" class="place-icon">
-            <p class="user-labels">pat_username</p>
+            <img src="../assets/2nd.png" class="second-icon">
+            <p class="user-labels">{{second}}</p>
         </div>
 
         <div class="place">
-            <img src="../assets/1st.png" class="1st-icon">
-            <p class="user-labels">username_1</p>
+            <img src="../assets/1st.png" class="first-icon">
+            <p class="user-labels">{{first}}</p>
         </div>
 
         <div class="place">
-            <img src="../assets/3rd.png" class="place-icon">
-            <p class="user-labels">username_2</p>
+            <img src="../assets/3rd.png" class="third-icon">
+            <p class="user-labels">{{third}}</p>
         </div>
     </div>
 
 <!-- Top 5 list of people -->
 
     <div class="top-5-container">
-        <h2 class="top-title">Top 5</h2>
+        <h2 class="top-title">Rankings</h2>
 
-        <div class="top-1">
+        {{#each rank}}
+        <div class="top-others">
+            <p class="board-label">{{inc @index}}</p>
+            <p class="board-label">{{username}}</p>
+            <p class="user-score">{{daysEngaged}}/{{daysRegistered}} days | {{engagementRate}}%</p>
+        </div>
+        {{/each}}
+        {{!-- <div class="top-1">
             <img src="../assets/1-label.png" class="board-icon">
             <p class="board-label">Username_1</p>
             <p class="user-score">95%</p>
@@ -57,7 +64,7 @@
             <img src="../assets/5-label.png" class="board-icon">
             <p class="board-label-2">Username_1</p>
             <p class="user-score-2">77%</p>
-        </div>
+        </div> --}}
 
     </div>
 

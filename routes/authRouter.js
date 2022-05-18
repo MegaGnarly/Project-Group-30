@@ -3,7 +3,11 @@ const express = require('express')
 const authRouter = express.Router()
 const bodyParser = require('body-parser')
 const sessionStorage = require('sessionstorage')
+const appController = require('../controllers/appController.js')
+const user = require('../models/user')
+
 authRouter.use(bodyParser.urlencoded({ extended: false }));
+
 // Authentication middleware
 const isAuthenticated = (req, res, next) => {
     // If user is not authenticated via passport, redirect to login page
@@ -17,10 +21,12 @@ const isAuthenticated = (req, res, next) => {
 // Main page which requires login to access
 // Note use of authentication middleware here
 authRouter.get('/patient_dashboard', isAuthenticated, (req, res) => {
-    console.log("1111111111111111111")
+    console.log("Loaded patient dashboard (authRouter.js)")
     console.log(req.user.username)
     sessionStorage.setItem('username', req.user.username)
-    res.render('patient_dashboard', { user: req.user.toJSON() })
+    appController.getPatientDashboard(req, res)
+
+    // res.render('patient_dashboard', { user: req.user.toJSON() })
 })
 
 // Login page (with failure message displayed upon login failure)
@@ -36,8 +42,20 @@ authRouter.get('/login_page', (req, res) => {
 // )
 authRouter.post('/login',
     passport.authenticate('local', {
-        successRedirect: '/patient_dashboard', failureRedirect: '/login_page', failureFlash: true
-    })
+         failureRedirect: '/login_page', failureFlash: true
+    }),
+    function(req, res){
+        const role = appController.getPatientRole(req, res) 
+        console.log(role)
+        if (role=="patient"){
+            res.redirect('/patient_dashboard')
+        }
+        else if (role=="clinician"){
+            console.log("here")
+            res.redirect('/clinician_dashboard')
+        }
+
+    }
     // (req, res) => {
     //     console.log('user ' + req.user.username + ' logged in with role ' + req.user.role)     // for debugging
     //     res.redirect('/patient_dash')   // login was successful, send user to home page

@@ -2,7 +2,12 @@
 
 
 <div id="patient-specifics-topbar">
-    <h2 id="username">Clinical Record for {{profileData.username}}</h2>
+        <p class="topbar-tree">
+        <a href="../" class="ul-text">Clinician Dashboard</a>
+        <p class="topbar-tree"> > </p>
+        <a href="" class="ul-text">Clinician Record for {{profileData.username}}</a>
+    </p>
+    <h1 id="username">Clinical Record for {{profileData.username}}</h1>
 </div>
 
 
@@ -17,9 +22,7 @@
             <!-- HTML related to the clickable 'Adjust Time Series' button-->
             <button data-modal-target="#modal" class="button04 purple2">Adjust Time-Series</button>
 
-
-
-            <form method="POST" action="/post_time_series/{{profileData.username}}">
+            <form method="POST" action="/clinician_dashboard/post_time_series/{{profileData.username}}">
                 <div class="modal" id="modal">
                     <div class="modal-header">
                         <div class="title">Required Time-Series</div>
@@ -32,7 +35,8 @@
                         <p class="popup-table-title">Upper Limit</p>
 
                         <label class="checkbox">
-                            <input class="input-checkbox" name="checkbox" id="checkbox_bg" value="blood_glucose" type="checkbox">
+                            <input class="input-checkbox" name="checkbox" id="checkbox_bg" value="blood_glucose"
+                                type="checkbox">
                             Blood Glucose (nmol/L)
                         </label>
                         <div class="popup-input-box-container">
@@ -43,7 +47,8 @@
                         </div>
 
                         <label class="checkbox">
-                            <input class="input-checkbox" name="checkbox" id="checkbox_weight" value="weight" type="checkbox">
+                            <input class="input-checkbox" name="checkbox" id="checkbox_weight" value="weight"
+                                type="checkbox">
                             Weight (kg)
                         </label>
                         <div class="popup-input-box-container">
@@ -66,7 +71,8 @@
                         </div>
 
                         <label class="checkbox">
-                            <input class="input-checkbox" name="checkbox" id="checkbox_insulin" value="insulin" type="checkbox">
+                            <input class="input-checkbox" name="checkbox" id="checkbox_insulin" value="insulin"
+                                type="checkbox">
                             Num. Doses
                         </label>
                         <div class="popup-input-box-container">
@@ -82,7 +88,11 @@
                 </div>
             </form>
 
-            <button class="button04 purple1">Message</button>
+            {{!-- <button class="button04 purple1"
+                onclick="location.href='/clinician_dashboard/{{profileData.username}}/patient_message'">Support
+                Message</button> --}}
+
+
             <div id="backgroundMasker"></div>
             <script src="../scripts/script.js"></script>
 
@@ -108,34 +118,57 @@
     </div>
 
     <div class="patient-specifics-notes-container">
-        <h2>Clinical Notes for {{profileData.username}}</h2>
+        <p class="blue-heading-medium">Support Message for {{profileData.username}}</p>
+        {{profileData.support_msg}}
+        <h3>Set new message</h3>
+        <form method="POST" action="/clinician_dashboard/post_submit_msg/{{profileData.username}}">
+            <input type="text" id="cMsg" name="cMsg" placeholder="Start typing here..." required>
+            <input class="todo" type="submit" value="Update Support Message">
+        </form>
+    </div>
 
+    <div class="patient-specifics-notes-container">
+        <p class="blue-heading-medium">Clinical Notes for {{profileData.username}}</p>
+        <br>
+        {{#if clinicianNote}}
         <div class="clinician-notes">
-            <div class="clinician-notes-cell">Date Entered</div>
+            <div class="clinician-notes-cell">Date</div>
+            <div class="clinician-notes-cell">Time</div>
             <div class="clinician-notes-cell">Note</div>
-            <div class="clinician-notes-cell">11/01/22 3:00 PM</div>
-            <div class="clinician-notes-cell">This is a hardcoded test note. We need to connect this page to the
-                database.</div>
+        </div>
+        {{else}}
+        <h4>No Notes</h4>
+        {{/if}}
+        <div class="clinician-notes scroll">
+
+            {{#each clinicianNote}}
+            <div class="clinician-notes-cell">{{this.date}}</div>
+            <div class="clinician-notes-cell">{{this.time}}</div>
+            <div class="clinician-notes-cell">{{this.note}}</div>
+            {{/each}}
         </div>
         <br>
         <h3>Enter new note</h3>
-        <form action="/">
-            <input type="text" id="clinicanNote" name="cNote" placeholder="Start typing here...">
+        <form method="POST" action="/clinician_dashboard/submit_note/{{profileData.username}}">
+            <input type="text" id="cNote" name="cNote" placeholder="Start typing here..." required>
             <input class="todo" type="submit" value="Submit Note">
         </form>
 
     </div>
 </div>
 
+<br>
 <div class="patient-specifics-overview-container">
-    <h2 class="patient-specifics-grid-title">Overview of {{profileData.username}}'s Health Data</h2>
+    {{!-- <h2 class="patient-specifics-grid-title blue-text">Overview of {{profileData.username}}'s Health Data</h2> --}}
 
     <div class="patient-specifics-graph">
-        <h2>Statistical Graph</h2>
+        <h2 class="blue-text">Statistical Graph</h2>
+        <img src="../assets/line-graph.png" class="line-graph">
     </div>
 
     <div class="patient-specifics-month">
-        <h2>Monthly Overview</h2>
+        <h2 class="blue-text">Monthly Overview</h2>
+        <img src="../assets/monthly-overview.png" class="overview-graph">
     </div>
 </div>
 <br>
