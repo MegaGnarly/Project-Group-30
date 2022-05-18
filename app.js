@@ -101,7 +101,6 @@ app.get('/thankyou_page', (req, res) => {
 //     res.render('leaderboard.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
 // })
 
-
 // **** Application POSTs ****  
 app.post('/post_values', async (req, res) => {
     const valid_measurements = ["measured_glucose", "measured_weight", "measured_insulin", "measured_exercise"];
