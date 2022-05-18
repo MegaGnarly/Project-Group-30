@@ -103,8 +103,9 @@ app.get('/thankyou_page', (req, res) => {
 // })
 
 
-function entryInputValidation(userInput) {
-
+// Check if string only contains numbers
+function stringValidation(str) {
+    return /^\d+$/.test(str);
 }
 
 
@@ -148,6 +149,7 @@ app.post('/post_values', async (req, res) => {
                     }
                 }
             }
+
             else if (measuredType == "measured_weight") {
                 doc.measured_weight = req.body.measurement;
                 var acceptedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
@@ -165,9 +167,15 @@ app.post('/post_values', async (req, res) => {
                     }
                 }
             }
+
             else if (measuredType == "measured_insulin") {
                 doc.measured_insulin = req.body.measurement;
+                // Validate input. Assuming full doses are required so numeric inputs only (no decimals)
+                if (!stringValidation(doc.measured_insulin)) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin doses was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "patient_dashboard" })
+                }
             }
+            
             else if (measuredType == "measured_exercise") {
                 doc.measured_exercise = req.body.measurement;
             }

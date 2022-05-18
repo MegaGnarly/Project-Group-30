@@ -312,6 +312,12 @@ const getPatientChangePass = async (req, res, next) => {
     }
 }
 
+
+// Check if string only contains numbers
+function stringValidation(str) {
+    return /^\d+$/.test(str);
+}
+
 // Used for clinician -> patient specifics page.
 const setPatientTimeSeries = async (req, res, next) => {
     try {
@@ -422,6 +428,13 @@ const setPatientTimeSeries = async (req, res, next) => {
 
         if (req.body.checkbox.includes("insulin")) {
             if (isValidNumber(req.body.lower_doses) || (isValidNumber(req.body.upper_doses))) {
+                if (!stringValidation(req.body.lower_doses)) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin doses was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "../" })
+                }
+                if (!stringValidation(req.body.upper_doses)) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin doses was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "../" })
+                }
+
                 // Update permission and safety thresholds
                 user.collection.updateOne({ "username": username }, { $set: { threshold_insulin: { prescribed: true, lower: req.body.lower_doses, upper: req.body.upper_doses } } })
                 console.log("Updated insulin doseage safety threshold")
