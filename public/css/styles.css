@@ -2123,13 +2123,15 @@ input[id=psw] {
     filter: drop-shadow(4px 4px 3px #858484);
     padding-top: 5%;
     padding-bottom: 5%;
+    margin-bottom: 5%;
 }
 
 .settings_heading{
     text-align: left;
     color: #7D92DB;
     font-family: 'poppins', sans-serif;
-    font-weight: bolder;
+    font-weight: bold;
+    margin-bottom: 5%;
 }
 
 .page_heading{
@@ -2152,6 +2154,7 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     margin-top: 2%;
     margin-bottom: 5%;
 }
+
 
 .settings-form-container {
     display: flex;
