@@ -2173,15 +2173,14 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 .settings_container {
     padding: 10px 15%;/* First value: padding top and bottom. Second value: padding on sides. */ 
 }
-
 .settings_button {
     background-color: #7D92DB;
-    color: white; 
-    padding: 14px 20px;
+    color: white; padding: 14px 20px;
+    margin: 8px 0;
     border: none;
     cursor: pointer;
     display: flex;
-    border-radius: 50px;
+    border-radius: 38px;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
     font-size: 20px;
     font-weight:bold;
@@ -2200,30 +2199,6 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 }
 
-.settings_btn {
-    background-color: #7D92DB;
-    color: white; 
-    padding: 18px;
-    margin-left: auto; 
-    margin-right: 5%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    border-radius: 38px;
-    filter: drop-shadow(4px 4px 3px #D4D4D4);
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease 0s;
-}
-  
-  /* Add a hover effect for buttons */
-.settings_btn:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
-
-}
-
 .placeholderimg{
     border: 5px solid #555;
     border-radius: 50%;
@@ -2237,37 +2212,6 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 }
 
-
-/*---------------- graphs --------------------*/
-/*patient specifics*/
-.line-graph{
-    height: 82%;
-    width: 100%;
-    padding-top: 20px;
-}
-
-.overview-graph{
-    padding-top: 20px;
-}
-
-/*history*/
-.history-graph{
-    width: 90%;
-    justify-self: center;
-    align-self: center;
-    padding-top: 60px;
-
-}
-
-.patient-graph{
-    padding-top: 10px;
-    /* justify-self: center;
-    align-content: center; */
-    width: 100%;
-    max-height: 700px;
-}
-
-/* ---------------- end of graph styling--------------------- */
 /* Clinician  Tab Styling*/
 .tab {
     overflow: hidden;
@@ -2320,6 +2264,38 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     from {opacity: 0;}
     to {opacity: 1;}
   }
+
+
+/*---------------- graphs --------------------*/
+/*patient specifics*/
+.line-graph{
+    height: 82%;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.overview-graph{
+    padding-top: 20px;
+}
+
+/*history*/
+.history-graph{
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    padding-top: 60px;
+
+}
+
+.patient-graph{
+    padding-top: 10px;
+    /* justify-self: center;
+    align-content: center; */
+    width: 100%;
+    max-height: 700px;
+}
+
+/* ---------------- end of graph styling--------------------- */
 
 
 
