@@ -578,9 +578,12 @@ select {
     text-align: center;
 }
 
+.badge {
+    margin-top: 10px;
+}
+
 .engagementCard {
-    background-color: #a9c9ff;
-    background-image: linear-gradient(40deg,#5FFBF1 0%,#86A8E7 45%,#D16BA5 100%);
+    background-image: linear-gradient(40deg,#39CCFF 0%,#8C90EE 45%,#D16BA5 100%);
     padding: 10%;
     border-radius: 30px;
     margin: 0% 15% 15% 15%;

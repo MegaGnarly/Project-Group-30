@@ -18,7 +18,7 @@
     <div id="patient-dashboard-grid-container-nested">
         <a href="/patient/record_health" class="button01">Record Health</a>
         <a href="/patient/history" class="button01 purple1">View History</a>
-        <a href="/patient/leaderboard" class="button01">Leaderboard</a>
+        <a href="/patient/leaderboard" class="button01 purple2">Leaderboard</a>
         <!--<button class="button01 purple3">Settings</button>-->
         <a href="/patient/settings" class="button01 purple3">Settings</a>
     </div>
@@ -30,9 +30,8 @@
         <div class="container engagementCard">
             <p class="ranking">Engaged: {{engagementData.daysEngaged}}/{{engagementData.daysRegistered}} days</p>
             <p class="ranking">Rate: {{engagementData.engagementRate}}%</p>
-            <br>
             {{#badgeChecker engagementData.engagementRate}}
-            <img src="../assets/badge.png" alt="badge" width="125" height="125">
+            <img src="../assets/badge.png" class="badge" width="125" height="125">
             {{/badgeChecker}}
         </div>
     </div>
