@@ -4,6 +4,7 @@ const authRouter = express.Router()
 const bodyParser = require('body-parser')
 const sessionStorage = require('sessionstorage')
 const appController = require('../controllers/appController.js')
+const user = require('../models/user')
 
 authRouter.use(bodyParser.urlencoded({ extended: false }));
 
@@ -41,8 +42,20 @@ authRouter.get('/login_page', (req, res) => {
 // )
 authRouter.post('/login',
     passport.authenticate('local', {
-        successRedirect: '/patient_dashboard', failureRedirect: '/login_page', failureFlash: true
-    })
+         failureRedirect: '/login_page', failureFlash: true
+    }),
+    function(req, res){
+        const role = appController.getPatientRole(req, res) 
+        console.log(role)
+        if (role=="patient"){
+            res.redirect('/patient_dashboard')
+        }
+        else if (role=="clinician"){
+            console.log("here")
+            res.redirect('/clinician_dashboard')
+        }
+
+    }
     // (req, res) => {
     //     console.log('user ' + req.user.username + ' logged in with role ' + req.user.role)     // for debugging
     //     res.redirect('/patient_dash')   // login was successful, send user to home page

@@ -618,6 +618,10 @@ const getPatientName = async (req, res, next) => {
     }
 }
 
+const getPatientRole = (req, res) => {
+    return req.user.role
+}
+
 
 // Export objects so that they may be used by other files
 module.exports = {
@@ -635,6 +639,7 @@ module.exports = {
     setPatientTimeSeries,
     setClinicianNote,
     getPatientSettings,
-    getPatientChangePass
+    getPatientChangePass,
+    getPatientRole
     // getDataById
 }
