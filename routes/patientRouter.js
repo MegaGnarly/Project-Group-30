@@ -30,5 +30,15 @@ patientRouter.get('/leaderboard',  (req, res) => {
     appController.getLeaderboard(req, res)
 })
 
+patientRouter.get('/settings',  (req, res) => {
+    console.log("Debug: Inside Patient Settings Route")
+    appController.getPatientSettings(req, res)
+})
+
+patientRouter.get('/patient_change_pwd', (req, res) => {
+    console.log("Debug: Inside Patient Settings Change Password Route")
+    appController.getPatientChangePass(req, res);
+})
+
 // export the router
 module.exports = patientRouter

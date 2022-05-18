@@ -2125,13 +2125,15 @@ input[id=lname] {
     filter: drop-shadow(4px 4px 3px #858484);
     padding-top: 5%;
     padding-bottom: 5%;
+    margin-bottom: 5%;
 }
 
 .settings_heading{
     text-align: left;
     color: #7D92DB;
     font-family: 'poppins', sans-serif;
-    font-weight: bolder;
+    font-weight: bold;
+    margin-bottom: 5%;
 }
 
 .page_heading{
@@ -2154,6 +2156,7 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     margin-top: 2%;
     margin-bottom: 5%;
 }
+
 
 .settings-form-container {
     display: flex;
@@ -2208,6 +2211,7 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 }
 
+<<<<<<< HEAD
 
 /*---------------- graphs --------------------*/
 
@@ -2220,3 +2224,50 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 .overview-graph{
     padding-top: 20px;
 }
+=======
+/* Clinician  Tab Styling*/
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style buttons tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+  .tabcontent {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+  }
+  
+  /* Go from zero to full opacity */
+  @keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+>>>>>>> bf87b3fcf901ed712b4d3ff9e74685fe43f1de85

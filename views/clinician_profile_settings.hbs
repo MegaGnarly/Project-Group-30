@@ -1,7 +1,15 @@
 <body>
     <h1 class="page_heading">Profile Settings</h1>
-        <div class="settings-form-container">
-            <form class="detailsform" action="/" method="post">
+    <!-- Tab links -->
+    <div class="tab">
+    <button class="tablinks" onclick="opentab(event, 'Profile Settings')" id="defaultOpen">Profile Settings</button>
+    <button class="tablinks" onclick="opentab(event, 'Register Patient')">Register Patient</button>
+    </div>
+
+    <div class="settings-form-container"></div>
+    <form class="detailsform" action="/" method="post">
+    <!-- Tab content -->
+        <div id="Profile Settings" class="tabcontent">
             <div class="innerbound">
                 <img src="placeholder-image.png" class= "placeholderimg">
                 
@@ -17,16 +25,22 @@
                     <input id="Username" type="text" placeholder="'jsmith'" name="Username" disabled>
 
                     <a class="settings_button" href="clinician_edit_profile.html">EDIT PROFILE</a>
+                </div>
+            </div>
+        </div>
 
-                <br>
-
-                <h2 class="settings_heading">Register Patient</h2>
+        <div id="Register Patient" class="tabcontent">
+            <div class="innerbound">
+                <img src="placeholder-image.png" class= "placeholderimg">
+                
+                <div class="settings_container">
+                    <h2 class="settings_heading">Register Patient</h2>
                     <label for="firstname"><b>Patient First Name</b></label>
                     <input id="firstname" type="text" placeholder="'John'" name="firstname">
     
                     <label for="lastname"><b>Patient Last Name</b></label>
                     <input id="lastname" type="text" placeholder="'Smith'" name="lastname">
-
+    
                     <label for="Username"><b>Set Username</b></label>
                     <input id="Username" type="text" placeholder="'jsmith'" name="Username">
     
@@ -38,10 +52,8 @@
     
                     <button class="settings_button">Register Patient</button>
                 </div>
-                
             </div>
-            </form>
         </div>
-
-    
+    </form>
+    </form>
 </body>
