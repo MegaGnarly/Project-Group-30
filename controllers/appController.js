@@ -297,7 +297,7 @@ function isValidNumber(input) {
 
 const getPatientSettings = async (req, res, next) => {
     try {
-        return res.render('patient_acc_setting', { user: sessionStorage.getItem('username'), logoURL: "../" })
+        return res.render('patient_acc_setting', { user: sessionStorage.getItem('username'), logoURL: "../patient_dashboard" })
     } catch (error) {
         console.log(error)
     }
@@ -305,7 +305,7 @@ const getPatientSettings = async (req, res, next) => {
 
 const getPatientChangePass = async (req, res, next) => {
     try {
-        return res.render('patient_change_pwd', { user: sessionStorage.getItem('username'), logoURL: "../" })
+        return res.render('patient_change_pwd', { user: sessionStorage.getItem('username'), logoURL: "../patient_dashboard" })
     } catch (error) {
         console.log(error)
     }

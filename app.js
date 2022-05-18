@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const exphbs = require('express-handlebars');
 const passport = require('./passport')
+const bcrypt = require('bcryptjs')
 
 // Load database schemas
 const measuredValue = require('./models/measuredValue');
@@ -165,6 +166,7 @@ app.post('/register', (req, res) => {
         password: req.body.password,
         firstName: req.body.fname,
         lastName: req.body.lname,
+        role: "patient",
         dateSince: Date.now(),
         secret: 'INFO30005',
         // Set permissions and default values for safety thresholds - these can be modified by the clinician
@@ -186,7 +188,9 @@ app.post('/register', (req, res) => {
 // Patient changes password in settings. MOVE TO ROUTER
 app.post('/change_pwd', async (req, res) => {
     try {
+        const user = require('./models/user');
         var newPasswords = req.body.password;
+        var hashedPassword;
         console.log(newPasswords);
 
         // Make sure password is not blank
@@ -204,23 +208,26 @@ app.post('/change_pwd', async (req, res) => {
 
             // Hash password
             const SALT_FACTOR = 10
-            var hashedPassword;
-            bcrypt.hash([newPasswords[0]], SALT_FACTOR, (err, hash) => {
+    
+            bcrypt.hash(newPasswords[0], SALT_FACTOR, (err, hash) => {
                 if (err) {
-                  return next(err)
+                    console.log(err)
+                    return next(err)
                 }
                 // Replace password with hash
                 hashedPassword = hash
-                print(hashedPassword)
-                next()
+
+                // Update database with hash
+                console.log("Updating database with ",hashedPassword)
+                // Access the database for this user and update the support message field
+                user.collection.updateOne({ username: req.user.username }, { $set: { password: hashedPassword } });
               })
 
-              // Update database with new password
-
+              res.redirect('patient_dashboard')
         }
     // Return  
     } catch (error) {
-        
+        console.log(error)
     }
 })
 
