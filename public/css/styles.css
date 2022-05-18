@@ -111,6 +111,10 @@ header {
     padding: 0px 20px;
 }
 
+.nav-logout-icon{
+    height: 50px;
+    width: 50px;
+}
 .nav-msg-icon {
     margin-left: 16px;
     margin-right: 16px;
