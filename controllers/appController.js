@@ -8,6 +8,7 @@ const sessionStorage = require('sessionstorage')
 // Get a patients medical history
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
+
     try {
         const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).lean()
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()

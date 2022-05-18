@@ -1,7 +1,8 @@
 <body>
     <h1 class="page_heading">Settings</h1>
         <div class="settings-form-container">
-            <form class="detailsform" action="/change_pwd" method="post">
+            {{!-- <form method="POST" action="/post_values"> --}}
+            <form method="POST" class="detailsform" action="/change_pwd">
             <div class="innerbound">
                 <img src="../assets/placeholder-image.png" class= "placeholderimg">
                 
@@ -22,9 +23,10 @@
                     <label for="psw"><b>Re-enter New Password</b></label>
                     <input id="psw" type="password" placeholder="Re-enter Password" name="psw">
 
-                    <a class="settings_button" href="patient_acc_settings">SAVE CHANGES</a>
+                    <input class="settings_button" type = "submit" value="SAVE CHANGES">
                 </div>
             </div>
+            {{!-- <input class="settings_button" type="submit" value="SAVE CHANGES"> --}}
             </form>
         </div>
 
