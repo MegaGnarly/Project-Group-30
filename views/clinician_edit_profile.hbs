@@ -1,51 +1,65 @@
 <body>
     <h1 class="page_heading">Settings</h1>
-        <div class="settings-form-container">
-            <form class="cliniciansettings" action="/" method="post">
-            <div class="innerbound">
-                <img src="../assets/placeholder-image.png" class= "placeholderimg">
-                
-                <div class="settings_container">
-                <h2 class="settings_heading">Account Details</h2>
-                    <label for="firstname"><b>First Name</b></label>
-                    <input id="firstname" type="text" placeholder="'John'" name="firstname">
-
-                    <label for="lastname"><b>Last Name</b></label>
-                    <input id="lastname" type="text" placeholder="'Smith'" name="lastname">
-
-                    <label for="Username"><b>Username</b></label>
-                    <input id="Username" type="text" placeholder="'jsmith'" name="Username">
-
-                    <label for="psw"><b>New Password</b></label>
-                    <input id="psw" type="password" placeholder="Password" name="psw">
-
-                    <label for="psw"><b>Re-enter New Password</b></label>
-                    <input id="psw" type="password" placeholder="Re-enter Password" name="psw">
-
-                    <button class="settings_button" onclick="location.href='/clinician_dashboard/settings'">SAVE CHANGES</button>
-
-                <br>
-
-                <h2 class="settings_heading">Register Patient</h2>
-                    <label for="firstname"><b>Patient First Name</b></label>
-                    <input id="firstname" type="text" placeholder="'John'" name="firstname">
+    <!-- Tab links -->
     
-                    <label for="lastname"><b>Patient Last Name</b></label>
-                    <input id="lastname" type="text" placeholder="'Smith'" name="lastname">
-    
-                    <label for="Username"><b>Set Username</b></label>
-                    <input id="Username" type="text" placeholder="'jsmith'" name="Username">
-    
-                    <label for="psw"><b>Set Password</b></label>
-                    <input id="psw" type="password" placeholder="Password" name="psw">
-    
-                    <label for="psw"><b>Re-enter Password</b></label>
-                    <input id="psw" type="password" placeholder="Re-enter Password" name="psw">
-    
-                    <button class="settings_button">Register Patient</button>
+    <div class="settings-form-container">
+        <div class="tab">
+            <button class="tablinks" onclick="opentab(event, 'Profile Settings')" id="defaultOpen">Profile Settings</button>
+            <button class="tablinks" onclick="opentab(event, 'Register Patient')">Register Patient</button>
+        </div>
+        <form class="cliniciansettings" action="/" method="post">
+            <!-- Tab content -->
+                <div id="Profile Settings" class="tabcontent">
+                    <div class="innerbound">
+                         <img src="../assets/placeholder-image.png" class= "placeholderimg">
+                         <div class="settings_container">
+                            <label for="firstname"><b>First Name</b></label>
+                            <input id="firstname" type="text" placeholder="'John'" name="firstname">
+
+                            <label for="lastname"><b>Last Name</b></label>
+                            <input id="lastname" type="text" placeholder="'Smith'" name="lastname">
+
+                            <label for="Username"><b>Username</b></label>
+                            <input id="Username" type="text" placeholder="'jsmith'" name="Username">
+
+                            <label for="psw"><b>New Password</b></label>
+                            <input id="psw" type="password" placeholder="Password" name="psw">
+
+                            <label for="psw"><b>Re-enter New Password</b></label>
+                            <input id="psw" type="password" placeholder="Re-enter Password" name="psw">
+
+                             <a class="settings_button" href="clinician_profile_settings">SAVE CHANGES</a>
+                        </div>
+                    </div>
                 </div>
-                
-            </div>
+        
+                <div id="Register Patient" class="tabcontent">
+                    <div class="innerbound">
+                        <img src="../assets/placeholder-image.png" class= "placeholderimg">
+                        
+                        <div class="settings_container">
+                            <label for="firstname"><b>Patient First Name</b></label>
+                            <input id="firstname" type="text" placeholder="'John'" name="firstname">
+            
+                            <label for="lastname"><b>Patient Last Name</b></label>
+                            <input id="lastname" type="text" placeholder="'Smith'" name="lastname">
+            
+                            <label for="Username"><b>Set Username</b></label>
+                            <input id="Username" type="text" placeholder="'jsmith'" name="Username">
+            
+                            <label for="psw"><b>Set Password</b></label>
+                            <input id="psw" type="password" placeholder="Password" name="psw">
+            
+                            <label for="psw"><b>Re-enter Password</b></label>
+                            <input id="psw" type="password" placeholder="Re-enter Password" name="psw">
+            
+                            <button class="settings_button">REGISTER PATIENT</button>
+                        </div>
+                    </div>
+                </div>
             </form>
-        </div>   
+    </div>
+    </form>
 </body>
+
+                       
