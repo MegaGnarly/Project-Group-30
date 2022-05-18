@@ -617,6 +617,27 @@ const getPatientName = async (req, res, next) => {
 }
 
 
+const getClinicianEditProfile = async (req, res, next) => {
+    try {
+        return res.render('clinician_edit_profile', { logoURL: "./" })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getClinicianProfileSettings = async (req, res, next) => {
+    try {
+        return res.render('clinician_profile_settings', { logoURL: "./" })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+
 // Export objects so that they may be used by other files
 module.exports = {
     getAllPatientData,
@@ -633,6 +654,9 @@ module.exports = {
     setPatientTimeSeries,
     setClinicianNote,
     getPatientSettings,
-    getPatientChangePass
+    getPatientChangePass,
+    getClinicianEditProfile,
+    getClinicianProfileSettings
+    
     // getDataById
 }
