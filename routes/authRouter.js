@@ -50,6 +50,7 @@ authRouter.post('/login',
         const role = appController.getPatientRole(req, res) 
         console.log(role)
         sessionStorage.setItem('role', role)
+        sessionStorage.setItem('username', req.user.username)
         if (role=="patient"){
             res.redirect('/patient_dashboard')
         }

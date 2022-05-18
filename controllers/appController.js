@@ -129,7 +129,7 @@ const getAllDataClinician = async (req, res, next) => {
         // console.log(tableRowArray)
 
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: 'N/A', userRole: "N/A", logoURL: "../" })
+        return res.render('clinician_dashboard', {data: tableRowArray, data2: patientValues, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role'), logoURL: "../" })
     } catch (err) {
         console.log(err)
         console.log("ERROR in getAllDataClinician.")
@@ -572,7 +572,7 @@ const getPatientDashboard = async (req, res, next) => {
         console.log("display exercise notification:", displayExercise)
         console.log("display insulin notification:", displayInsulin)
 
-        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData })
+        res.render('patient_dashboard', { user: req.user.toJSON(), profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {
         console.log(error)
         return res.render('error_page', { errorHeading: "Error when displaying dashboard", errorText: "Please ensure that you are logged in", logoURL: "../login" })
