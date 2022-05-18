@@ -185,7 +185,7 @@ app.post('/register', (req, res) => {
 app.post('/change_pwd', async (req, res) => {
     console.log("Debug: inside change pwd")
     // Verify user input (make sure passwords match)
-    
+    console.log(req.body.password)
 
     // Update database
 
