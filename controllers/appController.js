@@ -765,6 +765,23 @@ const getClinicianProfileSettings = async (req, res, next) => {
     }
 }
 
+const doesUserExist = async (req, res, next) => {
+    console.log(req.body.username)
+    try {
+        const currentUser = await user.findOne({ username: req.body.username }).lean()
+        // always true
+        if (currentUser.username == req.body.username) {
+            console.log("Registration (appController doesUserExist function): User already exists! ")
+            return true;
+        }
+        else {
+            return false;
+        }
+    } catch (error) {
+        console.log("Registration (appController doesUserExist function): User does not already exist. ")
+        return false;
+    }
+}
 
 
 
@@ -787,6 +804,7 @@ module.exports = {
     getPatientChangePass,
     getClinicianEditProfile,
     getClinicianProfileSettings,
-    getPatientRole
+    getPatientRole,
+    doesUserExist
     // getDataById
 }

@@ -20,7 +20,7 @@ const session = require('express-session')
 const appRouter = require('./routes/appRouter')                 // Handle general routes (e.g. about_site)
 const patientRouter = require('./routes/patientRouter')         // Handle patient routes (e.g. record_health)
 const clinicianRouter = require('./routes/clinicianRouter.js')  // Handle clinician routes (e.g. clinician_dashboard)
-
+const appController = require('./controllers/appController.js')
 
 // Routing - set site routes
 app.use('/', appRouter)
@@ -203,8 +203,35 @@ app.post('/post_values', async (req, res) => {
 
 // User registration. We can keep this code on app.js
 const User = require('./models/user');
-app.post('/register', (req, res) => {
-    if (req.body.password != req.body.password2) { return; }
+const { doesUserExist } = require('./controllers/appController');
+app.post('/register', async (req, res) => {
+    if ((req.body.password != req.body.password2) || req.body.password === "" || /\s/.test(req.body.password)) { 
+        return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Password Error", errorText: "Please verify that your passwords match and try again. Note that spaces are not permitted.", layout: 'main2', logoURL: "/" })
+    }
+
+    // Check for whitespace
+    if (/\s/.test(req.body.username)) {
+        console.log("Reg Error: username has whitespace!");
+        return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Username Error", errorText: "Username must be a single word (no whitespaces). Please try again.", layout: 'main2', logoURL: "/" })
+    }
+
+    // Check if first name and last name were entered
+    if (req.body.fname === "" || req.body.lname === "" || req.body.fname == null || req.body.lname == null || /\s/.test(req.body.fname) || /\s/.test(req.body.lname)) {
+        console.log("Reg Error: whitespace in first name or last name fields")
+        return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Registration Error", errorText: "First name and last name fields cannot contain whitespace. Please try again.", layout: 'main2', logoURL: "/" })
+    }
+
+    // Check if user exists in db. Need 'await' to prevent errors with 'promises'.
+    var userExists = await doesUserExist(req, res);
+
+    if (userExists) {
+        return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Registration Error", errorText: "This user already exists. Please try again.", layout: 'main2', logoURL: "/" })
+    }
+
+    // const currentUser = user.find({ username: req.body.username }).lean()
+    // console.log("CURRENT: ", currentUser)
+
+
     User.create({
         username: req.body.username,
         password: req.body.password,
@@ -223,8 +250,14 @@ app.post('/register', (req, res) => {
         support_msg: "Welcome to Diabetes@Home! Messages from your clinician will appear here 😊"
 
     }, (err) => {
-        if (err) { console.log(err); return; }
-        console.log('User inserted')
+        if (err) { 
+            console.log("ERROR")
+            console.log(err); 
+        }
+        else {
+            console.log('User inserted')
+        }
+        
     })
     res.render('login_page', { layout: 'main2' })
 })
@@ -237,8 +270,8 @@ app.post('/change_pwd', async (req, res) => {
         var hashedPassword;
         console.log(newPasswords);
 
-        // Make sure password is not blank
-        if ((!newPasswords[0].length)) {
+        // Make sure password is not blank and make sure it has no whitespace
+        if ((!newPasswords[0].length) || /\s/.test(req.body.password)) {
             return res.render('error_page', { buttonURL: "/patient/patient_change_pwd", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
         }
 
