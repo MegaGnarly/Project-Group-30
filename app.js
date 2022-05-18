@@ -175,9 +175,13 @@ app.post('/post_values', async (req, res) => {
                     return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for insulin doses was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "patient_dashboard" })
                 }
             }
-            
+
             else if (measuredType == "measured_exercise") {
                 doc.measured_exercise = req.body.measurement;
+                if (!stringValidation(doc.measured_exercise)) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "patient_dashboard" })
+                }
+
             }
 
             //Insert the final entry into the database and redirect user.

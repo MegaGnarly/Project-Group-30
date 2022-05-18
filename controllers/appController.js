@@ -414,12 +414,24 @@ const setPatientTimeSeries = async (req, res, next) => {
 
         if (req.body.checkbox.includes("steps")) {
             if (isValidNumber(req.body.lower_steps) || (isValidNumber(req.body.upper_steps))) {
+                if (!stringValidation((req.body.lower_steps))) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "../" })
+                }
+                if (!stringValidation((req.body.upper_steps))) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Only numeric characters are permitted. Please try again.", logoURL: "../" })
+                }
+
+                // Make sure lower value is less than/equal to upper value
+                if (parseInt(req.body.lower_steps) > (parseInt(req.body.upper_steps))) {
+                    return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../" })
+                }
+
                 // Update permission and safety thresholds
                 user.collection.updateOne({ "username": username }, { $set: { threshold_exercise: { prescribed: true, lower: req.body.lower_steps, upper: req.body.upper_steps } } })
                 console.log("Updated exercise (steps) safety threshold")
             }
             else {
-                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Please try again.", logoURL: "../" })
+                return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for exercise (steps) was not accepted by the server. Lower safety threshold cannot exceed higher threshold. Please try again.", logoURL: "../" })
             }
         }
         else {
