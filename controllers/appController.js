@@ -158,7 +158,7 @@ const getAllPatientComments = async (req, res, next) => {
         }
 
         // Return values to client
-        return res.render('comments', { patientValues: userValues, logoURL: "./" })
+        return res.render('comments', { patientValues: userValues, logoURL: "./", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
     } catch (error) {
         console.log(error)
@@ -196,7 +196,8 @@ const getPatientEntryData = async (req, res, next) => {
 
         return res.render('attached_data', {
             patientValues: userValues, date: date, time: time, username: username, comment: comment, dob,
-            glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, fName: fName, lName: lName, logoURL: "../"
+            glucose: glucose, weight: weight, exercise: exercise, insulin: insulin, fName: fName, lName: lName, logoURL: "../",
+            userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role')
         })
 
     } catch (error) {
@@ -264,7 +265,7 @@ const getPatientDataClinician = async (req, res, next) => {
         // Get clinical Notes
         const allNotes = await clinicalNote.find({ username: req.params.username }).lean()
 
-        return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, clinicianNote: allNotes, logoURL: "../" })
+        return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, clinicianNote: allNotes, logoURL: "../", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
     } catch (err) {
         console.log(err)
@@ -484,7 +485,7 @@ const getLeaderboard = async (req, res, next) => {
         var second = rankingRowArray[1].username
         var third = rankingRowArray[2].username
 
-        res.render('leaderboard', { user: currentUser, rank: rankingRowArray, first: first, second: second, third: third, logoURL: "../patient_dashboard" })
+        res.render('leaderboard', { user: currentUser, rank: rankingRowArray, first: first, second: second, third: third, logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
     } catch (error) {
         console.log(error)
@@ -611,7 +612,8 @@ const getRecordHealthPage = async (req, res, next) => {
 
         res.render('record_health.hbs', {
             logoURL: "../patient_dashboard", user: currentUser, allowGlucose: allowGlucose, allowWeight: allowWeight,
-            allowExercise: allowExercise, allowInsulin: allowInsulin, permittedToRecordAnything: permittedToRecordAnything
+            allowExercise: allowExercise, allowInsulin: allowInsulin, permittedToRecordAnything: permittedToRecordAnything,
+            userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role')
         })
 
     } catch (error) {
@@ -626,7 +628,7 @@ const getAllPatientData = async (req, res, next) => {
     console.log('Inside getAllPatientData')
     try {
         const values = await patient.find().lean()
-        return res.render('test_data.hbs', { data2: values, userName: patientName, userRole: patientRole })
+        return res.render('test_data.hbs', { data2: values, userName: patientName, userRole: patientRole, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (err) {
         return next(err)
     }
@@ -667,7 +669,7 @@ const getClinicianProfileSettings = async (req, res, next) => {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
-        return res.render('clinician_profile_settings', { logoURL: "./" })
+        return res.render('clinician_profile_settings', { logoURL: "./", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
     } catch (error) {
         console.log(error)
