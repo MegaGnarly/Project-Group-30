@@ -53,7 +53,7 @@ const getPatientHistory = async (req, res, next) => {
         })
 
         // The user values being passed are for the site header on the top right.
-        return res.render('patient_history', { user: currentUser, data: tableRowArray, logoURL: "../patient_dashboard" })
+        return res.render('patient_history', { user: currentUser, data: tableRowArray, logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (err) {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Data for this patient could not be retrieved.", logoURL: "../" })
     }
@@ -298,7 +298,7 @@ function isValidNumber(input) {
 
 const getPatientSettings = async (req, res, next) => {
     try {
-        return res.render('patient_acc_setting', { user: sessionStorage.getItem('username'), logoURL: "../patient_dashboard" })
+        return res.render('patient_acc_setting', { user: sessionStorage.getItem('username'), logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {
         console.log(error)
     }
