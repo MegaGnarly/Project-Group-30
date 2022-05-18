@@ -8,7 +8,7 @@ const sessionStorage = require('sessionstorage')
 // Get a patients medical history
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
-    if (sessionStorage.getItem('role') != 'patient'){
+    if (sessionStorage.getItem('role') != 'patient') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -62,7 +62,7 @@ const getPatientHistory = async (req, res, next) => {
 // Used for clinician dashboard - get patient data
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
-    if (sessionStorage.getItem('role') != 'clinician'){
+    if (sessionStorage.getItem('role') != 'clinician') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -129,7 +129,7 @@ const getAllDataClinician = async (req, res, next) => {
         // console.log(tableRowArray)
 
         // The user values being passed are for the site header on the top right.
-        return res.render('clinician_dashboard', {data: tableRowArray, data2: patientValues, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role'), logoURL: "../" })
+        return res.render('clinician_dashboard', { data: tableRowArray, data2: patientValues, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role'), logoURL: "../" })
     } catch (err) {
         console.log(err)
         console.log("ERROR in getAllDataClinician.")
@@ -139,7 +139,7 @@ const getAllDataClinician = async (req, res, next) => {
 
 
 const getAllPatientComments = async (req, res, next) => {
-    if (sessionStorage.getItem('role') != 'clinician'){
+    if (sessionStorage.getItem('role') != 'clinician') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -168,7 +168,7 @@ const getAllPatientComments = async (req, res, next) => {
 
 
 const getPatientEntryData = async (req, res, next) => {
-    if (sessionStorage.getItem('role') != 'clinician'){
+    if (sessionStorage.getItem('role') != 'clinician') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -212,7 +212,7 @@ const getPatientEntryData = async (req, res, next) => {
 // Example: http://127.0.0.1:3000/clinician_dashboard/Bob would reveal data for Bob
 const getPatientDataClinician = async (req, res, next) => {
     console.log("DEBUG: inside getPatientDataClinician")
-    if (sessionStorage.getItem('role') != 'clinician'){
+    if (sessionStorage.getItem('role') != 'clinician') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -333,6 +333,20 @@ const setPatientTimeSeries = async (req, res, next) => {
         if (req.body.checkbox.includes("blood_glucose")) {
             // Check if user submitted values are valid (numerical or numerical with decimal)
             if (isValidNumber(req.body.lower_bg) || (isValidNumber(req.body.upper_bg))) {
+                var acceptedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+                // Validate input. Note that decimal places are allowed for blood glucose entries
+                for (const char of req.body.lower_bg) {
+                    if (!acceptedValues.includes(char)) {
+                        console.log("Invalid input for blood glucose")
+                        return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "patient_dashboard" })
+                    }
+                }
+                for (const char of req.body.upper_bg) {
+                    if (!acceptedValues.includes(char)) {
+                        console.log("Invalid input for blood glucose")
+                        return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "patient_dashboard" })
+                    }
+                }
                 // Update permission and safety thresholds
                 user.collection.updateOne({ "username": username }, { $set: { threshold_bg: { prescribed: true, lower: req.body.lower_bg, upper: req.body.upper_bg } } })
                 console.log("Updated blood glucose safety threshold")
@@ -398,7 +412,7 @@ const setPatientTimeSeries = async (req, res, next) => {
 
 // Used for clinician -> patient specifics page.
 const setClinicianNote = async (req, res, next) => {
-    if (sessionStorage.getItem('role') != 'clinician'){
+    if (sessionStorage.getItem('role') != 'clinician') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -440,7 +454,7 @@ const submitSupportMessage = async (req, res, next) => {
 
 
 const getLeaderboard = async (req, res, next) => {
-    if (sessionStorage.getItem('role') != 'patient'){
+    if (sessionStorage.getItem('role') != 'patient') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -512,7 +526,7 @@ function dateComparison(date) {
 
 // Patient Dashboard logic
 const getPatientDashboard = async (req, res, next) => {
-    if (sessionStorage.getItem('role') != 'patient'){
+    if (sessionStorage.getItem('role') != 'patient') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -583,7 +597,7 @@ const getPatientDashboard = async (req, res, next) => {
 
 // Used for patient -> record health page.
 const getRecordHealthPage = async (req, res, next) => {
-    if (sessionStorage.getItem('role') != 'patient'){
+    if (sessionStorage.getItem('role') != 'patient') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -654,7 +668,7 @@ const getPatientRole = (req, res) => {
 
 
 const getClinicianEditProfile = async (req, res, next) => {
-    if (sessionStorage.getItem('role') != 'clinician'){
+    if (sessionStorage.getItem('role') != 'clinician') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {
@@ -666,7 +680,7 @@ const getClinicianEditProfile = async (req, res, next) => {
 }
 
 const getClinicianProfileSettings = async (req, res, next) => {
-    if (sessionStorage.getItem('role') != 'clinician'){
+    if (sessionStorage.getItem('role') != 'clinician') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "Permissions", logoURL: "../" })
     }
     try {

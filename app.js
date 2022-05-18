@@ -102,13 +102,17 @@ app.get('/thankyou_page', (req, res) => {
 //     res.render('leaderboard.hbs', { user: req.user.toJSON(), logoURL: "../patient_dashboard" })
 // })
 
+
+function entryInputValidation(userInput) {
+
+}
+
+
 // **** Application POSTs ****  
 app.post('/post_values', async (req, res) => {
     const valid_measurements = ["measured_glucose", "measured_weight", "measured_insulin", "measured_exercise"];
     const measuredType = req.body.Selector
     const valueIsEmpty = !req.body.measurement;
-
-    console.log(req)
 
     // Check if the value recieved is a valid meaurement type and that it is not empty.
     if ((valid_measurements.includes(measuredType)) && (!valueIsEmpty)) {
@@ -128,7 +132,16 @@ app.post('/post_values', async (req, res) => {
 
             // Determine what type of data the user has inserted and update the above entry accordingly.
             if (measuredType == "measured_glucose") {
+                var acceptedValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ,"."]
                 doc.measured_glucose = req.body.measurement;
+
+                // Validate input. Note that decimal places are allowed for blood glucose entries
+                for (const char of doc.measured_glucose) {
+                    if (!acceptedValues.includes(char)) {
+                        console.log("Invalid input for blood glucose")
+                        return res.render('error_page', { buttonURL: req.header('Referer'), buttonText: "Go Back", errorHeading: "Invalid data error", errorText: "The data entered for blood glucose was not accepted by the server. Please enter numeric characters (decimals permitted) and try again.", logoURL: "patient_dashboard" })
+                    }
+                }
             }
             else if (measuredType == "measured_weight") {
                 doc.measured_weight = req.body.measurement;
