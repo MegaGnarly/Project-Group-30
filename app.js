@@ -306,7 +306,12 @@ app.post('/change_pwd', async (req, res) => {
                 user.collection.updateOne({ username: req.user.username }, { $set: { password: hashedPassword } });
             })
 
-            res.redirect('patient_dashboard')
+            if ( req.user.role == "patient"){
+                res.redirect('patient_dashboard')
+            }
+            else if ( req.user.role == "clinician"){
+                res.redirect('clinician_dashboard')
+            }
         }
         // Return  
     } catch (error) {
