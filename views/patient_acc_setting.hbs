@@ -1,22 +1,28 @@
 <body>
     <h1 class="page_heading">Settings</h1>
         <div class="settings-form-container">
-            <form class="detailsform" action="" method="post">
+            <form class="detailsform" action="/change_pwd" method="post">
             <div class="innerbound">
                 <img src="../assets/placeholder-image.png" class= "placeholderimg">
                 
                 <div class="settings_container">
                 <h2 class="settings_heading">Account Details</h2>
                     <label for="firstname"><b>First Name</b></label>
-                    <input id="firstname" type="text" placeholder="John" name="firstname" disabled>
+                    <input id="firstname" type="text" placeholder="{{user.firstName}}" name="firstname" disabled>
 
                     <label for="lastname"><b>Patient Last Name</b></label>
-                    <input id="lastname" type="text" placeholder="Smith" name="lastname" disabled>
+                    <input id="lastname" type="text" placeholder="{{user.lastName}}" name="lastname" disabled>
 
                     <label for="Username"><b>Username</b></label>
-                    <input id="Username" type="text" placeholder="jsmith" name="Username" disabled>
+                    <input id="Username" type="text" placeholder="{{user.username}}" name="Username" disabled>
 
-                    <a class="settings_button" href="patient_change_pwd">CHANGE PASSWORD</a>
+                    <label for="psw"><b>New Password</b></label>
+                    <input id="psw" type="password" placeholder="Password" name="password">
+
+                    <label for="psw"><b>Re-enter New Password</b></label>
+                    <input id="psw" type="password" placeholder="Re-enter Password" name="password">
+
+                    <input class="settings_button" type = "submit" value="SAVE CHANGES">
                 </div>
             </div>
             </form>
