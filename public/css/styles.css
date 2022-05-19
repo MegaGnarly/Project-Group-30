@@ -1068,6 +1068,7 @@ textarea::placeholder {
     padding-left: 9%;
     padding-right: 9%;
     padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 .patient-specifics-pfp {
@@ -1140,6 +1141,7 @@ textarea::placeholder {
     color: rgb(0, 0, 0);
     background-color: #e713139f;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .patient-specifics-notes-container {
