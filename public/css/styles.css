@@ -1644,6 +1644,19 @@ p {
     font-size: 20px;
 }
 
+.hreflinklogin{
+    color: #0024a5;
+}
+
+.loginlabel{
+    display: inline-flex;
+    align-items: center;
+}
+
+.rememberedcheck{
+    width: fit-content;
+}
+
 .background {
     background-image: url("../assets/bg_image.png");
     background-position: center;
@@ -1737,10 +1750,11 @@ input[id=lname] {
 
 /* The "Forgot password" text */
 .psw {
-    display: flex;
-    padding-top: 3%;
-    padding-bottom: 5%;
+    display: inline-flex;
+    padding-bottom: 3%;
     justify-content: space-between;
+    white-space: nowrap;
+    align-items: center;
 }
 
 .acc-creation-text {
