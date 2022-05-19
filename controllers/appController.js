@@ -852,7 +852,8 @@ const getClinicianEditProfile = async (req, res, next) => {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
-        return res.render('clinician_edit_profile', { logoURL: "./" })
+        const current_user = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+        return res.render('clinician_edit_profile', { logoURL: "./", user: current_user })
 
     } catch (error) {
         console.log(error)
@@ -863,8 +864,9 @@ const getClinicianProfileSettings = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'clinician') {
         return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
+    const current_user = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
     try {
-        return res.render('clinician_profile_settings', { logoURL: "./", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
+        return res.render('clinician_profile_settings', { logoURL: "./", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role'), user: current_user })
 
     } catch (error) {
         console.log(error)
