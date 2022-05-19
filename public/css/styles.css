@@ -1883,7 +1883,7 @@ input[id=lname] {
 @media (max-width: 1000px) {
 
     .engagementCard {
-        grid-template-columns: 40% auto;
+        grid-template-columns: auto auto;
         align-items: center;
     }
 
@@ -1891,7 +1891,7 @@ input[id=lname] {
         color: white;
         font-size: 18px;
         font-weight: bold;
-        margin: 10px 20px 10px 0px;
+        margin: 10px 20px 10px 20px;
         text-align: center;
     }
 
@@ -1899,7 +1899,7 @@ input[id=lname] {
         color: white;
         font-size: 15px;
         font-weight: 600;
-        text-align: left;
+        text-align: center;
     }
 
     .patient-dashboard-notifications-text2 {
@@ -1907,7 +1907,7 @@ input[id=lname] {
     }
 
     .badge {
-        margin: 10px 20px 10px 20px;
+        margin: 10px 50px 10px 0px;
     }
 
     /* Show burger icon */
@@ -2365,6 +2365,30 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
   
   /* Add a hover effect for buttons */
 .settings_button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+
+}
+
+.settings_btn {
+    background-color: #7D92DB;
+    color: white; 
+    padding: 18px;
+    margin-left: auto; 
+    margin-right: 5%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease 0s;
+}
+
+  /* Add a hover effect for buttons */
+.settings_btn:hover {
     opacity: 0.8;
     transform: scale(1.05);
 
