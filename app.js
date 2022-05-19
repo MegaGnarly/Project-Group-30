@@ -321,7 +321,7 @@ hbs.handlebars.registerHelper('thresholdChecker', function (num, options) {
 
 // Check if engagement rate above 80% to show badge
 hbs.handlebars.registerHelper('badgeChecker', function (num, options) {
-    if (num > 80) {
+    if (num >= 80) {
         return options.fn(this);
     }
 });
