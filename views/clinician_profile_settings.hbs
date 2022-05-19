@@ -7,7 +7,7 @@
             <button class="tablinks" onclick="opentab(event, 'Profile Settings')" id="defaultOpen">Profile Settings</button>
             <button class="tablinks" onclick="opentab(event, 'Register Patient')">Register Patient</button>
         </div>
-        <form class="cliniciansettings" action="/" method="post">
+        <div class="cliniciansettings">
             <!-- Tab content -->
                 <div id="Profile Settings" class="tabcontent">
                     <div class="innerbound">
@@ -27,32 +27,33 @@
                         </div>
                     </div>
                 </div>
-        
+            <form action="/register" method="post">
                 <div id="Register Patient" class="tabcontent">
                     <div class="innerbound">
                         <img src="../assets/placeholder-image.png" class= "placeholderimg">
                         
                         <div class="settings_container">
                             <label for="firstname"><b>Patient First Name</b></label>
-                            <input id="firstname" type="text" placeholder="'John'" name="firstname">
+                            <input id="firstname" type="text" placeholder="'John'" name="fname">
             
                             <label for="lastname"><b>Patient Last Name</b></label>
-                            <input id="lastname" type="text" placeholder="'Smith'" name="lastname">
+                            <input id="lastname" type="text" placeholder="'Smith'" name="lname">
             
                             <label for="Username"><b>Set Username</b></label>
-                            <input id="Username" type="text" placeholder="'jsmith'" name="Username">
+                            <input id="Username" type="text" placeholder="'jsmith'" name="username">
             
                             <label for="psw"><b>Set Password</b></label>
-                            <input id="psw" type="password" placeholder="Password" name="psw">
+                            <input id="psw" type="password" placeholder="Password" name="password">
             
                             <label for="psw"><b>Re-enter Password</b></label>
-                            <input id="psw" type="password" placeholder="Re-enter Password" name="psw">
+                            <input id="psw" type="password" placeholder="Re-enter Password" name="password2">
             
                             <button class="settings_button">REGISTER PATIENT</button>
                         </div>
                     </div>
                 </div>
             </form>
+        </div>
     </div>
     </form>
 </body>
