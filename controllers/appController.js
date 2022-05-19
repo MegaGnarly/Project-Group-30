@@ -647,6 +647,8 @@ const getLeaderboard = async (req, res, next) => {
 
         // Reverse sort based on the engagement rate
         rankingRowArray.sort((a, b) => b.engagementRate - a.engagementRate);
+        // Get top 5
+        rankingRowArray = rankingRowArray.slice(0,5);
 
         // Used to display top 3
         var first = rankingRowArray[0].username

@@ -9,8 +9,8 @@
 <!-- container to hold everything -->
 <div class="leaderboard-container">
     <h1 class="LB-heading">Leaderboard</h1>
-<!-- Top graphics section e.g. top 3 people-->
-<!-- Need to replace pat_username with his username and replace other usernames-->
+    <!-- Top graphics section e.g. top 3 people-->
+    <!-- Need to replace pat_username with his username and replace other usernames-->
     <div class="leaderboard-image-flex">
         <div class="place">
             <img src="../assets/2nd-icon.png" class="second-icon">
@@ -28,16 +28,24 @@
         </div>
     </div>
 
-<!-- Top 5 list of people -->
+    <!-- Top 5 list of people -->
 
     <div class="top-5-container">
-        <h2 class="top-title">Rankings</h2>
-
+        <h2 class="top-title">Top 5</h2>
+        <div class="leaderboard-header-bar">
+            <div class="header-items rank-item blue">Rank</div>
+            <div class="header-items user-item purple1">User</div>
+            <div class="header-items days-item purple2">Days</div>
+            <div class="header-items rate-item purple3">Rate</div>
+        </div>
         {{#each rank}}
         <div class="top-others">
-            <p class="board-label">{{inc @index}}</p>
-            <p class="board-label">{{username}}</p>
-            <p class="user-score">{{daysEngaged}}/{{daysRegistered}} days | {{engagementRate}}%</p>
+            <div class="leaderboard-header-bar">
+                <div class="row-items rank-item">{{inc @index}}</div>
+                <div class="row-items user-item">{{username}}</div>
+                <div class="row-items days-item">{{daysEngaged}} of {{daysRegistered}}</div> 
+                <div class="row-items rate-item">{{engagementRate}}%</div>
+            </div>
         </div>
         {{/each}}
         {{!-- <div class="top-1">
@@ -45,7 +53,7 @@
             <p class="board-label">Username_1</p>
             <p class="user-score">95%</p>
         </div>
-    
+
         <div class="top-2">
             <img src="../assets/2-label.png" class="board-icon">
             <p class="board-label">pat_username</p>
@@ -73,5 +81,3 @@
     </div>
 
 </div>
-
-

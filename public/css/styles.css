@@ -213,6 +213,14 @@ header {
     margin-right: 2%;
 }
 
+.leaderboard-header-bar {
+    display: flex;
+    flex-direction: row;
+    cursor: default;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .header-items {
     display: flex;
     border-radius: 38px;
@@ -228,6 +236,16 @@ header {
     transition: all 0.5s ease 0s;
 }
 
+.row-items {
+    display: flex;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+
+}
+
 .patients-item {
     width: 22.5%;
     margin: 1.5% 1% 1.5% 1%;
@@ -238,6 +256,26 @@ header {
     width: 48%;
     margin: 1.5% 2.5% 1.5% 0%;
     cursor: default;
+}
+
+.rank-item {
+    width: 10%;
+    margin: 1.5% 2.5% 1.5% 0%;
+}
+
+.user-item {
+    width: 20%;
+    margin: 1.5% 2.5% 1.5% 0%;
+}
+
+.days-item {
+    width: 20%;
+    margin: 1.5% 2.5% 1.5% 25%;
+}
+
+.rate-item {
+    width: 20%;
+    margin: 1.5% 0% 1.5% 0%;
 }
 
 .comments-button {
@@ -1700,7 +1738,8 @@ input[id=fname],
 input[id=lname] {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin-top: 2%;
+    margin-bottom: 5%;
     display: inline-block;
     border: 1px solid #E7E7E7;
     box-sizing: border-box;
@@ -1895,6 +1934,16 @@ input[id=lname] {
 /* ||               MOBILE VIEW             */
 /* When the size of the browser window is small, the following CSS rules will apply */
 @media (max-width: 1000px) {
+
+    .header-items {
+        font-weight: 200;
+        font-size: small;
+    }
+
+    .rank-item {
+        width: 20%;
+        margin: 1.5% 2.5% 1.5% 0%;
+    }
 
     .engagementCard {
         grid-template-columns: auto auto;
@@ -2205,15 +2254,12 @@ input[id=lname] {
 }
 
 .top-others {
-    display: flex;
     background-color: white;
     border-radius: 15px;
     filter: drop-shadow(1px 1px 3px #d4d4d4);
     border-style: solid;
     border-color: #E8E8E8;
     border-width: thin;
-    height: 55px;
-    padding-left: 2%;
     margin-top: 20px;
 }
 
