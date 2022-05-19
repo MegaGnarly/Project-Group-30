@@ -1990,8 +1990,8 @@ input[id=lname] {
 
     .button02 {
         grid-column-start: 1;
-        grid-row-start: 5;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
         padding: 5%;
         min-height: 124px;
     }
