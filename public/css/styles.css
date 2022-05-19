@@ -1074,6 +1074,16 @@ textarea::placeholder {
     border: 1px solid #eeeeee;
 }
 
+.patient-specifics-table-data-exceeded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eeeeee;
+    color: rgb(0, 0, 0);
+    background-color: #e713139f;
+    font-weight: bold;
+}
+
 .patient-specifics-notes-container {
     grid-column-start: 1;
     grid-column-end: 3;

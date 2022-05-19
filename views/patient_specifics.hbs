@@ -111,7 +111,11 @@
         <div class="patient-specifics-table-data">{{date}}</div>
         <div class="patient-specifics-table-data">{{time}}</div>
         <div class="patient-specifics-table-data">{{dataType}}</div>
+        {{#if threshExceeded}}
+        <div class="patient-specifics-table-data-exceeded">{{value}}</div>
+        {{else}}
         <div class="patient-specifics-table-data">{{value}}</div>
+        {{/if}}
         <div class="patient-specifics-table-data">{{comment}}</div>
         {{/each}}
 

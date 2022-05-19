@@ -237,6 +237,7 @@ const getPatientDataClinician = async (req, res, next) => {
                 time: arrayItem.time,
                 dataType: "",
                 value: "",
+                threshExceeded: false,
                 comment: arrayItem.comment
             }
 
@@ -244,6 +245,10 @@ const getPatientDataClinician = async (req, res, next) => {
             if (arrayItem.measured_glucose != "-") {
                 rowOfData.dataType = "Blood Glucose";
                 rowOfData.value = arrayItem.measured_glucose;
+
+                if ((parseInt(arrayItem.measured_glucose) < parseInt(currentUser.threshold_bg.lower)) || (parseInt(arrayItem.measured_glucose) > parseInt(currentUser.threshold_bg.upper))) {
+                    rowOfData.threshExceeded = true;
+                }
             }
             else if (arrayItem.measured_weight != "-") {
                 rowOfData.dataType = "Weight";
@@ -261,6 +266,8 @@ const getPatientDataClinician = async (req, res, next) => {
             // Append to array
             tableRowArray.push(rowOfData)
         })
+
+        console.log(tableRowArray)
 
         // Get clinical Notes
         const allNotes = await clinicalNote.find({ username: req.params.username }).lean()
