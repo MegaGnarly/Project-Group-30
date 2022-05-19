@@ -31,6 +31,8 @@ Web Information Technologies
     npm install express-session
 
     npm install bcryptjs
+
+    npm install --save sessionstorage
 ```
 
 # Misc notes
