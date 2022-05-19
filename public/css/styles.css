@@ -2194,10 +2194,19 @@ input[id=lname] {
     margin-top: 20px;
 }
 
+.err-btn-container{
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;        
+    align-content: center;
+}
+
 .backURL {
     display: flex;
-    min-height: 90px;
+    min-height: 120px;
     /* max-width: 4000px; */
+    width: 350px;
     border-radius: 38px;
     background-color: #72A6E8;
     color: white;
