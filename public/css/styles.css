@@ -1247,6 +1247,10 @@ textarea::placeholder {
     margin-bottom: 20px;
 }
 
+.modal-note{
+    font-size: 15px;
+}
+
 
 #backgroundMasker {
     position: fixed;
@@ -1986,8 +1990,8 @@ input[id=lname] {
 
     .button02 {
         grid-column-start: 1;
-        grid-row-start: 5;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
         padding: 5%;
         min-height: 124px;
     }
@@ -2190,10 +2194,19 @@ input[id=lname] {
     margin-top: 20px;
 }
 
+.err-btn-container{
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;        
+    align-content: center;
+}
+
 .backURL {
     display: flex;
-    min-height: 90px;
+    min-height: 120px;
     /* max-width: 4000px; */
+    width: 350px;
     border-radius: 38px;
     background-color: #72A6E8;
     color: white;
@@ -2343,6 +2356,30 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
   
   /* Add a hover effect for buttons */
 .settings_button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+
+}
+
+.settings_btn {
+    background-color: #7D92DB;
+    color: white; 
+    padding: 18px;
+    margin-left: auto; 
+    margin-right: 5%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #D4D4D4);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease 0s;
+}
+
+  /* Add a hover effect for buttons */
+.settings_btn:hover {
     opacity: 0.8;
     transform: scale(1.05);
 
