@@ -59,18 +59,35 @@
                     {{!-- <button class="patient-button purple1">Message</button> --}}
                 </div>
             </div>
+
             <div class="grid-patient-category bold">Blood Glucose</div>
-            {{#thresholdChecker measured_glucose}}
-            <div class="grid-patient-data red-highlight">{{measured_glucose}}</div>
+            {{#if glucoseExceeded}}
+            <div class="grid-patient-data-exceeded">{{measured_glucose}} (violation)</div>
             {{else}}
             <div class="grid-patient-data">{{measured_glucose}}</div>
-            {{/thresholdChecker}}
+            {{/if}}
+
             <div class="grid-patient-category bold">Weight</div>
+            {{#if weightExceeded}}
+            <div class="grid-patient-data-exceeded">{{measured_weight}} (violation)</div>
+            {{else}}
             <div class="grid-patient-data">{{measured_weight}}</div>
+            {{/if}}
+            
             <div class="grid-patient-category bold">No. Insulin Doses</div>
+            {{#if insulinExceeded}}
+            <div class="grid-patient-data-exceeded">{{measured_insulin}} (violation)</div>
+            {{else}}
             <div class="grid-patient-data">{{measured_insulin}}</div>
+            {{/if}}
+
             <div class="grid-patient-category bold">Exercise (Step Count)</div>
+            {{#if exerciseExceeded}}
+            <div class="grid-patient-data-exceeded">{{measured_exercise}} (violation)</div>
+            {{else}}    
             <div class="grid-patient-data">{{measured_exercise}}</div>
+            {{/if}}
+            
         </div>
         <div class="grid-patient-action-required">
             <div class="grid-patient-action-required-title bold">Comments</div>

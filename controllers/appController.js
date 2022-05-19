@@ -71,6 +71,7 @@ const getAllDataClinician = async (req, res, next) => {
         const tableRowArray = [];
         const patientValues = await user.find().lean()
 
+
         for (const user of userValuesArray) {
             // Queries the DB and returns all data of 1 user
             const currentUser = await measuredValue.find({ username: user }).lean()
@@ -82,6 +83,10 @@ const getAllDataClinician = async (req, res, next) => {
                 measured_weight: "-",
                 measured_insulin: "-",
                 measured_exercise: "-",
+                glucoseExceeded: false,
+                weightExceeded: false,
+                insulinExceeded: false,
+                exerciseExceeded: false,
                 comment: "",
             }
             currentUser.forEach(function (arrayItem) {
@@ -93,6 +98,10 @@ const getAllDataClinician = async (req, res, next) => {
                 // Update the measurement, if it exists
                 if (arrayItem.measured_glucose != "-") {
                     rowOfData.measured_glucose = arrayItem.measured_glucose;
+
+                    if (patientValues.username == user) {
+                        console.log(user)
+                    }
                 }
                 if (arrayItem.measured_weight != "-") {
                     rowOfData.measured_weight = arrayItem.measured_weight;
@@ -107,6 +116,41 @@ const getAllDataClinician = async (req, res, next) => {
             // Append to array
             tableRowArray.push(rowOfData)
         }
+
+        // Do saftey threshold validation
+        // For whatever reason doing a direct lookup of the user in the above loop won't work (mongo db error)
+        // so i'm forced to do it in a separate loop.
+        for (const row of tableRowArray) {
+            const currentUser = await user.findOne({ username: row.username }).lean()
+            if (row.username == currentUser.username) {
+                if (row.measured_glucose != "-") {
+                    if ((parseFloat(row.measured_glucose) < parseFloat(currentUser.threshold_bg.lower)) || (parseFloat(row.measured_glucose) > parseFloat(currentUser.threshold_bg.upper))) {
+                        row.glucoseExceeded = true;
+                    }
+                }
+                if (row.measured_weight != "-") {
+                    if ((parseFloat(row.measured_weight) < parseFloat(currentUser.threshold_weight.lower)) || (parseFloat(row.measured_weight) > parseFloat(currentUser.threshold_weight.upper))) {
+                        console.log("WEIGHT VIOLATION FOR", row.username)
+                        row.weightExceeded = true;
+                    }
+                }
+                if (row.measured_insulin != "-") {
+                    if ((parseFloat(row.measured_insulin) < parseFloat(currentUser.threshold_insulin.lower)) || (parseFloat(row.measured_insulin) > parseFloat(currentUser.threshold_insulin.upper))) {
+                        row.insulinExceeded = true;
+                    }
+                }
+                if (row.measured_exercise != "-") {
+                    if ((parseFloat(row.measured_exercise) < parseFloat(currentUser.threshold_exercise.lower)) || (parseFloat(row.measured_exercise) > parseFloat(currentUser.threshold_exercise.upper))) {
+                        row.exerciseExceeded = true;
+                    }
+                }
+
+            }
+            console.log(row.username)
+        }
+
+
+
 
         // Append new users that have zero measurement entries into the array
         const patients = await user.find().sort({ datesince: -1 }).lean()
