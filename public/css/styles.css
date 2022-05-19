@@ -1244,6 +1244,10 @@ textarea::placeholder {
     margin-bottom: 20px;
 }
 
+.modal-note{
+    font-size: 15px;
+}
+
 
 #backgroundMasker {
     position: fixed;
