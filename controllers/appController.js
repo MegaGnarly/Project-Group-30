@@ -612,7 +612,7 @@ const getLeaderboard = async (req, res, next) => {
         return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
-        const allUsers = await user.collection.distinct("username")
+        const allUsers = await user.collection.distinct("username", { role: "patient" })
         var rankingRowArray = []
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
 

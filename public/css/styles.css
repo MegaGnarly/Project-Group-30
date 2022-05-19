@@ -662,7 +662,6 @@ select {
     display: grid;
     /* grid-template-columns: 200px 200px; */
     grid-template-columns: 40% auto;
-    align-items: center;
 }
 
 #patient-dashboard-grid-container-nested {
@@ -2138,7 +2137,7 @@ input[id=lname] {
     font-size: 22px;
     font-family: 'poppins', sans-serif;
     font-weight: bold;
-    margin-top: 40px;
+    margin-top: 30px;
     text-align: center;
 }
 
@@ -2260,7 +2259,8 @@ input[id=lname] {
     border-style: solid;
     border-color: #E8E8E8;
     border-width: thin;
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
 
 .err-btn-container{
