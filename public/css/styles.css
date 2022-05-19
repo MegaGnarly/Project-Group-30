@@ -505,7 +505,7 @@ select {
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 10%;
+    align-items: center;
     font-size: smaller;
     overflow: auto;
 }
