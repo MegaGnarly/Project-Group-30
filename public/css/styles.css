@@ -592,10 +592,13 @@ select {
 
 .badge {
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .engagementCard {
     background-image: linear-gradient(40deg,#39CCFF 0%,#8C90EE 45%,#D16BA5 100%);
+    display: grid;
     padding: 10%;
     border-radius: 30px;
     margin: 0% 15% 15% 15%;
@@ -1811,6 +1814,34 @@ input[id=lname] {
 /* ||               MOBILE VIEW             */
 /* When the size of the browser window is small, the following CSS rules will apply */
 @media (max-width: 1000px) {
+
+    .engagementCard {
+        grid-template-columns: 40% auto;
+        align-items: center;
+    }
+
+    .rankingBox {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 10px 20px 10px 0px;
+        text-align: center;
+    }
+
+    .ranking {
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .patient-dashboard-notifications-text2 {
+        text-align: center;
+    }
+
+    .badge {
+        margin: 10px 20px 10px 20px;
+    }
 
     /* Show burger icon */
     .flexbox-navbar-hamburger {

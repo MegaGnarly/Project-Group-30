@@ -28,8 +28,10 @@
     <!-- Column 1: Empty field-->
     <div id="profile">
         <div class="container engagementCard">
-            <p class="ranking">Engaged: {{engagementData.daysEngaged}}/{{engagementData.daysRegistered}} days</p>
-            <p class="ranking">Rate: {{engagementData.engagementRate}}%</p>
+            <div class="rankingBox">
+                <p class="ranking">Engaged: {{engagementData.daysEngaged}}/{{engagementData.daysRegistered}} days</p>
+                <p class="ranking">Rate: {{engagementData.engagementRate}}%</p>
+            </div>
             {{#badgeChecker engagementData.engagementRate}}
             <img src="../assets/badge.png" class="badge" width="125" height="125">
             {{/badgeChecker}}
