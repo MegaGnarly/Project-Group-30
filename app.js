@@ -6,6 +6,7 @@ const app = express();
 const exphbs = require('express-handlebars');
 const passport = require('./passport')
 const bcrypt = require('bcryptjs')
+const sessionStorage = require('sessionstorage')
 
 // Load database schemas
 const measuredValue = require('./models/measuredValue');
@@ -259,7 +260,12 @@ app.post('/register', async (req, res) => {
         }
         
     })
-    res.render('login_page', { layout: 'main2' })
+    if (sessionStorage.getItem("role") == "clinician"){
+        res.redirect('/clinician_dashboard')
+    }
+    else {
+        res.render('login_page', { layout: 'main2' })
+    }
 })
 
 // Patient changes password in settings. MOVE TO ROUTER
