@@ -241,26 +241,38 @@ const getPatientDataClinician = async (req, res, next) => {
                 comment: arrayItem.comment
             }
 
-            // Determine the data type and data value for the row.
+            // Determine the data type and data value for the row. Check for safety threshold violations.
             if (arrayItem.measured_glucose != "-") {
                 rowOfData.dataType = "Blood Glucose";
                 rowOfData.value = arrayItem.measured_glucose;
 
-                if ((parseInt(arrayItem.measured_glucose) < parseInt(currentUser.threshold_bg.lower)) || (parseInt(arrayItem.measured_glucose) > parseInt(currentUser.threshold_bg.upper))) {
+                if ((parseFloat(arrayItem.measured_glucose) < parseFloat(currentUser.threshold_bg.lower)) || (parseFloat(arrayItem.measured_glucose) > parseFloat(currentUser.threshold_bg.upper))) {
                     rowOfData.threshExceeded = true;
                 }
             }
             else if (arrayItem.measured_weight != "-") {
                 rowOfData.dataType = "Weight";
                 rowOfData.value = arrayItem.measured_weight;
+
+                if ((parseFloat(arrayItem.measured_weight) < parseFloat(currentUser.threshold_weight.lower)) || (parseFloat(arrayItem.measured_weight) > parseFloat(currentUser.threshold_weight.upper))) {
+                    rowOfData.threshExceeded = true;
+                }
             }
             else if (arrayItem.measured_insulin != "-") {
                 rowOfData.dataType = "Insulin Doses";
                 rowOfData.value = arrayItem.measured_insulin;
+
+                if ((parseFloat(arrayItem.measured_insulin) < parseFloat(currentUser.threshold_insulin.lower)) || (parseFloat(arrayItem.measured_insulin) > parseFloat(currentUser.threshold_insulin.upper))) {
+                    rowOfData.threshExceeded = true;
+                }
             }
             else if (arrayItem.measured_exercise != "-") {
                 rowOfData.dataType = "Exercise (steps)";
                 rowOfData.value = arrayItem.measured_exercise;
+
+                if ((parseFloat(arrayItem.measured_exercise) < parseFloat(currentUser.threshold_exercise.lower)) || (parseFloat(arrayItem.measured_exercise) > parseFloat(currentUser.threshold_exercise.upper))) {
+                    rowOfData.threshExceeded = true;
+                }
             }
 
             // Append to array
