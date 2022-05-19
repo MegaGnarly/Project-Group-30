@@ -165,9 +165,11 @@
     </div>
 
     <div class="patient-specifics-notes-container">
-        <p class="blue-heading-medium">Support Message for {{profileData.username}}</p>
-        {{profileData.support_msg}}
-        <h3>Set new message</h3>
+        <p class="blue-heading-medium">Recent Support Message for {{profileData.username}}</p>
+        <h3>{{profileData.support_msg}}</h3>
+        <br>
+        <br>
+        <h3 class="blue-heading-medium">Set new message</h3>
         <form method="POST" action="/clinician_dashboard/post_submit_msg/{{profileData.username}}">
             <input class="clin-msg-box" type="text" id="cMsg" name="cMsg" placeholder="Start typing here..." required>
             <input class="clin-msg-btn" type="submit" value="Update Support Message">

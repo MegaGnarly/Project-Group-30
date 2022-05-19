@@ -10,10 +10,17 @@
     {{!-- <h1 class="page_heading">Settings</h1> --}}
         <h1 class="heading">Settings</h1>
         <br>
+        <br>
         <div class="settings-form-container">
             <form class="detailsform" action="/change_pwd" method="post">
             <div class="innerbound">
-                <img src="../assets/placeholder-image.png" class= "placeholderimg">
+                <div class="left_settings">
+                    <img src="../assets/icon_profile.png" class= "placeholderimg">
+                    <br>
+                    <h2 class="username">{{user.username}}</h2>
+                    <h4 class="nav-userstatus">{{userRole}}</h4>
+                    <br>
+                </div>
                 
                 <div class="settings_container">
                 <h2 class="settings_heading">Account Details</h2>

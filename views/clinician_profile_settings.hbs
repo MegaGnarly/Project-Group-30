@@ -8,7 +8,9 @@
 
 
 <body onload="opentab(event, 'Profile Settings')">
-    <h1 class="heading">Settings</h1>
+    <h1 class="topbar">Settings</h1>
+    <br>
+    <br>
     {{!-- <h1 class="page_heading">Settings</h1> --}}
     <!-- Tab links -->
     
@@ -21,7 +23,12 @@
             <!-- Tab content -->
                 <div id="Profile Settings" class="tabcontent">
                     <div class="innerbound">
-                        <img src="../assets/placeholder-image.png" class= "placeholderimg">
+                        <div class="left_settings">
+                            <img src="../assets/icon_profile.png" class= "placeholderimg">
+                            <br>
+                            <h2 class="username">{{user.username}}</h2>
+                            <h4 class="nav-userstatus">{{userRole}}</h4>
+                        </div>
                         
                         <div class="settings_container">
                             <label for="firstname"><b>First Name</b></label>
@@ -48,7 +55,7 @@
             <form action="/register" method="post">
                 <div id="Register Patient" class="tabcontent">
                     <div class="innerbound">
-                        <img src="../assets/placeholder-image.png" class= "placeholderimg">
+                    <img src="../assets/icon_profile.png" class= "placeholderimg">
                         
                         <div class="settings_container">
                             <label for="firstname"><b>Patient First Name</b></label>
