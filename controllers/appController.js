@@ -763,11 +763,6 @@ const getPatientDashboard = async (req, res, next) => {
             enteredAllData = true;
         }
 
-        console.log("display bg notification:", displayBg)
-        console.log("display weight notification:", displayWeight)
-        console.log("display exercise notification:", displayExercise)
-        console.log("display insulin notification:", displayInsulin)
-
         res.render('patient_dashboard', { user: req.user.toJSON(), engagementData: engagementData, profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {
         console.log(error)

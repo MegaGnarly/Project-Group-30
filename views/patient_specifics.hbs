@@ -169,8 +169,8 @@
         {{profileData.support_msg}}
         <h3>Set new message</h3>
         <form method="POST" action="/clinician_dashboard/post_submit_msg/{{profileData.username}}">
-            <input type="text" id="cMsg" name="cMsg" placeholder="Start typing here..." required>
-            <input class="todo" type="submit" value="Update Support Message">
+            <input class="clin-msg-box" type="text" id="cMsg" name="cMsg" placeholder="Start typing here..." required>
+            <input class="clin-msg-btn" type="submit" value="Update Support Message">
         </form>
     </div>
 
@@ -197,8 +197,8 @@
         <br>
         <h3>Enter new note</h3>
         <form method="POST" action="/clinician_dashboard/submit_note/{{profileData.username}}">
-            <input type="text" id="cNote" name="cNote" placeholder="Start typing here..." required>
-            <input class="todo" type="submit" value="Submit Note">
+            <input class="clin-msg-box" type="text" id="cNote" name="cNote" placeholder="Start typing here..." required>
+            <input class="clin-msg-btn" type="submit" value="Submit Note">
         </form>
 
     </div>

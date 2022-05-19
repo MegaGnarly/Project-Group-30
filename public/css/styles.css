@@ -1108,6 +1108,15 @@ textarea::placeholder {
     background-color: #f0f0f3a2;
 }
 
+.clin-msg-box {
+    border-radius: 25px;
+}
+
+.clin-msg-btn {
+    border-radius: 25px;
+    /* background-color: #f5f5f7; */
+}
+
 .clinician-notes {
     display: grid;
     grid-template-columns: 12% 12% 76%;
@@ -1874,7 +1883,7 @@ input[id=lname] {
 @media (max-width: 1000px) {
 
     .engagementCard {
-        grid-template-columns: 40% auto;
+        grid-template-columns: auto auto;
         align-items: center;
     }
 
@@ -1882,7 +1891,7 @@ input[id=lname] {
         color: white;
         font-size: 18px;
         font-weight: bold;
-        margin: 10px 20px 10px 0px;
+        margin: 10px 20px 10px 20px;
         text-align: center;
     }
 
@@ -1890,7 +1899,7 @@ input[id=lname] {
         color: white;
         font-size: 15px;
         font-weight: 600;
-        text-align: left;
+        text-align: center;
     }
 
     .patient-dashboard-notifications-text2 {
@@ -1898,7 +1907,7 @@ input[id=lname] {
     }
 
     .badge {
-        margin: 10px 20px 10px 20px;
+        margin: 10px 50px 10px 0px;
     }
 
     /* Show burger icon */
