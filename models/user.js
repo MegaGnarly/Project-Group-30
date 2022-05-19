@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   dob: String,
   dateSince: Date, // Date since registration of user, required to calculate engagement
   secret: { type: String, required: true },
-  threshold_bg: {prescribed: Boolean, lower: String, upper: String},
+  threshold_bg: {prescribed: Boolean, lower: Number, upper: Number},
   threshold_weight: {prescribed: Boolean, lower: Number, upper: Number},
   threshold_exercise: {prescribed: Boolean, lower: Number, upper: Number},
   threshold_insulin: {prescribed: Boolean, lower: Number, upper: Number},
