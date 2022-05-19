@@ -1239,9 +1239,9 @@ textarea::placeholder {
     padding: 0%;
     align-content: center;
     justify-items: center;
-    margin-left: 50%;
+    margin-left: 45%;
     margin-right: auto;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 
@@ -1280,6 +1280,8 @@ textarea::placeholder {
 }
 
 input[id="popup-input-box"] {
+    display: flex;
+    align-self: flex-start;
     max-width: 100px;
     height: 40px;
     border: 1px solid black;
