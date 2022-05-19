@@ -375,7 +375,8 @@ function isValidNumber(input) {
 
 const getPatientSettings = async (req, res, next) => {
     try {
-        return res.render('patient_acc_setting', { user: sessionStorage.getItem('username'), logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
+        const current_user = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+        return res.render('patient_acc_setting', { user: current_user, logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {
         console.log(error)
     }
@@ -763,11 +764,6 @@ const getPatientDashboard = async (req, res, next) => {
         if (!displayBg && !displayWeight && !displayExercise && !displayInsulin) {
             enteredAllData = true;
         }
-
-        console.log("display bg notification:", displayBg)
-        console.log("display weight notification:", displayWeight)
-        console.log("display exercise notification:", displayExercise)
-        console.log("display insulin notification:", displayInsulin)
 
         res.render('patient_dashboard', { user: req.user.toJSON(), engagementData: engagementData, profileData: currentUser, displayBg, displayExercise, displayInsulin, displayWeight, enteredAllData, userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {

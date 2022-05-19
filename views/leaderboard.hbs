@@ -1,6 +1,10 @@
-<!-- Work in progress leaderboard framework HTML - currently hard coded and not linked yet-->
-{{!-- <h1 class="LB-heading">leaderboard</h1> --}}
-
+<div id="patient-specifics-topbar">
+    <p class="topbar-tree">
+        <a href="/patient_dashboard" class="ul-text">Patient Dashboard</a>
+    <p class="topbar-tree"> > </p>
+    <a href="" class="ul-text">Leaderboard</a>
+    </p>
+</div>
 
 <!-- container to hold everything -->
 <div class="leaderboard-container">
@@ -9,17 +13,17 @@
     <!-- Need to replace pat_username with his username and replace other usernames-->
     <div class="leaderboard-image-flex">
         <div class="place">
-            <img src="../assets/2nd.png" class="second-icon">
+            <img src="../assets/2nd-icon.png" class="second-icon">
             <p class="user-labels">{{second}}</p>
         </div>
 
         <div class="place">
-            <img src="../assets/1st.png" class="first-icon">
+            <img src="../assets/1st-icon.png" class="first-icon">
             <p class="user-labels">{{first}}</p>
         </div>
 
         <div class="place">
-            <img src="../assets/3rd.png" class="third-icon">
+            <img src="../assets/3rd-icon.png" class="third-icon">
             <p class="user-labels">{{third}}</p>
         </div>
     </div>
