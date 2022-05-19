@@ -1948,6 +1948,14 @@ input[id=lname] {
         height: 30px;
         width: 30px;
     }
+
+    .innerbound {
+        flex-direction: column;
+    }
+
+    .placeholderimg {
+        align-self: center;
+    }
 }
 
 /*----------------------------------------------------------------------------------------------------------------------*/
@@ -2178,6 +2186,7 @@ input[id=lname] {
     background-color: #FFFFFF;
     border-radius: 38px;
     filter: drop-shadow(4px 4px 3px #858484);
+    border: 2px solid #E7E7E7;
     padding-top: 2%;
     padding-bottom: 5%;
     margin: 0% 5% 5% 5%;
@@ -2258,6 +2267,7 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     border: 5px solid #555;
     border-radius: 50%;
     max-height: 200px;
+    max-width: 200px;
 }
 
 .innerbound{
