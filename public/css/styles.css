@@ -1055,6 +1055,11 @@ textarea::placeholder {
 
 }
 
+.recordheader{
+    padding-left: 5%;
+    padding-top: 2%;
+}
+
 #patient-specifics-container {
     display: grid;
     grid-template-columns: 30% 70%;
@@ -1148,11 +1153,13 @@ textarea::placeholder {
 .clin-msg-box {
     border-radius: 25px;
     background-color: #f0f0f0;
+    font-size: 18px;
+    margin-top: 1%;
 }
 
 .clin-msg-btn {
     border-radius: 25px;
-    margin-top:1%;
+    margin-top:2%;
     font-size: 20px;
     background-color:#89b7f0;
     color: #FFFFFF;
@@ -1177,7 +1184,7 @@ textarea::placeholder {
     padding-left: 9%;
     padding-right: 9%;
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 66% 34%;
     grid-column-gap: 16px;
 }
 
@@ -1188,15 +1195,17 @@ textarea::placeholder {
 }
 
 .patient-specifics-graph {
-    padding: 3% 4% 3% 4%;
+    padding: 16px;
     border: 5px solid #eeeeee;
     border-radius: 25px;
+    height:fit-content;
 }
 
 .patient-specifics-month {
-    padding: 3% 4% 3% 4%;
+    padding: 16px;
     border: 5px solid #eeeeee;
     border-radius: 25px;
+    height:100%
 }
 
 .modal {
@@ -1211,6 +1220,7 @@ textarea::placeholder {
     background-color: #f7f7f7;
     width: 800px;
     max-width: 80%;
+    padding: 2%;
 }
 
 .modal.active {
@@ -2301,6 +2311,7 @@ input[id=lname] {
     font-size: 24px;
     font-weight: bold;
     color: #72A6E8;
+    margin-bottom: 1%;
 }
 
 /* ---------------responsive design--------------------- */
