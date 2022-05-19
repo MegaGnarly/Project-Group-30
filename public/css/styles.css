@@ -1435,6 +1435,8 @@ footer {
     justify-content: center;
     flex-direction: column;
     padding-bottom: 5%;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .history-title {
@@ -2538,10 +2540,12 @@ input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
 
 /*history*/
 .history-graph {
-    width: 90%;
+    margin-right: 5%;
+    /* width: 70%; */
     justify-self: center;
     align-self: center;
     padding-top: 60px;
+    margin-left: 5%;
 
 }
 
