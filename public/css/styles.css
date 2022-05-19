@@ -2244,8 +2244,8 @@ input[id=lname] {
 
 
     .place {
-        padding-left: 2%;
-        padding-right: 2%;
+        padding-left: 1%;
+        padding-right: 1%;
         justify-items: center;
         align-items: center;
         margin-left: auto;
@@ -2255,21 +2255,18 @@ input[id=lname] {
     }
 
     .second-icon {
-        max-height: 100px;
-        max-width: 100px;
-        padding-left: 10px;
+        max-height: 90px;
+        max-width: 90px;
     }
 
     .first-icon {
-        max-height: 150px;
-        max-width: 150px;
-        padding-right: 10px;
+        max-height: 120px;
+        max-width: 120px;
     }
 
     .third-icon {
-        max-height: 100px;
-        max-width: 100px;
-        padding-right: 10px;
+        max-height: 90px;
+        max-width: 90px;
     }
 
 }
