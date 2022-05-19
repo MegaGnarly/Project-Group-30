@@ -12,7 +12,7 @@ const getPatientHistory = async (req, res, next) => {
         return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
-        const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).lean()
+        const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).sort({ date: -1, time: -1 }).lean()
         const currentUser = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
 
         const tableRowArray = [];
