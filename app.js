@@ -10,7 +10,7 @@ const bcrypt = require('bcryptjs')
 // Load database schemas
 const measuredValue = require('./models/measuredValue');
 const clinicalNote = require('./models/clinicalNote');
-const patient = require('./models/patient')
+const user = require('./models/user')
 require('./models')
 
 const flash = require('express-flash')
