@@ -1700,7 +1700,8 @@ input[id=fname],
 input[id=lname] {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin-top: 2%;
+    margin-bottom: 5%;
     display: inline-block;
     border: 1px solid #E7E7E7;
     box-sizing: border-box;
