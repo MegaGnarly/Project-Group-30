@@ -109,7 +109,7 @@ const getAllDataClinician = async (req, res, next) => {
         }
 
         // Append new users that have zero measurement entries into the array
-        const patients = await user.find().sort({ datesince: -1 }).lean()
+        const patients = await user.find({role: "patient"}).sort({ datesince: -1 }).lean()
         for (const patient of patients) {
             if (!userValuesArray.includes(patient.username)) {
                 const rowOfData = {
