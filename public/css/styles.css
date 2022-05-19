@@ -2152,7 +2152,17 @@ input[id=lname] {
     border-top: #7D92DB 5px solid;
 }
 
-.settings_heading {
+.detailsform {
+    background-color: #FFFFFF;
+    border-radius: 38px;
+    filter: drop-shadow(4px 4px 3px #858484);
+    padding-top: 2%;
+    padding-bottom: 5%;
+    margin: 0% 5% 5% 5%;
+}
+
+
+.settings_heading{
     text-align: left;
     color: #7D92DB;
     font-family: 'poppins', sans-serif;
@@ -2160,18 +2170,15 @@ input[id=lname] {
     margin-bottom: 5%;
 }
 
-.page_heading {
+.page_heading{
     text-align: left;
     color: #7D92DB;
     font-family: 'poppins', sans-serif;
-    font-weight: bolder;
-    padding: 2%;
+    font-weight: bolde;
+    padding: 5% 0% 3% 8%;
 }
 
-input[id=firstname],
-input[id=lastname],
-input[id=Username],
-input[id=psw] {
+input[id=firstname], input[id=lastname], input[id=Username], input[id=psw] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -2197,14 +2204,11 @@ input[id=psw] {
 
 /* Add padding to containers */
 .settings_container {
-    padding: 10px 15%;
-    /* First value: padding top and bottom. Second value: padding on sides. */
+    padding: 10px 15%;/* First value: padding top and bottom. Second value: padding on sides. */ 
 }
-
 .settings_button {
     background-color: #7D92DB;
-    color: white;
-    padding: 14px 20px;
+    color: white; padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -2212,7 +2216,7 @@ input[id=psw] {
     border-radius: 38px;
     filter: drop-shadow(4px 4px 3px #D4D4D4);
     font-size: 20px;
-    font-weight: bold;
+    font-weight:bold;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -2220,45 +2224,21 @@ input[id=psw] {
     margin-top: 5%;
     width: 100%;
 }
-
-/* Add a hover effect for buttons */
+  
+  /* Add a hover effect for buttons */
 .settings_button:hover {
     opacity: 0.8;
     transform: scale(1.05);
 
 }
 
-.settings_btn {
-    background-color: #7D92DB;
-    color: white;
-    padding: 18px;
-    margin-left: auto;
-    margin-right: 5%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    border-radius: 38px;
-    filter: drop-shadow(4px 4px 3px #D4D4D4);
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease 0s;
-}
-
-/* Add a hover effect for buttons */
-.settings_btn:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
-
-}
-
-.placeholderimg {
+.placeholderimg{
     border: 5px solid #555;
     border-radius: 50%;
     max-height: 200px;
 }
 
-.innerbound {
+.innerbound{
     display: flex;
     justify-content: center;
     padding: 2% 8% 2% 8%;
@@ -2270,12 +2250,12 @@ input[id=psw] {
     overflow: hidden;
     background-color: #f1f1f1;
     border-radius: 15px 15px 0 0;
-    margin: 0% 5% 0% 5%;
+    margin:0% 5% 0% 5%;
     filter: drop-shadow(4px 4px 3px #858484);
-}
-
-/* Style buttons tab content */
-.tab button {
+  }
+  
+  /* Style buttons tab content */
+  .tab button {
     background-color: inherit;
     float: left;
     border: none;
@@ -2288,41 +2268,36 @@ input[id=psw] {
     font-weight: bolder;
     border-radius: 15px 15px 0 0;
     width: 50%;
-}
-
-/* Background color of buttons on hover */
-.tab button:hover {
+  }
+  
+  /* Background color of buttons on hover */
+  .tab button:hover {
     background-color: #ddd;
-}
-
-/* Active/current tablink class */
-.tab button.active {
+  }
+  
+  /* Active/current tablink class */
+  .tab button.active {
     background-color: #7D92DB;
     color: #FFFFFF
-}
-
-/* tab content */
-.tabcontent {
+  }
+  
+  /* tab content */
+  .tabcontent {
     display: none;
     padding: 6px 12px;
     border-top: none;
-}
+  }
 
-.tabcontent {
-    animation: fadeEffect 1s;
-    /* Fading effect takes 1 second */
-}
+  .tabcontent {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+  }
+  
+  /* Go from zero to full opacity */
+  @keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
 
-/* Go from zero to full opacity */
-@keyframes fadeEffect {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
 
 
 /*---------------- graphs --------------------*/
