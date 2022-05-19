@@ -340,7 +340,7 @@ const getPatientDataClinician = async (req, res, next) => {
         }
 
         // Get clinical Notes
-        const allNotes = await clinicalNote.find({ username: req.params.username }).lean()
+        const allNotes = await clinicalNote.find({ username: req.params.username }).sort({ date: -1, time: -1 }).lean()
 
         return res.render('patient_specifics', { profileData: currentUser, patientValues: tableRowArray, allowGlucose, allowWeight, allowExercise, allowInsulin, permittedToRecordAnything, clinicianNote: allNotes, logoURL: "../", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
 
