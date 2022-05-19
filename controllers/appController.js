@@ -9,7 +9,7 @@ const sessionStorage = require('sessionstorage')
 const getPatientHistory = async (req, res, next) => {
     console.log('getPatientHistory')
     if (sessionStorage.getItem('role') != 'patient') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         const userValues = await measuredValue.find({ username: sessionStorage.getItem('username') }).lean()
@@ -63,7 +63,7 @@ const getPatientHistory = async (req, res, next) => {
 const getAllDataClinician = async (req, res, next) => {
     console.log('Inside getAllDataClinician')
     if (sessionStorage.getItem('role') != 'clinician') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
 
@@ -182,7 +182,7 @@ const getAllDataClinician = async (req, res, next) => {
 
 const getAllPatientComments = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'clinician') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         // Load database and get all measured values
@@ -211,7 +211,7 @@ const getAllPatientComments = async (req, res, next) => {
 
 const getPatientEntryData = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'clinician') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         // Get entryID
@@ -255,7 +255,7 @@ const getPatientEntryData = async (req, res, next) => {
 const getPatientDataClinician = async (req, res, next) => {
     console.log("DEBUG: inside getPatientDataClinician")
     if (sessionStorage.getItem('role') != 'clinician') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         // Get basic information about the patient (first name, last name etc)
@@ -566,7 +566,7 @@ const setPatientTimeSeries = async (req, res, next) => {
 // Used for clinician -> patient specifics page.
 const setClinicianNote = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'clinician') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         // New code that constructs and entry that will be inserted into the database.
@@ -608,7 +608,7 @@ const submitSupportMessage = async (req, res, next) => {
 
 const getLeaderboard = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'patient') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         const allUsers = await user.collection.distinct("username")
@@ -680,7 +680,7 @@ function dateComparison(date) {
 // Patient Dashboard logic
 const getPatientDashboard = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'patient') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
 
@@ -778,7 +778,7 @@ const getPatientDashboard = async (req, res, next) => {
 // Used for patient -> record health page.
 const getRecordHealthPage = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'patient') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         // See if user exists in the database
@@ -849,7 +849,7 @@ const getPatientRole = (req, res) => {
 
 const getClinicianEditProfile = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'clinician') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         return res.render('clinician_edit_profile', { logoURL: "./" })
@@ -861,7 +861,7 @@ const getClinicianEditProfile = async (req, res, next) => {
 
 const getClinicianProfileSettings = async (req, res, next) => {
     if (sessionStorage.getItem('role') != 'clinician') {
-        return res.render('error_page', { errorHeading: "404 Error - Page Not Found", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         return res.render('clinician_profile_settings', { logoURL: "./", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
