@@ -2,10 +2,10 @@
 
 
 <div id="patient-specifics-topbar">
-        <p class="topbar-tree">
+    <p class="topbar-tree">
         <a href="../" class="ul-text">Clinician Dashboard</a>
-        <p class="topbar-tree"> > </p>
-        <a href="" class="ul-text">Clinician Record for {{profileData.username}}</a>
+    <p class="topbar-tree"> > </p>
+    <a href="" class="ul-text">Clinician Record for {{profileData.username}}</a>
     </p>
     <h1 id="username">Clinical Record for {{profileData.username}}</h1>
 </div>
@@ -25,8 +25,49 @@
             <form method="POST" action="/clinician_dashboard/post_time_series/{{profileData.username}}">
                 <div class="modal" id="modal">
                     <div class="modal-header">
-                        <div class="title">Required Time-Series</div>
+                        <div class="title">Adjust Time Series</div>
                         <button data-close-button class="close-button">&times;</button>
+                    </div>
+                    <div class="modal-current-values">
+                        {{#if permittedToRecordAnything}}
+                        <p>This patient has currently been assigned:</p>
+                        {{#if allowGlucose}}
+                        <ul>
+                            <li class="guidance-dotpoint">Blood glucose levels between
+                                {{profileData.threshold_bg.lower}} nmol/L and {{profileData.threshold_bg.upper}} nmol/L.
+                            </li>
+                        </ul>
+                        {{/if}}
+
+                        {{#if allowInsulin}}
+                        <ul>
+                            <li class="guidance-dotpoint">Insulin between {{profileData.threshold_insulin.lower}} to
+                                {{profileData.threshold_insulin.upper}} doses</li>
+                        </ul>
+                        {{/if}}
+
+                        {{#if allowWeight}}
+                        <ul>
+                            <li class="guidance-dotpoint">Weight between
+                                {{profileData.threshold_weight.lower}} kg and
+                                {{profileData.threshold_weight.upper}} kg.</li>
+                        </ul>
+                        {{/if}}
+
+                        {{#if allowExercise}}
+                        <ul>
+                            <li class="guidance-dotpoint">Exercise between
+                                {{profileData.threshold_exercise.lower}} and {{profileData.threshold_exercise.upper}} steps.
+                            </li>
+                        </ul>
+                        {{/if}}
+
+                        {{else}}
+                        <p>This patient has not been assigned any time series.</p>
+                        {{/if}}
+                        <br>
+                        <p>You can create a new time series for the patient below:</p>
+
                     </div>
                     <div class="modal-body">
                         <!-- Grid area -->
@@ -83,7 +124,7 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <input class="button01 submit" type="submit" value="Submit">
+                        <input class="modal-button modal-submit" type="submit" value="Submit">
                     </div>
                 </div>
             </form>
@@ -163,7 +204,8 @@
 
 <br>
 <div class="patient-specifics-overview-container">
-    {{!-- <h2 class="patient-specifics-grid-title blue-text">Overview of {{profileData.username}}'s Health Data</h2> --}}
+    {{!-- <h2 class="patient-specifics-grid-title blue-text">Overview of {{profileData.username}}'s Health Data</h2>
+    --}}
 
     <div class="patient-specifics-graph">
         <h2 class="blue-text">Statistical Graph</h2>
