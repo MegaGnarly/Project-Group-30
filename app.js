@@ -278,13 +278,13 @@ app.post('/change_pwd', async (req, res) => {
 
         // Make sure password is not blank and make sure it has no whitespace
         if ((!newPasswords[0].length) || /\s/.test(req.body.password)) {
-            return res.render('error_page', { buttonURL: "/patient/patient_change_pwd", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
+            return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
         }
 
         // Verify user input (make sure passwords match)
         if (newPasswords[0] != newPasswords[1]) {
             console.log("Error. Passwords do not match.")
-            return res.render('error_page', { buttonURL: "/patient/patient_change_pwd", buttonText: "Go Back", errorHeading: "Passwords do not match", errorText: "Please verify that your passwords match and try again.", logoURL: "../patient_dashboard" })
+            return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Passwords do not match", errorText: "Please verify that your passwords match and try again.", logoURL: "../patient_dashboard" })
         }
         else {
             console.log("HASHING STUFF")
