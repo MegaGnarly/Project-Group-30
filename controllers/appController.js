@@ -255,7 +255,7 @@ const getPatientEntryData = async (req, res, next) => {
 const getPatientDataClinician = async (req, res, next) => {
     console.log("DEBUG: inside getPatientDataClinician")
     if (sessionStorage.getItem('role') != 'clinician') {
-        return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+        return res.render('error_page', { buttonURL: "/login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     try {
         // Get basic information about the patient (first name, last name etc)
