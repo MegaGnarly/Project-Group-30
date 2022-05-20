@@ -207,18 +207,47 @@ const User = require('./models/user');
 const { doesUserExist } = require('./controllers/appController');
 app.post('/register', async (req, res) => {
     if ((req.body.password != req.body.password2) || req.body.password === "" || /\s/.test(req.body.password)) {
+        try {
+            if (req.user.role == "patient") {
+                return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values. Passwords must match.", logoURL: "../patient_dashboard" })
+            }
+            else if (req.user.role == "clinician") {
+                return res.render('error_page', { buttonURL: "/clinician_dashboard/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values. Passwords must match.", logoURL: "../clinician_dashboard" })
+            }
+        } catch (error) {
+            return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Password Error", errorText: "Please verify that your passwords match and try again. Note that spaces are not permitted.", layout: 'main2', logoURL: "/" })
+        }
         return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Password Error", errorText: "Please verify that your passwords match and try again. Note that spaces are not permitted.", layout: 'main2', logoURL: "/" })
     }
 
     // Check for whitespace
-    if (/\s/.test(req.body.username)) {
+    if (/\s/.test(req.body.username) || req.body.username === "" || req.body.length === 0) {
         console.log("Reg Error: username has whitespace!");
-        return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Username Error", errorText: "Username must be a single word (no whitespaces). Please try again.", layout: 'main2', logoURL: "/" })
+        try {
+            if (req.user.role == "patient") {
+                return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Username must be a single word (no whitespaces). Please try again.", logoURL: "../patient_dashboard" })
+            }
+            else if (req.user.role == "clinician") {
+                return res.render('error_page', { buttonURL: "/clinician_dashboard/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Username must be a single word (no whitespaces). Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        } catch (error) {
+            return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Username Error", errorText: "Username must be a single word (no whitespaces). Please try again.", layout: 'main2', logoURL: "/" })
+        }
     }
 
     // Check if first name and last name were entered
     if (req.body.fname === "" || req.body.lname === "" || req.body.fname == null || req.body.lname == null || /\s/.test(req.body.fname) || /\s/.test(req.body.lname)) {
         console.log("Reg Error: whitespace in first name or last name fields")
+        try {
+            if (req.user.role == "patient") {
+                return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "First name and last name fields cannot contain whitespace. Please try again.", logoURL: "../patient_dashboard" })
+            }
+            else if (req.user.role == "clinician") {
+                return res.render('error_page', { buttonURL: "/clinician_dashboard/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "First name and last name fields cannot contain whitespace. Please try again.", logoURL: "../clinician_dashboard" })
+            }
+        } catch (error) {
+            return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Registration Error", errorText: "First name and last name fields cannot contain whitespace. Please try again.", layout: 'main2', logoURL: "/" })
+        }
         return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Registration Error", errorText: "First name and last name fields cannot contain whitespace. Please try again.", layout: 'main2', logoURL: "/" })
     }
 
@@ -226,11 +255,20 @@ app.post('/register', async (req, res) => {
     var userExists = await doesUserExist(req, res);
 
     if (userExists) {
+        try {
+            if (req.user.role == "patient") {
+                return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "This user already exists. Please try again", logoURL: "../patient_dashboard" })
+            }
+            else if (req.user.role == "clinician") {
+                return res.render('error_page', { buttonURL: "/clinician_dashboard/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "This user already exists. Please try again", logoURL: "../clinician_dashboard" })
+            }
+        } catch (error) {
+            return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Registration Error", errorText: "This user already exists. Please try again", layout: 'main2', logoURL: "/" })
+        }
+
+
         return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Registration Error", errorText: "This user already exists. Please try again.", layout: 'main2', logoURL: "/" })
     }
-
-    // const currentUser = user.find({ username: req.body.username }).lean()
-    // console.log("CURRENT: ", currentUser)
 
 
     User.create({
@@ -281,13 +319,19 @@ app.post('/change_pwd', async (req, res) => {
             if (req.user.role == "patient") {
                 return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
             }
+            else if (req.user.role == "clinician") {
+                return res.render('error_page', { buttonURL: "/clinician_dashboard/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../clinician_dashboard" })
+            }
         }
 
         // Verify user input (make sure passwords match)
         if (newPasswords[0] != newPasswords[1]) {
             console.log("Error. Passwords do not match.")
             if (req.user.role == "patient") {
-                return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
+                return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values. Passwords must match.", logoURL: "../patient_dashboard" })
+            }
+            else if (req.user.role == "clinician") {
+                return res.render('error_page', { buttonURL: "/clinician_dashboard/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values. Passwords must match.", logoURL: "../clinician_dashboard" })
             }
         }
         else {
