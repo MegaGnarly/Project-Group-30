@@ -1082,9 +1082,7 @@ textarea::placeholder {
 }
 
 .patient-specifics-userbox {
-    border: 2px solid #eeeeee;
-background: white;
-filter: drop-shadow(4px 4px 3px #D4D4D4);
+    border: 5px solid #eeeeee;
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -1115,7 +1113,7 @@ filter: drop-shadow(4px 4px 3px #D4D4D4);
     border-radius: 25px;
     border: 2px solid #eeeeee;
     background: white;
-    filter: drop-shadow(4px 4px 3px #D4D4D4);
+
 }
 
 .patient-specifics-table-attachedData {
@@ -1159,7 +1157,6 @@ filter: drop-shadow(4px 4px 3px #D4D4D4);
     grid-column-end: 3;
     border: 2px solid #eeeeee;
 background: white;
-filter: drop-shadow(4px 4px 3px #D4D4D4);
     border-radius: 25px;
     padding: 3% 4% 3% 4%;
 }
@@ -1212,7 +1209,6 @@ filter: drop-shadow(4px 4px 3px #D4D4D4);
     padding: 16px;
     border: 2px solid #eeeeee;
     background: white;
-    filter: drop-shadow(4px 4px 3px #D4D4D4);
     border-radius: 25px;
     height:fit-content;
 }
@@ -1221,7 +1217,6 @@ filter: drop-shadow(4px 4px 3px #D4D4D4);
     padding: 16px;
     border: 2px solid #eeeeee;
     background: white;
-    filter: drop-shadow(4px 4px 3px #D4D4D4);
     border-radius: 25px;
     height:100%
 }
