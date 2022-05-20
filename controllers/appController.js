@@ -376,6 +376,10 @@ function isValidNumber(input) {
 const getPatientSettings = async (req, res, next) => {
     try {
         const current_user = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+
+        if (current_user === undefined || current_user === null) {
+            return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
+       }
         return res.render('patient_acc_setting', { user: current_user, logoURL: "../patient_dashboard", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role') })
     } catch (error) {
         console.log(error)
@@ -863,6 +867,7 @@ const getClinicianProfileSettings = async (req, res, next) => {
         return res.render('error_page', { buttonURL: "../login_page", buttonText: "Login Page", errorHeading: "Authorization Error", errorText: "You do not have permission to access this page. Make sure you are logged in.", logoURL: "../" })
     }
     const current_user = await user.findOne({ username: sessionStorage.getItem('username') }).lean()
+
     try {
         return res.render('clinician_profile_settings', { logoURL: "./", userName: sessionStorage.getItem('username'), userRole: sessionStorage.getItem('role'), user: current_user })
 
