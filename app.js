@@ -206,7 +206,7 @@ app.post('/post_values', async (req, res) => {
 const User = require('./models/user');
 const { doesUserExist } = require('./controllers/appController');
 app.post('/register', async (req, res) => {
-    if ((req.body.password != req.body.password2) || req.body.password === "" || /\s/.test(req.body.password)) { 
+    if ((req.body.password != req.body.password2) || req.body.password === "" || /\s/.test(req.body.password)) {
         return res.render('error_page', { buttonURL: "/register", buttonText: "Go Back", errorHeading: "Password Error", errorText: "Please verify that your passwords match and try again. Note that spaces are not permitted.", layout: 'main2', logoURL: "/" })
     }
 
@@ -251,16 +251,16 @@ app.post('/register', async (req, res) => {
         support_msg: "Welcome to Diabetes@Home! Messages from your clinician will appear here 😊"
 
     }, (err) => {
-        if (err) { 
+        if (err) {
             console.log("ERROR")
-            console.log(err); 
+            console.log(err);
         }
         else {
             console.log('User inserted')
         }
-        
+
     })
-    if (sessionStorage.getItem("role") == "clinician"){
+    if (sessionStorage.getItem("role") == "clinician") {
         res.redirect('/clinician_dashboard')
     }
     else {
@@ -278,13 +278,17 @@ app.post('/change_pwd', async (req, res) => {
 
         // Make sure password is not blank and make sure it has no whitespace
         if ((!newPasswords[0].length) || /\s/.test(req.body.password)) {
-            return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
+            if (req.user.role == "patient") {
+                return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
+            }
         }
 
         // Verify user input (make sure passwords match)
         if (newPasswords[0] != newPasswords[1]) {
             console.log("Error. Passwords do not match.")
-            return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Passwords do not match", errorText: "Please verify that your passwords match and try again.", logoURL: "../patient_dashboard" })
+            if (req.user.role == "patient") {
+                return res.render('error_page', { buttonURL: "/patient/settings", buttonText: "Go Back", errorHeading: "Invalid input", errorText: "Passwords can only contain alphanumeric values.", logoURL: "../patient_dashboard" })
+            }
         }
         else {
             console.log("HASHING STUFF")
@@ -306,10 +310,10 @@ app.post('/change_pwd', async (req, res) => {
                 user.collection.updateOne({ username: req.user.username }, { $set: { password: hashedPassword } });
             })
 
-            if ( req.user.role == "patient"){
+            if (req.user.role == "patient") {
                 res.redirect('patient_dashboard')
             }
-            else if ( req.user.role == "clinician"){
+            else if (req.user.role == "clinician") {
                 res.redirect('clinician_dashboard')
             }
         }
