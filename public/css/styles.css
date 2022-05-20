@@ -1098,6 +1098,7 @@ textarea::placeholder {
     padding-right: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
+    
 }
 
 .patient-specifics-name {
@@ -1138,6 +1139,7 @@ textarea::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     border: 1px solid #eeeeee;
 }
 
